@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
-
+// teste da goma
 @Entity
 public class tb_funcionarios implements Serializable {
     @Id
