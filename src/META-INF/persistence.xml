@@ -8,6 +8,7 @@
     <class>org.entities.classes.tb_alunos</class>
     <class>org.entities.classes.tb_funcionarios</class>
     <class>org.entities.classes.tb_usuarios</class>
+    <class>org.entities.classes.Itens</class>
     <properties>
       <!-- dados da conexao -->
       <!--  propriedades do hibernate -->

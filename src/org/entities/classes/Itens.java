@@ -1,40 +1,59 @@
 package org.entities.classes;
 
-public class Itens {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-    //public int codigo;
-    public String descricao;
-    public double valor;
-    public String status;
 
-    public Itens(int codigo, String descricao, double valor, String status) {
+@Entity
+public class Itens implements Serializable {
+    @Id
+    @GeneratedValue
+    private int fd_item;
+    private String fd_descricao;
+    private double fd_valor;
+    private String fd_status;
 
-        this.descricao = descricao;
-        this.valor = valor;
-        this.status = status;
+    public Itens(int fd_item, String fd_descricao, double fd_valor, String fd_status) {
+        
+        this.fd_item = fd_item;
+        this.fd_descricao = fd_descricao;
+        this.fd_valor = fd_valor;
+        this.fd_status = fd_status;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public int getFd_item() {
+        return fd_item;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setFd_item(int fd_item) {
+        this.fd_item = fd_item;
     }
 
-    public double getValor() {
-        return valor;
+    public String getFd_descricao() {
+        return fd_descricao;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setFd_descricao(String fd_descricao) {
+        this.fd_descricao = fd_descricao;
     }
 
-    public String getStatus() {
-        return status;
+    public double getFd_valor() {
+        return fd_valor;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setFd_valor(double fd_valor) {
+        this.fd_valor = fd_valor;
     }
+
+    public String getFd_status() {
+        return fd_status;
+    }
+
+    public void setFd_status(String fd_status) {
+        this.fd_status = fd_status;
+    }
+
+   
 }

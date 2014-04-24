@@ -292,9 +292,9 @@ public void Listar() throws SQLException{
          List<Itens> item = dao.Select(codigo);
     
          for(Itens car : item ){
-            txtItem.setText(car.getDescricao());
+            txtItem.setText(car.getFd_descricao());
           //  txtPreco.setText(car.getValor());
-         if(car.getStatus().equals("A")){
+         if(car.getFd_status().equals("A")){
             comboStatus.setSelectedIndex(1);    
          }else{
             comboStatus.setSelectedIndex(2);
