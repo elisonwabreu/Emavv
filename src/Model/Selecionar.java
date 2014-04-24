@@ -68,23 +68,27 @@ public class Selecionar extends JFrame {
     
         DaoAluno dao = new DaoAluno();
         
-        tb_alunos al = new tb_alunos(0,null,null);
+        tb_alunos alu = new tb_alunos(0,null,null);
     
         int codigo = Integer.parseInt(a.txtCodigo.getText());
     
-        if(val.SelectReturn(codigo,"aluno","alunos") == true){
-      
-            dao.Select(codigo,al);
+        List<tb_alunos> aluno = dao.Select(codigo);
+        
+        if(aluno.size() > 0 ){
+            
+            for(tb_alunos al : aluno){
 
             a.txtNome.setText(al.getFd_nome());
+            
             if(al.getFd_status().equals("A")){
                a.cbStatus.setSelectedIndex(1);    
             }else{
                a.cbStatus.setSelectedIndex(2);
                }   
+            
             a.txtCpf.setText(val.AjusteCaracter(al.getFd_cpf()));
             a.txtRg.setText(al.getFd_rg());
-           // a.txtDtNascimento.setText(val.FormataDataSelec(al.getFd_data_nasc()));
+            a.txtDtNascimento.setText(val.FormataDataSelec(al.getFd_data_nasc().toString()));
             a.txtEndereco.setText(al.getFd_endereco());
             a.txtNum.setText(Integer.toString(al.getFd_numero()));
             a.cbUf.setSelectedItem(al.getFd_uf());
@@ -95,7 +99,7 @@ public class Selecionar extends JFrame {
             a.txtCidade.setText(al.getFd_cidade());
             a.txtCep.setText(al.getFd_cep());
             a.txtEmail.setText(al.getFd_email());
-            
+         }
             return true;
            
         }else{

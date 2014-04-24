@@ -1,15 +1,16 @@
 package Daos;
 
+import ConnectionFactory.*;
+import Messages.Cmessage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import Messages.Cmessage;
-import org.entities.classes.tb_alunos;
-import ConnectionFactory.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import org.entities.classes.tb_alunos;
 
 /**
  *
@@ -18,17 +19,17 @@ import javax.persistence.EntityManager;
 public class DaoAluno {
     //Metodo para inserir um registro da tabela de Aluno
     Cmessage msg = new Cmessage();
+    EntityManager manager = JPAUtil.getEntityManager();
     
     public boolean Inserir(tb_alunos al) throws SQLException {
         
         if(msg.MsgConfGravacao()==true){
             
-            EntityManager manager = JPAUtil.getEntityManager();
             manager.getTransaction().begin();
             manager.persist(al);
             manager.getTransaction().commit();
-            manager.close();
             msg.msgGravado();
+            System.gc();
             return true;
         }else{
             return false;
@@ -49,38 +50,26 @@ public class DaoAluno {
         conn.close();
     }
     //Fim do metodo Delete
-/*
-    public void Select(int codigo,tb_alunos al) throws SQLException {
+    
+    public List<tb_alunos> Select(int codigo) throws SQLException {
 
-        Connection conn = Conexao.getConexao();
-
-        String SQL = "SELECT * FROM  tb_alunos WHERE fd_aluno = ?";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        pstm.setInt(1, codigo);
-        ResultSet rs = pstm.executeQuery();
-        while (rs.next()) {
-        
-            al.setFd_aluno(rs.getInt("fd_aluno"));
-            al.setFd_nome(rs.getString("fd_nome"));
-            al.setFd_cpf(rs.getString("fd_cpf"));
-            al.setFd_rg(rs.getString("fd_rg"));
-            al.setFd_dataNascimento(rs.getString("fd_data_nasc"));
-            al.setFd_endereco(rs.getString("fd_endereco"));
-            al.setFd_numero(rs.getInt("fd_numero"));
-            al.setFd_bairro(rs.getString("fd_bairro"));
-            al.setFd_cidade(rs.getString("fd_cidade"));
-            al.setFd_cep(rs.getString("fd_cep"));
-            al.setFd_uf(rs.getString("fd_uf"));
-            al.setFd_telefone(rs.getString("fd_telefone"));
-            al.setFd_celular(rs.getString("fd_celular"));
-            al.setFd_email(rs.getString("fd_email"));
-            al.setFd_status(rs.getString("fd_status"));
-            
-        }
-        pstm.close();
-        conn.close();
+        Query q = manager.createQuery("select a from tb_alunos a "
+                                              + "where a.fd_aluno = :fd_aluno");
+        q.setParameter("fd_aluno",codigo);
+        List<tb_alunos> aluno = q.getResultList();
+        return aluno;  
     }
     
+    public List<tb_alunos> SelectCpf(String cpf){
+        
+        Query q = manager.createQuery("select a.fd_cpf from tb_alunos a "
+                                                + "where a.fd_cpf = :fd_cpf");
+        q.setParameter("fd_cpf",cpf);
+        List<tb_alunos> aluno = q.getResultList();
+        return aluno;
+    }
+    
+  /*
     public List<tb_alunos> Select(String nome) throws SQLException {
         
         Connection conn = Conexao.getConexao();

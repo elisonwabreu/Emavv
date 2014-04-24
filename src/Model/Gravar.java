@@ -38,7 +38,6 @@ public class Gravar extends JFrame{
    
     Validacoes val = new Validacoes();
     tb_cargos cargo = new tb_cargos();
-    tb_alunos aluno = new tb_alunos();
     DaoCargo dao = new DaoCargo(); 
     Limpar limpa = new Limpar();
     
@@ -74,18 +73,24 @@ public class Gravar extends JFrame{
     public void Aluno(CadAluno a) throws SQLException, ParseException{
      //Instacia DaoAluno
         DaoAluno al = new DaoAluno();
-        
+        tb_alunos aluno = new tb_alunos();
     
         /*if(a.txtCodigo.getText() != "") {
             int codigo = Integer.parseInt(a.txtCodigo.getText());
         }*/
         String nome = a.txtNome.getText();
-        String cpf = a.txtCpf.getText();
+        String cpf = val.AjusteCaracter(a.txtCpf.getText());
         String rg = a.txtRg.getText();
         String dtNasc = a.txtDtNascimento.getText();
         String sexo = a.cbSexo.getSelectedItem().toString();
         String endereco = a.txtEndereco.getText();
-        Integer  num = Integer.parseInt(a.txtNum.getText());
+        Integer  num;
+        if(a.txtNum.getText().trim().equals("")){
+           num = null; 
+        }else{
+           num = Integer.parseInt(a.txtNum.getText());
+        }   
+        
         String bairro = a.txtbairro.getText();
         String cidade = a.txtCidade.getText();
         String cep = a.txtCep.getText();
@@ -108,12 +113,26 @@ public class Gravar extends JFrame{
        }
        //aluno.setFd_aluno(codigo);
        aluno.setFd_nome(nome.toUpperCase());
-       aluno.setFd_cpf((val.AjusteCaracter(cpf)));
+       if(cpf.equals("")){
+         aluno.setFd_cpf(null);  
+       }else{
+           aluno.setFd_cpf(cpf);
+       }
        aluno.setFd_rg(rg);
-       aluno.setFd_data_nasc(val.FormataData(dtNasc));
+       
+       if(dtNasc.equals("  /  /    ")){
+         aluno.setFd_data_nasc(null);  
+       }else{
+         aluno.setFd_data_nasc(val.FormataData(dtNasc));
+       }
+       
        aluno.setFd_sexo(sexo);
        aluno.setFd_endereco(endereco.toUpperCase());
-       aluno.setFd_numero(num);
+       
+       if(num != null){
+           aluno.setFd_numero(num);
+       }
+          
        aluno.setFd_bairro(bairro.toUpperCase());
        aluno.setFd_cidade(cidade.toUpperCase());
        aluno.setFd_cep(val.AjusteCaracter(cep));
@@ -127,12 +146,10 @@ public class Gravar extends JFrame{
 
        //if(a.txtCodigo.equals("")){
            
-           if(val.validaCPF(cpf)== true){
-                al.Inserir(aluno);
-                limpa.LimpaAluno(a);
-           }else{
-                JOptionPane.showMessageDialog(null,"CPF: "+cpf+" NÃO É UM CPF VÁLIDO.","Grava Aluno",JOptionPane.WARNING_MESSAGE);
-           } 
+           if(val.ValidaGravacaoAlunos(cpf,a) == true){
+               al.Inserir(aluno);
+               limpa.LimpaAluno(a); 
+           }
       // }else{
       //     al.Update(aluno);   
      // }

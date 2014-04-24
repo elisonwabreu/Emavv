@@ -57,56 +57,19 @@ public class Validacoes extends JFrame{
     /*
      *Validação para os campos do cadastro de aluno.
      */
-    public boolean ValidaGravacaoAluno(JTextField txtNome, JFormattedTextField txtCpf, 
-            JTextField txtRg, JFormattedTextField txtDtNascimento, JTextField txtEndereco, 
-            JTextField txtNum, JComboBox comboUF, JTextField txtCidade, JFormattedTextField txtCelular, 
-            JTextField txtEmail, JTextField txtbairro, JFormattedTextField txtTelefone, JComboBox comboStatus) {
+    public boolean CamposObrigatorios(CadAluno c) {
         
-      if(txtNome.getText().equals("")){
+      if(c.txtNome.getText().equals("")){
             msg.MsgCamposObrigatorios("Nome");
             return false;   
-        }/*else if(txtCpf.getText().equals("")){
-            msg.MsgCamposObrigatorios("CPF");
-            return false;   
-        }else if(txtRg.getText().equals("")){
-            msg.MsgCamposObrigatorios("RG");
-            return false;   
-        }*/else if(txtDtNascimento.getText().equals("")){
-            msg.MsgCamposObrigatorios("Data");
-            return false;   
-        }else if(txtEndereco.getText().equals("")){
-            msg.MsgCamposObrigatorios("Endereço");
-            return false;   
-        }else if(txtCidade.getText().equals("")){
-            msg.MsgCamposObrigatorios("Cidade");
-            return false;   
-        }/*else if(txtCelular.getText().equals("")){
+      }else if(AjusteCaracter(c.txtCelular.getText()).equals("")){
             msg.MsgCamposObrigatorios("Celular");
-            return false;   
-        }*/else if(txtbairro.getText().equals("")){
-            msg.MsgCamposObrigatorios("Bairro");
-            return false;   
-        }/*else if(txtTelefone.getText().equals("")){
-            msg.MsgCamposObrigatorios("Telefone");
-            return false;   
-        }else if(txtNum.getText().equals("")){
-            msg.MsgCamposObrigatorios("Número");
-            return false; 
-      
-        }*/else if(comboStatus.getSelectedIndex() == 0){
-            msg.MsgCamposObrigatorios("Status");
-            return false;   
-        }
-        else{
+            return false;      
+        }else{
             return true;
-        }  
-        
+        }    
     }
-    /*Fim da validação do preenchimento dos campos de aluno -------------------------------*/
     
-     /*
-     *Validação para os campos do cadastro de Funcionarios.
-     */
     public boolean ValidaGravacaoFunc(CadFuncionarios fun) {
         
       if(fun.txtNome.getText().equals("")){
@@ -339,8 +302,7 @@ public class Validacoes extends JFrame{
 			
 			str = str.replace(caracEspecial[i],"");	
 		}
-		
-		return str;
+		return str.trim();
 		}
 	
     public Date FormataData (String data) throws ParseException {
@@ -518,6 +480,46 @@ public void clickBtPesquisa(int tableIndex, JTextField txtCodigo, String tabela)
             
         return false;  
     }
-    }
+  }
+     
+     public boolean CpfJaExiste(String cpf){
+         
+         DaoAluno dao = new DaoAluno();
+         List<tb_alunos> aluno = dao.SelectCpf(cpf);
+         if(aluno.size() == 0){
+             return true;
+         }else{
+             return false;
+         }   
+     }    
+      
+     public boolean ValidaGravacaoAlunos(String cpf,CadAluno c){
+         
+         boolean grava = true;
+         
+         if(cpf.equals("")){
+                  
+         }else{
+             if(validaCPF(cpf)== false){
 
+                JOptionPane.showMessageDialog(null,"CPF: "+cpf+" "
+                           + "NÃO É UM CPF VÁLIDO.","Grava Aluno",JOptionPane.WARNING_MESSAGE);
+                grava = false;
+            } 
+                
+                if(CpfJaExiste(cpf) == false){
+             
+                    JOptionPane.showMessageDialog(null,"CPF: "+cpf+" "
+                        + "Já cadastrado.","Grava Aluno",JOptionPane.WARNING_MESSAGE);
+                    grava = false;
+            }    
+
+         }
+    
+         if(CamposObrigatorios(c) == false){
+             return false;
+         }
+         
+         return grava;
+     }
 }

@@ -233,6 +233,7 @@ public class CadAluno extends javax.swing.JFrame {
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/confirma_16x16.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setEnabled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -241,6 +242,7 @@ public class CadAluno extends javax.swing.JFrame {
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/deletar_16x16.png"))); // NOI18N
         btnExcluir.setText("Deletar");
+        btnExcluir.setEnabled(false);
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
@@ -249,9 +251,11 @@ public class CadAluno extends javax.swing.JFrame {
 
         bntRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/relatorio_16x16.png"))); // NOI18N
         bntRelatorio.setText("Relatório");
+        bntRelatorio.setEnabled(false);
 
         btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/vassoura_16x16.png"))); // NOI18N
         btnLimpar.setText("Limpar");
+        btnLimpar.setEnabled(false);
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
@@ -455,6 +459,7 @@ public class CadAluno extends javax.swing.JFrame {
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         
         limpa.LimpaAluno(this);
+        val.ButtonClick(this);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -474,7 +479,7 @@ public class CadAluno extends javax.swing.JFrame {
        //metodo para gravar -----------------------------------------------------------------    
                   
         //metodo para limpar apos gravar -----------------------------------------------------------------
-                  limpa.LimpaAluno(this);
+                  //limpa.LimpaAluno(this);
        //metodo para limpar apos gravar -----------------------------------------------------------------    
                   
             } catch (SQLException ex) {
@@ -615,8 +620,6 @@ public class CadAluno extends javax.swing.JFrame {
     public javax.swing.JFormattedTextField txtTelefone;
     public javax.swing.JTextField txtbairro;
     // End of variables declaration//GEN-END:variables
-
-
 
 
 }

@@ -21,12 +21,11 @@ public class DaoCargo {
     //private static final Cargos Cargos = null;
     //metodo que insere um cargo no banco
     Cmessage msg = new Cmessage();
+    EntityManager manager = JPAUtil.getEntityManager();
     
     public boolean Inserir(tb_cargos c) throws SQLException {
 
         if(msg.MsgConfGravacao() == true){
-        
-            EntityManager manager = JPAUtil.getEntityManager();
             manager.getTransaction().begin();
             manager.persist(c);
             manager.getTransaction().commit();
@@ -41,8 +40,7 @@ public class DaoCargo {
     //metodo que deleta um cargo no banco
     //metodo que seleciona um cargo no banco
     public List<tb_cargos> Select(int codigo) throws SQLException {
-        
-        EntityManager manager = JPAUtil.getEntityManager();
+     
         Query q = manager.createQuery("select a from tb_cargos a where "
                                                     + "a.fd_cargo = :fd_cargo");
         q.setParameter("fd_cargo",codigo);
@@ -53,7 +51,6 @@ public class DaoCargo {
     public List<tb_cargos> Select(String descricao) throws SQLException {
         
         String jpql = "";
-        EntityManager manager = JPAUtil.getEntityManager(); 
         
         if (descricao.equals("")){
             jpql = "select a from tb_cargos a";
@@ -80,8 +77,7 @@ public class DaoCargo {
     public boolean Update(String descricacao, String status, int codigo) throws SQLException {
         
          if(msg.MsgConfGravacao() == true){
-            
-             EntityManager manager = JPAUtil.getEntityManager();
+           
              tb_cargos c =(tb_cargos)manager.find(tb_cargos.class, codigo);
              manager.getTransaction().begin();
              c.setFd_descricao(descricacao);
