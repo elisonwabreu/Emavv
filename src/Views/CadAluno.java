@@ -515,7 +515,7 @@ public class CadAluno extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            deleta.Delete(txtCodigo, "tb_alunos", "fd_aluno");
+            deleta.Alunos(this);
         } catch (SQLException ex) {
             Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -10,6 +10,7 @@ import java.util.List;
 import org.entities.classes.tb_cargos;
 import ConnectionFactory.*;
 import Messages.Cmessage;
+import Views.CadCargos;
 import javax.naming.ldap.ManageReferralControl;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -37,8 +38,7 @@ public class DaoCargo {
             return false;
         }
     }
-    //metodo que deleta um cargo no banco
-    //metodo que seleciona um cargo no banco
+
     public List<tb_cargos> Select(int codigo) throws SQLException {
      
         Query q = manager.createQuery("select a from tb_cargos a where "
@@ -73,16 +73,18 @@ public class DaoCargo {
         
     }
 
-    //metodo que altera um cargo no banco
-    public boolean Update(String descricacao, String status, int codigo) throws SQLException {
+    public boolean Update(CadCargos ca,String status) throws SQLException {
         
          if(msg.MsgConfGravacao() == true){
            
-             tb_cargos c =(tb_cargos)manager.find(tb_cargos.class, codigo);
+             tb_cargos c =(tb_cargos)manager.find(tb_cargos.class,
+                                      Integer.parseInt(ca.txtCodigo.getText()));
              manager.getTransaction().begin();
-             c.setFd_descricao(descricacao);
+             c.setFd_descricao(ca.txtDescricao.getText());
              c.setFd_status(status);
              manager.getTransaction().commit();
+             manager.close();
+             msg.msgGravado();
              
             return true; 
         }else{

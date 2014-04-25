@@ -61,11 +61,40 @@ public class Validacoes extends JFrame{
         
       if(c.txtNome.getText().equals("")){
             msg.MsgCamposObrigatorios("Nome");
-            return false;   
+            c.txtNome.grabFocus();
+            return false; 
+      
+      }else if(c.txtEndereco.getText().equals("")){
+            msg.MsgCamposObrigatorios("Endereco");
+            c.txtEndereco.grabFocus();
+            return false;
+            
+      }else if(c.txtbairro.getText().equals("")){
+            msg.MsgCamposObrigatorios("Bairro");
+            c.txtbairro.grabFocus();
+            return false;  
+      
+      }else if(c.txtCidade.getText().equals("")){
+            msg.MsgCamposObrigatorios("Cidade");
+            c.txtCidade.grabFocus();
+            return false;
+      
+       }else if(c.cbSexo.getSelectedIndex() == 0){
+            msg.MsgCamposObrigatorios("Sexo");
+            c.cbSexo.grabFocus();
+            return false; 
+       
+      }else if(c.cbUf.getSelectedIndex() == 0){
+            msg.MsgCamposObrigatorios("UF");
+            c.cbUf.grabFocus();
+            return false;       
+      
       }else if(AjusteCaracter(c.txtCelular.getText()).equals("")){
             msg.MsgCamposObrigatorios("Celular");
+            c.txtCelular.grabFocus();
             return false;      
-        }else{
+        
+      }else{
             return true;
         }    
     }
@@ -366,7 +395,7 @@ public class Validacoes extends JFrame{
                     for(int i = 0; i < aluno.size();i++){     
                        f.jGridBusca.setValueAt(aluno.get(i).getFd_aluno(),i,0);
                        f.jGridBusca.setValueAt(aluno.get(i).getFd_nome(),i,1);
-                       f.jGridBusca.setValueAt(aluno.get(i).getFd_status(),i,2);
+                       f.jGridBusca.setValueAt(aluno.get(i).getFd_cpf(),i,2);
 
                     } 
                 }
@@ -482,15 +511,28 @@ public void clickBtPesquisa(int tableIndex, JTextField txtCodigo, String tabela)
     }
   }
      
-     public boolean CpfJaExiste(String cpf){
+     public boolean CpfJaExiste(String cpf,int codigoAluno){
          
+         boolean podeGravar = false;
+         int getCodigoAluno = 0;
          DaoAluno dao = new DaoAluno();
          List<tb_alunos> aluno = dao.SelectCpf(cpf);
+         
          if(aluno.size() == 0){
-             return true;
+             podeGravar = true;
          }else{
-             return false;
-         }   
+             for(tb_alunos a : aluno){
+                 
+               getCodigoAluno = a.getFd_aluno();
+             }
+             
+             if(codigoAluno == getCodigoAluno){
+                 podeGravar = true;
+             }else{
+                 podeGravar = false;
+             }   
+           }
+            return podeGravar;
      }    
       
      public boolean ValidaGravacaoAlunos(String cpf,CadAluno c){
@@ -503,11 +545,11 @@ public void clickBtPesquisa(int tableIndex, JTextField txtCodigo, String tabela)
              if(validaCPF(cpf)== false){
 
                 JOptionPane.showMessageDialog(null,"CPF: "+cpf+" "
-                           + "NÃO É UM CPF VÁLIDO.","Grava Aluno",JOptionPane.WARNING_MESSAGE);
+                           + "Não é válido.","Grava Aluno",JOptionPane.WARNING_MESSAGE);
                 grava = false;
             } 
                 
-                if(CpfJaExiste(cpf) == false){
+                if(CpfJaExiste(cpf,Integer.parseInt(c.txtCodigo.getText())) == false){
              
                     JOptionPane.showMessageDialog(null,"CPF: "+cpf+" "
                         + "Já cadastrado.","Grava Aluno",JOptionPane.WARNING_MESSAGE);

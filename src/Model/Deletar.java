@@ -2,19 +2,24 @@
 package Model;
 
 import ConnectionFactory.Conexao;
+import Daos.DaoAluno;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Messages.Cmessage;
+import Views.CadAluno;
 import Views.CadUsuarios;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import Model.Limpar;
 
 /**
  * @author Elison
  */
 public class Deletar extends JFrame{
     Cmessage msg = new Cmessage();
+    DaoAluno daoAluno = new DaoAluno();
+    Limpar limpa = new Limpar();
     
     public boolean Delete(JTextField txtCodigo, String Tabela, String Campo) throws SQLException{
         if(msg.MsgConfExclusao() ==  true){
@@ -49,6 +54,14 @@ public class Deletar extends JFrame{
             }
         }else{
             return false;
+        }    
+    }
+    
+    public void Alunos(CadAluno ca) throws SQLException{
+        
+        int codigo = Integer.parseInt(ca.txtCodigo.getText());
+        if(daoAluno.Delete(codigo) == true){
+            limpa.LimpaAluno(ca);  
         }    
     }
    

@@ -62,7 +62,7 @@ public class Gravar extends JFrame{
         val.ButtonClick(c);
      }  
     }else{
-        if(dao.Update(descricao, status, Integer.parseInt(codigo)) == true){
+        if(dao.Update(c,status) == true){
         limpa.LimpaCargo(c);
         val.ButtonClick(c);
     }
@@ -71,13 +71,10 @@ public class Gravar extends JFrame{
 }
    
     public void Aluno(CadAluno a) throws SQLException, ParseException{
-     //Instacia DaoAluno
+
         DaoAluno al = new DaoAluno();
         tb_alunos aluno = new tb_alunos();
-    
-        /*if(a.txtCodigo.getText() != "") {
-            int codigo = Integer.parseInt(a.txtCodigo.getText());
-        }*/
+        int codigo = Integer.parseInt(a.txtCodigo.getText()); 
         String nome = a.txtNome.getText();
         String cpf = val.AjusteCaracter(a.txtCpf.getText());
         String rg = a.txtRg.getText();
@@ -85,6 +82,7 @@ public class Gravar extends JFrame{
         String sexo = a.cbSexo.getSelectedItem().toString();
         String endereco = a.txtEndereco.getText();
         Integer  num;
+        
         if(a.txtNum.getText().trim().equals("")){
            num = null; 
         }else{
@@ -98,7 +96,6 @@ public class Gravar extends JFrame{
         String telefone = a.txtTelefone.getText();
         String celular = a.txtCelular.getText();
         String email = a.txtEmail.getText();
-        //Blob imagem = (Blob)a. labelFoto.getIcon();
         String status = a.cbStatus.getSelectedItem().toString();
 
        if (a.cbSexo.getSelectedIndex() == 1){
@@ -111,7 +108,11 @@ public class Gravar extends JFrame{
        }else{
            status = "I";     
        }
-       //aluno.setFd_aluno(codigo);
+       
+       if(codigo != 0){
+           aluno.setFd_aluno(codigo);   
+       }
+       
        aluno.setFd_nome(nome.toUpperCase());
        if(cpf.equals("")){
          aluno.setFd_cpf(null);  
@@ -140,19 +141,19 @@ public class Gravar extends JFrame{
        aluno.setFd_telefone(val.AjusteCaracter(telefone));
        aluno.setFd_celular(val.AjusteCaracter(celular));
        aluno.setFd_email(email.toUpperCase());    
-       
-       //aluno.setImagem(imagem);
        aluno.setFd_status(status);
 
-       //if(a.txtCodigo.equals("")){
-           
-           if(val.ValidaGravacaoAlunos(cpf,a) == true){
-               al.Inserir(aluno);
-               limpa.LimpaAluno(a); 
-           }
-      // }else{
-      //     al.Update(aluno);   
-     // }
+       if(a.txtCodigo.getText().equals("")){
+            if(val.ValidaGravacaoAlunos(cpf,a) == true){
+                 if(al.Inserir(aluno) == true){
+                   limpa.LimpaAluno(a);  
+               }  
+            }
+          }else if(val.ValidaGravacaoAlunos(cpf,a) == true){
+              if(al.Update(aluno,status) == true){
+                limpa.LimpaAluno(a);  
+            }        
+        }
     } 
     
   public void Funcionario(CadFuncionarios fun) throws SQLException{

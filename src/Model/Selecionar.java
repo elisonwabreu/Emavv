@@ -86,11 +86,22 @@ public class Selecionar extends JFrame {
                a.cbStatus.setSelectedIndex(2);
                }   
             
-            a.txtCpf.setText(val.AjusteCaracter(al.getFd_cpf()));
+            if(al.getFd_cpf() != null) {
+                 a.txtCpf.setText(val.AjusteCaracter(al.getFd_cpf()));
+            }
+           
             a.txtRg.setText(al.getFd_rg());
-            a.txtDtNascimento.setText(val.FormataDataSelec(al.getFd_data_nasc().toString()));
+            
+            if(al.getFd_data_nasc() != null) {
+                a.txtDtNascimento.setText(val.FormataDataSelec(al.getFd_data_nasc().toString()));
+            }
+
             a.txtEndereco.setText(al.getFd_endereco());
-            a.txtNum.setText(Integer.toString(al.getFd_numero()));
+            
+            if(al.getFd_numero() != null){
+                a.txtNum.setText(Integer.toString(al.getFd_numero()));
+            }
+            
             a.cbUf.setSelectedItem(al.getFd_uf());
             a.cbSexo.setSelectedItem(al.getFd_sexo());
             a.txtbairro.setText(al.getFd_bairro());
