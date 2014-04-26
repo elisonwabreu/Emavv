@@ -5,7 +5,7 @@
 package Views;
 
 import org.entities.classes.tb_cursos;
-import org.entities.classes.Itens;
+import org.entities.classes.tb_itens;
 import Model.Deletar;
 import Model.Gravar;
 import Model.Limpar;
@@ -26,7 +26,7 @@ import javax.swing.text.MaskFormatter;
  */
 public class CadItens extends javax.swing.JFrame {
     
-    Itens item;
+    tb_itens item;
     Deletar deleta = new Deletar();
     DaoItens dao = new DaoItens();
     Cmessage msg = new Cmessage();
@@ -289,9 +289,9 @@ public void Listar() throws SQLException{
     
     if(val.SelectReturn(codigo,"item","itens") == true){
       
-         List<Itens> item = dao.Select(codigo);
+         List<tb_itens> item = dao.Select(codigo);
     
-         for(Itens car : item ){
+         for(tb_itens car : item ){
             txtItem.setText(car.getFd_descricao());
           //  txtPreco.setText(car.getValor());
          if(car.getFd_status().equals("A")){

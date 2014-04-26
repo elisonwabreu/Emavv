@@ -20,11 +20,11 @@ public class tb_alunos implements Serializable {
      String fd_nome;
      String fd_cpf;
      String fd_rg;
-   // @Temporal(javax.persistence.TemporalType.DATE)
+     @Temporal(javax.persistence.TemporalType.DATE)
      Date fd_data_nasc;
      String fd_sexo;
      String fd_endereco;
-     Integer fd_numero;
+     String fd_numero;
      String fd_bairro;
      String fd_cep;
      String fd_cidade;
@@ -32,8 +32,14 @@ public class tb_alunos implements Serializable {
      String fd_telefone;
      String fd_celular;
      String fd_email;
+    @Temporal(javax.persistence.TemporalType.DATE)
+     Date fd_data_cadastro;
      String fd_status;
+
     //int fd_matricula;
+    public void setFd_data_cadastro(Date fd_data_cadastro) {
+        this.fd_data_cadastro = fd_data_cadastro;
+    }
      
 
     public tb_alunos() {
@@ -111,11 +117,11 @@ public class tb_alunos implements Serializable {
         this.fd_endereco = fd_endereco;
     }
 
-    public Integer getFd_numero() {
+    public String getFd_numero() {
         return fd_numero;
     }
 
-    public void setFd_numero(int fd_numero) {
+    public void setFd_numero(String fd_numero) {
         this.fd_numero = fd_numero;
     }
 

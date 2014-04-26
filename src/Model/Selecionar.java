@@ -99,7 +99,7 @@ public class Selecionar extends JFrame {
             a.txtEndereco.setText(al.getFd_endereco());
             
             if(al.getFd_numero() != null){
-                a.txtNum.setText(Integer.toString(al.getFd_numero()));
+                a.txtNum.setText(al.getFd_numero());
             }
             
             a.cbUf.setSelectedItem(al.getFd_uf());

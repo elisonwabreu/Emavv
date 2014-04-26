@@ -5,9 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-
+/**
+ *
+ * @author elison
+ */
 @Entity
-public class Itens implements Serializable {
+public class tb_itens implements Serializable {
     @Id
     @GeneratedValue
     private int fd_item;
@@ -15,7 +18,10 @@ public class Itens implements Serializable {
     private double fd_valor;
     private String fd_status;
 
-    public Itens(int fd_item, String fd_descricao, double fd_valor, String fd_status) {
+    public tb_itens() {
+    }
+
+    public tb_itens(int fd_item, String fd_descricao, double fd_valor, String fd_status) {
         
         this.fd_item = fd_item;
         this.fd_descricao = fd_descricao;

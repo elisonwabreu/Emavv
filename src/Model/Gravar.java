@@ -23,7 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.entities.classes.Disciplinas;
-import org.entities.classes.Itens;
+import org.entities.classes.tb_itens;
 import org.entities.classes.tb_alunos;
 import org.entities.classes.tb_cargos;
 import org.entities.classes.tb_cursos;
@@ -81,12 +81,12 @@ public class Gravar extends JFrame{
         String dtNasc = a.txtDtNascimento.getText();
         String sexo = a.cbSexo.getSelectedItem().toString();
         String endereco = a.txtEndereco.getText();
-        Integer  num;
+        String  num;
         
         if(a.txtNum.getText().trim().equals("")){
            num = null; 
         }else{
-           num = Integer.parseInt(a.txtNum.getText());
+           num = a.txtNum.getText();
         }   
         
         String bairro = a.txtbairro.getText();
@@ -156,7 +156,7 @@ public class Gravar extends JFrame{
         }
     } 
     
-  public void Funcionario(CadFuncionarios fun) throws SQLException{
+  public void Funcionario(CadFuncionarios fun) throws SQLException, ParseException{
      //Instacia DaoFuncionarios
         DaoFuncionarios func = new DaoFuncionarios();
          tb_funcionarios funcionario = new tb_funcionarios();
@@ -164,7 +164,7 @@ public class Gravar extends JFrame{
      String nome = fun.txtNome.getText();
      String cpf = fun.txtCpf.getText();
      String rg = fun.txtRg.getText();
-   //  String dtNasc = fun.txtDtNascimento.getText();
+     String dtNasc = fun.txtDtNascimento.getText();
      String sexo = fun.comboSexo.getSelectedItem().toString();
      String endereco = fun.txtEndereco.getText();
      int  num = Integer.parseInt(fun.txtNum.getText());
@@ -191,7 +191,7 @@ public class Gravar extends JFrame{
     funcionario.setFd_nome(nome.toUpperCase());
     funcionario.setFd_cpf((val.AjusteCaracter(cpf)));
     funcionario.setFd_rg(rg);
-    //funcionario.setFd_dataNascimento(val.FormataData(dtNasc));
+    funcionario.setFd_data_nasc(val.FormataData(dtNasc));
     funcionario.setFd_sexo(sexo);
     funcionario.setFd_endereco(endereco.toUpperCase());
     funcionario.setFd_numero(num);
@@ -264,7 +264,7 @@ public class Gravar extends JFrame{
    public void Itens(JTextField txtDescricao,JTextField txtValor,JComboBox comboStatus) throws SQLException{
      //Instacia DaoDisciplinas
         DaoItens item = new DaoItens();
-        Itens novo = new Itens(0,null,0.0,null);
+        tb_itens novo = new tb_itens(0,null,0.0,null);
     
      String descricao = txtDescricao.getText();
      Double valor = Double.parseDouble(txtValor.getText());
@@ -276,9 +276,9 @@ public class Gravar extends JFrame{
     }else{
         status = "I";     
     }
-    novo.setDescricao(descricao.toUpperCase());
-    novo.setValor(valor);
-    novo.setStatus(status);
+    novo.setFd_descricao(descricao.toUpperCase());
+    novo.setFd_valor(valor);
+    novo.setFd_status(status);
     
     item.Inserir(novo);
      

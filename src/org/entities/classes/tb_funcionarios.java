@@ -153,6 +153,14 @@ public class tb_funcionarios implements Serializable {
         this.fd_email = fd_email;
     }
 
+    public Date getFd_data_nasc() {
+        return fd_data_nasc;
+    }
+
+    public void setFd_data_nasc(Date fd_data_nasc) {
+        this.fd_data_nasc = fd_data_nasc;
+    }
+
     public String getFd_status() {
         return fd_status;
     }
