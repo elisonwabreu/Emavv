@@ -433,7 +433,11 @@ public class CadFuncionarios extends javax.swing.JFrame {
            
         if(val.ValidaGravacaoFunc(this) == true){
             try {
-                novoFunc.Funcionario(this);
+                try {
+                    novoFunc.Funcionario(this);
+                } catch (ParseException ex) {
+                    Logger.getLogger(CadFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 limpa.LimpaFuncionario(this);
             } catch (SQLException ex) {

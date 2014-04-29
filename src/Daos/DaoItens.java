@@ -1,29 +1,29 @@
 package Daos;
 
+import ConnectionFactory.Conexao;
+import ConnectionFactory.JPAUtil;
+import Messages.Cmessage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import Messages.Cmessage;
+import javax.persistence.EntityManager;
+import org.entities.classes.tb_alunos;
 import org.entities.classes.tb_itens;
-import ConnectionFactory.Conexao;
 
 public class DaoItens {
     Cmessage msg = new Cmessage();
+    
+    EntityManager manager = JPAUtil.getEntityManager();
     public boolean Inserir(tb_itens a) throws SQLException {
         
         if(msg.MsgConfGravacao() == true){
-        Connection conn = Conexao.getConexao();
-        String SQL = "INSERT INTO tb_itens (fd_descricao, fd_valor, fd_status) 	VALUES (?, ?, ?)";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        pstm.setString(1, a.getDescricao());
-        pstm.setDouble(2, a.getValor());
-        pstm.setString(3, a.getStatus());
-        pstm.execute();
-        pstm.close();
-        conn.close();
+        manager.getTransaction().begin();
+            manager.persist(a);
+            manager.getTransaction().commit();
+            msg.msgGravado();
         msg.msgGravado();
         return true;
         }else{
@@ -33,15 +33,18 @@ public class DaoItens {
         }
     }
 
-    public void Delete() throws SQLException {
-
-        Connection conn = Conexao.getConexao();
-        String SQL = "DELETE FROM tb_itens WHERE fd_item = ?";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        pstm.setInt(1, 1);
-        pstm.execute();
-        pstm.close();
-        conn.close();
+    public boolean Delete(int codigo) throws SQLException {
+        
+                 if(msg.MsgConfExclusao() == true){
+                    tb_itens itens = (tb_itens)manager.find(tb_itens.class,codigo);
+                    itens.setFd_status("E");
+                    manager.getTransaction().begin();
+                    manager.persist(itens);
+                    manager.getTransaction().commit();
+                    manager.close(); 
+                    return true;
+                } 
+                return false;
     }
 
     public List<tb_itens> Select(int codigo) throws SQLException {
