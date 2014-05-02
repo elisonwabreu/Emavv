@@ -1,0 +1,29 @@
+//configuração do git
+
+git config --global user.name "Seu nome"
+git config --global user.email "Seu email"
+
+--------------------------------------------------------------------------------------------------------------------------
+//criação da chave .ssh
+ssh-keygen
+
+--------------------------------------------------------------------------------------------------------------------------
+//clonar projeto do git hub
+git clone chave-ssh-do-git
+
+--------------------------------------------------------------------------------------------------------------------------
+//adicionar um ou mais arquivos a staged area
+se 1
+git add arquivo.extenção
+se todos
+git add .
+
+--------------------------------------------------------------------------------------------------------------------------
+//para comitar os arquivos com a mesagem de comentario
+git commit -m "Mensagem"
+//para comitar pulando a etapa de adicionar os arquivos a staged area
+git commit -a -m "Mensagem"
+
+--------------------------------------------------------------------------------------------------------------------------
+//para enviar os arquivos comitados ao github
+git push origin master
