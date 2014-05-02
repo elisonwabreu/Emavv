@@ -253,8 +253,8 @@ public class Gravar extends JFrame{
     }else{
         status = "I";     
     }
-    novo.setDescricao(descricao.toUpperCase());
-    novo.setStatus(status);
+    novo.setFd_descricao(descricao.toUpperCase());
+    novo.setFd_status(status);
     
     curso.Inserir(novo);
      

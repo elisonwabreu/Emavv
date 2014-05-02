@@ -131,8 +131,8 @@ public class Selecionar extends JFrame {
             List<tb_cursos> curso = dao.Select(codigo);
 
             for(tb_cursos cr : curso ){
-               c.txtDescricao.setText(cr.getDescricao());
-            if(cr.getStatus().equals("A")){
+               c.txtDescricao.setText(cr.getFd_descricao());
+            if(cr.getFd_status().equals("A")){
                c.cbStatus.setSelectedIndex(1);    
             }else{
                c.cbStatus.setSelectedIndex(2);

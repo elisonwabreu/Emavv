@@ -1,49 +1,60 @@
 package org.entities.classes;
 
-public class tb_cursos {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-    public int codigo;
-    public String descricao;
-    public double valor;
-    public String status;
+@Entity
+public class tb_cursos implements Serializable {
+    @Id
+    @GeneratedValue
+    int fd_curso;
+    String fd_descricao;
+    double fd_valor;
+    String fd_status;
 
-    public tb_cursos(int codigo, String descricao, String status) {
+    public tb_cursos() {
+    }
 
-        this.codigo = codigo;
-        this.descricao = descricao;
-        this.status = status;
+    public tb_cursos(int fd_curso, String fd_descricao, String fd_status) {
+
+        this.fd_curso = fd_curso;
+        this.fd_descricao = fd_descricao;
+        this.fd_status = fd_status;
         
     }
 
-    public String getDescricao() {
-        return descricao;
+    public int getFd_curso() {
+        return fd_curso;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public void setFd_curso(int fd_curso) {
+        this.fd_curso = fd_curso;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public String getFd_descricao() {
+        return fd_descricao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setFd_descricao(String fd_descricao) {
+        this.fd_descricao = fd_descricao;
     }
 
-    public double getValor() {
-        return valor;
+    public double getFd_valor() {
+        return fd_valor;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setFd_valor(double fd_valor) {
+        this.fd_valor = fd_valor;
     }
 
-    public String getStatus() {
-        return status;
+    public String getFd_status() {
+        return fd_status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setFd_status(String fd_status) {
+        this.fd_status = fd_status;
     }
+    
 }

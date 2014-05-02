@@ -418,9 +418,9 @@ public class Validacoes extends JFrame{
             if(curso.size() > 0) {
                 for(tb_cursos c : curso){
                     for(int i = 0; i < curso.size();i++){     
-                       f.jGridBusca.setValueAt(curso.get(i).getCodigo(),i,0);
-                       f.jGridBusca.setValueAt(curso.get(i).getDescricao(),i,1);
-                       f.jGridBusca.setValueAt(curso.get(i).getStatus(),i,2);
+                       f.jGridBusca.setValueAt(curso.get(i).getFd_curso(),i,0);
+                       f.jGridBusca.setValueAt(curso.get(i).getFd_descricao(),i,1);
+                       f.jGridBusca.setValueAt(curso.get(i).getFd_status(),i,2);
 
                     } 
                 }

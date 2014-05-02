@@ -1,20 +1,13 @@
 package Daos;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.entities.classes.tb_cargos;
 import ConnectionFactory.*;
 import Messages.Cmessage;
 import Views.CadCargos;
-import javax.naming.ldap.ManageReferralControl;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 public class DaoCargo {

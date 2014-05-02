@@ -1,7 +1,6 @@
 package org.entities.classes;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 
 @Entity
 public class tb_usuarios extends tb_funcionarios {

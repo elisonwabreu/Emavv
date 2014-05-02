@@ -1,67 +1,77 @@
 package Daos;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import ConnectionFactory.JPAUtil;
+import Messages.Cmessage;
 import java.sql.SQLException;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import org.entities.classes.tb_itens;
 
 
 import org.entities.classes.tb_usuarios;
-import ConnectionFactory.Conexao;
 
 public class DaoUsuarios extends tb_usuarios {
+    Cmessage msg = new Cmessage();
+    
+    EntityManager manager = JPAUtil.getEntityManager();
 
-    public void Inserir(tb_usuarios user) throws SQLException {
-
-        Connection conn = Conexao.getConexao();
-        String SQL = "INSERT INTO tb_usuarios (fd_funcionario,fd_login, fd_senha, fd_status) VALUES (? , ? , ? , ?)";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        pstm.setInt(1, user.getFd_funcionario());
-        pstm.setString(2, user.getFd_login());
-        pstm.setString(3, user.getFd_senha());
-        pstm.setString(4, user.getFd_status());
-        pstm.execute();
-        pstm.close();
-        conn.close();
-    }
-
-    public void Select(String logar) throws SQLException {
-        Connection conn = Conexao.getConexao();
-        String SQL = "SELECT * FROM tb_usuarios WHERE fd_login = ?";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        pstm.setString(1, logar);
-        ResultSet rs = pstm.executeQuery();
-        while (rs.next()) {
-
-            setFd_login(rs.getString("fd_login"));
-            setFd_senha(rs.getString("fd_senha"));
-
+    public boolean Inserir(tb_usuarios user) throws SQLException {
+        if(msg.MsgConfGravacao() == true){
+            
+            manager.getTransaction().begin();
+            manager.persist(user);
+            manager.getTransaction().commit();
+            msg.msgGravado();
+            msg.msgGravado();
+            
+        return true;
+        }else{
+        
+            return false;
+            
         }
-        pstm.close();
-        conn.close();
+       
     }
 
-    public void Delete(int codigo) throws SQLException {
-
-        Connection conn = Conexao.getConexao();
-        String SQL = "DELETE FROM tb_usuarios WHERE fd_funcionario = ?";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        pstm.setInt(1, codigo);
-        pstm.execute();
-        pstm.close();
-        conn.close();
-
+    public List<tb_usuarios> Select(String login) throws SQLException {
+        Query q = manager.createQuery("select a from tb_usuarios as a "
+                                              + "where a.fd_login like :fd_login and a.fd_status <> 'E'");
+        q.setParameter("fd_funcionario",login);
+        List<tb_usuarios> user = q.getResultList();
+        return user;
+        
     }
-
-    public void Update(String login, String senha, int codigo) throws SQLException {
-        Connection conn = Conexao.getConexao();
-        String SQL = "UPDATE tb_usuarios SET fd_login = ? , fd_senha = ? WHERE fd_funcionario = ?";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        pstm.setString(1, login);
-        pstm.setString(2, senha);
-        pstm.setInt(3, codigo);
-        pstm.execute();
-        pstm.close();
-        conn.close();
+    public boolean Delete(int codigo) throws SQLException {
+        if(msg.MsgConfExclusao() == true){
+                    tb_usuarios user = (tb_usuarios)manager.find(tb_usuarios.class,codigo);
+                    user.setFd_status("E");
+                    manager.getTransaction().begin();
+                    manager.persist(user);
+                    manager.getTransaction().commit();
+                    manager.close(); 
+                    return true;
+                } 
+                return false;
     }
+        
+    public boolean Update(tb_usuarios a , String status) throws SQLException {
+
+        if(msg.MsgConfGravacao() == true){
+            
+            tb_usuarios user = (tb_usuarios)manager.find(tb_usuarios.class,a.getFd_funcionario());
+            
+            user.setFd_login(a.getFd_login());
+            user.setFd_senha(a.getFd_senha());
+            manager.getTransaction().begin();
+            manager.persist(user);
+            manager.getTransaction().commit();
+            manager.close();
+            msg.msgGravado();
+            return true;          
+        }else{
+            return false;
+        }
+
+}
 }

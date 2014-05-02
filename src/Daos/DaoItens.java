@@ -1,16 +1,11 @@
 package Daos;
 
-import ConnectionFactory.Conexao;
 import ConnectionFactory.JPAUtil;
 import Messages.Cmessage;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
-import org.entities.classes.tb_alunos;
+import javax.persistence.Query;
 import org.entities.classes.tb_itens;
 
 public class DaoItens {
@@ -48,32 +43,40 @@ public class DaoItens {
     }
 
     public List<tb_itens> Select(int codigo) throws SQLException {
-
-        Connection conn = Conexao.getConexao();
-        List<tb_itens> item = new ArrayList<>();
-        String SQL = "SELECT * FROM tb_itens WHERE fd_item = ?";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        pstm.setInt(1, codigo);
-        ResultSet rs = pstm.executeQuery();
-        while (rs.next()) {
-
-            item.add(new tb_itens(rs.getInt("fd_item"), rs.getString("fd_descricao"), rs.getDouble("fd_valor"), rs.getString("fd_status")));
-        }
-        pstm.close();
-        conn.close();
-        return item;
+      
+          Query q = manager.createQuery("select a from tb_itens as a "
+                                              + "where a.fd_nome like :fd_nome and a.fd_status <> 'E'");
+        q.setParameter("fd_item",codigo);
+        List<tb_itens> item = q.getResultList();
+        return item;  
     }
+    
+     public List<tb_itens> Select(String nome) throws SQLException {
+      
+         Query q = manager.createQuery("select a from tb_alunos as a "
+                                              + "where a.fd_descricao like :fd_descricao and a.fd_status <> 'E'");
+        q.setParameter("fd_descricao","%"+nome+"%");
+        List<tb_itens> item = q.getResultList();
+        return item;  
+    }
+     
+    public boolean Update(tb_itens a , String status) throws SQLException {
 
-    public void Update(tb_itens a) throws SQLException {
-
-        Connection conn = Conexao.getConexao();
-        String SQL = "UPDATE tb_itens SET fd_descricao = ?, fd_valor = ?, fd_status = ?";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        pstm.setString(1, a.descricao);
-        pstm.setDouble(1, a.valor);
-        pstm.setString(3, a.status);
-        pstm.execute();
-        pstm.close();
-        conn.close();
+        if(msg.MsgConfGravacao() == true){
+            
+            tb_itens item = (tb_itens)manager.find(tb_itens.class,a.getFd_item());
+            
+            item.setFd_descricao(a.getFd_descricao());
+            item.setFd_valor(a.getFd_valor());
+            item.setFd_status(a.getFd_status());
+            manager.getTransaction().begin();
+            manager.persist(item);
+            manager.getTransaction().commit();
+            manager.close();
+            msg.msgGravado();
+            return true;          
+        }else{
+            return false;
+        }
     }
 }
