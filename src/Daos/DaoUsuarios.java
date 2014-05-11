@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.entities.classes.tb_itens;
 
 
 import org.entities.classes.tb_usuarios;
@@ -23,8 +22,7 @@ public class DaoUsuarios extends tb_usuarios {
             manager.persist(user);
             manager.getTransaction().commit();
             msg.msgGravado();
-            msg.msgGravado();
-            
+                       
         return true;
         }else{
         
