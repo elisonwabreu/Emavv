@@ -1,20 +1,12 @@
 package Daos;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import Messages.Cmessage;
 import org.entities.classes.tb_cursos;
-import ConnectionFactory.Conexao;
 import ConnectionFactory.JPAUtil;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.entities.classes.tb_alunos;
-import org.entities.classes.tb_cargos;
-import org.entities.classes.tb_itens;
 
 public class DaoCursos {
     //Metodo para inserir um curso

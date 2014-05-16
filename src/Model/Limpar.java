@@ -37,6 +37,7 @@ public class Limpar {
      public void LimpaCurso(CadCursos c){
         c.txtCodigo.setText("");
         c.txtDescricao.setText("");
+        c.txtValor.setText("");
         c.cbStatus.setSelectedIndex(0);
         c.txtCodigo.setEnabled(true);
     

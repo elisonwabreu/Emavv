@@ -11,7 +11,6 @@ import Views.CadAluno;
 import Views.CadUsuarios;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-import Model.Limpar;
 
 /**
  * @author Elison

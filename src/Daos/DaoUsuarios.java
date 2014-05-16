@@ -34,8 +34,8 @@ public class DaoUsuarios extends tb_usuarios {
 
     public List<tb_usuarios> Select(String login) throws SQLException {
         Query q = manager.createQuery("select a from tb_usuarios as a "
-                                              + "where a.fd_login like :fd_login and a.fd_status <> 'E'");
-        q.setParameter("fd_funcionario",login);
+                                              + "where a.fd_login = :fd_login and a.fd_status <> 'E'");
+        q.setParameter("fd_login",login);
         List<tb_usuarios> user = q.getResultList();
         return user;
         

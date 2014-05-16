@@ -40,6 +40,10 @@ public class tb_alunos implements Serializable {
     public void setFd_data_cadastro(Date fd_data_cadastro) {
         this.fd_data_cadastro = fd_data_cadastro;
     }
+
+    public Date getFd_data_cadastro() {
+        return fd_data_cadastro;
+    }
      
 
     public tb_alunos() {

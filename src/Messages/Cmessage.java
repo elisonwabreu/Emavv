@@ -69,7 +69,7 @@ public class Cmessage {
 
     public void msgLogin() {
 
-        JOptionPane.showMessageDialog(null, "Usuário ou Senha não conferem.");
+        JOptionPane.showMessageDialog(null, "Usuário ou Senha não conferem.","", JOptionPane.ERROR_MESSAGE);
     }
     
     public void MsgCamposObrigatorios(String campo){

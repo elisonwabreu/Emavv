@@ -13,6 +13,7 @@ import Daos.DaoItens;
 import Daos.DaoUsuarios;
 import Views.CadAluno;
 import Views.CadCargos;
+import Views.CadCursos;
 import Views.CadFuncionarios;
 import Views.CadUsuarios;
 import java.sql.Date;
@@ -23,11 +24,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.entities.classes.Disciplinas;
-import org.entities.classes.tb_itens;
 import org.entities.classes.tb_alunos;
 import org.entities.classes.tb_cargos;
 import org.entities.classes.tb_cursos;
 import org.entities.classes.tb_funcionarios;
+import org.entities.classes.tb_itens;
 import org.entities.classes.tb_usuarios;
 
 /**
@@ -74,7 +75,7 @@ public class Gravar extends JFrame{
 
         DaoAluno al = new DaoAluno();
         tb_alunos aluno = new tb_alunos();
-        int codigo = Integer.parseInt(a.txtCodigo.getText()); 
+        //int codigo = Integer.parseInt(a.txtCodigo.getText()); 
         String nome = a.txtNome.getText();
         String cpf = val.AjusteCaracter(a.txtCpf.getText());
         String rg = a.txtRg.getText();
@@ -108,11 +109,11 @@ public class Gravar extends JFrame{
        }else{
            status = "I";     
        }
-       
+       /*
        if(codigo != 0){
            aluno.setFd_aluno(codigo);   
        }
-       
+       */
        aluno.setFd_nome(nome.toUpperCase());
        if(cpf.equals("")){
          aluno.setFd_cpf(null);  
@@ -239,26 +240,29 @@ public class Gravar extends JFrame{
 
     }    
     
-    public void Cursos(JTextField txtDescricao,JComboBox comboStatus) throws SQLException{
+    public void Cursos(CadCursos c) throws SQLException{
      //Instacia DaoDisciplinas
         DaoCursos curso = new DaoCursos();
-        tb_cursos novo = new tb_cursos(0, null, null);
-    
-     String descricao = txtDescricao.getText();
-     String status = comboStatus.getSelectedItem().toString();
+        tb_cursos novo = new tb_cursos();
+    int codigo = Integer.parseInt(c.txtCodigo.getText());
+     String descricao = c.txtDescricao.getText();
+     double valor  = Double.parseDouble(c.txtValor.getText());
+     String status = c.cbStatus.getSelectedItem().toString();
      
        
-    if (comboStatus.getSelectedIndex() == 1){
+    if (c.cbStatus.getSelectedIndex() == 1){
         status = "A"; 
     }else{
         status = "I";     
     }
+    novo.setFd_curso(codigo);
     novo.setFd_descricao(descricao.toUpperCase());
+    novo.setFd_valor(valor);
     novo.setFd_status(status);
     
     curso.Inserir(novo);
      
-    limpa.LimpaDisciplina(txtDescricao, comboStatus);
+    limpa.LimpaDisciplina(c.txtDescricao, c.cbStatus);
 
     }    
    public void Itens(JTextField txtDescricao,JTextField txtValor,JComboBox comboStatus) throws SQLException{

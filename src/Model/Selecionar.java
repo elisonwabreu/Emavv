@@ -8,17 +8,19 @@ import org.entities.classes.tb_alunos;
 import org.entities.classes.tb_cargos;
 import org.entities.classes.tb_cursos;
 import Daos.DaoAluno;
+import Daos.DaoUsuarios;
 import Daos.DaoCargo;
 import Daos.DaoCursos;
 import Messages.Cmessage;
 import Views.CadAluno;
 import Views.CadCargos;
 import Views.CadCursos;
+import Views.Form_TelaLogin;
 import java.sql.SQLException;
 import java.util.List;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import org.entities.classes.tb_usuarios;
 
 /**
  *
@@ -36,7 +38,36 @@ public class Selecionar extends JFrame {
         txtCodigo.setText(codigo);
         txtCodigo.grabFocus();
    }
-     
+    
+     public boolean Logar(Form_TelaLogin c) throws SQLException{
+    
+         DaoUsuarios dao = new DaoUsuarios();
+        
+            String login = c.txtLogin.getText();
+         
+            List<tb_usuarios> user = dao.Select(login);
+         
+            if(user.size() > 0) {
+                for(tb_usuarios car : user ){
+                    
+                    if (car.getFd_login().equals(c.txtLogin.getText()) && car.getFd_senha().equals(c.txtSenha.getText())) {
+
+                return true;
+               
+               } else if ((car.getFd_login() == null ? c.txtLogin.getText() != null : 
+                !car.getFd_senha().equals(c.txtLogin.getText())) || (car.getFd_senha()== null ? 
+                c.txtSenha.getText() != null : !dao.getFd_senha().equals(c.txtSenha.getText()))) {
+
+                }
+                }
+            }
+         
+            msg.msgLogin();
+        return false;
+         
+     }
+           
+         
     public boolean ListarCargos(CadCargos c) throws SQLException{
     
         DaoCargo dao = new DaoCargo();
@@ -145,4 +176,6 @@ public class Selecionar extends JFrame {
                return false;
            }     
       }
+
+    
 }

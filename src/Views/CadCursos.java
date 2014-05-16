@@ -49,7 +49,7 @@ public class CadCursos extends javax.swing.JFrame {
      * Creates new form Form_Principal
      */
     public CadCursos() {
-        this.curso = new tb_cursos(0,"","");
+        this.curso = new tb_cursos();
         initComponents();
        txtCodigo.setDocument(new InsereNumeros());
     }
@@ -74,6 +74,8 @@ public class CadCursos extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         bntRelatorio = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
+        txtValor = new javax.swing.JTextField();
+        lblValor = new javax.swing.JLabel();
 
         jButton2.setText("jButton2");
 
@@ -137,6 +139,11 @@ public class CadCursos extends javax.swing.JFrame {
             }
         });
 
+        txtValor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        lblValor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblValor.setText("Valor");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,8 +166,13 @@ public class CadCursos extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblStatus)
                             .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblValor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtValor))
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(114, 114, 114)
@@ -179,11 +191,17 @@ public class CadCursos extends javax.swing.JFrame {
                     .addComponent(lblStatus))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCodigo)
                     .addComponent(btPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbStatus)
-                    .addComponent(txtDescricao, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(49, 49, 49)
+                    .addComponent(txtDescricao, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblValor))
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,7 +227,7 @@ public class CadCursos extends javax.swing.JFrame {
         
         if(val.ValidaGravacaoDisciplina(txtDescricao, cbStatus)== true){
         try {
-            novo.Cursos(txtDescricao, cbStatus);
+            novo.Cursos(this);
             limpa.LimpaCurso(this);
         } catch (SQLException ex) {
             Logger.getLogger(CadCursos.class.getName()).log(Level.SEVERE, null, ex);
@@ -295,12 +313,14 @@ public class CadCursos extends javax.swing.JFrame {
     public javax.swing.JButton btnLimpar;
     public javax.swing.JButton btnSalvar;
     public javax.swing.JComboBox cbStatus;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JLabel lblCodigo;
-    public javax.swing.JLabel lblCurso;
-    public javax.swing.JLabel lblStatus;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblCurso;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblValor;
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtDescricao;
+    public javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 
 /*

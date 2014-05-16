@@ -6,7 +6,11 @@ package Views;
 
 import Daos.DaoUsuarios;
 import Messages.Cmessage;
+import Model.Selecionar;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +22,7 @@ public class Form_TelaLogin extends javax.swing.JFrame {
     private String Emavv = "Emavv";
     Daos.DaoUsuarios novo = new DaoUsuarios();
     Cmessage a = new Cmessage();
+    Selecionar selec = new Selecionar();
 
     /**
      * Creates new form Form_TelaLogin
@@ -40,13 +45,31 @@ public class Form_TelaLogin extends javax.swing.JFrame {
         btnLogar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(Emavv);
+        setBackground(new java.awt.Color(204, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         setLocationByPlatform(true);
         setResizable(false);
+
+        txtLogin.setBackground(new java.awt.Color(204, 255, 255));
+        txtLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txtLogin.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                txtLoginComponentAdded(evt);
+            }
+        });
+
+        txtSenha.setBackground(new java.awt.Color(204, 255, 255));
+        txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
+            }
+        });
 
         btnLogar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/chave_16x16.png"))); // NOI18N
         btnLogar.setText("Entrar");
@@ -56,18 +79,20 @@ public class Form_TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/musica.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/musica.jpeg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -77,14 +102,16 @@ public class Form_TelaLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,12 +119,14 @@ public class Form_TelaLogin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                        .addComponent(txtLogin)))
-                .addGap(23, 23, 23))
+                        .addComponent(txtSenha)
+                        .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         pack();
@@ -105,22 +134,42 @@ public class Form_TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
+        
         try {
-            novo.Select(txtLogin.getText().toUpperCase());
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+            selec.Logar(this);
+            if(selec.Logar(this) == true){
+                Form_TelaLogin.this.dispose();
+               
+                FormPrincipal formPrincipal = new FormPrincipal();
+                formPrincipal.setVisible(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Form_TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        if (novo.getFd_login().equals(txtLogin.getText()) && novo.getFd_senha().equals(txtSenha.getText())) {
-            FormPrincipal formPrincipal = new FormPrincipal();
-            formPrincipal.setVisible(true);
-            Form_TelaLogin.this.dispose();
-        } else if ((novo.getFd_login() == null ? txtLogin.getText() != null : !novo.getFd_senha().equals(txtLogin.getText())) || (novo.getFd_senha()== null ? txtSenha.getText() != null : !novo.getFd_senha().equals(txtSenha.getText()))) {
-
-            a.msgLogin();
-        }
-
+       
+       
     }//GEN-LAST:event_btnLogarActionPerformed
+
+    private void txtLoginComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_txtLoginComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLoginComponentAdded
+
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+       
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+             try {
+            selec.Logar(this);
+            if(selec.Logar(this) == true){
+                Form_TelaLogin.this.dispose();
+               
+                FormPrincipal formPrincipal = new FormPrincipal();
+                formPrincipal.setVisible(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Form_TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+    }//GEN-LAST:event_txtSenhaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -161,7 +210,8 @@ public class Form_TelaLogin extends javax.swing.JFrame {
     private javax.swing.JButton btnLogar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtLogin;
-    private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JSeparator jSeparator1;
+    public javax.swing.JTextField txtLogin;
+    public javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

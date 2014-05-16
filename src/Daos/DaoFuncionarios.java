@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 
 public class DaoFuncionarios {
     Cmessage msg = new Cmessage();
+    
     public boolean Inserir(tb_funcionarios func) throws SQLException {
         if(msg.MsgConfGravacao() == true){
         

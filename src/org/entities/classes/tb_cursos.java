@@ -14,17 +14,8 @@ public class tb_cursos implements Serializable {
     double fd_valor;
     String fd_status;
 
-    public tb_cursos() {
-    }
 
-    public tb_cursos(int fd_curso, String fd_descricao, String fd_status) {
-
-        this.fd_curso = fd_curso;
-        this.fd_descricao = fd_descricao;
-        this.fd_status = fd_status;
-        
-    }
-
+    
     public int getFd_curso() {
         return fd_curso;
     }
@@ -56,5 +47,7 @@ public class tb_cursos implements Serializable {
     public void setFd_status(String fd_status) {
         this.fd_status = fd_status;
     }
+
+  
     
 }

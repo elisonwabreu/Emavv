@@ -24,6 +24,7 @@ import Views.CadCursos;
 import Views.CadFuncionarios;
 import Views.CadUsuarios;
 import Views.FormBusca;
+import Views.Form_TelaLogin;
 import java.util.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -564,4 +565,21 @@ public void clickBtPesquisa(int tableIndex, JTextField txtCodigo, String tabela)
          
          return grava;
      }
+     
+     public boolean CamposLogin(Form_TelaLogin c) {
+        
+      if(c.txtLogin.getText().equals("")){
+            msg.MsgCamposObrigatorios("Login");
+           
+            return false; 
+      
+      }else if(c.txtSenha.getText().equals("")){
+            msg.MsgCamposObrigatorios("Senha");
+           
+            return false;
+      }
+      return true;
+     }
+
+   
 }

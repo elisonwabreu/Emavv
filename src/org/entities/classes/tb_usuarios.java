@@ -1,14 +1,26 @@
 package org.entities.classes;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
-public class tb_usuarios extends tb_funcionarios {
+public class tb_usuarios implements Serializable {
    
-    
+    @Id
+     int fd_funcionario;
      String fd_login;
      String fd_senha;
+     String fd_status;
 
+    public String getFd_status() {
+        return fd_status;
+    }
+
+    public void setFd_status(String fd_status) {
+        this.fd_status = fd_status;
+    }
+     
     public String getFd_login() {
         return fd_login;
     }
@@ -24,4 +36,15 @@ public class tb_usuarios extends tb_funcionarios {
     public void setFd_senha(String fd_senha) {
         this.fd_senha = fd_senha;
     }
+
+    public int getFd_funcionario() {
+        return fd_funcionario;
+    }
+
+    public void setFd_funcionario(int fd_funcionario) {
+        this.fd_funcionario = fd_funcionario;
+    }
+    
+    
 }
+
