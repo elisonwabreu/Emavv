@@ -7,6 +7,7 @@ package Model;
 import Views.CadAluno;
 import Views.CadCargos;
 import Views.CadCursos;
+import Views.CadDisciplinas;
 import Views.CadFuncionarios;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -27,10 +28,10 @@ public class Limpar {
     
     }
         
-    public void LimpaDisciplina(JTextField txtdescricao, JComboBox comboStatus){
+    public void LimpaDisciplina(CadDisciplinas dis){
                 
-        txtdescricao.setText("");
-        comboStatus.setSelectedIndex(0);
+        dis.txtDisciplina.setText("");
+        dis.comboStatus.setSelectedIndex(0);
         
     
     }

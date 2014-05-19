@@ -7,16 +7,20 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import Messages.Cmessage;
 import ConnectionFactory.*;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import org.entities.classes.tb_alunos;
 
 
 public class DaoFuncionarios {
     Cmessage msg = new Cmessage();
+    EntityManager manager = JPAUtil.getEntityManager();
     
     public boolean Inserir(tb_funcionarios func) throws SQLException {
         if(msg.MsgConfGravacao() == true){
         
-            EntityManager manager = JPAUtil.getEntityManager();
+            
             manager.getTransaction().begin();
             manager.persist(func);
             manager.getTransaction().commit();
@@ -57,31 +61,45 @@ public class DaoFuncionarios {
         pstm.close();
         conn.close();
     }
+    public List<tb_funcionarios> SelectCpf(String cpf){
+        
+        Query q = manager.createQuery("select a from tb_funcionarios a "
+                                                + "where a.fd_cpf = :fd_cpf");
+        q.setParameter("fd_cpf",cpf);
+        List<tb_funcionarios> funcionario = q.getResultList();
+        return funcionario;
+    }
 
-    public void Update() throws SQLException {
-
-        Connection conn = Conexao.getConexao();
-        String SQL = "UPDATE tb_alunos SET fd_nome = ?, fd_cpf = ?, fd_rg = ?, fd_data_nasc = ?, fd_endereco = ?, fd_numero = ?, fd_bairro = ?, fd_cidade = ?, fd_cep = ?, fd_uf = ?, fd_telefone = ?, fd_celular = ?, fd_email = ?, fd_status = ? WHERE fd_aluno = ?";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-
-        pstm.setString(1, "Athalias");
-        pstm.setString(2, "11111111111");
-        pstm.setString(3, "1111111");
-        pstm.setByte(4, (byte) (0000 - 00 - 00));
-        pstm.setString(5, "Rua 315");
-        pstm.setInt(6, 168);
-        pstm.setString(7, "Jangurussu");
-        pstm.setString(8, "Fortaleza");
-        pstm.setString(9, "60866280");
-        pstm.setString(10, "ce");
-        pstm.setString(11, "8532508425");
-        pstm.setString(12, "8585487735");
-        pstm.setString(13, "elisonwabreu@gmail.com");
-        pstm.setString(14, "A");
-        pstm.setInt(15, 2);
-        pstm.execute();
-        pstm.close();
-        conn.close();
+    public boolean Update(tb_funcionarios a, String status){
+        
+        if(msg.MsgConfGravacao() == true){
+            
+            tb_funcionarios func = (tb_funcionarios)manager.find(tb_funcionarios.class,a.getFd_funcionario());
+            
+            func.setFd_nome(a.getFd_nome());
+            func.setFd_cpf(a.getFd_cpf());
+            func.setFd_rg(a.getFd_rg());
+            func.setFd_data_nasc(a.getFd_data_nasc());
+            func.setFd_sexo(a.getFd_sexo());
+            func.setFd_endereco(a.getFd_endereco());
+            func.setFd_numero(a.getFd_numero());          
+            func.setFd_bairro(a.getFd_bairro());
+            func.setFd_cidade(a.getFd_cidade());
+            func.setFd_cep(a.getFd_cep());
+            func.setFd_uf(a.getFd_uf());  
+            func.setFd_telefone(a.getFd_telefone());
+            func.setFd_celular(a.getFd_celular());
+            func.setFd_email(a.getFd_email());    
+            func.setFd_status(a.getFd_status());
+            manager.getTransaction().begin();
+            manager.persist(func);
+            manager.getTransaction().commit();
+            manager.close();
+            msg.msgGravado();
+            return true;          
+        }else{
+            return false;
+        }  
     }
     public void Delete(int codigo) throws SQLException {
 

@@ -225,7 +225,7 @@ public class CadCursos extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
-        if(val.ValidaGravacaoDisciplina(txtDescricao, cbStatus)== true){
+        if(val.ValidaGravacaoCusrsos(this)== true){
         try {
             novo.Cursos(this);
             limpa.LimpaCurso(this);

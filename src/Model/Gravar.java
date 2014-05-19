@@ -14,6 +14,7 @@ import Daos.DaoUsuarios;
 import Views.CadAluno;
 import Views.CadCargos;
 import Views.CadCursos;
+import Views.CadDisciplinas;
 import Views.CadFuncionarios;
 import Views.CadUsuarios;
 import java.sql.Date;
@@ -23,10 +24,10 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import org.entities.classes.Disciplinas;
 import org.entities.classes.tb_alunos;
 import org.entities.classes.tb_cargos;
 import org.entities.classes.tb_cursos;
+import org.entities.classes.tb_disciplinas;
 import org.entities.classes.tb_funcionarios;
 import org.entities.classes.tb_itens;
 import org.entities.classes.tb_usuarios;
@@ -206,37 +207,39 @@ public class Gravar extends JFrame{
     funcionario.setFd_status(status);
     
     
-    if(val.validaCPF(cpf)== true){
-    func.Inserir(funcionario);
-    
-    limpa.LimpaFuncionario(fun);
-    }else{
-        
-         JOptionPane.showMessageDialog(null,"CPF: "+cpf+" NÃO É UM CPF VÁLIDO.","Grava Aluno",JOptionPane.WARNING_MESSAGE);
-    }
-    
+    if(fun.txtCodigo.getText().equals("")){
+            if(val.ValidaGravacaoFunc(cpf,fun) == true){
+                 if(func.Inserir(funcionario) == true){
+                   limpa.LimpaFuncionario(fun);  
+               }  
+            }
+          }else if(val.ValidaGravacaoFunc(cpf,fun) == true){
+              if(func.Update(funcionario,status) == true){
+                limpa.LimpaFuncionario(fun);  
+            }  
+          }
     } 
   
-    public void DisciplinaGravar(JTextField txtDescricao,JComboBox comboStatus) throws SQLException{
+    public void DisciplinaGravar(CadDisciplinas dis) throws SQLException{
      //Instacia DaoDisciplinas
         DaoDisciplinas disciplina = new DaoDisciplinas();
-        Disciplinas novo = new Disciplinas(0, null, null);
+        tb_disciplinas novo = new tb_disciplinas(0, null, null);
     
-     String descricao = txtDescricao.getText();
-     String status = comboStatus.getSelectedItem().toString();
+     String descricao = dis.txtDisciplina.getText();
+     String status = dis.comboStatus.getSelectedItem().toString();
      
        
-    if (comboStatus.getSelectedIndex() == 1){
+    if (dis.comboStatus.getSelectedIndex() == 1){
         status = "A"; 
     }else{
         status = "I";     
     }
-    novo.setDescricao(descricao.toUpperCase());
-    novo.setStatus(status);
+    novo.setFd_descricao(descricao.toUpperCase());
+    novo.setFd_status(status);
     
     disciplina.Inserir(novo);
      
-    limpa.LimpaDisciplina(txtDescricao, comboStatus);
+    
 
     }    
     
@@ -244,7 +247,7 @@ public class Gravar extends JFrame{
      //Instacia DaoDisciplinas
         DaoCursos curso = new DaoCursos();
         tb_cursos novo = new tb_cursos();
-    int codigo = Integer.parseInt(c.txtCodigo.getText());
+     //int codigo = Integer.parseInt(c.txtCodigo.getText());
      String descricao = c.txtDescricao.getText();
      double valor  = Double.parseDouble(c.txtValor.getText());
      String status = c.cbStatus.getSelectedItem().toString();
@@ -255,14 +258,15 @@ public class Gravar extends JFrame{
     }else{
         status = "I";     
     }
-    novo.setFd_curso(codigo);
+   // novo.setFd_curso(codigo);
     novo.setFd_descricao(descricao.toUpperCase());
-    novo.setFd_valor(valor);
     novo.setFd_status(status);
+    novo.setFd_valor(valor);
+    
     
     curso.Inserir(novo);
      
-    limpa.LimpaDisciplina(c.txtDescricao, c.cbStatus);
+    
 
     }    
    public void Itens(JTextField txtDescricao,JTextField txtValor,JComboBox comboStatus) throws SQLException{

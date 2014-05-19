@@ -431,7 +431,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
            
-        if(val.ValidaGravacaoFunc(this) == true){
+        
             try {
                 try {
                     novoFunc.Funcionario(this);
@@ -443,7 +443,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(CadFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed

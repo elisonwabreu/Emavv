@@ -4,36 +4,39 @@
  */
 package Model;
 
-import org.entities.classes.tb_alunos;
-import org.entities.classes.tb_cargos;
-import org.entities.classes.tb_cursos;
-import Messages.Cmessage;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
 import ConnectionFactory.*;
 import Daos.DaoAluno;
 import Daos.DaoCargo;
 import Daos.DaoCursos;
+import Daos.DaoFuncionarios;
+import Messages.Cmessage;
 import Views.CadAluno;
 import Views.CadCargos;
 import Views.CadCursos;
+import Views.CadDisciplinas;
 import Views.CadFuncionarios;
 import Views.CadUsuarios;
 import Views.FormBusca;
 import Views.Form_TelaLogin;
-import java.util.Date;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import org.entities.classes.tb_alunos;
+import org.entities.classes.tb_cargos;
+import org.entities.classes.tb_cursos;
+import org.entities.classes.tb_funcionarios;
 
 /**
  *
@@ -100,6 +103,48 @@ public class Validacoes extends JFrame{
         }    
     }
     
+     public boolean CamposObrigatorios(CadFuncionarios c) {
+        
+      if(c.txtNome.getText().equals("")){
+            msg.MsgCamposObrigatorios("Nome");
+            c.txtNome.grabFocus();
+            return false; 
+      
+      }else if(c.txtEndereco.getText().equals("")){
+            msg.MsgCamposObrigatorios("Endereco");
+            c.txtEndereco.grabFocus();
+            return false;
+            
+      }else if(c.txtbairro.getText().equals("")){
+            msg.MsgCamposObrigatorios("Bairro");
+            c.txtbairro.grabFocus();
+            return false;  
+      
+      }else if(c.txtCidade.getText().equals("")){
+            msg.MsgCamposObrigatorios("Cidade");
+            c.txtCidade.grabFocus();
+            return false;
+      
+       }else if(c.comboSexo.getSelectedIndex() == 0){
+            msg.MsgCamposObrigatorios("Sexo");
+            c.comboSexo.grabFocus();
+            return false; 
+       
+      }else if(c.comboUF.getSelectedIndex() == 0){
+            msg.MsgCamposObrigatorios("UF");
+            c.comboUF.grabFocus();
+            return false;       
+      
+      }else if(AjusteCaracter(c.txtCelular.getText()).equals("")){
+            msg.MsgCamposObrigatorios("Celular");
+            c.txtCelular.grabFocus();
+            return false;      
+        
+      }else{
+            return true;
+        }    
+    }
+    /*
     public boolean ValidaGravacaoFunc(CadFuncionarios fun) {
         
       if(fun.txtNome.getText().equals("")){
@@ -146,12 +191,13 @@ public class Validacoes extends JFrame{
     /*
      *Validação para os campos do cadastro de Disciplinas.
      */
-    public boolean ValidaGravacaoDisciplina(JTextField txtCurso, JComboBox comboStatus) {
+    
+    public boolean ValidaGravacaoDisciplina(CadDisciplinas dis) {
         
-      if(txtCurso.getText().equals("")){
+      if(dis.txtDisciplina.getText().equals("")){
             msg.MsgCamposObrigatorios("Descrição");
             return false;   
-        }else if(comboStatus.getSelectedIndex() == 0){
+        }else if(dis.comboStatus.getSelectedIndex() == 0){
             msg.MsgCamposObrigatorios("Status");
             return false;   
         }
@@ -161,7 +207,21 @@ public class Validacoes extends JFrame{
         
     }
     /*Fim da validação do preenchimento dos campos de Disciplinas -------------------------------*/
-    
+    public boolean ValidaGravacaoCusrsos(CadCursos cur) {
+        
+      if(cur.txtDescricao.getText().equals("")){
+            msg.MsgCamposObrigatorios("Descrição");
+            return false;   
+        }else if(cur.cbStatus.getSelectedIndex() == 0){
+            msg.MsgCamposObrigatorios("Status");
+            return false;   
+        }
+        
+        else{
+            return true;
+        }  
+        
+    }
     /*
      *Validação para os campos do cadastro de Disciplinas.
      */
@@ -223,6 +283,7 @@ public class Validacoes extends JFrame{
             c.btnSalvar.setEnabled(true);
             c.txtCodigo.setEnabled(false);
             c.btnPesquisa.setEnabled(true);
+            c.btnPesquisa.setEnabled(true);
             return false;
         } 
     }
@@ -236,6 +297,7 @@ public class Validacoes extends JFrame{
             a.txtNome.grabFocus();
             a.txtCodigo.setEnabled(false);
             a.btnBuscar.setEnabled(false);
+            a.btnAtualizar.setEnabled(false);
             a.cbStatus.setSelectedIndex(1);
             return true;
         }else{
@@ -244,6 +306,7 @@ public class Validacoes extends JFrame{
             a.btnSalvar.setEnabled(true);
             a.txtCodigo.setEnabled(false);
             a.btnBuscar.setEnabled(true);
+            a.btnAtualizar.setEnabled(true);
             return false;
         } 
     }
@@ -307,6 +370,7 @@ public class Validacoes extends JFrame{
             a.btnLimpar.setEnabled(false);
             a.bntRelatorio.setEnabled(false);
             a.btnSalvar.setEnabled(false);
+            a.btnAtualizar.setEnabled(false);
             a.btnBuscar.setEnabled(true);
             a.txtCodigo.setEnabled(true);
             a.txtCodigo.grabFocus();       
@@ -512,7 +576,7 @@ public void clickBtPesquisa(int tableIndex, JTextField txtCodigo, String tabela)
     }
   }
      
-     public boolean CpfJaExiste(String cpf,int codigoAluno){
+     public boolean CpfJaExiste(String cpf){
          
          boolean podeGravar = false;
          int getCodigoAluno = 0;
@@ -522,19 +586,58 @@ public void clickBtPesquisa(int tableIndex, JTextField txtCodigo, String tabela)
          if(aluno.size() == 0){
              podeGravar = true;
          }else{
-             for(tb_alunos a : aluno){
-                 
-               getCodigoAluno = a.getFd_aluno();
+            return false;
              }
              
-             if(codigoAluno == getCodigoAluno){
-                 podeGravar = true;
-             }else{
-                 podeGravar = false;
-             }   
-           }
+           
             return podeGravar;
-     }    
+     } 
+     
+     public boolean CpfJaExisteFunc(String cpf){
+         
+         boolean podeGravar = false;
+         int getCodigoFunc = 0;
+         DaoFuncionarios dao = new DaoFuncionarios();
+         List<tb_funcionarios> func = dao.SelectCpf(cpf);
+         
+         if(func.isEmpty()){
+             podeGravar = true;
+         }else{
+            return false;
+             }
+             
+           
+            return podeGravar;
+     }
+     
+     public boolean ValidaGravacaoFunc(String cpf,CadFuncionarios c){
+         
+         boolean grava = true;
+         
+         if(cpf.equals("")){
+                  
+         }else{
+             if(validaCPF(cpf)== false){
+
+                JOptionPane.showMessageDialog(null,"CPF: "+cpf+" "
+                           + "Não é válido.","Grava Aluno",JOptionPane.WARNING_MESSAGE);
+                grava = false;
+            }                 
+                if(CpfJaExiste(cpf) == false){
+             
+                    JOptionPane.showMessageDialog(null,"CPF: "+cpf+" "
+                        + "Já cadastrado.","Grava Aluno",JOptionPane.WARNING_MESSAGE);
+                    grava = false;
+            }    
+
+         }
+    
+         if(CamposObrigatorios(c) == false){
+             return false;
+         }
+         
+         return grava;
+     }
       
      public boolean ValidaGravacaoAlunos(String cpf,CadAluno c){
          
@@ -550,7 +653,7 @@ public void clickBtPesquisa(int tableIndex, JTextField txtCodigo, String tabela)
                 grava = false;
             } 
                 
-                if(CpfJaExiste(cpf,Integer.parseInt(c.txtCodigo.getText())) == false){
+                if(CpfJaExiste(cpf) == false){
              
                     JOptionPane.showMessageDialog(null,"CPF: "+cpf+" "
                         + "Já cadastrado.","Grava Aluno",JOptionPane.WARNING_MESSAGE);

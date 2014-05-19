@@ -41,7 +41,9 @@
                               <Component id="btnExcluir" min="-2" pref="113" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnLimpar" min="-2" pref="114" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnAtualizar" min="-2" pref="54" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="32767" attributes="0"/>
                               <Component id="bntRelatorio" min="-2" pref="122" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -240,11 +242,14 @@
                   <Component id="txtEmail" alignment="3" pref="29" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnSalvar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="btnExcluir" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="bntRelatorio" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="btnLimpar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnAtualizar" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnSalvar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="btnExcluir" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="bntRelatorio" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="btnLimpar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -257,6 +262,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodigoActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodigoKeyPressed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnBuscar">
       <Properties>
@@ -267,6 +275,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNome">
       <Events>
@@ -286,6 +297,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtCpf">
       <Properties>
@@ -296,14 +310,19 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="this.txtCpf = new JFormattedTextField(fmtCpf);  "/>
         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try {     &#xd;&#xa;fmtCpf = new MaskFormatter(&quot;###.###.###-##&quot;);&#xd;&#xa;} catch (ParseException e) { &#xd;&#xa;e.printStackTrace(); &#xd;&#xa;} "/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtRg">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtDtNascimento">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="this.txtDtNascimento = new JFormattedTextField(fmtDtNascimento);  "/>
         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try {     &#xd;&#xa;fmtDtNascimento = new MaskFormatter(&quot;##/##/####&quot;);&#xd;&#xa;} catch (ParseException e) { &#xd;&#xa;e.printStackTrace(); } "/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnFoto">
@@ -364,6 +383,9 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNum">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbUf">
       <Properties>
@@ -399,6 +421,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEndereco">
       <Properties>
@@ -432,12 +457,14 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="this.txtTelefone = new JFormattedTextField(fmtFone);"/>
         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try {     &#xd;&#xa;fmtFone = new MaskFormatter(&quot;(##)####-####&quot;);&#xd;&#xa;} catch (ParseException e) { &#xd;&#xa;e.printStackTrace(); &#xd;&#xa;} "/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtCelular">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="this.txtCelular = new JFormattedTextField(fmtCelular); "/>
         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try {     &#xd;&#xa;fmtCelular = new MaskFormatter(&quot;(##)####-####&quot;);&#xd;&#xa;} catch (ParseException e) { &#xd;&#xa;e.printStackTrace(); &#xd;&#xa;} "/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTelefone">
@@ -462,6 +489,7 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="this.txtCep = new JFormattedTextField(fmtCep); "/>
         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try {     &#xd;&#xa;fmtCep = new MaskFormatter(&quot;##.###-###&quot;);&#xd;&#xa;} catch (ParseException e) { &#xd;&#xa;e.printStackTrace(); } "/>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCidade">
@@ -485,6 +513,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnExcluir">
       <Properties>
@@ -497,6 +528,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="bntRelatorio">
       <Properties>
@@ -506,6 +540,9 @@
         <Property name="text" type="java.lang.String" value="Relat&#xf3;rio"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnLimpar">
       <Properties>
@@ -518,8 +555,14 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmail">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEmail">
       <Properties>
@@ -536,11 +579,29 @@
           </StringArray>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sexo"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAtualizar">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="C:\Users\elison\Downloads\Atualizar.png"/>
+        </Property>
+        <Property name="actionCommand" type="java.lang.String" value="atualizar"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtualizarActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

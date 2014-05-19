@@ -7,25 +7,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import Messages.Cmessage;
-import org.entities.classes.Disciplinas;
+import org.entities.classes.tb_disciplinas;
 import ConnectionFactory.Conexao;
+import ConnectionFactory.JPAUtil;
+import javax.persistence.EntityManager;
 
 public class DaoDisciplinas {
     Cmessage msg = new Cmessage();
-    public boolean Inserir(Disciplinas a) throws SQLException {
+    EntityManager manager = JPAUtil.getEntityManager();
+    public boolean Inserir(tb_disciplinas a) throws SQLException {
         
-        if(msg.MsgConfGravacao() == true){
-        Connection conn = Conexao.getConexao();
-
-        String SQL = "INSERT INTO tb_disciplinas (fd_descricao, fd_status) VALUES (? , ? )";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        pstm.setString(1, a.getDescricao());
-        pstm.setString(2, a.getStatus());
-        pstm.execute();
-        pstm.close();
-        conn.close();
-        msg.msgGravado();
-        return true;
+      if(msg.MsgConfGravacao() == true){
+            manager.getTransaction().begin();
+            manager.persist(a);
+            manager.getTransaction().commit();
+            manager.close();
+            msg.msgGravado();
+           return true;
         }else{
         
             return false;
@@ -45,10 +43,10 @@ public class DaoDisciplinas {
         conn.close();
     }
 
-    public List<Disciplinas> Select(int codigo) throws SQLException {
+    public List<tb_disciplinas> Select(int codigo) throws SQLException {
 
         Connection conn = Conexao.getConexao();
-        List<Disciplinas> disciplina = new ArrayList<>();
+        List<tb_disciplinas> disciplina = new ArrayList<>();
 
         String SQL = "SELECT * FROM tb_disciplinas WHERE fd_disciplina = ?";
         PreparedStatement pstm = conn.prepareStatement(SQL);
@@ -56,7 +54,7 @@ public class DaoDisciplinas {
         ResultSet rs = pstm.executeQuery();
         while (rs.next()) {
 
-            disciplina.add(new Disciplinas(rs.getInt("fd_disciplina"), rs.getString("fd_descricao"), rs.getString("fd_status")));
+            disciplina.add(new tb_disciplinas(rs.getInt("fd_disciplina"), rs.getString("fd_descricao"), rs.getString("fd_status")));
         }
         pstm.close();
         conn.close();

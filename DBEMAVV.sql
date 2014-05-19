@@ -14,8 +14,8 @@
   fd_telefone CHAR(11) NULL,
   fd_celular CHAR(11) NULL,
   fd_email VARCHAR(90) NULL,
-  fd_data_cadastro timestamp default current_timestamp,	
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN('A','I','E')),
+  fd_data_cadastro timestamp default current_timestamp,	
   PRIMARY KEY(fd_aluno)
 );
 CREATE TABLE tb_funcionarios (
@@ -34,16 +34,16 @@ CREATE TABLE tb_funcionarios (
   fd_telefone CHAR(11) NULL,
   fd_celular CHAR(11) NULL,
   fd_email VARCHAR(90) NULL,
-  fd_data_cadastro timestamp default current_timestamp,
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN('A','I','E')),
+  fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY(fd_funcionario)
 );
 
 CREATE TABLE tb_cargos (
   fd_cargo SERIAL,
   fd_descricao VARCHAR(40) NOT NULL,
-  fd_data_cadastro DATE CURRENT_TIMESTAMP,
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN('A','I','E')), 
+  fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY(fd_cargo)
 );
 
@@ -51,15 +51,15 @@ CREATE TABLE tb_cursos (
   fd_curso SERIAL,
   fd_descricao VARCHAR(255) NOT NULL,
   fd_valor NUMERIC(14,6) NOT NULL CHECK (fd_valor <= 0),
-  fd_data_cadastro timestamp default current_timestamp,
-  fd_status CHAR(1) NOT NULL CHECK (fd_status IN('A','I','E')),  
+  fd_status CHAR(1) NOT NULL CHECK (fd_status IN('A','I','E')),
+  fd_data_cadastro timestamp default current_timestamp,  
   PRIMARY KEY(fd_curso)
 );
 CREATE TABLE tb_disciplinas (
   fd_disciplina SERIAL,
   fd_descricao VARCHAR(50) NOT NULL,
-  fd_data_cadastro timestamp default current_timestamp,
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN('A','I','E')),
+  fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY(fd_disciplina)
 );
 CREATE TABLE tb_cursos_disciplinas (
@@ -78,8 +78,8 @@ CREATE TABLE tb_despesas (
 CREATE TABLE tb_formas_pagamentos(
   fd_formapagto SERIAL,
   fd_descricao VARCHAR(150) NOT NULL,
-  fd_data_cadastro timestamp default current_timestamp,
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN ('A','I','E')),
+  fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY (fd_formapagto)	
 
 );
@@ -93,16 +93,16 @@ CREATE TABLE tb_itens (
   fd_item SERIAL,
   fd_descricao VARCHAR(50) NOT NULL,
   fd_valor NUMERIC(14,6) NOT NULL CHECK (fd_valor <= 0),
-  fd_data_cadastro timestamp default current_timestamp,
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN('A','I','E')),
+  fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY(fd_item)
 );
 CREATE TABLE tb_matriculas (
   fd_matricula INTEGER NOT NULL,
   fd_aluno INTEGER REFERENCES tb_alunos(fd_aluno),
   data_matricula DATE NOT NULL,
-  fd_data_cadastro timestamp default current_timestamp,
   fd_usuario INTEGER,
+  fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY(fd_matricula, fd_aluno)
 );
 
@@ -117,8 +117,8 @@ CREATE TABLE tb_usuarios (
   fd_funcionario INTEGER REFERENCES tb_funcionarios(fd_funcionario),
   fd_login VARCHAR(20) NOT NULL UNIQUE,
   fd_senha VARCHAR(12) NOT NULL,
-  fd_data_cadastro timestamp default current_timestamp,
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN('A','I','E')),
+  fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY (fd_funcionario)
 );
 
@@ -129,8 +129,8 @@ CREATE TABLE tb_mensalidades (--AINDA FALTA CRIAR
   fd_aluno INTEGER REFERENCES tb_alunos(fd_aluno),
   fd_vencimento DATE NOT NULL,
   fd_valor NUMERIC NOT NULL CHECK (fd_valor <= 0),
-  fd_data_cadastro timestamp default current_timestamp,
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN ('A','I','E')),
+  fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY (fd_matricula, fd_aluno)
 );
 

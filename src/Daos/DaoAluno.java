@@ -7,6 +7,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.entities.classes.tb_alunos;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 
 /**
  *
@@ -93,6 +96,29 @@ public class DaoAluno {
             aluno.setFd_celular(a.getFd_celular());
             aluno.setFd_email(a.getFd_email());    
             aluno.setFd_status(a.getFd_status());
+            manager.getTransaction().begin();
+            manager.persist(aluno);
+            manager.getTransaction().commit();
+            manager.close();
+            msg.msgGravado();
+            return true;          
+        }else{
+            return false;
+        }  
+    }
+    
+    public boolean Update(tb_alunos a){
+        
+        if(msg.MsgConfGravacao() == true){
+            tb_alunos aluno = (tb_alunos)manager.find(tb_alunos.class,a.getFd_aluno());
+            /*
+            Session session = HibernateUtil.getSessionFactory().openSession();  
+            Transaction t = session.beginTransaction();  
+            session.update(a);  
+            t.commit();  
+            session.clear();  
+            session.close();
+                    */
             manager.getTransaction().begin();
             manager.persist(aluno);
             manager.getTransaction().commit();

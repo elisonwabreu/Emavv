@@ -4,7 +4,7 @@
  */
 package Views;
 
-import org.entities.classes.Disciplinas;
+import org.entities.classes.tb_disciplinas;
 import Model.Gravar;
 import Model.Validacoes;
 import Model.Limpar;
@@ -24,7 +24,7 @@ import javax.swing.text.MaskFormatter;
  */
 public class CadDisciplinas extends javax.swing.JFrame {
     
-    Disciplinas diciplina = new Disciplinas(0, null, null);
+    tb_disciplinas diciplina = new tb_disciplinas(0, null, null);
     Gravar novoDisciplina = new Gravar();
     Validacoes val = new Validacoes();
     Limpar limpa = new Limpar();
@@ -183,7 +183,7 @@ public class CadDisciplinas extends javax.swing.JFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         
-        limpa.LimpaDisciplina(txtCodigo, comboStatus);
+        limpa.LimpaDisciplina(this);
         
     }//GEN-LAST:event_btnLimparActionPerformed
 
@@ -197,9 +197,10 @@ public class CadDisciplinas extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
-        if(val.ValidaGravacaoDisciplina(txtDisciplina, comboStatus) == true){
+        if(val.ValidaGravacaoDisciplina(this) == true){
         try {
-            novoDisciplina.DisciplinaGravar(txtDisciplina, comboStatus);
+            novoDisciplina.DisciplinaGravar(this);
+            limpa.LimpaDisciplina(this);
         } catch (SQLException ex) {
             Logger.getLogger(CadDisciplinas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -259,17 +260,17 @@ public class CadDisciplinas extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntRelatorio;
+    public javax.swing.JButton bntRelatorio;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnLimpar;
-    private javax.swing.JButton btnSalvar;
-    private javax.swing.JComboBox comboStatus;
+    public javax.swing.JButton btnExcluir;
+    public javax.swing.JButton btnLimpar;
+    public javax.swing.JButton btnSalvar;
+    public javax.swing.JComboBox comboStatus;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblDisciplina;
     private javax.swing.JLabel lblStatus;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtDisciplina;
+    public javax.swing.JTextField txtCodigo;
+    public javax.swing.JTextField txtDisciplina;
     // End of variables declaration//GEN-END:variables
 }

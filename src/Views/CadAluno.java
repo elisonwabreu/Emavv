@@ -8,6 +8,7 @@ import org.entities.classes.tb_alunos;
 import Model.Deletar;
 import Daos.DaoAluno;
 import Messages.Cmessage;
+import Model.Atualizar;
 import Model.Gravar;
 import Model.InsereLetras;
 import Model.InsereNumeros;
@@ -40,6 +41,7 @@ public class CadAluno extends javax.swing.JFrame {
     Gravar novoAluno = new Gravar();
     Limpar limpa = new Limpar();
     Selecionar sel = new Selecionar();
+    Atualizar atualiza = new Atualizar();
     
     private JFormattedTextField textoF3;
     private MaskFormatter fmtCpf;
@@ -139,6 +141,7 @@ public class CadAluno extends javax.swing.JFrame {
         lblEmail = new javax.swing.JLabel();
         cbSexo = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
+        btnAtualizar = new javax.swing.JButton();
 
         jButton2.setText("jButton2");
 
@@ -268,6 +271,15 @@ public class CadAluno extends javax.swing.JFrame {
 
         jLabel1.setText("Sexo");
 
+        btnAtualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\elison\\Downloads\\Atualizar.png")); // NOI18N
+        btnAtualizar.setActionCommand("atualizar");
+        btnAtualizar.setEnabled(false);
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -281,7 +293,9 @@ public class CadAluno extends javax.swing.JFrame {
                                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, Short.MAX_VALUE)
                                 .addComponent(bntRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,11 +445,13 @@ public class CadAluno extends javax.swing.JFrame {
                     .addComponent(txtCep, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bntRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bntRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -542,6 +558,19 @@ public class CadAluno extends javax.swing.JFrame {
         val.setTextUp(this);
     }//GEN-LAST:event_txtCidadeKeyReleased
 
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        
+        try{
+            try {
+                atualiza.AtualizarAluno(this);
+            } catch (ParseException ex) {
+                Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -580,32 +609,33 @@ public class CadAluno extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bntRelatorio;
+    public javax.swing.JButton btnAtualizar;
     public javax.swing.JButton btnBuscar;
     public javax.swing.JButton btnExcluir;
-    public javax.swing.JButton btnFoto;
+    private javax.swing.JButton btnFoto;
     public javax.swing.JButton btnLimpar;
     public javax.swing.JButton btnSalvar;
     public javax.swing.JComboBox cbSexo;
     public javax.swing.JComboBox cbStatus;
     public javax.swing.JComboBox cbUf;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JLabel jLabel1;
-    public javax.swing.JLabel labelFoto;
-    public javax.swing.JLabel lblBairro;
-    public javax.swing.JLabel lblCelular;
-    public javax.swing.JLabel lblCep;
-    public javax.swing.JLabel lblCidade;
-    public javax.swing.JLabel lblCodigo;
-    public javax.swing.JLabel lblCpf;
-    public javax.swing.JLabel lblEmail;
-    public javax.swing.JLabel lblEndereco;
-    public javax.swing.JLabel lblNascimento;
-    public javax.swing.JLabel lblNome;
-    public javax.swing.JLabel lblNum;
-    public javax.swing.JLabel lblRg;
-    public javax.swing.JLabel lblStatus;
-    public javax.swing.JLabel lblTelefone;
-    public javax.swing.JLabel lblUF;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labelFoto;
+    private javax.swing.JLabel lblBairro;
+    private javax.swing.JLabel lblCelular;
+    private javax.swing.JLabel lblCep;
+    private javax.swing.JLabel lblCidade;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblCpf;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblEndereco;
+    private javax.swing.JLabel lblNascimento;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblNum;
+    private javax.swing.JLabel lblRg;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblTelefone;
+    private javax.swing.JLabel lblUF;
     public javax.swing.JFormattedTextField txtCelular;
     public javax.swing.JTextField txtCep;
     public javax.swing.JTextField txtCidade;
