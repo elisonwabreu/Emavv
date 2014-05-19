@@ -111,14 +111,7 @@ public class DaoAluno {
         
         if(msg.MsgConfGravacao() == true){
             tb_alunos aluno = (tb_alunos)manager.find(tb_alunos.class,a.getFd_aluno());
-            /*
-            Session session = HibernateUtil.getSessionFactory().openSession();  
-            Transaction t = session.beginTransaction();  
-            session.update(a);  
-            t.commit();  
-            session.clear();  
-            session.close();
-                    */
+          
             manager.getTransaction().begin();
             manager.persist(aluno);
             manager.getTransaction().commit();

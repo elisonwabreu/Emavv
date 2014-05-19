@@ -11,6 +11,7 @@ import Model.Gravar;
 import Model.InsereLetras;
 import Model.InsereNumeros;
 import Model.Validacoes;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.List;
@@ -49,6 +50,7 @@ public class CadUsuarios extends javax.swing.JFrame {
         initComponents();
         txtCodigo.setDocument(new InsereNumeros());
         txtNome.setDocument(new InsereLetras());
+        setIcon();
     }
 
     /**
@@ -386,4 +388,7 @@ public void Listar() throws SQLException{
        
     }     
   }*/
+    private void setIcon() {
+           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    }
 }

@@ -12,6 +12,7 @@ import Model.InsereLetras;
 import Model.InsereNumeros;
 import Model.Limpar;
 import Model.Validacoes;
+import java.awt.Toolkit;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -54,6 +55,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
         txtNum.setDocument(new InsereNumeros());
         txtNome.setDocument(new InsereLetras());
         txtbairro.setDocument(new InsereLetras());
+        setIcon();
     }
 
     /**
@@ -534,4 +536,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
     public javax.swing.JFormattedTextField txtTelefone;
     public javax.swing.JTextField txtbairro;
     // End of variables declaration//GEN-END:variables
+private void setIcon() {
+           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    }
 }

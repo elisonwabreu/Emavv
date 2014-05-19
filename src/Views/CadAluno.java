@@ -16,6 +16,7 @@ import Model.InsereNumeros;
 import Model.Limpar;
 import Model.Selecionar;
 import Model.Validacoes;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.sql.SQLException;
@@ -62,6 +63,7 @@ public class CadAluno extends javax.swing.JFrame {
         txtNum.setDocument(new InsereNumeros());
         txtNome.setDocument(new InsereLetras());
         txtbairro.setDocument(new InsereLetras());
+        setIcon();
        
     }
 
@@ -271,7 +273,7 @@ public class CadAluno extends javax.swing.JFrame {
 
         jLabel1.setText("Sexo");
 
-        btnAtualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\elison\\Downloads\\Atualizar.png")); // NOI18N
+        btnAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Atualizar.png"))); // NOI18N
         btnAtualizar.setActionCommand("atualizar");
         btnAtualizar.setEnabled(false);
         btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -651,6 +653,8 @@ public class CadAluno extends javax.swing.JFrame {
     public javax.swing.JTextField txtbairro;
     // End of variables declaration//GEN-END:variables
 
-
+private void setIcon() {
+           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    }
 }
 

@@ -32,19 +32,20 @@ public class FormPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         AluCadastro = new javax.swing.JMenuItem();
+        GeraMatricula = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuNovoFunc = new javax.swing.JMenu();
+        jMenuCadFunc = new javax.swing.JMenuItem();
+        jMenuNovoCargo = new javax.swing.JMenu();
+        jMenuCadCargo = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu9 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuNovoCurso = new javax.swing.JMenu();
+        jMenuCadCursos = new javax.swing.JMenuItem();
+        jMenuNovoDIsc = new javax.swing.JMenu();
+        jMenuCadDisc = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuNovoItem = new javax.swing.JMenu();
+        jMenuCadItem = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu11 = new javax.swing.JMenu();
         jMenu12 = new javax.swing.JMenu();
@@ -89,98 +90,110 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(AluCadastro);
 
+        GeraMatricula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/disquete_16x16.png"))); // NOI18N
+        GeraMatricula.setText("Gerar Matricula");
+        GeraMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GeraMatriculaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(GeraMatricula);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Funcionarios_16x16.png"))); // NOI18N
         jMenu2.setText("Funcionário");
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/disquete_16x16.png"))); // NOI18N
-        jMenu6.setText("Novo");
+        jMenuNovoFunc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/disquete_16x16.png"))); // NOI18N
+        jMenuNovoFunc.setText("Novo");
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Capacete_16x16.png"))); // NOI18N
-        jMenuItem2.setText("Cadastro");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuCadFunc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Capacete_16x16.png"))); // NOI18N
+        jMenuCadFunc.setText("Cadastro");
+        jMenuCadFunc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuCadFuncActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem2);
+        jMenuNovoFunc.add(jMenuCadFunc);
 
-        jMenu2.add(jMenu6);
+        jMenu2.add(jMenuNovoFunc);
 
-        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/disquete_16x16.png"))); // NOI18N
-        jMenu7.setText("Cargo");
+        jMenuNovoCargo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/disquete_16x16.png"))); // NOI18N
+        jMenuNovoCargo.setText("Cargo");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/usuario_16x16.png"))); // NOI18N
-        jMenuItem3.setText("Cadastro");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuCadCargo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/usuario_16x16.png"))); // NOI18N
+        jMenuCadCargo.setText("Cadastro");
+        jMenuCadCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuCadCargoActionPerformed(evt);
             }
         });
-        jMenu7.add(jMenuItem3);
+        jMenuNovoCargo.add(jMenuCadCargo);
 
-        jMenu2.add(jMenu7);
+        jMenu2.add(jMenuNovoCargo);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/livro_16x16.png"))); // NOI18N
         jMenu3.setText("Cursos");
 
-        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/disquete_16x16.png"))); // NOI18N
-        jMenu8.setText("Novo");
+        jMenuNovoCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/disquete_16x16.png"))); // NOI18N
+        jMenuNovoCurso.setText("Novo");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/livro_16x16.png"))); // NOI18N
-        jMenuItem1.setText("Cadastro");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuCadCursos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/livro_16x16.png"))); // NOI18N
+        jMenuCadCursos.setText("Cadastro");
+        jMenuCadCursos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuCadCursosActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem1);
+        jMenuNovoCurso.add(jMenuCadCursos);
 
-        jMenu3.add(jMenu8);
+        jMenu3.add(jMenuNovoCurso);
 
-        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/disquete_16x16.png"))); // NOI18N
-        jMenu9.setText("Disciplina");
+        jMenuNovoDIsc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/disquete_16x16.png"))); // NOI18N
+        jMenuNovoDIsc.setText("Disciplina");
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/livro_16x16.png"))); // NOI18N
-        jMenuItem4.setText("Cadastro");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuCadDisc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/livro_16x16.png"))); // NOI18N
+        jMenuCadDisc.setText("Cadastro");
+        jMenuCadDisc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMenuCadDiscActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem4);
+        jMenuNovoDIsc.add(jMenuCadDisc);
 
-        jMenu3.add(jMenu9);
+        jMenu3.add(jMenuNovoDIsc);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/caixa_16x16.png"))); // NOI18N
         jMenu4.setText("Produtos");
 
-        jMenu10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/disquete_16x16.png"))); // NOI18N
-        jMenu10.setText("Item");
+        jMenuNovoItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/disquete_16x16.png"))); // NOI18N
+        jMenuNovoItem.setText("Item");
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/cartao_16x16.png"))); // NOI18N
-        jMenuItem5.setText("Cadastro");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuCadItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/cartao_16x16.png"))); // NOI18N
+        jMenuCadItem.setText("Cadastro");
+        jMenuCadItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMenuCadItemActionPerformed(evt);
             }
         });
-        jMenu10.add(jMenuItem5);
+        jMenuNovoItem.add(jMenuCadItem);
 
-        jMenu4.add(jMenu10);
+        jMenu4.add(jMenuNovoItem);
 
         jMenuBar1.add(jMenu4);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/impressora.png"))); // NOI18N
         jMenu5.setText("Relatórios");
         jMenuBar1.add(jMenu5);
 
+        jMenu11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/interrogacao.png"))); // NOI18N
         jMenu11.setText("Ajuda");
 
+        jMenu12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/senha.png"))); // NOI18N
         jMenu12.setText("Trocar Senha");
         jMenu11.add(jMenu12);
 
@@ -227,30 +240,35 @@ public class FormPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuCadFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadFuncActionPerformed
         CadFuncionarios novo = new CadFuncionarios();
         novo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMenuCadFuncActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMenuCadCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadCargoActionPerformed
         CadCargos novo = new CadCargos();
         novo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_jMenuCadCargoActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuCadCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadCursosActionPerformed
         CadCursos novo = new CadCursos();
         novo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuCadCursosActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMenuCadDiscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadDiscActionPerformed
         CadDisciplinas novo = new CadDisciplinas();
         novo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jMenuCadDiscActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void jMenuCadItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadItemActionPerformed
         CadItens novo = new CadItens();
         novo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_jMenuCadItemActionPerformed
+
+    private void GeraMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeraMatriculaActionPerformed
+       CadMatriculas novo = new CadMatriculas();
+       novo.setVisible(true);
+    }//GEN-LAST:event_GeraMatriculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,26 +306,27 @@ public class FormPrincipal extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AluCadastro;
+    private javax.swing.JMenuItem GeraMatricula;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnSair;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuCadCargo;
+    private javax.swing.JMenuItem jMenuCadCursos;
+    private javax.swing.JMenuItem jMenuCadDisc;
+    private javax.swing.JMenuItem jMenuCadFunc;
+    private javax.swing.JMenuItem jMenuCadItem;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenu jMenuNovoCargo;
+    private javax.swing.JMenu jMenuNovoCurso;
+    private javax.swing.JMenu jMenuNovoDIsc;
+    private javax.swing.JMenu jMenuNovoFunc;
+    private javax.swing.JMenu jMenuNovoItem;
     // End of variables declaration//GEN-END:variables
 }

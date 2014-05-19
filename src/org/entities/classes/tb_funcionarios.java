@@ -7,13 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
-// teste da goma
+
 @Entity (name ="tb_funcionarios")
 public class tb_funcionarios implements Serializable {
      @Id
      @GeneratedValue
      int fd_funcionario;
-     //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "tb_funcionarios")
      String fd_nome;
      String fd_cpf;
      String fd_rg;

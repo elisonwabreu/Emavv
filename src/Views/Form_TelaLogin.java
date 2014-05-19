@@ -7,6 +7,7 @@ package Views;
 import Daos.DaoUsuarios;
 import Messages.Cmessage;
 import Model.Selecionar;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -29,6 +30,7 @@ public class Form_TelaLogin extends javax.swing.JFrame {
      */
     public Form_TelaLogin() {
         initComponents();
+        setIcon();
     }
 
     /**
@@ -52,6 +54,8 @@ public class Form_TelaLogin extends javax.swing.JFrame {
         setBackground(new java.awt.Color(204, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        setIconImage(getIconImage());
+        setIconImages(getIconImages());
         setLocationByPlatform(true);
         setResizable(false);
 
@@ -214,4 +218,8 @@ public class Form_TelaLogin extends javax.swing.JFrame {
     public javax.swing.JTextField txtLogin;
     public javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    }
 }

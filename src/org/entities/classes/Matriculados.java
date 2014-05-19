@@ -1,6 +1,6 @@
 package org.entities.classes;
 
-public class Matriculados extends Matriculas {
+public class Matriculados extends tb_matriculas {
 
     public int curso;
 

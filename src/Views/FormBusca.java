@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import Views.CadCargos;
+import java.awt.Toolkit;
 import javax.swing.JTextField;
 
 /**
@@ -30,6 +31,7 @@ public class FormBusca extends javax.swing.JFrame {
     Validacoes val = new Validacoes();
     public FormBusca() {
         initComponents();
+        setIcon();
     }
 
     /**
@@ -50,6 +52,7 @@ public class FormBusca extends javax.swing.JFrame {
         jGridBusca = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Busca");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -66,10 +69,11 @@ public class FormBusca extends javax.swing.JFrame {
             }
         });
 
-        btnProx.setText("Prox.");
+        btnProx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/seta_direita.png"))); // NOI18N
 
-        btnAnterior.setText("Anterior");
+        btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/seta_esquerda.png"))); // NOI18N
 
+        jGridBusca.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jGridBusca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -119,7 +123,7 @@ public class FormBusca extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -193,9 +197,9 @@ public class FormBusca extends javax.swing.JFrame {
     private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnProx;
-    public javax.swing.JComboBox cbFiltro;
+    private javax.swing.JComboBox cbFiltro;
     public javax.swing.JTable jGridBusca;
-    public javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField txtCampoBusca;
     // End of variables declaration//GEN-END:variables
 
@@ -214,4 +218,7 @@ public class FormBusca extends javax.swing.JFrame {
         txtCodigoU = txtCodigoIn;   
     }
     
+    private void setIcon() {
+           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    }
 }

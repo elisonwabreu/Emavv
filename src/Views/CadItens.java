@@ -13,6 +13,7 @@ import Daos.DaoItens;
 import Messages.Cmessage;
 import Model.InsereNumeros;
 import Model.Validacoes;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -47,6 +48,7 @@ public class CadItens extends javax.swing.JFrame {
     public CadItens() {
         initComponents();
         txtCodigo.setDocument(new InsereNumeros());
+        setIcon();
     }
 
     /**
@@ -312,4 +314,7 @@ public void DeletarCurso() throws SQLException{
     int codigo = Integer.parseInt(txtCodigo.getText());
     deleta.Delete(txtCodigo, "tb_itens", "fd_item");
 }
+private void setIcon() {
+           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    }
 }

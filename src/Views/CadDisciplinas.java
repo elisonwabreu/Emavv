@@ -11,6 +11,7 @@ import Model.Limpar;
 import Model.Deletar;
 import Model.InsereNumeros;
 import Model.Selecionar;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -44,6 +45,7 @@ public class CadDisciplinas extends javax.swing.JFrame {
     public CadDisciplinas() {
         initComponents();
         txtCodigo.setDocument(new InsereNumeros());
+        setIcon();
     }
 
    
@@ -273,4 +275,7 @@ public class CadDisciplinas extends javax.swing.JFrame {
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtDisciplina;
     // End of variables declaration//GEN-END:variables
+private void setIcon() {
+           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    }
 }

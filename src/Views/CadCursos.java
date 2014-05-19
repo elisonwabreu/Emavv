@@ -14,6 +14,7 @@ import Model.Gravar;
 import Model.InsereNumeros;
 
 import Model.Selecionar;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.List;
@@ -52,6 +53,7 @@ public class CadCursos extends javax.swing.JFrame {
         this.curso = new tb_cursos();
         initComponents();
        txtCodigo.setDocument(new InsereNumeros());
+       setIcon();
     }
 
     /**
@@ -323,7 +325,7 @@ public class CadCursos extends javax.swing.JFrame {
     public javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 
-/*
- *Metodo listar dados vindos do banco
- */
+private void setIcon() {
+           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    }
 }

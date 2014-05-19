@@ -14,6 +14,7 @@ import Model.InsereLetras;
 import Model.InsereNumeros;
 import Model.Selecionar;
 import Model.Validacoes;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.List;
@@ -50,6 +51,7 @@ public class CadCargos extends javax.swing.JFrame {
     public CadCargos() {
         initComponents();
         txtCodigo.setDocument(new InsereNumeros());
+        setIcon();
     }
 
     /**
@@ -296,6 +298,9 @@ public class CadCargos extends javax.swing.JFrame {
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtDescricao;
     // End of variables declaration//GEN-END:variables
-
+   
+    private void setIcon() {
+           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    }
  
 }

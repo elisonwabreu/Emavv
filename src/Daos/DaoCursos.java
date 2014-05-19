@@ -15,10 +15,12 @@ public class DaoCursos {
     
     public boolean Inserir(tb_cursos a) throws SQLException {
         if(msg.MsgConfGravacao() == true){
+            
             manager.getTransaction().begin();
             manager.persist(a);
             manager.getTransaction().commit();
             manager.close();
+            
             msg.msgGravado();
            return true;
         }else{
