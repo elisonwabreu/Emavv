@@ -16,6 +16,7 @@ import Model.InsereNumeros;
 import Model.Limpar;
 import Model.Selecionar;
 import Model.Validacoes;
+import Theme.Tema;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -26,7 +27,10 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -385,7 +389,7 @@ public class CadAluno extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodigo)
                     .addComponent(lblNome)
@@ -604,6 +608,8 @@ public class CadAluno extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                
+               Tema.Tema();    
                 new CadAluno().setVisible(true);
 
             }

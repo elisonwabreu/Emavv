@@ -108,9 +108,10 @@ CREATE TABLE tb_itens (
 );
 
 CREATE TABLE tb_matriculas (
+  fd_codigo serial not null,
   fd_matricula INTEGER NOT NULL UNIQUE,
   fd_aluno INTEGER REFERENCES tb_alunos(fd_aluno),
-  data_matricula DATE NOT NULL,
+  fd_data_matricula DATE NOT NULL,
   fd_usuario INTEGER,
   fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY(fd_matricula, fd_aluno)
@@ -123,6 +124,8 @@ CREATE TABLE tb_matriculados (
   PRIMARY KEY (fd_matricula, fd_aluno)
   
 );
+
+
 CREATE TABLE tb_usuarios (
   fd_funcionario INTEGER REFERENCES tb_funcionarios(fd_funcionario),
   fd_login VARCHAR(20) NOT NULL UNIQUE,

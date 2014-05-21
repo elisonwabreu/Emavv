@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Views;
 
+import Theme.Tema;
 import java.awt.Toolkit;
 import java.text.ParseException;
 import javax.swing.JFormattedTextField;
@@ -16,6 +16,7 @@ import javax.swing.text.MaskFormatter;
  * @author elison
  */
 public class CadMatriculas extends javax.swing.JFrame {
+
     private MaskFormatter fmtDtCadastro;
 
     /**
@@ -193,18 +194,15 @@ public class CadMatriculas extends javax.swing.JFrame {
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
 
-       
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
-     
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyReleased
 
         // TODO add your handling code here:
-       
     }//GEN-LAST:event_txtNomeKeyReleased
 
     private void txtCodigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigo1ActionPerformed
@@ -217,7 +215,6 @@ public class CadMatriculas extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
-       
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtDtCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDtCadastroActionPerformed
@@ -257,7 +254,9 @@ public class CadMatriculas extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
+                Tema.Tema();
                 new CadMatriculas().setVisible(true);
             }
         });
@@ -277,6 +276,6 @@ public class CadMatriculas extends javax.swing.JFrame {
     public javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
     private void setIcon() {
-           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
 }

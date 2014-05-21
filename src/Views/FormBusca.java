@@ -6,6 +6,7 @@ package Views;
 
 import Model.Selecionar;
 import Model.Validacoes;
+import Theme.Tema;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -189,6 +190,7 @@ public class FormBusca extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                Tema.Tema();
                 new FormBusca().setVisible(true);
             }
         });

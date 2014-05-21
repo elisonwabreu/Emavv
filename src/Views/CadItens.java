@@ -13,6 +13,7 @@ import Daos.DaoItens;
 import Messages.Cmessage;
 import Model.InsereNumeros;
 import Model.Validacoes;
+import Theme.Tema;
 import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.List;
@@ -262,6 +263,7 @@ public class CadItens extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                Tema.Tema();
                 new CadItens().setVisible(true);
 
             }

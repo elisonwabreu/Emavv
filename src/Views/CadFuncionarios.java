@@ -12,6 +12,7 @@ import Model.InsereLetras;
 import Model.InsereNumeros;
 import Model.Limpar;
 import Model.Validacoes;
+import Theme.Tema;
 import java.awt.Toolkit;
 
 import java.io.File;
@@ -487,6 +488,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                Tema.Tema();
                 new CadFuncionarios().setVisible(true);
 
             }
