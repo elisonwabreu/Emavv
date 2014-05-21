@@ -4,12 +4,23 @@
  */
 package Funcao;
 
+import Views.CadMatriculas;
+import java.util.Date;
+
 /**
  *
  * @author suporte
  */
 public class GeraMatricula {
     
+    public void matricula(CadMatriculas a){
+        
+        Date data = new Date(System.currentTimeMillis());
+        
+        
+        
+        
+    }
     
     
 }
