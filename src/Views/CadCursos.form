@@ -176,6 +176,7 @@
           <Image iconType="3" name="/Img/confirma_16x16.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Salvar"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
@@ -215,6 +216,7 @@
           <Image iconType="3" name="/Img/vassoura_16x16.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Limpar"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparActionPerformed"/>

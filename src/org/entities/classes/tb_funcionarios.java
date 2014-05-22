@@ -20,7 +20,7 @@ public class tb_funcionarios implements Serializable {
      Date fd_data_nasc;
      String fd_sexo;
      String fd_endereco;
-     int fd_numero;
+     String fd_numero;
      String fd_bairro;
      String fd_cep;
      String fd_cidade;
@@ -89,11 +89,11 @@ public class tb_funcionarios implements Serializable {
         this.fd_endereco = fd_endereco;
     }
 
-    public int getFd_numero() {
+    public String getFd_numero() {
         return fd_numero;
     }
 
-    public void setFd_numero(int fd_numero) {
+    public void setFd_numero(String fd_numero) {
         this.fd_numero = fd_numero;
     }
 

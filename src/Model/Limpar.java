@@ -9,9 +9,9 @@ import Views.CadCargos;
 import Views.CadCursos;
 import Views.CadDisciplinas;
 import Views.CadFuncionarios;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JTextField;
+import Views.CadItens;
+import Views.CadMatriculas;
+import Views.CadUsuarios;
 
 /**
  *
@@ -43,12 +43,19 @@ public class Limpar {
         c.txtCodigo.setEnabled(true);
     
     }
+    public void LimpaCurso(CadItens c){
+        c.txtCodigo.setText("");
+        c.txtItem.setText("");
+        c.txtPreco.setText("");
+        c.comboStatus.setSelectedIndex(0);
+        c.txtCodigo.setEnabled(true);
     
-    public void LimpaItens(JTextField txtdescricao,JTextField txtValor, JComboBox comboStatus){
-                
-        txtdescricao.setText("");
-        txtValor.setText("");
-        comboStatus.setSelectedIndex(0);
+    }
+    public void LimpaItens(CadItens item){
+        item.txtCodigo.setText("");        
+        item.txtItem.setText("");
+        item.txtPreco.setText("");
+        item.comboStatus.setSelectedIndex(0);
     }
 
     public void LimpaFuncionario(CadFuncionarios fun) {
@@ -92,12 +99,20 @@ public class Limpar {
         a.btnBuscar.setEnabled(true);
     }
     
-    public void LimpaCadUsuario(JTextField txtNome, JTextField txtUsuario, JTextField txtSenha, JTextField txtReSenha, JComboBox cbStatus, JComboBox cbStatusUser) {
-        txtNome.setText("");
-        txtUsuario.setText("");
-        txtSenha.setText("");
-        txtReSenha.setText("");
-        cbStatus.setSelectedIndex(0);
-        cbStatusUser.setSelectedIndex(0);
+    public void LimpaMatricula(CadMatriculas a) {
+            
+        a.txtCodigo.setEnabled(true);
+        a.txtCodigo.grabFocus();
+        a.txtCodigo.setText("");
+        a.txtNome.setText("");
+        a.btnBuscar.setEnabled(true);
+    }
+    public void LimpaCadUsuario(CadUsuarios user) {
+        user.txtNome.setText("");
+        user.txtUsuario.setText("");
+        user.txtSenha.setText("");
+        user.txtReSenha.setText("");
+        user.cbStatus.setSelectedIndex(0);
+        user.cbStatusUser.setSelectedIndex(0);
     }
 }

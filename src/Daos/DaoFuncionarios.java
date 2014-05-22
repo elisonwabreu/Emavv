@@ -48,7 +48,22 @@ public class DaoFuncionarios {
         pstm.close();
         conn.close();
     }
+    public List<tb_funcionarios> Select(int codigo) throws SQLException {
 
+        Query q = manager.createQuery("select a from tb_funcionarios a "
+                                              + "where a.fd_funcionario = :fd_funcionario and a.fd_status <> 'E'");
+        q.setParameter("fd_funcionario",codigo);
+        List<tb_funcionarios> funcionario = q.getResultList();
+        return funcionario;  
+    }
+     public List<tb_funcionarios> Select(String nome) throws SQLException {
+
+        Query q = manager.createQuery("select a from tb_funcionarios as a "
+                                              + "where a.fd_nome like :fd_nome and a.fd_status <> 'E'");
+        q.setParameter("fd_nome","%"+nome+"%");
+        List<tb_funcionarios> funcionario = q.getResultList();
+        return funcionario;  
+    }
     public void Select() throws SQLException {
 
         Connection conn = Conexao.getConexao();

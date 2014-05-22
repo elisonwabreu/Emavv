@@ -17,6 +17,7 @@ import Views.CadCargos;
 import Views.CadCursos;
 import Views.CadDisciplinas;
 import Views.CadFuncionarios;
+import Views.CadItens;
 import Views.CadMatriculas;
 import Views.CadUsuarios;
 import java.sql.Date;
@@ -173,7 +174,7 @@ public class Gravar extends JFrame{
      String dtNasc = fun.txtDtNascimento.getText();
      String sexo = fun.comboSexo.getSelectedItem().toString();
      String endereco = fun.txtEndereco.getText();
-     int  num = Integer.parseInt(fun.txtNum.getText());
+     String  num = fun.txtNum.getText();
      String uf = fun.comboUF.getSelectedItem().toString();
      String cidade = fun.txtCidade.getText();
      String celular = fun.txtCelular.getText();
@@ -273,17 +274,17 @@ public class Gravar extends JFrame{
     
 
     }    
-   public void Itens(JTextField txtDescricao,JTextField txtValor,JComboBox comboStatus) throws SQLException{
+   public void Itens(CadItens i) throws SQLException{
      //Instacia DaoDisciplinas
         DaoItens item = new DaoItens();
         tb_itens novo = new tb_itens(0,null,0.0,null);
     
-     String descricao = txtDescricao.getText();
-     Double valor = Double.parseDouble(txtValor.getText());
-     String status = comboStatus.getSelectedItem().toString();
+     String descricao = i.txtItem.getText();
+     Double valor = Double.parseDouble(i.txtPreco.getText());
+     String status = i.comboStatus.getSelectedItem().toString();
      
        
-    if (comboStatus.getSelectedIndex() == 1){
+    if (i.comboStatus.getSelectedIndex() == 1){
         status = "A"; 
     }else{
         status = "I";     
@@ -294,7 +295,7 @@ public class Gravar extends JFrame{
     
     item.Inserir(novo);
      
-    limpa.LimpaItens(txtDescricao, txtValor, comboStatus);
+    limpa.LimpaItens(i);
 
     } 
    

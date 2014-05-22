@@ -100,6 +100,7 @@ public class CadDisciplinas extends javax.swing.JFrame {
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/confirma_16x16.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setEnabled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -108,6 +109,7 @@ public class CadDisciplinas extends javax.swing.JFrame {
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/deletar_16x16.png"))); // NOI18N
         btnExcluir.setText("Deletar");
+        btnExcluir.setEnabled(false);
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
@@ -116,9 +118,11 @@ public class CadDisciplinas extends javax.swing.JFrame {
 
         bntRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/relatorio_16x16.png"))); // NOI18N
         bntRelatorio.setText("Relatório");
+        bntRelatorio.setEnabled(false);
 
         btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/vassoura_16x16.png"))); // NOI18N
         btnLimpar.setText("Limpar");
+        btnLimpar.setEnabled(false);
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
@@ -166,12 +170,12 @@ public class CadDisciplinas extends javax.swing.JFrame {
                     .addComponent(lblDisciplina)
                     .addComponent(lblStatus))
                 .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCodigo)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboStatus)
-                    .addComponent(txtDisciplina, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(comboStatus, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDisciplina, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCodigo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,8 +198,8 @@ public class CadDisciplinas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        FormBusca novo = new FormBusca();
-        novo.setVisible(true);
+        val.clickBtPesquisa(5,txtCodigo,"tb_disciplinas");
+        txtCodigo.setEnabled(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -219,11 +223,23 @@ public class CadDisciplinas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-       if(evt.KEY_PRESSED == KeyEvent.VK_ENTER){
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            
+            if(val.KeyPressedText(this) == false){
+                try {
+                    if(select.ListarDisciplinas(this) != true){
+                        
+                       val.ButtonClick(this);       
+                }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
+                }  
+            }
+        }
           
            
        
-       }
+       
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     /**
@@ -265,7 +281,7 @@ public class CadDisciplinas extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bntRelatorio;
-    private javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnBuscar;
     public javax.swing.JButton btnExcluir;
     public javax.swing.JButton btnLimpar;
     public javax.swing.JButton btnSalvar;

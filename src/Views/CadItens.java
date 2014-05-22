@@ -12,9 +12,11 @@ import Model.Limpar;
 import Daos.DaoItens;
 import Messages.Cmessage;
 import Model.InsereNumeros;
+import Model.Selecionar;
 import Model.Validacoes;
 import Theme.Tema;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,6 +37,7 @@ public class CadItens extends javax.swing.JFrame {
     Validacoes val = new Validacoes();
     Gravar novoItem = new Gravar();
     Limpar limpa = new Limpar();
+    Selecionar sel = new Selecionar();
 
     private JFormattedTextField textoF3;
     private MaskFormatter fmtCpf;
@@ -86,6 +89,11 @@ public class CadItens extends javax.swing.JFrame {
                 txtCodigoActionPerformed(evt);
             }
         });
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyPressed(evt);
+            }
+        });
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/lupa_16x16.png"))); // NOI18N
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -104,6 +112,7 @@ public class CadItens extends javax.swing.JFrame {
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/confirma_16x16.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setEnabled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -112,6 +121,7 @@ public class CadItens extends javax.swing.JFrame {
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/deletar_16x16.png"))); // NOI18N
         btnExcluir.setText("Deletar");
+        btnExcluir.setEnabled(false);
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
@@ -123,6 +133,7 @@ public class CadItens extends javax.swing.JFrame {
 
         btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/vassoura_16x16.png"))); // NOI18N
         btnLimpar.setText("Limpar");
+        btnLimpar.setEnabled(false);
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
@@ -202,7 +213,7 @@ public class CadItens extends javax.swing.JFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         
-          limpa.LimpaItens(txtPreco, txtItem, comboStatus);
+          limpa.LimpaItens(this);
 
     }//GEN-LAST:event_btnLimparActionPerformed
 
@@ -210,14 +221,14 @@ public class CadItens extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        FormBusca novo= new FormBusca();
-        novo.setVisible(true);
+        val.clickBtPesquisa(6,txtCodigo,"tb_alunos");
+        txtCodigo.setEnabled(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        if(val.ValidaGravacaoItem(txtItem ,txtPreco, comboStatus)){
+        if(val.ValidaGravacaoItem(this)){
         try {
-            novoItem.Itens(txtItem ,txtPreco, comboStatus);
+            novoItem.Itens(this);
         } catch (SQLException ex) {
             Logger.getLogger(CadItens.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -231,6 +242,23 @@ public class CadItens extends javax.swing.JFrame {
             Logger.getLogger(CadItens.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            
+            if(val.KeyPressedText(this) == false){
+                try {
+                    if(sel.ListarItens(this) != true){
+                        
+                       val.ButtonClick(this);       
+                }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
+                }  
+            }
+        }
+    }//GEN-LAST:event_txtCodigoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -270,20 +298,20 @@ public class CadItens extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntRelatorio;
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnLimpar;
-    private javax.swing.JButton btnSalvar;
-    private javax.swing.JComboBox comboStatus;
+    public javax.swing.JButton bntRelatorio;
+    public javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnExcluir;
+    public javax.swing.JButton btnLimpar;
+    public javax.swing.JButton btnSalvar;
+    public javax.swing.JComboBox comboStatus;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblItem;
     private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblStatus;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtItem;
-    private javax.swing.JTextField txtPreco;
+    public javax.swing.JTextField txtCodigo;
+    public javax.swing.JTextField txtItem;
+    public javax.swing.JTextField txtPreco;
     // End of variables declaration//GEN-END:variables
 /*
  *Metodo listar dados vindos do banco

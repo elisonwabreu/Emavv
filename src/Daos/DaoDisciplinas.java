@@ -11,6 +11,8 @@ import org.entities.classes.tb_disciplinas;
 import ConnectionFactory.Conexao;
 import ConnectionFactory.JPAUtil;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import org.entities.classes.tb_cursos;
 
 public class DaoDisciplinas {
     Cmessage msg = new Cmessage();
@@ -61,7 +63,27 @@ public class DaoDisciplinas {
 
         return disciplina;
     }
-
+    public List<tb_disciplinas> Select(String descricao) throws SQLException {
+        String jpql = "";
+        
+        if (descricao.equals("")){
+            jpql = "select a from tb_disciplinas a";
+        }else{
+            jpql = "select a from tb_disciplinas a where a.fd_descricao "
+                                            + "like :fd_descricao"; 
+        }
+        
+        Query q = manager.createQuery(jpql);
+        
+        if (descricao.equals("")){
+            
+        }else{
+            q.setParameter("fd_descricao","%"+ descricao+"%");
+        }    
+        
+        List<tb_disciplinas> disc = q.getResultList();
+        return disc;
+    }
     public void Update() throws SQLException {
 
         Connection conn = Conexao.getConexao();

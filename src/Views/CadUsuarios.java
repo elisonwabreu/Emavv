@@ -265,7 +265,7 @@ public class CadUsuarios extends javax.swing.JFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         
-        limpa.LimpaCadUsuario(txtNome, txtUsuario, txtSenha, txtReSenha, cbStatus, cbStatusUser);
+        limpa.LimpaCadUsuario(this);
         
     }//GEN-LAST:event_btnLimparActionPerformed
 

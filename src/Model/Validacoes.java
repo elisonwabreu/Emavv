@@ -15,6 +15,8 @@ import Views.CadCargos;
 import Views.CadCursos;
 import Views.CadDisciplinas;
 import Views.CadFuncionarios;
+import Views.CadItens;
+import Views.CadMatriculas;
 import Views.CadUsuarios;
 import Views.FormBusca;
 import Views.Form_TelaLogin;
@@ -178,15 +180,15 @@ public class Validacoes extends JFrame{
     /*
      *Validação para os campos do cadastro de Disciplinas.
      */
-    public boolean ValidaGravacaoItem(JTextField txtItem,JTextField txtPreco, JComboBox comboStatus) {
+    public boolean ValidaGravacaoItem(CadItens item) {
         
-      if(txtItem.getText().equals("")){
+      if(item.txtItem.getText().equals("")){
             msg.MsgCamposObrigatorios("Descrição");
             return false;   
-        }else if(txtPreco.getText().equals("")){
+        }else if(item.txtPreco.getText().equals("")){
             msg.MsgCamposObrigatorios("Valor");
             return false;
-         }else if(comboStatus.getSelectedIndex() == 0){
+         }else if(item.comboStatus.getSelectedIndex() == 0){
             msg.MsgCamposObrigatorios("Status");
             return false;   
         }
@@ -219,6 +221,51 @@ public class Validacoes extends JFrame{
         } 
     }
     //KeyPressed Event from JTextField
+    public boolean KeyPressedText(CadMatriculas c){
+        
+        if(c.txtCodigo.getText().equals("")){
+            
+            c.btnSalvar.setEnabled(true);
+            c.txtCodigo.setEnabled(false);
+          
+            return true;
+        }else{
+            c.btnSalvar.setEnabled(true);
+            c.txtCodigo.setEnabled(false);
+            return false;
+        } 
+    }
+    public boolean KeyPressedText(CadItens c){
+        
+        if(c.txtCodigo.getText().equals("")){
+            
+            c.btnSalvar.setEnabled(true);
+            c.txtCodigo.setEnabled(false);
+          
+            return true;
+        }else{
+            c.btnSalvar.setEnabled(true);
+            c.txtCodigo.setEnabled(false);
+            return false;
+        } 
+    }
+    public boolean KeyPressedText(CadDisciplinas c){
+        
+        if(c.txtCodigo.getText().equals("")){
+            
+            c.btnSalvar.setEnabled(true);
+            c.txtCodigo.setEnabled(false);
+          
+            return true;
+        }else{
+            c.btnSalvar.setEnabled(true);
+            c.txtCodigo.setEnabled(false);
+            return false;
+        } 
+    }
+    
+    
+    //-------------------------------------------------------------------
     public boolean KeyPressedText(CadCargos c){
         
         if(c.txtCodigo.getText().equals("")){
@@ -263,7 +310,28 @@ public class Validacoes extends JFrame{
             return false;
         } 
     }
-    
+    public boolean KeyPressedText(CadFuncionarios a){
+        
+        if(a.txtCodigo.getText().equals("")){
+            
+            a.btnSalvar.setEnabled(true);
+            a.btnLimpar.setEnabled(true);
+            a.txtNome.grabFocus();
+            a.txtCodigo.setEnabled(false);
+            a.btnBuscar.setEnabled(false);
+           // a.btnAtualizar.setEnabled(false);
+            a.comboStatus.setSelectedIndex(1);
+            return true;
+        }else{
+            a.btnExcluir.setEnabled(true);
+            a.btnLimpar.setEnabled(true);
+            a.btnSalvar.setEnabled(true);
+            a.txtCodigo.setEnabled(false);
+            a.btnBuscar.setEnabled(true);
+            //a.btnAtualizar.setEnabled(true);
+            return false;
+        } 
+    }
     public boolean KeyPressedText(CadCursos c){
         
         if(c.txtCodigo.getText().equals("")){
@@ -316,6 +384,35 @@ public class Validacoes extends JFrame{
             c.txtCodigo.setEnabled(true);
             c.txtCodigo.grabFocus();       
     }
+     public void ButtonClick(CadItens c){
+        
+            c.btnExcluir.setEnabled(false);
+            c.btnLimpar.setEnabled(false);
+            c.bntRelatorio.setEnabled(false);
+            c.btnSalvar.setEnabled(false);
+            c.btnBuscar.setEnabled(true);
+            c.txtCodigo.setEnabled(true);
+            c.txtCodigo.grabFocus();       
+    }
+    
+    
+    
+    public void ButtonClick(CadDisciplinas c){
+        
+            c.btnExcluir.setEnabled(false);
+            c.btnLimpar.setEnabled(false);
+            c.bntRelatorio.setEnabled(false);
+            c.btnSalvar.setEnabled(false);
+            c.btnBuscar.setEnabled(true);
+            c.txtCodigo.setEnabled(true);
+            c.txtCodigo.grabFocus();       
+    }
+    public void ButtonClick(CadMatriculas c){
+        
+            c.btnSalvar.setEnabled(false);
+            c.txtCodigo.setEnabled(true);
+            c.txtCodigo.grabFocus();       
+    }
     
     public void ButtonClick(CadAluno a){
         
@@ -328,13 +425,24 @@ public class Validacoes extends JFrame{
             a.txtCodigo.setEnabled(true);
             a.txtCodigo.grabFocus();       
     }
+    public void ButtonClick(CadFuncionarios a){
+        
+            a.btnExcluir.setEnabled(false);
+            a.btnLimpar.setEnabled(false);
+            a.bntRelatorio.setEnabled(false);
+            a.btnSalvar.setEnabled(false);
+            //a.btnAtualizar.setEnabled(false);
+            a.btnBuscar.setEnabled(true);
+            a.txtCodigo.setEnabled(true);
+            a.txtCodigo.grabFocus();       
+    }
     
     public void ButtonClick(CadCursos c){
         
             c.btnExcluir.setEnabled(false);
-            c.btnLimpar.setEnabled(false);
-            c.bntRelatorio.setEnabled(false);
-            c.btnSalvar.setEnabled(false);
+            c.btnLimpar.setEnabled(true);
+            c.bntRelatorio.setEnabled(true);
+            c.btnSalvar.setEnabled(true);
             c.btPesquisa.setEnabled(true);
             c.txtCodigo.setEnabled(true);
             c.txtCodigo.grabFocus();       
@@ -374,79 +482,6 @@ public class Validacoes extends JFrame{
 		return date;
 	}
     
-    public void setSelectOnJTable(FormBusca f,String tabela,int TableIndex) throws SQLException{
-        
-        /*
-        Valores correspondentes TableIndex
-        1 = cargos
-        2 = alunos
-        3 = funcionarios
-        4 = cursos 
-        */
-        
-        if(TableIndex == 1){
-           
-            DaoCargo dao = new DaoCargo();
-            List<tb_cargos> cargo = dao.Select(f.txtCampoBusca.getText());
-            DefaultTableModel model = (DefaultTableModel)f.jGridBusca.getModel();
-            model.setNumRows(cargo.size());
-            if(cargo.size() > 0) {
-                for(tb_cargos ca : cargo){
-                    for(int i = 0; i < cargo.size();i++){     
-                       f.jGridBusca.setValueAt(cargo.get(i).getFd_cargo(),i,0);
-                       f.jGridBusca.setValueAt(cargo.get(i).getFd_descricao(),i,1);
-                       f.jGridBusca.setValueAt(cargo.get(i).getFd_status(),i,2);
-
-                    } 
-                }
-            }else{
-                msg.msgNenhumRegistro();
-            }
-        }else if(TableIndex == 2){
-            
-            DaoAluno dao = new DaoAluno();
-            List<tb_alunos> aluno = dao.Select(f.txtCampoBusca.getText());
-            DefaultTableModel model = (DefaultTableModel)f.jGridBusca.getModel();
-            model.setNumRows(aluno.size());
-            if(aluno.size() > 0) {
-                for(tb_alunos al : aluno){
-                    for(int i = 0; i < aluno.size();i++){     
-                       f.jGridBusca.setValueAt(aluno.get(i).getFd_aluno(),i,0);
-                       f.jGridBusca.setValueAt(aluno.get(i).getFd_nome(),i,1);
-                       f.jGridBusca.setValueAt(aluno.get(i).getFd_cpf(),i,2);
-
-                    } 
-                }
-            }else{
-                msg.msgNenhumRegistro();
-            }
-        }else if(TableIndex == 3){
-            
-
-            
-            
-            
-            
-        }else if(TableIndex == 4){
-            
-            DaoCursos dao = new DaoCursos();
-            List<tb_cursos> curso = dao.Select(f.txtCampoBusca.getText());
-            DefaultTableModel model = (DefaultTableModel)f.jGridBusca.getModel();
-            model.setNumRows(curso.size());
-            if(curso.size() > 0) {
-                for(tb_cursos c : curso){
-                    for(int i = 0; i < curso.size();i++){     
-                       f.jGridBusca.setValueAt(curso.get(i).getFd_curso(),i,0);
-                       f.jGridBusca.setValueAt(curso.get(i).getFd_descricao(),i,1);
-                       f.jGridBusca.setValueAt(curso.get(i).getFd_status(),i,2);
-
-                    } 
-                }
-            }else{
-                msg.msgNenhumRegistro();
-            } 
-        }      
-    }
     
     
 public boolean validaCPF(String strCpf){

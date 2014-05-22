@@ -11,9 +11,11 @@ import Model.Gravar;
 import Model.InsereLetras;
 import Model.InsereNumeros;
 import Model.Limpar;
+import Model.Selecionar;
 import Model.Validacoes;
 import Theme.Tema;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -35,6 +37,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
     Validacoes val = new Validacoes();
     Cmessage msg = new Cmessage();
     Deletar delta = new Deletar();
+    Selecionar sel = new Selecionar();
     Gravar novoFunc = new Gravar();
     Limpar limpa = new Limpar();
 
@@ -144,6 +147,12 @@ public class CadFuncionarios extends javax.swing.JFrame {
         setTitle("EMAVV");
         setResizable(false);
 
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyPressed(evt);
+            }
+        });
+
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/lupa_16x16.png"))); // NOI18N
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,6 +205,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/confirma_16x16.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.setEnabled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -204,6 +214,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/deletar_16x16.png"))); // NOI18N
         btnExcluir.setText("Deletar");
+        btnExcluir.setEnabled(false);
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
@@ -215,6 +226,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
 
         btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/vassoura_16x16.png"))); // NOI18N
         btnLimpar.setText("Limpar");
+        btnLimpar.setEnabled(false);
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
@@ -428,8 +440,8 @@ public class CadFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        FormBusca novo = new FormBusca();
-        novo.setVisible(true);
+        val.clickBtPesquisa(3,txtCodigo,"tb_funcionarios");
+        txtCodigo.setEnabled(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -456,6 +468,22 @@ public class CadFuncionarios extends javax.swing.JFrame {
             Logger.getLogger(CadFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            
+            if(val.KeyPressedText(this) == false){
+                try {
+                    if(sel.ListarFuncionarios(this) != true){
+                        
+                       val.ButtonClick(this);       
+                }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
+                }  
+            }
+        }
+    }//GEN-LAST:event_txtCodigoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -496,7 +524,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bntRelatorio;
-    private javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnBuscar;
     public javax.swing.JButton btnExcluir;
     public javax.swing.JButton btnLimpar;
     public javax.swing.JButton btnSalvar;

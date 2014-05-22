@@ -145,7 +145,7 @@ public class FormBusca extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
-            val.setSelectOnJTable(this,tabela,tableIndex);
+            sel.setSelectOnJTable(this,tabela,tableIndex);
         } catch (SQLException ex) {
             Logger.getLogger(FormBusca.class.getName()).log(Level.SEVERE, null, ex);
         }
