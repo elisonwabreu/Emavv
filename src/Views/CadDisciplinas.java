@@ -11,6 +11,7 @@ import Model.Limpar;
 import Model.Deletar;
 import Model.InsereNumeros;
 import Model.Selecionar;
+import Theme.Tema;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -256,6 +257,7 @@ public class CadDisciplinas extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                Tema.Tema();
                 new CadDisciplinas().setVisible(true);
 
             }

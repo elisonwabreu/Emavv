@@ -11,6 +11,7 @@ import Model.Gravar;
 import Model.InsereLetras;
 import Model.InsereNumeros;
 import Model.Validacoes;
+import Theme.Tema;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -329,6 +330,7 @@ public class CadUsuarios extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                Tema.Tema();
                 new CadUsuarios().setVisible(true);
 
             }
@@ -359,35 +361,6 @@ public class CadUsuarios extends javax.swing.JFrame {
     public javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
- /*
- *Metodo para gravar os dados inseridos no banco
- */
-
-/*
- *Metodo para limpar os campos do Form
- */
-/*
-public void Listar() throws SQLException{
-    
-    int codigo = Integer.parseInt(txtCodigo.getText());
-    
-    if(val.SelectReturn(codigo,"funcionario","funcionarios") == true){
-      
-   List<Funcionarios> funcionario = dao.Select(codigo);
-    
-         for(Funcionarios car : funcionario ){
-            txtNome.setText(car.getNome());
-         if(car.getStatus().equals("A")){
-            cbStatus.setSelectedIndex(1);    
-         }else{
-            cbStatus.setSelectedIndex(2);
-        }     
-      }  
-    }else{
-        msg.msgNenhumRegistro();
-       
-    }     
-  }*/
     private void setIcon() {
            setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }

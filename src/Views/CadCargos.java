@@ -14,6 +14,7 @@ import Model.InsereLetras;
 import Model.InsereNumeros;
 import Model.Selecionar;
 import Model.Validacoes;
+import Theme.Tema;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -279,6 +280,7 @@ public class CadCargos extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                Tema.Tema();
                 new CadCargos().setVisible(true);
 
             }

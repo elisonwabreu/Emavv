@@ -144,54 +144,7 @@ public class Validacoes extends JFrame{
             return true;
         }    
     }
-    /*
-    public boolean ValidaGravacaoFunc(CadFuncionarios fun) {
-        
-      if(fun.txtNome.getText().equals("")){
-            msg.MsgCamposObrigatorios("Nome");
-            return false;   
-        }else if(fun.txtCpf.getText().equals("")){
-            msg.MsgCamposObrigatorios("CPF");
-            return false;   
-        }else if(fun.txtRg.getText().equals("")){
-            msg.MsgCamposObrigatorios("RG");
-            return false;   
-        }else if(fun.txtDtNascimento.getText().equals("")){
-            msg.MsgCamposObrigatorios("Data");
-            return false;   
-        }else if(fun.txtEndereco.getText().equals("")){
-            msg.MsgCamposObrigatorios("Endereço");
-            return false;   
-        }else if(fun.txtCidade.getText().equals("")){
-            msg.MsgCamposObrigatorios("Cidade");
-            return false;   
-        }else if(fun.txtCelular.getText().equals("")){
-            msg.MsgCamposObrigatorios("Celular");
-            return false;   
-        }else if(fun.txtbairro.getText().equals("")){
-            msg.MsgCamposObrigatorios("Bairro");
-            return false;   
-        }else if(fun.txtTelefone.getText().equals("")){
-            msg.MsgCamposObrigatorios("Telefone");
-            return false;   
-        }else if(fun.txtNum.getText().equals("")){
-            msg.MsgCamposObrigatorios("Número");
-            return false;   
-        }else if(fun.comboStatus.getSelectedIndex() == 0){
-            msg.MsgCamposObrigatorios("Status");
-            return false;   
-        }
-        else{
-            return true;
-        }  
-        
-    }
-    /*Fim da validação do preenchimento dos campos de Funcionarios -------------------------------*/
-    
-    /*
-     *Validação para os campos do cadastro de Disciplinas.
-     */
-    
+   
     public boolean ValidaGravacaoDisciplina(CadDisciplinas dis) {
         
       if(dis.txtDisciplina.getText().equals("")){

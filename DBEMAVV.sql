@@ -18,6 +18,7 @@
   fd_data_cadastro timestamp default current_timestamp,	
   PRIMARY KEY(fd_aluno)
 );
+
 CREATE TABLE tb_funcionarios (
   fd_funcionario SERIAL,
   fd_nome VARCHAR(100) NOT NULL,
@@ -38,6 +39,12 @@ CREATE TABLE tb_funcionarios (
   fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY(fd_funcionario)
 );
+--CRIAÇÃO DO USUÁRIO PADRÃO DO SISTEMA ---------------------------------------------------------------------------------------------
+INSERT into tb_funcionarios (
+  fd_nome,fd_cpf,fd_rg, fd_data_nasc,fd_sexo,fd_endereco,fd_numero,fd_bairro,fd_cidade,fd_cep,fd_uf,fd_telefone,fd_celular,fd_email,fd_status )
+values
+('Supervisor do Sistema',NULL,NULL,'2014-05-21','M','RUA SOFTWARE',DEFAULT,'TERRA','FORTALEZA','000000000','CE',NULL,NULL,NULL,'A');
+--FIM DA CRIAÇÃO DO USUARIO PADRÃO --------------------------------------------------------------------------------------------------
 
 CREATE TABLE tb_cargos (
   fd_cargo SERIAL,
@@ -50,11 +57,12 @@ CREATE TABLE tb_cargos (
 CREATE TABLE tb_cursos (
   fd_curso SERIAL,
   fd_descricao VARCHAR(255) NOT NULL,
-  fd_valor NUMERIC(14,6) NOT NULL CHECK (fd_valor <= 0),
+  fd_valor NUMERIC(14,6) NOT NULL CHECK (fd_valor > 0),
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN('A','I','E')),
   fd_data_cadastro timestamp default current_timestamp,  
   PRIMARY KEY(fd_curso)
 );
+
 CREATE TABLE tb_disciplinas (
   fd_disciplina SERIAL,
   fd_descricao VARCHAR(50) NOT NULL,
@@ -62,6 +70,7 @@ CREATE TABLE tb_disciplinas (
   fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY(fd_disciplina)
 );
+
 CREATE TABLE tb_cursos_disciplinas (
   fd_curso INTEGER REFERENCES tb_cursos(fd_curso),
   fd_disciplina INTEGER REFERENCES tb_disciplinas(fd_disciplina),
@@ -74,7 +83,6 @@ CREATE TABLE tb_despesas (
   PRIMARY KEY(fd_despesa)
 );
 
-
 CREATE TABLE tb_formas_pagamentos(
   fd_formapagto SERIAL,
   fd_descricao VARCHAR(150) NOT NULL,
@@ -83,6 +91,7 @@ CREATE TABLE tb_formas_pagamentos(
   PRIMARY KEY (fd_formapagto)	
 
 );
+
 CREATE TABLE tb_func_cargos (
   fd_funcionario INTEGER REFERENCES tb_funcionarios(fd_funcionario),
   fd_cargo INTEGER REFERENCES tb_cargos(fd_cargo),
@@ -92,27 +101,31 @@ CREATE TABLE tb_func_cargos (
 CREATE TABLE tb_itens (
   fd_item SERIAL,
   fd_descricao VARCHAR(50) NOT NULL,
-  fd_valor NUMERIC(14,6) NOT NULL CHECK (fd_valor <= 0),
+  fd_valor NUMERIC(14,6) NOT NULL CHECK (fd_valor > 0),
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN('A','I','E')),
   fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY(fd_item)
 );
+
 CREATE TABLE tb_matriculas (
-  fd_matricula INTEGER NOT NULL,
+  fd_codigo serial not null,
+  fd_matricula INTEGER NOT NULL UNIQUE,
   fd_aluno INTEGER REFERENCES tb_alunos(fd_aluno),
-  data_matricula DATE NOT NULL,
+  fd_data_matricula DATE NOT NULL,
   fd_usuario INTEGER,
   fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY(fd_matricula, fd_aluno)
 );
 
-CREATE TABLE tb_matriculados ( --AINDA FALTA CRIAR
-  fd_matricula INTEGER,-- REFERENCES tb_matriculas(fd_matricula),
+CREATE TABLE tb_matriculados (
+  fd_matricula INTEGER UNIQUE REFERENCES tb_matriculas(fd_matricula),
   fd_curso INTEGER REFERENCES tb_cursos(fd_curso),
   fd_aluno INTEGER REFERENCES tb_alunos(fd_aluno),
   PRIMARY KEY (fd_matricula, fd_aluno)
   
 );
+
+
 CREATE TABLE tb_usuarios (
   fd_funcionario INTEGER REFERENCES tb_funcionarios(fd_funcionario),
   fd_login VARCHAR(20) NOT NULL UNIQUE,
@@ -121,14 +134,18 @@ CREATE TABLE tb_usuarios (
   fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY (fd_funcionario)
 );
+--CRIAÇÃO DO USUÁRIO PADRÃO DO SISTEMA ------------------------------------------------
+INSERT INTO tb_usuarios (fd_funcionario,fd_login,fd_senha,fd_status)
+VALUES
+(1,'admin','admin','A');
+--FIM DA CRIAÇÃO DO USUARIO PADRÃO ----------------------------------------------------
 
-
-CREATE TABLE tb_mensalidades (--AINDA FALTA CRIAR
-  fd_matricula INTEGER,-- REFERENCES tb_matriculados(fd_matricula),
+CREATE TABLE tb_mensalidades (
+  fd_matricula INTEGER UNIQUE REFERENCES tb_matriculados(fd_matricula),
   fd_curso INTEGER REFERENCES tb_cursos(fd_curso),
   fd_aluno INTEGER REFERENCES tb_alunos(fd_aluno),
   fd_vencimento DATE NOT NULL,
-  fd_valor NUMERIC NOT NULL CHECK (fd_valor <= 0),
+  fd_valor NUMERIC NOT NULL CHECK (fd_valor > 0),
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN ('A','I','E')),
   fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY (fd_matricula, fd_aluno)
@@ -136,7 +153,7 @@ CREATE TABLE tb_mensalidades (--AINDA FALTA CRIAR
 
 CREATE TABLE tb_pagamentos (
   fd_pagamento SERIAL,
-  fd_valor NUMERIC(14,6) NOT NULL CHECK (fd_valor <= 0),
+  fd_valor NUMERIC(14,6) NOT NULL CHECK (fd_valor > 0),
   fd_despesa INTEGER NOT NULL REFERENCES tb_despesas(fd_despesa),
   fd_observacao VARCHAR(200) NULL,
   fd_data_pag DATE NOT NULL,
@@ -152,8 +169,6 @@ CREATE TABLE tb_saldos (
   PRIMARY KEY(fd_item)
   
 );
-
-
 
 CREATE TABLE tb_vendas (
   fd_venda SERIAL,

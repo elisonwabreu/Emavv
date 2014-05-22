@@ -10,12 +10,14 @@ import Daos.DaoCursos;
 import Daos.DaoDisciplinas;
 import Daos.DaoFuncionarios;
 import Daos.DaoItens;
+import Daos.DaoMatricula;
 import Daos.DaoUsuarios;
 import Views.CadAluno;
 import Views.CadCargos;
 import Views.CadCursos;
 import Views.CadDisciplinas;
 import Views.CadFuncionarios;
+import Views.CadMatriculas;
 import Views.CadUsuarios;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -24,12 +26,14 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import org.entities.classes.Matriculados;
 import org.entities.classes.tb_alunos;
 import org.entities.classes.tb_cargos;
 import org.entities.classes.tb_cursos;
 import org.entities.classes.tb_disciplinas;
 import org.entities.classes.tb_funcionarios;
 import org.entities.classes.tb_itens;
+import org.entities.classes.tb_matriculas;
 import org.entities.classes.tb_usuarios;
 
 /**
@@ -327,5 +331,21 @@ public class Gravar extends JFrame{
                    
         }
    
+   }
+   
+   public void GravaMatricula(CadMatriculas a) throws ParseException, SQLException{
+       DaoMatricula matr = new DaoMatricula();
+       tb_matriculas novoMatr = new tb_matriculas();
+       
+       int codAluno = Integer.parseInt(a.txtCodigo.getText());
+       int matricula = Integer.parseInt(a.txtMatricula.getText());
+       String data = a.txtDtCadastro.getText();
+       
+      
+      novoMatr.setFd_matricula(matricula);
+      novoMatr.setFd_aluno(codAluno);
+      novoMatr.setFd_data_matricula(val.FormataData(data));
+       
+      matr.Inserir(novoMatr);
    }
 }

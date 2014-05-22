@@ -3,11 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Views;
 
+import Funcao.GeraMatricula;
+import Model.Gravar;
+import Theme.Tema;
 import java.awt.Toolkit;
+import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
 
@@ -16,6 +21,7 @@ import javax.swing.text.MaskFormatter;
  * @author elison
  */
 public class CadMatriculas extends javax.swing.JFrame {
+
     private MaskFormatter fmtDtCadastro;
 
     /**
@@ -40,7 +46,7 @@ public class CadMatriculas extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         lblCodigo = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
-        txtCodigo1 = new javax.swing.JTextField();
+        txtMatricula = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         lblCodigo1 = new javax.swing.JLabel();
         btnMatricula = new javax.swing.JButton();
@@ -52,7 +58,8 @@ public class CadMatriculas extends javax.swing.JFrame {
         this.txtDtCadastro = new JFormattedTextField(fmtDtCadastro);
         lblCodigo2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,20 +89,22 @@ public class CadMatriculas extends javax.swing.JFrame {
 
         lblNome.setText("Nome");
 
-        txtCodigo1.addActionListener(new java.awt.event.ActionListener() {
+        txtMatricula.setEditable(false);
+        txtMatricula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtMatricula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtMatricula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigo1ActionPerformed(evt);
+                txtMatriculaActionPerformed(evt);
             }
         });
-        txtCodigo1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtMatricula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigo1KeyPressed(evt);
+                txtMatriculaKeyPressed(evt);
             }
         });
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/confirma_16x16.png"))); // NOI18N
         btnSalvar.setText("Salvar");
-        btnSalvar.setEnabled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -106,6 +115,11 @@ public class CadMatriculas extends javax.swing.JFrame {
 
         btnMatricula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Engrenagem.png"))); // NOI18N
         btnMatricula.setText("Gerar");
+        btnMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMatriculaActionPerformed(evt);
+            }
+        });
 
         txtDtCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,31 +144,28 @@ public class CadMatriculas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnMatricula))
+                            .addComponent(lblCodigo1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblCodigo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDtCadastro))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalvar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblCodigo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNome)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtNome)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnMatricula)
-                                    .addGap(18, 18, 18))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(lblCodigo1)
-                                    .addGap(292, 292, 292)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblCodigo2)
-                                .addComponent(txtDtCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(lblNome)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -172,15 +183,15 @@ public class CadMatriculas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodigo1)
                     .addComponent(lblCodigo2))
-                .addGap(5, 5, 5)
+                .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDtCadastro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtDtCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -193,31 +204,34 @@ public class CadMatriculas extends javax.swing.JFrame {
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
 
-       
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
-     
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyReleased
 
         // TODO add your handling code here:
-       
     }//GEN-LAST:event_txtNomeKeyReleased
 
-    private void txtCodigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigo1ActionPerformed
+    private void txtMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatriculaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigo1ActionPerformed
+    }//GEN-LAST:event_txtMatriculaActionPerformed
 
-    private void txtCodigo1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigo1KeyPressed
+    private void txtMatriculaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigo1KeyPressed
+    }//GEN-LAST:event_txtMatriculaKeyPressed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-
-       
+            Gravar novo = new Gravar();
+        try {
+            novo.GravaMatricula(this);
+        } catch (ParseException ex) {
+            Logger.getLogger(CadMatriculas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadMatriculas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtDtCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDtCadastroActionPerformed
@@ -227,6 +241,11 @@ public class CadMatriculas extends javax.swing.JFrame {
     private void txtDtCadastroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDtCadastroKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDtCadastroKeyPressed
+
+    private void btnMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatriculaActionPerformed
+        GeraMatricula novo =  new GeraMatricula();
+            novo.convertMatricula(this);
+    }//GEN-LAST:event_btnMatriculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,7 +276,9 @@ public class CadMatriculas extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
+                Tema.Tema();
                 new CadMatriculas().setVisible(true);
             }
         });
@@ -272,11 +293,11 @@ public class CadMatriculas extends javax.swing.JFrame {
     private javax.swing.JLabel lblCodigo2;
     private javax.swing.JLabel lblNome;
     public javax.swing.JTextField txtCodigo;
-    public javax.swing.JTextField txtCodigo1;
     public javax.swing.JTextField txtDtCadastro;
+    public javax.swing.JTextField txtMatricula;
     public javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
     private void setIcon() {
-           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
 }

@@ -4,6 +4,9 @@
  */
 package Views;
 
+import Theme.Tema;
+import java.awt.Toolkit;
+
 /**
  *
  * @author suporte
@@ -14,6 +17,7 @@ public class FormPrincipal extends javax.swing.JFrame {
      * Creates new form FormPrincipal
      */
     public FormPrincipal() {
+       setIcon();
         initComponents();
     }
 
@@ -206,15 +210,16 @@ public class FormPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 248, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSair)
+                .addContainerGap(273, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(227, Short.MAX_VALUE)
+                .addContainerGap(225, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogout)
                     .addComponent(btnSair))
@@ -300,6 +305,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                Tema.Tema();
                 new FormPrincipal().setVisible(true);
             }
         });
@@ -329,4 +335,8 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuNovoFunc;
     private javax.swing.JMenu jMenuNovoItem;
     // End of variables declaration//GEN-END:variables
+private void setIcon() {
+           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    }
+
 }

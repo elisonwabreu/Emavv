@@ -7,6 +7,7 @@ package Views;
 import Daos.DaoUsuarios;
 import Messages.Cmessage;
 import Model.Selecionar;
+import Theme.Tema;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
@@ -60,7 +61,7 @@ public class Form_TelaLogin extends javax.swing.JFrame {
         setResizable(false);
 
         txtLogin.setBackground(new java.awt.Color(204, 255, 255));
-        txtLogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txtLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtLogin.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 txtLoginComponentAdded(evt);
@@ -68,7 +69,7 @@ public class Form_TelaLogin extends javax.swing.JFrame {
         });
 
         txtSenha.setBackground(new java.awt.Color(204, 255, 255));
-        txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txtSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtSenhaKeyPressed(evt);
@@ -206,6 +207,7 @@ public class Form_TelaLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                Tema.Tema();
                 new Form_TelaLogin().setVisible(true);
             }
         });
