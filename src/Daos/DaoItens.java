@@ -55,7 +55,7 @@ public class DaoItens {
 
     public List<tb_itens> Select(String nome) throws SQLException {
 
-        Query q = manager.createQuery("select a from tb_alunos as a "
+        Query q = manager.createQuery("select a from tb_itens as a "
                 + "where a.fd_descricao like :fd_descricao and a.fd_status <> 'E'");
         q.setParameter("fd_descricao", "%" + nome + "%");
         List<tb_itens> item = q.getResultList();

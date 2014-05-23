@@ -221,7 +221,7 @@ public class CadItens extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        val.clickBtPesquisa(6, txtCodigo, "tb_alunos");
+        val.clickBtPesquisa(6, txtCodigo, "tb_itens");
         txtCodigo.setEnabled(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
