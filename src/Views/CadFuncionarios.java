@@ -32,7 +32,7 @@ import javax.swing.text.MaskFormatter;
  * @author suporte
  */
 public class CadFuncionarios extends javax.swing.JFrame {
-    
+
     tb_funcionarios funcionario = new tb_funcionarios();
     Validacoes val = new Validacoes();
     Cmessage msg = new Cmessage();
@@ -434,31 +434,30 @@ public class CadFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        
+
         limpa.LimpaFuncionario(this);
 
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        val.clickBtPesquisa(3,txtCodigo,"tb_funcionarios");
+        val.clickBtPesquisa(3, txtCodigo, "tb_funcionarios");
         txtCodigo.setEnabled(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-           
-        
+
+        try {
             try {
-                try {
-                    novoFunc.Funcionario(this);
-                } catch (ParseException ex) {
-                    Logger.getLogger(CadFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                limpa.LimpaFuncionario(this);
-            } catch (SQLException ex) {
+                novoFunc.Funcionario(this);
+            } catch (ParseException ex) {
                 Logger.getLogger(CadFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+
+            limpa.LimpaFuncionario(this);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -470,17 +469,17 @@ public class CadFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            
-            if(val.KeyPressedText(this) == false){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            if (val.KeyPressedText(this) == false) {
                 try {
-                    if(sel.ListarFuncionarios(this) != true){
-                        
-                       val.ButtonClick(this);       
-                }
+                    if (sel.ListarFuncionarios(this) != true) {
+
+                        val.ButtonClick(this);
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
-                }  
+                }
             }
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
@@ -567,6 +566,6 @@ public class CadFuncionarios extends javax.swing.JFrame {
     public javax.swing.JTextField txtbairro;
     // End of variables declaration//GEN-END:variables
 private void setIcon() {
-           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
 }

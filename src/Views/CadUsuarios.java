@@ -1,8 +1,5 @@
-
 package Views;
 
-import org.entities.classes.tb_cargos;
-import org.entities.classes.tb_funcionarios;
 import Model.Deletar;
 import Model.Limpar;
 import Daos.DaoFuncionarios;
@@ -10,16 +7,15 @@ import Messages.Cmessage;
 import Model.Gravar;
 import Model.InsereLetras;
 import Model.InsereNumeros;
+import Model.Selecionar;
 import Model.Validacoes;
 import Theme.Tema;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
-import javax.swing.JPasswordField;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -35,15 +31,15 @@ public class CadUsuarios extends javax.swing.JFrame {
     private Object fmtTelefone;
     private MaskFormatter fmtCelular;
     private MaskFormatter fmtFone;
-    
-    
-  
+
     DaoFuncionarios dao = new DaoFuncionarios();
     Cmessage msg = new Cmessage();
     Validacoes val = new Validacoes();
     Deletar del = new Deletar();
     Limpar limpa = new Limpar();
     Gravar novo = new Gravar();
+    Selecionar sel = new Selecionar();
+
     /**
      * Creates new form Form_Principal
      */
@@ -75,11 +71,11 @@ public class CadUsuarios extends javax.swing.JFrame {
         bntRelatorio = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
-        txtSenha = new javax.swing.JPasswordField();
+        txtSenha = new javax.swing.JTextField();
         lblCodigo1 = new javax.swing.JLabel();
         lblCodigo2 = new javax.swing.JLabel();
         lblCodigo3 = new javax.swing.JLabel();
-        txtReSenha = new javax.swing.JPasswordField();
+        txtReSenha = new javax.swing.JTextField();
         cbStatusUser = new javax.swing.JComboBox();
         lblStatus1 = new javax.swing.JLabel();
         btnGerar = new javax.swing.JButton();
@@ -141,6 +137,12 @@ public class CadUsuarios extends javax.swing.JFrame {
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparActionPerformed(evt);
+            }
+        });
+
+        txtSenha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtSenhaPropertyChange(evt);
             }
         });
 
@@ -206,9 +208,9 @@ public class CadUsuarios extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblStatus1)
-                                    .addComponent(cbStatusUser, 0, 89, Short.MAX_VALUE)
-                                    .addComponent(btnGerar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnLimpaUser, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))))
+                                    .addComponent(cbStatusUser, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnLimpaUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -264,9 +266,9 @@ public class CadUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        
+
         limpa.LimpaCadUsuario(this);
-        
+
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
@@ -278,21 +280,28 @@ public class CadUsuarios extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(CadUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            
-          if (val.KeyPressedText(this) == false){  
-           
-         }
-      }
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            if (val.KeyPressedText(this) == false) {
+                try {
+                    if (sel.ListarUsuarios(this) != true) {
+
+                        val.ButtonClick(this);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void btPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaActionPerformed
-            val.clickBtPesquisa(1,txtCodigo,"tb_usuarios");   
+        val.clickBtPesquisa(1, txtCodigo, "tb_usuarios");
     }//GEN-LAST:event_btPesquisaActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -313,9 +322,12 @@ public class CadUsuarios extends javax.swing.JFrame {
         txtReSenha.setText("");
     }//GEN-LAST:event_btnLimpaUserActionPerformed
 
+    private void txtSenhaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtSenhaPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaPropertyChange
 
     public static void main(String args[]) {
-       
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -326,7 +338,7 @@ public class CadUsuarios extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CadUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -341,27 +353,27 @@ public class CadUsuarios extends javax.swing.JFrame {
     public javax.swing.JButton btPesquisa;
     public javax.swing.JButton btnExcluir;
     public javax.swing.JButton btnGerar;
-    public javax.swing.JButton btnLimpaUser;
+    private javax.swing.JButton btnLimpaUser;
     public javax.swing.JButton btnLimpar;
     public javax.swing.JButton btnSalvar;
     public javax.swing.JComboBox cbStatus;
     public javax.swing.JComboBox cbStatusUser;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JLabel lblCargo;
-    public javax.swing.JLabel lblCodigo;
-    public javax.swing.JLabel lblCodigo1;
-    public javax.swing.JLabel lblCodigo2;
-    public javax.swing.JLabel lblCodigo3;
-    public javax.swing.JLabel lblStatus;
-    public javax.swing.JLabel lblStatus1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel lblCargo;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblCodigo1;
+    private javax.swing.JLabel lblCodigo2;
+    private javax.swing.JLabel lblCodigo3;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblStatus1;
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtNome;
-    public javax.swing.JPasswordField txtReSenha;
-    public javax.swing.JPasswordField txtSenha;
+    public javax.swing.JTextField txtReSenha;
+    public javax.swing.JTextField txtSenha;
     public javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
-           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
 }

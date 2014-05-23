@@ -9,24 +9,25 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 public class DaoCursos {
+
     //Metodo para inserir um curso
     Cmessage msg = new Cmessage();
     EntityManager manager = JPAUtil.getEntityManager();
-    
+
     public boolean Inserir(tb_cursos a) throws SQLException {
-        if(msg.MsgConfGravacao() == true){
-            
+        if (msg.MsgConfGravacao() == true) {
+
             manager.getTransaction().begin();
             manager.persist(a);
             manager.getTransaction().commit();
             manager.close();
-            
+
             msg.msgGravado();
-           return true;
-        }else{
-        
+            return true;
+        } else {
+
             return false;
-        
+
         }
 
     }
@@ -34,56 +35,56 @@ public class DaoCursos {
 
     public boolean Delete(int codigo) throws SQLException {
 
-      if(msg.MsgConfExclusao() == true){
-            tb_cursos curso = (tb_cursos)manager.find(tb_cursos.class,codigo);
+        if (msg.MsgConfExclusao() == true) {
+            tb_cursos curso = (tb_cursos) manager.find(tb_cursos.class, codigo);
             curso.setFd_status("E");
             manager.getTransaction().begin();
             manager.persist(curso);
             manager.getTransaction().commit();
-            manager.close(); 
+            manager.close();
             return true;
-        } 
+        }
         return false;
-    
+
     }
     //Metodo para sele��o de um curso
 
     public List<tb_cursos> Select(int codigo) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_cursos a where "
-                                                    + "a.td_curso = :td_curso");
-        q.setParameter("td_curso",codigo);
+                + "a.td_curso = :td_curso");
+        q.setParameter("td_curso", codigo);
         List<tb_cursos> curso = q.getResultList();
         return curso;
     }
-    
+
     public List<tb_cursos> Select(String descricao) throws SQLException {
         String jpql = "";
-        
-        if (descricao.equals("")){
+
+        if (descricao.equals("")) {
             jpql = "select a from tb_cursos a";
-        }else{
+        } else {
             jpql = "select a from tb_cursos a where a.fd_descricao "
-                                            + "like :fd_descricao"; 
+                    + "like :fd_descricao";
         }
-        
+
         Query q = manager.createQuery(jpql);
-        
-        if (descricao.equals("")){
-            
-        }else{
-            q.setParameter("fd_descricao","%"+ descricao+"%");
-        }    
-        
+
+        if (descricao.equals("")) {
+
+        } else {
+            q.setParameter("fd_descricao", "%" + descricao + "%");
+        }
+
         List<tb_cursos> curso = q.getResultList();
         return curso;
     }
 
     public boolean Update(tb_cursos a, String status) throws SQLException {
-         if(msg.MsgConfGravacao() == true){
-            
-            tb_cursos curso = (tb_cursos)manager.find(tb_cursos.class,a.getFd_curso());
-            
+        if (msg.MsgConfGravacao() == true) {
+
+            tb_cursos curso = (tb_cursos) manager.find(tb_cursos.class, a.getFd_curso());
+
             curso.setFd_descricao(a.getFd_descricao());
             curso.setFd_valor(a.getFd_valor());
             curso.setFd_status(a.getFd_status());
@@ -92,9 +93,9 @@ public class DaoCursos {
             manager.getTransaction().commit();
             manager.close();
             msg.msgGravado();
-            return true;          
-        }else{
+            return true;
+        } else {
             return false;
-         }
+        }
     }
 }

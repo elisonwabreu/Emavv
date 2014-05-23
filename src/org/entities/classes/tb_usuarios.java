@@ -6,12 +6,12 @@ import javax.persistence.Id;
 
 @Entity
 public class tb_usuarios implements Serializable {
-   
+
     @Id
-     int fd_funcionario;
-     String fd_login;
-     String fd_senha;
-     String fd_status;
+    int fd_funcionario;
+    String fd_login;
+    String fd_senha;
+    String fd_status;
 
     public String getFd_status() {
         return fd_status;
@@ -20,7 +20,7 @@ public class tb_usuarios implements Serializable {
     public void setFd_status(String fd_status) {
         this.fd_status = fd_status;
     }
-     
+
     public String getFd_login() {
         return fd_login;
     }
@@ -44,7 +44,5 @@ public class tb_usuarios implements Serializable {
     public void setFd_funcionario(int fd_funcionario) {
         this.fd_funcionario = fd_funcionario;
     }
-    
-    
-}
 
+}

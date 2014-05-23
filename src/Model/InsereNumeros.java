@@ -11,19 +11,19 @@ import javax.swing.text.PlainDocument;
  *
  * @author elison
  */
-public class InsereNumeros extends PlainDocument{
-    
+public class InsereNumeros extends PlainDocument {
+
     @Override
-    public void insertString(int offset, String str, javax.swing.text.AttributeSet atr) throws BadLocationException{
-        
-        super.insertString(offset, str.replaceAll("[^0-9]",""), atr);
-    
+    public void insertString(int offset, String str, javax.swing.text.AttributeSet atr) throws BadLocationException {
+
+        super.insertString(offset, str.replaceAll("[^0-9]", ""), atr);
+
     }
-    
-    public void replace(int offset, String str, javax.swing.text.AttributeSet atr) throws BadLocationException{
-        
-        super.insertString(offset, str.replaceAll("[^0-9]",""), atr);
-    
+
+    public void replace(int offset, String str, javax.swing.text.AttributeSet atr) throws BadLocationException {
+
+        super.insertString(offset, str.replaceAll("[^0-9]", ""), atr);
+
     }
-    
+
 }

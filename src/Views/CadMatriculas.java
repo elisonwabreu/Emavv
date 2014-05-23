@@ -24,12 +24,12 @@ import javax.swing.text.MaskFormatter;
  * @author elison
  */
 public class CadMatriculas extends javax.swing.JFrame {
+
     Validacoes val = new Validacoes();
     Selecionar sel = new Selecionar();
-    
-    
+
     private MaskFormatter fmtDtCadastro;
-    
+
     /**
      * Creates new form CadMatriculas
      */
@@ -211,12 +211,12 @@ public class CadMatriculas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            
-            if(val.KeyPressedText(this) == false){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            if (val.KeyPressedText(this) == false) {
                 try {
-                    if(sel.ListarMAtricula(this) != true){
-                               
+                    if (sel.ListarMAtricula(this) != true) {
+
                         val.ButtonClick(this);
                     }
                 } catch (SQLException ex) {
@@ -227,8 +227,8 @@ public class CadMatriculas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-            val.clickBtPesquisa(2,txtCodigo,"tb_alunos");
-            txtCodigo.setEnabled(true);
+        val.clickBtPesquisa(2, txtCodigo, "tb_alunos");
+        txtCodigo.setEnabled(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyReleased
@@ -245,7 +245,7 @@ public class CadMatriculas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMatriculaKeyPressed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-            Gravar novo = new Gravar();
+        Gravar novo = new Gravar();
         try {
             novo.GravaMatricula(this);
         } catch (ParseException | SQLException ex) {
@@ -262,8 +262,8 @@ public class CadMatriculas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDtCadastroKeyPressed
 
     private void btnMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatriculaActionPerformed
-        GeraMatricula novo =  new GeraMatricula();
-            novo.convertMatricula(this);
+        GeraMatricula novo = new GeraMatricula();
+        novo.convertMatricula(this);
     }//GEN-LAST:event_btnMatriculaActionPerformed
 
     /**

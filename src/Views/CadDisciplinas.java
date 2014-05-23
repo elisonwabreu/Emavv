@@ -25,7 +25,7 @@ import javax.swing.text.MaskFormatter;
  * @author suporte
  */
 public class CadDisciplinas extends javax.swing.JFrame {
-    
+
     tb_disciplinas diciplina = new tb_disciplinas(0, null, null);
     Gravar novoDisciplina = new Gravar();
     Validacoes val = new Validacoes();
@@ -49,7 +49,6 @@ public class CadDisciplinas extends javax.swing.JFrame {
         setIcon();
     }
 
-   
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -189,29 +188,29 @@ public class CadDisciplinas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        
+
         limpa.LimpaDisciplina(this);
-        
+
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        val.clickBtPesquisa(5,txtCodigo,"tb_disciplinas");
+        val.clickBtPesquisa(5, txtCodigo, "tb_disciplinas");
         txtCodigo.setEnabled(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
-        if(val.ValidaGravacaoDisciplina(this) == true){
-        try {
-            novoDisciplina.DisciplinaGravar(this);
-            limpa.LimpaDisciplina(this);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadDisciplinas.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (val.ValidaGravacaoDisciplina(this) == true) {
+            try {
+                novoDisciplina.DisciplinaGravar(this);
+                limpa.LimpaDisciplina(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(CadDisciplinas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        }       
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -223,23 +222,20 @@ public class CadDisciplinas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            
-            if(val.KeyPressedText(this) == false){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            if (val.KeyPressedText(this) == false) {
                 try {
-                    if(select.ListarDisciplinas(this) != true){
-                        
-                       val.ButtonClick(this);       
-                }
+                    if (select.ListarDisciplinas(this) != true) {
+
+                        val.ButtonClick(this);
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
-                }  
+                }
             }
         }
-          
-           
-       
-       
+
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     /**
@@ -294,6 +290,6 @@ public class CadDisciplinas extends javax.swing.JFrame {
     public javax.swing.JTextField txtDisciplina;
     // End of variables declaration//GEN-END:variables
 private void setIcon() {
-           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
 }

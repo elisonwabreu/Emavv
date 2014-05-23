@@ -18,11 +18,9 @@ import Theme.Tema;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -30,7 +28,7 @@ import javax.swing.text.MaskFormatter;
  * @author suporte
  */
 public class CadCursos extends javax.swing.JFrame {
-    
+
     tb_cursos curso;
     Deletar deleta = new Deletar();
     DaoCursos dao = new DaoCursos();
@@ -53,8 +51,8 @@ public class CadCursos extends javax.swing.JFrame {
     public CadCursos() {
         this.curso = new tb_cursos();
         initComponents();
-       txtCodigo.setDocument(new InsereNumeros());
-       setIcon();
+        txtCodigo.setDocument(new InsereNumeros());
+        setIcon();
     }
 
     /**
@@ -220,8 +218,8 @@ public class CadCursos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-     
-     limpa.LimpaCurso(this);
+
+        limpa.LimpaCurso(this);
 
     }//GEN-LAST:event_btnLimparActionPerformed
 
@@ -229,30 +227,30 @@ public class CadCursos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
-        if(val.ValidaGravacaoCusrsos(this)== true){
-        try {
-            novo.Cursos(this);
-            limpa.LimpaCurso(this);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadCursos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        if (val.ValidaGravacaoCusrsos(this) == true) {
+            try {
+                novo.Cursos(this);
+                limpa.LimpaCurso(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(CadCursos.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        
-         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-             
-             if(val.KeyPressedText(this) == false){
-                 try {
-                     if(sel.ListarCursos(this) != true){
-                         val.ButtonClick(this);
-                     }
-                 } catch (SQLException ex) {
-                     Logger.getLogger(CadCursos.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-             }
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            if (val.KeyPressedText(this) == false) {
+                try {
+                    if (sel.ListarCursos(this) != true) {
+                        val.ButtonClick(this);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadCursos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
 
@@ -266,13 +264,13 @@ public class CadCursos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaActionPerformed
-      
-        val.clickBtPesquisa(4,txtCodigo,"tb_cursos");
+
+        val.clickBtPesquisa(4, txtCodigo, "tb_cursos");
         txtCodigo.setEnabled(true);
     }//GEN-LAST:event_btPesquisaActionPerformed
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
-        
+
     }//GEN-LAST:event_txtCodigoKeyTyped
 
     /**
@@ -329,7 +327,7 @@ public class CadCursos extends javax.swing.JFrame {
     public javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 
-private void setIcon() {
-           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
 }

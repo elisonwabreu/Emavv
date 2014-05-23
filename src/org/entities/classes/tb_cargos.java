@@ -46,5 +46,5 @@ public class tb_cargos {
     public void setFd_status(String fd_status) {
         this.fd_status = fd_status;
     }
- 
+
 }

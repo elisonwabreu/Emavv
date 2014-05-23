@@ -5,7 +5,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Cmessage {
+
     Icon confirma;
+
     public boolean MsgConfGravacao() {
 
         if (JOptionPane.showConfirmDialog(null, "Confirma Gravação?", "Gravação",
@@ -46,11 +48,11 @@ public class Cmessage {
     }
 
     public void msgGravado() {
-        
+
         confirma = new ImageIcon("/Img/Check.png");
-       
-       JOptionPane.showMessageDialog(null, "Registro Salvo com Sucesso!", "Gravação", JOptionPane.INFORMATION_MESSAGE);
-       // JOptionPane.showMessageDialog(null, "Registro Salvo com Sucesso!","Gravação",JOptionPane.confirma);
+
+        JOptionPane.showMessageDialog(null, "Registro Salvo com Sucesso!", "Gravação", JOptionPane.INFORMATION_MESSAGE);
+        // JOptionPane.showMessageDialog(null, "Registro Salvo com Sucesso!","Gravação",JOptionPane.confirma);
     }
 
     public void msgEditado() {
@@ -69,15 +71,15 @@ public class Cmessage {
 
     public void msgLogin() {
 
-        JOptionPane.showMessageDialog(null, "Usuário ou Senha não conferem.","", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Usuário ou Senha não conferem.", "", JOptionPane.ERROR_MESSAGE);
     }
-    
-    public void MsgCamposObrigatorios(String campo){
-        
-        JOptionPane.showMessageDialog(null,"Campo "+campo+" obrigatório, favor preencher");
+
+    public void MsgCamposObrigatorios(String campo) {
+
+        JOptionPane.showMessageDialog(null, "Campo " + campo + " obrigatório, favor preencher");
     }
-    
-      public void msgNenhumRegistro() {
+
+    public void msgNenhumRegistro() {
 
         JOptionPane.showMessageDialog(null, "Nenhum registo encontrado!");
     }

@@ -139,20 +139,19 @@ public class Form_TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
-        
+
         try {
             selec.Logar(this);
-            if(selec.Logar(this) == true){
+            if (selec.Logar(this) == true) {
                 Form_TelaLogin.this.dispose();
-               
+
                 FormPrincipal formPrincipal = new FormPrincipal();
                 formPrincipal.setVisible(true);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Form_TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-       
+
     }//GEN-LAST:event_btnLogarActionPerformed
 
     private void txtLoginComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_txtLoginComponentAdded
@@ -160,19 +159,19 @@ public class Form_TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLoginComponentAdded
 
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
-       
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-             try {
-            selec.Logar(this);
-            if(selec.Logar(this) == true){
-                Form_TelaLogin.this.dispose();
-               
-                FormPrincipal formPrincipal = new FormPrincipal();
-                formPrincipal.setVisible(true);
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                selec.Logar(this);
+                if (selec.Logar(this) == true) {
+                    Form_TelaLogin.this.dispose();
+
+                    FormPrincipal formPrincipal = new FormPrincipal();
+                    formPrincipal.setVisible(true);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Form_TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Form_TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
         }
     }//GEN-LAST:event_txtSenhaKeyPressed
 
@@ -222,6 +221,6 @@ public class Form_TelaLogin extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
-           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
 }

@@ -1,6 +1,5 @@
 package org.entities.classes;
 
-
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -8,39 +7,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 
-@Entity (name ="tb_funcionarios")
+@Entity(name = "tb_funcionarios")
 public class tb_funcionarios implements Serializable {
-     @Id
-     @GeneratedValue
-     int fd_funcionario;
-     String fd_nome;
-     String fd_cpf;
-     String fd_rg;
+
+    @Id
+    @GeneratedValue
+    int fd_funcionario;
+    String fd_nome;
+    String fd_cpf;
+    String fd_rg;
     @Temporal(javax.persistence.TemporalType.DATE)
-     Date fd_data_nasc;
-     String fd_sexo;
-     String fd_endereco;
-     String fd_numero;
-     String fd_bairro;
-     String fd_cep;
-     String fd_cidade;
-     String fd_uf;
-     String fd_telefone;
-     String fd_celular;
-     String fd_email;
-     String fd_status;
+    Date fd_data_nasc;
+    String fd_sexo;
+    String fd_endereco;
+    String fd_numero;
+    String fd_bairro;
+    String fd_cep;
+    String fd_cidade;
+    String fd_uf;
+    String fd_telefone;
+    String fd_celular;
+    String fd_email;
+    String fd_status;
 //    Blob fd_imagem;
-    
-    public tb_funcionarios(){
+
+    public tb_funcionarios() {
     }
-    
-    public tb_funcionarios(int fd_funcionario, String fd_nome, String fd_status){
-        
+
+    public tb_funcionarios(int fd_funcionario, String fd_nome, String fd_status) {
+
         this.fd_funcionario = fd_funcionario;
         this.fd_nome = fd_nome;
         this.fd_status = fd_status;
     }
-    
+
     public int getFd_funcionario() {
         return fd_funcionario;
     }
@@ -168,6 +168,5 @@ public class tb_funcionarios implements Serializable {
     public void setFd_status(String fd_status) {
         this.fd_status = fd_status;
     }
-    
- 
+
 }

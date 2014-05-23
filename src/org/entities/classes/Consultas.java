@@ -15,7 +15,6 @@ public class Consultas {
         ArrayList retorno = new ArrayList();
 
         //retorno = (ArrayList<Cargos>) c.Select(codigo, descricao, status);
-
         return retorno;
     }
 }

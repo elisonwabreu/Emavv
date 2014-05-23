@@ -17,7 +17,7 @@ public class FormPrincipal extends javax.swing.JFrame {
      * Creates new form FormPrincipal
      */
     public FormPrincipal() {
-       setIcon();
+        setIcon();
         initComponents();
     }
 
@@ -271,8 +271,8 @@ public class FormPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuCadItemActionPerformed
 
     private void GeraMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeraMatriculaActionPerformed
-       CadMatriculas novo = new CadMatriculas();
-       novo.setVisible(true);
+        CadMatriculas novo = new CadMatriculas();
+        novo.setVisible(true);
     }//GEN-LAST:event_GeraMatriculaActionPerformed
 
     /**
@@ -336,7 +336,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuNovoItem;
     // End of variables declaration//GEN-END:variables
 private void setIcon() {
-           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
 
 }

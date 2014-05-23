@@ -10,7 +10,6 @@ import Model.Limpar;
 import Daos.DaoCargo;
 import Messages.Cmessage;
 import Model.Gravar;
-import Model.InsereLetras;
 import Model.InsereNumeros;
 import Model.Selecionar;
 import Model.Validacoes;
@@ -18,11 +17,9 @@ import Theme.Tema;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
 /**
@@ -38,7 +35,7 @@ public class CadCargos extends javax.swing.JFrame {
     private Object fmtTelefone;
     private MaskFormatter fmtCelular;
     private MaskFormatter fmtFone;
-    
+
     tb_cargos cargo = new tb_cargos(0, null, null);
     DaoCargo dao = new DaoCargo();
     Cmessage msg = new Cmessage();
@@ -46,6 +43,7 @@ public class CadCargos extends javax.swing.JFrame {
     Deletar del = new Deletar();
     Limpar limpa = new Limpar();
     Selecionar sel = new Selecionar();
+
     /**
      * Creates new form Form_Principal
      */
@@ -205,67 +203,67 @@ public class CadCargos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-         limpa.LimpaCargo(this);
-         val.ButtonClick(this);
+        limpa.LimpaCargo(this);
+        val.ButtonClick(this);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        if(val.ValidaGravacao(txtDescricao, cbStatus)){
-        try {
-            Gravar novo = new Gravar();
-            novo.Cargo(this);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if (val.ValidaGravacao(txtDescricao, cbStatus)) {
+            try {
+                Gravar novo = new Gravar();
+                novo.Cargo(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            
-          if (val.KeyPressedText(this) == false){  
-            try {
-                
-               if(sel.ListarCargos(this) != true){
-                val.ButtonClick(this);
-               } 
-               
-            } catch (SQLException ex) {
-                Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
-            }   
-         }
-      }
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            if (val.KeyPressedText(this) == false) {
+                try {
+
+                    if (sel.ListarCargos(this) != true) {
+                        val.ButtonClick(this);
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
-            val.clickBtPesquisa(1,txtCodigo,"tb_cargos");
-            txtCodigo.setEnabled(true);
-            
+        val.clickBtPesquisa(1, txtCodigo, "tb_cargos");
+        txtCodigo.setEnabled(true);
+
     }//GEN-LAST:event_btnPesquisaActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            if(del.Delete(txtCodigo, "tb_cargos", "fd_cargo") == true){
+            if (del.Delete(txtCodigo, "tb_cargos", "fd_cargo") == true) {
                 val.ButtonClick(this);
                 limpa.LimpaCargo(this);
-            }} catch (SQLException ex) {
+            }
+        } catch (SQLException ex) {
             Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtDescricaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescricaoKeyReleased
         // TODO add your handling code here:
-        
+
         val.setTextUp(this);
     }//GEN-LAST:event_txtDescricaoKeyReleased
 
-
     public static void main(String args[]) {
-       
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -276,7 +274,7 @@ public class CadCargos extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CadCargos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -300,9 +298,9 @@ public class CadCargos extends javax.swing.JFrame {
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtDescricao;
     // End of variables declaration//GEN-END:variables
-   
+
     private void setIcon() {
-           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
- 
+
 }

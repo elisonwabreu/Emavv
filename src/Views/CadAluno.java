@@ -27,17 +27,16 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.text.MaskFormatter;
+
 /**
  *
  * @author suporte
  */
 public class CadAluno extends javax.swing.JFrame {
-    tb_alunos aluno = new tb_alunos(0,null,null);
+
+    tb_alunos aluno = new tb_alunos(0, null, null);
     DaoAluno al = new DaoAluno();
     Cmessage msg = new Cmessage();
     Validacoes val = new Validacoes();
@@ -46,7 +45,7 @@ public class CadAluno extends javax.swing.JFrame {
     Limpar limpa = new Limpar();
     Selecionar sel = new Selecionar();
     Atualizar atualiza = new Atualizar();
-    
+
     private JFormattedTextField textoF3;
     private MaskFormatter fmtCpf;
     private MaskFormatter fmtDtNascimento;
@@ -67,7 +66,7 @@ public class CadAluno extends javax.swing.JFrame {
         txtNome.setDocument(new InsereLetras());
         txtbairro.setDocument(new InsereLetras());
         setIcon();
-       
+
     }
 
     /**
@@ -478,39 +477,30 @@ public class CadAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFotoActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        
+
         limpa.LimpaAluno(this);
         val.ButtonClick(this);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-         
-        val.clickBtPesquisa(2,txtCodigo,"tb_alunos");
+
+        val.clickBtPesquisa(2, txtCodigo, "tb_alunos");
         txtCodigo.setEnabled(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
-       // if(val.ValidaGravacaoAluno(txtNome, txtCpf, txtRg, txtDtNascimento,txtEndereco, 
-      //          txtNum, cbUf, txtCidade, txtCelular, txtEmail, txtbairro, txtTelefone, cbStatus) == true){
-            
-            try {
-        //metodo para gravar -----------------------------------------------------------------        
-                  novoAluno.Aluno(this);
-       //metodo para gravar -----------------------------------------------------------------    
-                  
-        //metodo para limpar apos gravar -----------------------------------------------------------------
-                  //limpa.LimpaAluno(this);
-       //metodo para limpar apos gravar -----------------------------------------------------------------    
-                  
-            } catch (SQLException ex) {
-                
-                Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, ex);
-            } catch (ParseException ex) {
+        try {
+       
+            novoAluno.Aluno(this);
+       
+        } catch (SQLException ex) {
+
+            Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //}
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
@@ -519,17 +509,17 @@ public class CadAluno extends javax.swing.JFrame {
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
 
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            
-            if(val.KeyPressedText(this) == false){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            if (val.KeyPressedText(this) == false) {
                 try {
-                    if(sel.ListarAlunos(this) != true){
-                        
-                       val.ButtonClick(this);       
-                }
+                    if (sel.ListarAlunos(this) != true) {
+
+                        val.ButtonClick(this);
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
-                }  
+                }
             }
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
@@ -545,7 +535,7 @@ public class CadAluno extends javax.swing.JFrame {
     private void txtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyReleased
 
         // TODO add your handling code here:
-          val.setTextUp(this);
+        val.setTextUp(this);
     }//GEN-LAST:event_txtNomeKeyReleased
 
     private void txtEnderecoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEnderecoKeyReleased
@@ -564,14 +554,14 @@ public class CadAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCidadeKeyReleased
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        
-        try{
+
+        try {
             try {
                 atualiza.AtualizarAluno(this);
             } catch (ParseException ex) {
                 Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
@@ -607,8 +597,8 @@ public class CadAluno extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                
-               Tema.Tema();    
+
+                Tema.Tema();
                 new CadAluno().setVisible(true);
 
             }
@@ -658,8 +648,7 @@ public class CadAluno extends javax.swing.JFrame {
     public javax.swing.JTextField txtbairro;
     // End of variables declaration//GEN-END:variables
 
-private void setIcon() {
-           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
 }
-

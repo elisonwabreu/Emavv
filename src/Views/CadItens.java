@@ -29,7 +29,7 @@ import javax.swing.text.MaskFormatter;
  * @author suporte
  */
 public class CadItens extends javax.swing.JFrame {
-    
+
     tb_itens item;
     Deletar deleta = new Deletar();
     DaoItens dao = new DaoItens();
@@ -212,8 +212,8 @@ public class CadItens extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        
-          limpa.LimpaItens(this);
+
+        limpa.LimpaItens(this);
 
     }//GEN-LAST:event_btnLimparActionPerformed
 
@@ -221,17 +221,17 @@ public class CadItens extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        val.clickBtPesquisa(6,txtCodigo,"tb_alunos");
+        val.clickBtPesquisa(6, txtCodigo, "tb_alunos");
         txtCodigo.setEnabled(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        if(val.ValidaGravacaoItem(this)){
-        try {
-            novoItem.Itens(this);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadItens.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if (val.ValidaGravacaoItem(this)) {
+            try {
+                novoItem.Itens(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(CadItens.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -244,18 +244,18 @@ public class CadItens extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            
-            if(val.KeyPressedText(this) == false){
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            if (val.KeyPressedText(this) == false) {
                 try {
-                    if(sel.ListarItens(this) != true){
-                        
-                       val.ButtonClick(this);       
-                }
+                    if (sel.ListarItens(this) != true) {
+
+                        val.ButtonClick(this);
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
-                }  
+                }
             }
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
@@ -314,37 +314,37 @@ public class CadItens extends javax.swing.JFrame {
     public javax.swing.JTextField txtPreco;
     // End of variables declaration//GEN-END:variables
 /*
- *Metodo listar dados vindos do banco
- */
-public void Listar() throws SQLException{
-    int codigo = Integer.parseInt(txtCodigo.getText());
-    
-    if(val.SelectReturn(codigo,"item","itens") == true){
-      
-         List<tb_itens> item = dao.Select(codigo);
-    
-         for(tb_itens car : item ){
-            txtItem.setText(car.getFd_descricao());
-          //  txtPreco.setText(car.getValor());
-         if(car.getFd_status().equals("A")){
-            comboStatus.setSelectedIndex(1);    
-         }else{
-            comboStatus.setSelectedIndex(2);
-        }     
-      }  
-    }else{
-        msg.msgNenhumRegistro();
-        
-    }     
-  }
-   
+     *Metodo listar dados vindos do banco
+     */
 
+    public void Listar() throws SQLException {
+        int codigo = Integer.parseInt(txtCodigo.getText());
 
-public void DeletarCurso() throws SQLException{
-    int codigo = Integer.parseInt(txtCodigo.getText());
-    deleta.Delete(txtCodigo, "tb_itens", "fd_item");
-}
-private void setIcon() {
-           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+        if (val.SelectReturn(codigo, "item", "itens") == true) {
+
+            List<tb_itens> item = dao.Select(codigo);
+
+            for (tb_itens car : item) {
+                txtItem.setText(car.getFd_descricao());
+                //  txtPreco.setText(car.getValor());
+                if (car.getFd_status().equals("A")) {
+                    comboStatus.setSelectedIndex(1);
+                } else {
+                    comboStatus.setSelectedIndex(2);
+                }
+            }
+        } else {
+            msg.msgNenhumRegistro();
+
+        }
+    }
+
+    public void DeletarCurso() throws SQLException {
+        int codigo = Integer.parseInt(txtCodigo.getText());
+        deleta.Delete(txtCodigo, "tb_itens", "fd_item");
+    }
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
 }

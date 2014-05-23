@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class tb_disciplinas implements Serializable {
+
     @Id
     @GeneratedValue
     public int fd_disciplina;
@@ -16,8 +17,8 @@ public class tb_disciplinas implements Serializable {
     public tb_disciplinas() {
     }
 
-    public tb_disciplinas(int fd_disciplina,String fd_descricao, String fd_status) {
-        
+    public tb_disciplinas(int fd_disciplina, String fd_descricao, String fd_status) {
+
         this.fd_disciplina = fd_disciplina;
         this.fd_descricao = fd_descricao;
         this.fd_status = fd_status;
@@ -47,5 +48,4 @@ public class tb_disciplinas implements Serializable {
         this.fd_status = fd_status;
     }
 
-  
 }

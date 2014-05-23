@@ -30,9 +30,9 @@ public class Conexao {
         }
         return null;
     }
-    
-    public EntityManagerFactory getEntityManager(){
-        
+
+    public EntityManagerFactory getEntityManager() {
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("dbemavv");
         return factory;
     }

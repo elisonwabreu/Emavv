@@ -16,25 +16,25 @@ public class tb_alunos implements Serializable {
 
     @Id
     @GeneratedValue
-     int fd_aluno;
-     String fd_nome;
-     String fd_cpf;
-     String fd_rg;
-     @Temporal(javax.persistence.TemporalType.DATE)
-     Date fd_data_nasc;
-     String fd_sexo;
-     String fd_endereco;
-     String fd_numero;
-     String fd_bairro;
-     String fd_cep;
-     String fd_cidade;
-     String fd_uf;
-     String fd_telefone;
-     String fd_celular;
-     String fd_email;
+    int fd_aluno;
+    String fd_nome;
+    String fd_cpf;
+    String fd_rg;
     @Temporal(javax.persistence.TemporalType.DATE)
-     Date fd_data_cadastro;
-     String fd_status;
+    Date fd_data_nasc;
+    String fd_sexo;
+    String fd_endereco;
+    String fd_numero;
+    String fd_bairro;
+    String fd_cep;
+    String fd_cidade;
+    String fd_uf;
+    String fd_telefone;
+    String fd_celular;
+    String fd_email;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    Date fd_data_cadastro;
+    String fd_status;
 
     //int fd_matricula;
     public void setFd_data_cadastro(Date fd_data_cadastro) {
@@ -44,27 +44,26 @@ public class tb_alunos implements Serializable {
     public Date getFd_data_cadastro() {
         return fd_data_cadastro;
     }
-     
 
     public tb_alunos() {
     }
 
     public tb_alunos(int fd_aluno, String fd_nome, String fd_status) {
-       
+
         this.fd_aluno = fd_aluno;
         this.fd_nome = fd_nome;
         this.fd_status = fd_status;
-    
+
     }
 
-   /* public int getFd_atricula() {
-        return fd_matricula;
-    }
+    /* public int getFd_atricula() {
+     return fd_matricula;
+     }
 
-    public void setMatricula(int fd_matricula) {
-        this.fd_matricula = fd_matricula;
-    }
-    */
+     public void setMatricula(int fd_matricula) {
+     this.fd_matricula = fd_matricula;
+     }
+     */
     public int getFd_aluno() {
         return fd_aluno;
     }
@@ -192,8 +191,5 @@ public class tb_alunos implements Serializable {
     public void setFd_status(String fd_status) {
         this.fd_status = fd_status;
     }
-    
-    
-    
-    
+
 }

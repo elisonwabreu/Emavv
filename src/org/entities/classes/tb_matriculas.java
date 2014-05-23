@@ -11,7 +11,7 @@ import javax.persistence.Temporal;
 
 @Entity
 public class tb_matriculas implements Serializable {
-    
+
     @Id
     @GeneratedValue
     public int fd_codigo;
@@ -52,13 +52,13 @@ public class tb_matriculas implements Serializable {
     public void setFd_data_matricula(Date fd_data_matricula) {
         this.fd_data_matricula = fd_data_matricula;
     }
-/*
-    public int getFd_usuario() {
-        return fd_usuario;
-    }
+    /*
+     public int getFd_usuario() {
+     return fd_usuario;
+     }
 
-    public void setFd_usuario(int fd_usuario) {
-        this.fd_usuario = fd_usuario;
-    }
-*/
-  }
+     public void setFd_usuario(int fd_usuario) {
+     this.fd_usuario = fd_usuario;
+     }
+     */
+}

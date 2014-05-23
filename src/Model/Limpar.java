@@ -18,41 +18,42 @@ import Views.CadUsuarios;
  * @author Elison
  */
 public class Limpar {
-    
-       
-    public void LimpaCargo(CadCargos c){
+
+    public void LimpaCargo(CadCargos c) {
         c.txtCodigo.setText("");
         c.txtDescricao.setText("");
         c.cbStatus.setSelectedIndex(0);
         c.txtCodigo.setEnabled(true);
-    
+
     }
-        
-    public void LimpaDisciplina(CadDisciplinas dis){
-                
+
+    public void LimpaDisciplina(CadDisciplinas dis) {
+
         dis.txtDisciplina.setText("");
         dis.comboStatus.setSelectedIndex(0);
-        
-    
+
     }
-     public void LimpaCurso(CadCursos c){
+
+    public void LimpaCurso(CadCursos c) {
         c.txtCodigo.setText("");
         c.txtDescricao.setText("");
         c.txtValor.setText("");
         c.cbStatus.setSelectedIndex(0);
         c.txtCodigo.setEnabled(true);
-    
+
     }
-    public void LimpaCurso(CadItens c){
+
+    public void LimpaCurso(CadItens c) {
         c.txtCodigo.setText("");
         c.txtItem.setText("");
         c.txtPreco.setText("");
         c.comboStatus.setSelectedIndex(0);
         c.txtCodigo.setEnabled(true);
-    
+
     }
-    public void LimpaItens(CadItens item){
-        item.txtCodigo.setText("");        
+
+    public void LimpaItens(CadItens item) {
+        item.txtCodigo.setText("");
         item.txtItem.setText("");
         item.txtPreco.setText("");
         item.comboStatus.setSelectedIndex(0);
@@ -77,7 +78,7 @@ public class Limpar {
     }
 
     public void LimpaAluno(CadAluno a) {
-            
+
         a.txtCodigo.setEnabled(true);
         a.txtCodigo.grabFocus();
         a.txtCodigo.setText("");
@@ -98,15 +99,16 @@ public class Limpar {
         a.txtEmail.setText("");
         a.btnBuscar.setEnabled(true);
     }
-    
+
     public void LimpaMatricula(CadMatriculas a) {
-            
+
         a.txtCodigo.setEnabled(true);
         a.txtCodigo.grabFocus();
         a.txtCodigo.setText("");
         a.txtNome.setText("");
         a.btnBuscar.setEnabled(true);
     }
+
     public void LimpaCadUsuario(CadUsuarios user) {
         user.txtNome.setText("");
         user.txtUsuario.setText("");

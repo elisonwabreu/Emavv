@@ -20,7 +20,7 @@ import javax.swing.JTextField;
  * @author suporte
  */
 public class FormBusca extends javax.swing.JFrame {
-    
+
     public int tableIndex = 0;
     public String tabela = "";
     JTextField txtCodigoU;
@@ -30,6 +30,7 @@ public class FormBusca extends javax.swing.JFrame {
      * Creates new form FormBusca
      */
     Validacoes val = new Validacoes();
+
     public FormBusca() {
         initComponents();
         setIcon();
@@ -145,7 +146,7 @@ public class FormBusca extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
-            sel.setSelectOnJTable(this,tabela,tableIndex);
+            sel.setSelectOnJTable(this, tabela, tableIndex);
         } catch (SQLException ex) {
             Logger.getLogger(FormBusca.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -153,7 +154,7 @@ public class FormBusca extends javax.swing.JFrame {
 
     private void jGridBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jGridBuscaMouseClicked
         // TODO add your handling code here:
-        setJtableValue(tableIndex);    
+        setJtableValue(tableIndex);
     }//GEN-LAST:event_jGridBuscaMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -205,22 +206,22 @@ public class FormBusca extends javax.swing.JFrame {
     public javax.swing.JTextField txtCampoBusca;
     // End of variables declaration//GEN-END:variables
 
-    public void setJtableValue(int tableIndex){
-                
-        int codigo = 0; 
-        codigo = (int) jGridBusca.getValueAt(jGridBusca.getSelectedRow(),0);
-        sel.getJtableValue(codigo,txtCodigoU);
-       
+    public void setJtableValue(int tableIndex) {
+
+        int codigo = 0;
+        codigo = (int) jGridBusca.getValueAt(jGridBusca.getSelectedRow(), 0);
+        sel.getJtableValue(codigo, txtCodigoU);
+
         this.setVisible(false);
     }
-    
-    public void setTxtCodigo(JTextField txtCodigoEx){
-        
-        JTextField txtCodigoIn = txtCodigoEx;       
-        txtCodigoU = txtCodigoIn;   
+
+    public void setTxtCodigo(JTextField txtCodigoEx) {
+
+        JTextField txtCodigoIn = txtCodigoEx;
+        txtCodigoU = txtCodigoIn;
     }
-    
+
     private void setIcon() {
-           setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
 }

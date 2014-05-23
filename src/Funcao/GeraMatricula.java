@@ -13,16 +13,16 @@ import java.util.Date;
  * @author suporte
  */
 public class GeraMatricula {
-    
-    public void convertMatricula(CadMatriculas a){
-        
+
+    public void convertMatricula(CadMatriculas a) {
+
         Date data = new Date(System.currentTimeMillis());
         SimpleDateFormat novaData = new SimpleDateFormat("yyyyHHmmss");
-        
+
         String matricula = novaData.format(data);
-        
-         a.txtMatricula.setText(matricula);
-         
+
+        a.txtMatricula.setText(matricula);
+
     }
-          
+
 }
