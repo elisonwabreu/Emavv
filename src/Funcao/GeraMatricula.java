@@ -4,6 +4,7 @@
  */
 package Funcao;
 
+import Views.CadAluno;
 import Views.CadMatriculas;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,6 +23,16 @@ public class GeraMatricula {
         String matricula = novaData.format(data);
 
         a.txtMatricula.setText(matricula);
+
+    }
+    public void convertMatricula(CadAluno a) {
+
+        Date data = new Date(System.currentTimeMillis());
+        SimpleDateFormat novaData = new SimpleDateFormat("yyyyHHmmss");
+
+        String matricula = novaData.format(data);
+
+        //a.txtMatricula.setText(matricula);
 
     }
 

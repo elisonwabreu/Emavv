@@ -150,7 +150,7 @@
                       </Group>
                   </Group>
                   <Component id="lblFuncao" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="comboStatus1" alignment="0" min="-2" pref="186" max="-2" attributes="0"/>
+                  <Component id="comboCargo" alignment="0" min="-2" pref="186" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -238,7 +238,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblFuncao" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="comboStatus1" max="32767" attributes="0"/>
+              <Component id="comboCargo" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSalvar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
@@ -540,19 +540,15 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboStatus1">
+    <Component class="javax.swing.JComboBox" name="comboCargo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="    "/>
-            <StringItem index="1" value="Cantor"/>
-            <StringItem index="2" value="Cantora"/>
-            <StringItem index="3" value="Vocalista"/>
-            <StringItem index="4" value="Back Vocal"/>
-            <StringItem index="5" value="Corneteiro"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboCargoActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>

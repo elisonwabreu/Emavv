@@ -23,6 +23,8 @@ import Views.CadUsuarios;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -338,6 +340,22 @@ public class Gravar extends JFrame {
         novoMatr.setFd_aluno(codAluno);
         novoMatr.setFd_data_matricula(val.FormataData(data));
 
+        matr.Inserir(novoMatr);
+    }
+    public void GravaMatricula(int codigo) throws ParseException, SQLException {
+        DaoMatricula matr = new DaoMatricula();
+        tb_matriculas novoMatr = new tb_matriculas();
+
+               
+        java.util.Date date = new java.util.Date(System.currentTimeMillis());
+        SimpleDateFormat novaData = new SimpleDateFormat("yyyyHHmmss");
+        SimpleDateFormat novaDataMtr = new SimpleDateFormat("yyyymmdd");
+        String matricula = novaData.format(date);
+        
+        novoMatr.setFd_matricula(Integer.parseInt(matricula));
+        novoMatr.setFd_aluno(codigo);
+        novoMatr.setFd_data_matricula(date);
+            JOptionPane.showMessageDialog(null, "A matricula gerada  \r\n é: "+matricula+".");
         matr.Inserir(novoMatr);
     }
 }

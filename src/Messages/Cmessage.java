@@ -52,7 +52,7 @@ public class Cmessage {
         confirma = new ImageIcon("/Img/Check.png");
 
         JOptionPane.showMessageDialog(null, "Registro Salvo com Sucesso!", "Gravação", JOptionPane.INFORMATION_MESSAGE);
-        // JOptionPane.showMessageDialog(null, "Registro Salvo com Sucesso!","Gravação",JOptionPane.confirma);
+       
     }
 
     public void msgEditado() {
@@ -83,4 +83,17 @@ public class Cmessage {
 
         JOptionPane.showMessageDialog(null, "Nenhum registo encontrado!");
     }
+    public boolean MsgConfMatricula() {
+
+        if (JOptionPane.showConfirmDialog(null, "Deseja Gerar Matricula Agora?", "Matricula",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+            return true;
+
+        } else {
+
+            return false;
+        }
+    }
+    
 }

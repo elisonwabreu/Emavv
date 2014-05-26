@@ -492,7 +492,11 @@ public class CadAluno extends javax.swing.JFrame {
         try {
        
             novoAluno.Aluno(this);
-       
+            if(sel.ListarAlunos() > 0){
+            if(msg.MsgConfMatricula() == true){
+            novoAluno.GravaMatricula(sel.ListarAlunos());
+            }
+            }
         } catch (SQLException ex) {
 
             Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);

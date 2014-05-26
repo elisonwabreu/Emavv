@@ -24,6 +24,8 @@ public class DaoAluno {
             manager.getTransaction().begin();
             manager.persist(al);
             manager.getTransaction().commit();
+            manager.clear();
+            manager.close();
             msg.msgGravado();
             return true;
         } else {
@@ -53,6 +55,14 @@ public class DaoAluno {
         List<tb_alunos> aluno = q.getResultList();
         return aluno;
     }
+    
+    public List<tb_alunos> Select() throws SQLException {
+
+        Query q = manager.createQuery("select a from tb_alunos a order by fd_aluno desc").setMaxResults(1);
+        
+        List<tb_alunos> aluno = q.getResultList();
+        return aluno;
+    }
 
     public List<tb_alunos> Select(String nome) throws SQLException {
 
@@ -62,7 +72,7 @@ public class DaoAluno {
         List<tb_alunos> aluno = q.getResultList();
         return aluno;
     }
-
+    
     public List<tb_alunos> SelectCpf(String cpf) {
 
         Query q = manager.createQuery("select a from tb_alunos a "

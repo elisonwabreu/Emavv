@@ -109,6 +109,27 @@ public class Selecionar extends JFrame {
             return false;
         }
     }
+    public boolean ListarCargos(CadFuncionarios c) throws SQLException {
+
+        DaoCargo dao = new DaoCargo();
+
+        String status = "A";
+
+        List<tb_cargos> cargos = dao.SelectC(status);
+
+        if (cargos.size() > 0) {
+
+            for (tb_cargos car : cargos) {
+                
+                c.comboCargo.setName(car.getFd_descricao());
+                
+            }
+            return true;
+
+        }
+        return false;
+    }
+
 
     public boolean ListarAlunos(CadAluno a) throws SQLException {
 
@@ -165,7 +186,21 @@ public class Selecionar extends JFrame {
             return false;
         }
     }
+     public int ListarAlunos() throws SQLException {
 
+        DaoAluno dao = new DaoAluno();
+            
+        int codigo;
+
+        List<tb_alunos> aluno = dao.Select();
+        if (aluno.size() > 0) {
+            for (tb_alunos al : aluno) {
+                codigo = al.getFd_aluno();
+            return codigo;
+        }
+         }
+        return 0;
+     }
     public boolean ListarFuncionarios(CadFuncionarios fun) throws SQLException {
 
         DaoFuncionarios dao = new DaoFuncionarios();

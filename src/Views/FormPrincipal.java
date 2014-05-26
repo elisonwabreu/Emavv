@@ -252,7 +252,10 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void jMenuCadCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadCargoActionPerformed
         CadCargos novo = new CadCargos();
+        
         novo.setVisible(true);
+        
+       
     }//GEN-LAST:event_jMenuCadCargoActionPerformed
 
     private void jMenuCadCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadCursosActionPerformed

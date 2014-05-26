@@ -134,7 +134,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         bntRelatorio = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
-        comboStatus1 = new javax.swing.JComboBox();
+        comboCargo = new javax.swing.JComboBox();
         lblFuncao = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         lblCep = new javax.swing.JLabel();
@@ -233,7 +233,11 @@ public class CadFuncionarios extends javax.swing.JFrame {
             }
         });
 
-        comboStatus1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "    ", "Cantor", "Cantora", "Vocalista", "Back Vocal", "Corneteiro" }));
+        comboCargo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCargoActionPerformed(evt);
+            }
+        });
 
         lblFuncao.setText("Função");
 
@@ -336,7 +340,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtEmail)))
                     .addComponent(lblFuncao)
-                    .addComponent(comboStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -406,7 +410,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblFuncao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboStatus1)
+                .addComponent(comboCargo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -484,6 +488,15 @@ public class CadFuncionarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
 
+    private void comboCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCargoActionPerformed
+        
+        try {
+            sel.ListarCargos(this);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_comboCargoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -527,9 +540,9 @@ public class CadFuncionarios extends javax.swing.JFrame {
     public javax.swing.JButton btnExcluir;
     public javax.swing.JButton btnLimpar;
     public javax.swing.JButton btnSalvar;
+    public javax.swing.JComboBox comboCargo;
     public javax.swing.JComboBox comboSexo;
     public javax.swing.JComboBox comboStatus;
-    public javax.swing.JComboBox comboStatus1;
     public javax.swing.JComboBox comboUF;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

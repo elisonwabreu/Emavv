@@ -65,7 +65,14 @@ public class DaoCargo {
         return cargo;
 
     }
+    public List<tb_cargos> SelectC(String status) throws SQLException {
 
+        Query q = manager.createQuery("select a from tb_cargos a "
+                + "where a.fd_status = 'A'");
+        q.setParameter("tb_cargos", status);
+        List<tb_cargos> cargo = q.getResultList();
+        return cargo;
+    } 
     public boolean Update(CadCargos ca, String status) throws SQLException {
 
         if (msg.MsgConfGravacao() == true) {
