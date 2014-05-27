@@ -71,6 +71,7 @@ public class CadDisciplinas extends javax.swing.JFrame {
         setTitle("EMAVV");
         setResizable(false);
 
+        txtCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
@@ -86,6 +87,12 @@ public class CadDisciplinas extends javax.swing.JFrame {
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
+            }
+        });
+
+        txtDisciplina.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDisciplinaKeyReleased(evt);
             }
         });
 
@@ -170,9 +177,9 @@ public class CadDisciplinas extends javax.swing.JFrame {
                     .addComponent(lblStatus))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(comboStatus, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDisciplina, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDisciplina, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(txtCodigo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -237,6 +244,10 @@ public class CadDisciplinas extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_txtCodigoKeyPressed
+
+    private void txtDisciplinaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDisciplinaKeyReleased
+       val.setTextUp(this);
+    }//GEN-LAST:event_txtDisciplinaKeyReleased
 
     /**
      * @param args the command line arguments

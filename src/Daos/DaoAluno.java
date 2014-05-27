@@ -58,7 +58,8 @@ public class DaoAluno {
     
     public List<tb_alunos> Select() throws SQLException {
 
-        Query q = manager.createQuery("select a from tb_alunos a order by fd_aluno desc").setMaxResults(1);
+        Query q = manager.createQuery("select a from tb_alunos a "
+                + "order by fd_aluno desc").setMaxResults(1);
         
         List<tb_alunos> aluno = q.getResultList();
         return aluno;

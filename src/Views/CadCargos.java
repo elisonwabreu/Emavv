@@ -80,6 +80,7 @@ public class CadCargos extends javax.swing.JFrame {
         setTitle("EMAVV");
         setResizable(false);
 
+        txtCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
@@ -188,7 +189,7 @@ public class CadCargos extends javax.swing.JFrame {
                     .addComponent(txtCodigo)
                     .addComponent(btnPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbStatus)
-                    .addComponent(txtDescricao, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(txtDescricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,8 +258,6 @@ public class CadCargos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtDescricaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescricaoKeyReleased
-        // TODO add your handling code here:
-
         val.setTextUp(this);
     }//GEN-LAST:event_txtDescricaoKeyReleased
 
@@ -291,10 +290,10 @@ public class CadCargos extends javax.swing.JFrame {
     public javax.swing.JButton btnPesquisa;
     public javax.swing.JButton btnSalvar;
     public javax.swing.JComboBox cbStatus;
-    public javax.swing.JButton jButton2;
-    public javax.swing.JLabel lblCargo;
-    public javax.swing.JLabel lblCodigo;
-    public javax.swing.JLabel lblStatus;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel lblCargo;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblStatus;
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtDescricao;
     // End of variables declaration//GEN-END:variables

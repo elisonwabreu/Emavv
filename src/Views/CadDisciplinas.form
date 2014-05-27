@@ -80,9 +80,9 @@
               </Group>
               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="btnBuscar" pref="33" max="32767" attributes="0"/>
+                  <Component id="btnBuscar" pref="36" max="32767" attributes="0"/>
                   <Component id="comboStatus" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtDisciplina" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtDisciplina" alignment="0" pref="36" max="32767" attributes="0"/>
                   <Component id="txtCodigo" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="41" max="32767" attributes="0"/>
@@ -99,6 +99,9 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="txtCodigo">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodigoActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodigoKeyPressed"/>
@@ -121,6 +124,9 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDisciplina">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDisciplinaKeyReleased"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>

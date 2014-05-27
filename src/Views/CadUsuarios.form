@@ -62,15 +62,15 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtSenha" alignment="0" pref="234" max="32767" attributes="0"/>
+                                  <Component id="txtSenha" alignment="0" min="-2" pref="234" max="-2" attributes="0"/>
                                   <Component id="txtUsuario" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtReSenha" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtReSenha" alignment="1" min="-2" pref="234" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="lblStatus1" min="-2" max="-2" attributes="0"/>
                                   <Component id="cbStatusUser" max="32767" attributes="0"/>
-                                  <Component id="btnLimpaUser" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnLimpaUser" alignment="0" max="-2" attributes="0"/>
                                   <Component id="btnGerar" min="-2" pref="89" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -104,27 +104,27 @@
                   <Component id="txtCodigo" max="32767" attributes="0"/>
                   <Component id="btPesquisa" max="32767" attributes="0"/>
                   <Component id="cbStatus" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtNome" alignment="1" max="32767" attributes="0"/>
+                  <Component id="txtNome" alignment="1" pref="36" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="lblStatus1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtUsuario" alignment="3" pref="25" max="32767" attributes="0"/>
+                  <Component id="txtUsuario" alignment="3" pref="36" max="32767" attributes="0"/>
                   <Component id="lblCodigo1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbStatusUser" alignment="3" pref="25" max="32767" attributes="0"/>
+                  <Component id="cbStatusUser" alignment="3" pref="36" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtSenha" alignment="3" pref="25" max="32767" attributes="0"/>
+                  <Component id="txtSenha" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="lblCodigo2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnGerar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnGerar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtReSenha" alignment="3" pref="25" max="32767" attributes="0"/>
+                  <Component id="txtReSenha" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="lblCodigo3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnLimpaUser" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnLimpaUser" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -140,6 +140,9 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="txtCodigo">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodigoActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodigoKeyPressed"/>
@@ -249,6 +252,9 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUsuario">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtUsuarioKeyReleased"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>

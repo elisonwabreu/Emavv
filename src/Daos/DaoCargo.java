@@ -35,8 +35,16 @@ public class DaoCargo {
     public List<tb_cargos> Select(int codigo) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_cargos a where "
-                + "a.fd_cargo = :fd_cargo");
+                + " a.fd_status <> 'E'");
         q.setParameter("fd_cargo", codigo);
+        List<tb_cargos> cargo = q.getResultList();
+        return cargo;
+    }
+     public List<tb_cargos> SelectFormBusca(int codigo) throws SQLException {
+
+        Query q = manager.createQuery("select a from tb_cargos a where "
+                + "a.fd_status <> 'E'").setMaxResults(codigo);
+       
         List<tb_cargos> cargo = q.getResultList();
         return cargo;
     }
@@ -49,7 +57,7 @@ public class DaoCargo {
             jpql = "select a from tb_cargos a";
         } else {
             jpql = "select a from tb_cargos a where a.fd_descricao "
-                    + "like :fd_descricao";
+                    + "like :fd_descricao and a.fd_status <> 'E'";
         }
 
         Query q = manager.createQuery(jpql);
@@ -68,8 +76,8 @@ public class DaoCargo {
     public List<tb_cargos> SelectC(String status) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_cargos a "
-                + "where a.fd_status = 'A'");
-        q.setParameter("tb_cargos", status);
+                + "where a.fd_status = :fd_status <> 'E'");
+        q.setParameter("fd_status", status);
         List<tb_cargos> cargo = q.getResultList();
         return cargo;
     } 

@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import Views.CadCargos;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 
 /**
@@ -81,7 +82,7 @@ public class FormBusca extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Título 3"
+                "Código", "Descrição", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -92,9 +93,15 @@ public class FormBusca extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jGridBusca.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jGridBusca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jGridBuscaMouseClicked(evt);
+            }
+        });
+        jGridBusca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jGridBuscaKeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(jGridBusca);
@@ -153,13 +160,20 @@ public class FormBusca extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void jGridBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jGridBuscaMouseClicked
-        // TODO add your handling code here:
+        if (evt.getClickCount()==2){
         setJtableValue(tableIndex);
+        }
     }//GEN-LAST:event_jGridBuscaMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
+
+    private void jGridBuscaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jGridBuscaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+         setJtableValue(tableIndex);
+        }
+    }//GEN-LAST:event_jGridBuscaKeyPressed
 
     /**
      * @param args the command line arguments

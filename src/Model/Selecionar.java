@@ -29,6 +29,7 @@ import Views.Form_TelaLogin;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import org.entities.classes.Matriculados;
@@ -121,7 +122,8 @@ public class Selecionar extends JFrame {
 
             for (tb_cargos car : cargos) {
                 
-                c.comboCargo.setName(car.getFd_descricao());
+              
+                c.txtCargo.setText(car.getFd_descricao());
                 
             }
             return true;
@@ -425,7 +427,8 @@ public class Selecionar extends JFrame {
         switch (TableIndex) {
             case 1:
                 DaoCargo dao = new DaoCargo();
-                List<tb_cargos> cargo = dao.Select(f.txtCampoBusca.getText());
+                
+                List<tb_cargos> cargo = dao.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model = (DefaultTableModel) f.jGridBusca.getModel();
                 model.setNumRows(cargo.size());
                 if (cargo.size() > 0) {
@@ -444,7 +447,7 @@ public class Selecionar extends JFrame {
 
             case 2:
                 DaoAluno daoalu = new DaoAluno();
-                List<tb_alunos> aluno = daoalu.Select(f.txtCampoBusca.getText());
+                List<tb_alunos> aluno = daoalu.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model2 = (DefaultTableModel) f.jGridBusca.getModel();
                 model2.setNumRows(aluno.size());
                 if (aluno.size() > 0) {
@@ -463,7 +466,7 @@ public class Selecionar extends JFrame {
 
             case 3:
                 DaoFuncionarios daofunc = new DaoFuncionarios();
-                List<tb_funcionarios> func = daofunc.Select(f.txtCampoBusca.getText());
+                List<tb_funcionarios> func = daofunc.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model3 = (DefaultTableModel) f.jGridBusca.getModel();
                 model3.setNumRows(func.size());
                 if (func.size() > 0) {
@@ -482,7 +485,7 @@ public class Selecionar extends JFrame {
 
             case 4:
                 DaoCursos daocurso = new DaoCursos();
-                List<tb_cursos> curso = daocurso.Select(f.txtCampoBusca.getText());
+                List<tb_cursos> curso = daocurso.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model4 = (DefaultTableModel) f.jGridBusca.getModel();
                 model4.setNumRows(curso.size());
                 if (curso.size() > 0) {
@@ -501,7 +504,7 @@ public class Selecionar extends JFrame {
 
             case 5:
                 DaoDisciplinas daodisc = new DaoDisciplinas();
-                List<tb_disciplinas> disc = daodisc.Select(f.txtCampoBusca.getText());
+                List<tb_disciplinas> disc = daodisc.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model5 = (DefaultTableModel) f.jGridBusca.getModel();
                 model5.setNumRows(disc.size());
                 if (disc.size() > 0) {
@@ -519,7 +522,7 @@ public class Selecionar extends JFrame {
                 break;
             case 6:
                 DaoItens daoitem = new DaoItens();
-                List<tb_itens> item = daoitem.Select(f.txtCampoBusca.getText());
+                List<tb_itens> item = daoitem.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model6 = (DefaultTableModel) f.jGridBusca.getModel();
                 model6.setNumRows(item.size());
                 if (item.size() > 0) {

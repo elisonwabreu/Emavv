@@ -54,6 +54,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
      */
     public CadFuncionarios() {
         initComponents();
+        
         txtCodigo.setDocument(new InsereNumeros());
         txtRg.setDocument(new InsereNumeros());
         txtNum.setDocument(new InsereNumeros());
@@ -134,12 +135,14 @@ public class CadFuncionarios extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         bntRelatorio = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
-        comboCargo = new javax.swing.JComboBox();
         lblFuncao = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         lblCep = new javax.swing.JLabel();
         comboSexo = new javax.swing.JComboBox();
         lblUF1 = new javax.swing.JLabel();
+        txtCargo = new javax.swing.JTextField();
+        btnBuscarCargo = new javax.swing.JButton();
+        txtCodigoCargo = new javax.swing.JTextField();
 
         jButton2.setText("jButton2");
 
@@ -147,6 +150,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
         setTitle("EMAVV");
         setResizable(false);
 
+        txtCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
@@ -160,9 +164,17 @@ public class CadFuncionarios extends javax.swing.JFrame {
             }
         });
 
+        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomeKeyReleased(evt);
+            }
+        });
+
         comboStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ativo", "Inativo" }));
 
         txtCpf.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        txtDtNascimento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/webcam_16x16.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -185,6 +197,14 @@ public class CadFuncionarios extends javax.swing.JFrame {
 
         lblNascimento.setText("Data Nascimento");
 
+        txtEndereco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtEnderecoKeyReleased(evt);
+            }
+        });
+
+        txtNum.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         comboUF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "  ", "AC", "AL", "AM", "AP", "BA", "CE", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         lblEndereco.setText("Endereço");
@@ -193,11 +213,23 @@ public class CadFuncionarios extends javax.swing.JFrame {
 
         lblUF.setText("UF");
 
+        txtbairro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtbairroKeyReleased(evt);
+            }
+        });
+
         lblBairro.setText("Bairro");
 
         lblTelefone.setText("Telefone");
 
         lblCelular.setText("Celular");
+
+        txtCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCidadeKeyTyped(evt);
+            }
+        });
 
         lblCidade.setText("Cidade");
 
@@ -233,12 +265,6 @@ public class CadFuncionarios extends javax.swing.JFrame {
             }
         });
 
-        comboCargo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCargoActionPerformed(evt);
-            }
-        });
-
         lblFuncao.setText("Função");
 
         lblCep.setText("CEP");
@@ -246,6 +272,27 @@ public class CadFuncionarios extends javax.swing.JFrame {
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "F", "M" }));
 
         lblUF1.setText("Sexo");
+
+        txtCargo.setEditable(false);
+
+        btnBuscarCargo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/lupa_16x16.png"))); // NOI18N
+        btnBuscarCargo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarCargoActionPerformed(evt);
+            }
+        });
+
+        txtCodigoCargo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodigoCargo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoCargoActionPerformed(evt);
+            }
+        });
+        txtCodigoCargo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoCargoKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -285,9 +332,9 @@ public class CadFuncionarios extends javax.swing.JFrame {
                                             .addComponent(txtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblRg))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblNascimento)
-                                            .addComponent(txtDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lblNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtDtNascimento)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,42 +352,52 @@ public class CadFuncionarios extends javax.swing.JFrame {
                                             .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblUF1))))
                                 .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelFoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblCodigo))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblCodigo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNome))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblStatus)
-                            .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblNome))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblStatus)
+                                    .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblFuncao))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCidade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCidade, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCep))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(txtCodigoCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBuscarCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtCidade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblCidade, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblCep))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblEmail)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtEmail)))
-                    .addComponent(lblFuncao)
-                    .addComponent(comboCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEmail))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -354,21 +411,21 @@ public class CadFuncionarios extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCodigo)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(comboStatus)
-                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(comboStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCpf)
+                    .addComponent(lblRg)
+                    .addComponent(lblNascimento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCpf)
-                            .addComponent(lblRg)
-                            .addComponent(lblNascimento))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDtNascimento)
                             .addComponent(txtRg, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -396,21 +453,26 @@ public class CadFuncionarios extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtbairro)
-                            .addComponent(txtTelefone, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCidade)
-                    .addComponent(lblEmail)
-                    .addComponent(lblCep))
+                            .addComponent(txtTelefone, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCidade)
+                            .addComponent(lblEmail)
+                            .addComponent(lblCep))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(txtCep)
                     .addComponent(txtCidade))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblFuncao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboCargo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnBuscarCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCargo)
+                    .addComponent(txtCodigoCargo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -473,29 +535,55 @@ public class CadFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
+        
             if (val.KeyPressedText(this) == false) {
                 try {
                     if (sel.ListarFuncionarios(this) != true) {
-
+                       
                         val.ButtonClick(this);
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
+        
     }//GEN-LAST:event_txtCodigoKeyPressed
 
-    private void comboCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCargoActionPerformed
-        
-        try {
-            sel.ListarCargos(this);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_comboCargoActionPerformed
+    private void btnBuscarCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCargoActionPerformed
+       val.clickBtPesquisa(1, txtCodigoCargo, "tb_cargos");
+        txtCodigo.setEnabled(true);
+    }//GEN-LAST:event_btnBuscarCargoActionPerformed
+
+    private void txtCodigoCargoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoCargoKeyPressed
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                sel.ListarCargos(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(CadFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          //  this.txtCodigoCargo.setEnabled(false);
+       }
+    }//GEN-LAST:event_txtCodigoCargoKeyPressed
+
+    private void txtCodigoCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoCargoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoCargoActionPerformed
+
+    private void txtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyReleased
+       val.setTextUp(this);
+    }//GEN-LAST:event_txtNomeKeyReleased
+
+    private void txtEnderecoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEnderecoKeyReleased
+       val.setTextUp(this);
+    }//GEN-LAST:event_txtEnderecoKeyReleased
+
+    private void txtbairroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbairroKeyReleased
+        val.setTextUp(this);
+    }//GEN-LAST:event_txtbairroKeyReleased
+
+    private void txtCidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCidadeKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCidadeKeyTyped
 
     /**
      * @param args the command line arguments
@@ -537,10 +625,10 @@ public class CadFuncionarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bntRelatorio;
     public javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnBuscarCargo;
     public javax.swing.JButton btnExcluir;
     public javax.swing.JButton btnLimpar;
     public javax.swing.JButton btnSalvar;
-    public javax.swing.JComboBox comboCargo;
     public javax.swing.JComboBox comboSexo;
     public javax.swing.JComboBox comboStatus;
     public javax.swing.JComboBox comboUF;
@@ -564,10 +652,12 @@ public class CadFuncionarios extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JLabel lblUF;
     private javax.swing.JLabel lblUF1;
+    public javax.swing.JTextField txtCargo;
     public javax.swing.JFormattedTextField txtCelular;
     public javax.swing.JTextField txtCep;
     public javax.swing.JTextField txtCidade;
     public javax.swing.JTextField txtCodigo;
+    public javax.swing.JTextField txtCodigoCargo;
     public javax.swing.JFormattedTextField txtCpf;
     public javax.swing.JFormattedTextField txtDtNascimento;
     public javax.swing.JTextField txtEmail;

@@ -550,8 +550,46 @@ public class Validacoes extends JFrame {
         String nome = c.txtDescricao.getText().toUpperCase();
         c.txtDescricao.setText(nome);
     }
+    public void setTextUp(CadUsuarios c) {
+
+        String nome = c.txtUsuario.getText().toUpperCase();
+        c.txtUsuario.setText(nome);
+    }
+    public void setTextUp(Form_TelaLogin c) {
+
+        String nome = c.txtLogin.getText().toUpperCase();
+        c.txtLogin.setText(nome);
+    }
+    public void setTextUp(CadItens c) {
+
+        String nome = c.txtItem.getText().toUpperCase();
+        c.txtItem.setText(nome);
+    }
+    public void setTextUp(CadDisciplinas c) {
+
+        String nome = c.txtDisciplina.getText().toUpperCase();
+        c.txtDisciplina.setText(nome);
+    }
+    public void setTextUp(CadCursos c) {
+
+        String nome = c.txtDescricao.getText().toUpperCase();
+        c.txtDescricao.setText(nome);
+    }
 
     public void setTextUp(CadAluno a) {
+
+        String nome = a.txtNome.getText().toUpperCase();
+        String endereco = a.txtEndereco.getText().toUpperCase();
+        String bairro = a.txtbairro.getText().toUpperCase();
+        String cidade = a.txtCidade.getText().toUpperCase();
+
+        a.txtNome.setText(nome);
+        a.txtEndereco.setText(endereco);
+        a.txtbairro.setText(bairro);
+        a.txtCidade.setText(cidade);
+
+    }
+    public void setTextUp(CadFuncionarios a) {
 
         String nome = a.txtNome.getText().toUpperCase();
         String endereco = a.txtEndereco.getText().toUpperCase();
