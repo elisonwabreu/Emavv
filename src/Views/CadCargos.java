@@ -247,14 +247,16 @@ public class CadCargos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisaActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+   
+                
         try {
-            if (del.Delete(txtCodigo, "tb_cargos", "fd_cargo") == true) {
-                val.ButtonClick(this);
-                limpa.LimpaCargo(this);
-            }
+            del.Delete(this);
         } catch (SQLException ex) {
             Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        val.ButtonClick(this);
+        limpa.LimpaCargo(this);
+       
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtDescricaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescricaoKeyReleased

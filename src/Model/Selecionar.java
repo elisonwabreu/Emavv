@@ -29,10 +29,8 @@ import Views.Form_TelaLogin;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import org.entities.classes.Matriculados;
 import org.entities.classes.tb_disciplinas;
 import org.entities.classes.tb_funcionarios;
 import org.entities.classes.tb_itens;
@@ -271,10 +269,8 @@ public class Selecionar extends JFrame {
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
 
-        if (val.SelectReturn(codigo, "curso", "cursos") == true) {
-
             List<tb_cursos> curso = dao.Select(codigo);
-
+         if (curso.size()>0) {
             for (tb_cursos cr : curso) {
                 c.txtDescricao.setText(cr.getFd_descricao());
                 c.txtValor.setText(String.valueOf(cr.getFd_valor()));
@@ -299,10 +295,8 @@ public class Selecionar extends JFrame {
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
 
-        if (val.SelectReturn(codigo, "item", "itens") == true) {
-
             List<tb_itens> item = dao.Select(codigo);
-
+         if (item.size()>0) {
             for (tb_itens cr : item) {
                 c.txtItem.setText(cr.getFd_descricao());
                 c.txtPreco.setText(String.valueOf(cr.getFd_valor()));
@@ -327,10 +321,8 @@ public class Selecionar extends JFrame {
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
 
-        if (val.SelectReturn(codigo, "disciplina", "disciplinas") == true) {
-
             List<tb_disciplinas> disc = dao.Select(codigo);
-
+        if (disc.size()>0) {
             for (tb_disciplinas cr : disc) {
                 c.txtDisciplina.setText(cr.getFd_descricao());
                 if (cr.getFd_status().equals("A")) {

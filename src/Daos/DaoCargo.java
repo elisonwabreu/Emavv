@@ -15,7 +15,12 @@ public class DaoCargo {
     //private static final Cargos Cargos = null;
     //metodo que insere um cargo no banco
     Cmessage msg = new Cmessage();
-    EntityManager manager = JPAUtil.getEntityManager();
+    EntityManager manager;
+
+    public DaoCargo() {
+        this.manager = JPAUtil.getEntityManager();
+        
+    }
 
     public boolean Inserir(tb_cargos c) throws SQLException {
 
@@ -35,7 +40,7 @@ public class DaoCargo {
     public List<tb_cargos> Select(int codigo) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_cargos a where "
-                + " a.fd_status <> 'E'");
+                + " a.fd_cargo = :fd_cargo and a.fd_status <> 'E'");
         q.setParameter("fd_cargo", codigo);
         List<tb_cargos> cargo = q.getResultList();
         return cargo;
@@ -54,7 +59,7 @@ public class DaoCargo {
         String jpql = "";
 
         if (descricao.equals("")) {
-            jpql = "select a from tb_cargos a";
+            jpql = "select a from tb_cargos a where a.fd_status <>'E'";
         } else {
             jpql = "select a from tb_cargos a where a.fd_descricao "
                     + "like :fd_descricao and a.fd_status <> 'E'";
@@ -95,6 +100,44 @@ public class DaoCargo {
             msg.msgGravado();
 
             return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean Deletar(int codigo) throws SQLException {
+
+        if (msg.MsgConfExclusao() == true) {
+            Query query = manager.createQuery("UPDATE tb_cargos a SET a.fd_status = 'E'"
+                    + "where a.fd_curso = :fd_curso");
+            manager.getTransaction().begin();
+            query.setParameter("fd_curso", codigo);
+            query.executeUpdate();
+            manager.getTransaction().commit();
+            manager.close();
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+    
+     public boolean UpdateDelete(int codigo) throws SQLException {
+
+        if (msg.MsgConfExclusao()== true) {
+            
+            tb_cargos c = (tb_cargos) manager.find(tb_cargos.class,codigo);
+            try{
+            manager.getTransaction().begin();
+             c.setFd_status("E");
+            manager.getTransaction().commit();
+           // manager.close();
+            }catch(Exception e){
+                manager.getTransaction().rollback();
+            }
+            msg.msgExcluido();
+                
+            return true;
+            
         } else {
             return false;
         }

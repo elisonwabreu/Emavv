@@ -198,28 +198,6 @@ public class Validacoes extends JFrame {
     }
     /*Fim da validação do preenchimento dos campos de Disciplinas -------------------------------*/
 
-    public boolean SelectReturn(int codigo, String campo, String tabela) throws SQLException {
-        int ReturnValue;
-        try (Connection conn = Conexao.getConexao()) {
-            ReturnValue = 0;
-            String sql = "select count(*) cont from tb_" + tabela + " "
-                    + "where fd_status <> 'E' and fd_" + campo + " = ?";
-            try (PreparedStatement pst = conn.prepareStatement(sql)) {
-                pst.setInt(1, codigo);
-                ResultSet rs = pst.executeQuery();
-                while (rs.next()) {
-                    ReturnValue = rs.getInt("cont");
-                }
-            }
-        }
-
-        if (ReturnValue == 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     //KeyPressed Event from JTextField
 
     public boolean KeyPressedText(CadMatriculas c) {

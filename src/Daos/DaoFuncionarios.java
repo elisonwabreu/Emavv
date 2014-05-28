@@ -36,14 +36,9 @@ public class DaoFuncionarios {
 
     public void Delete() throws SQLException {
 
-        Connection conn = Conexao.getConexao();
+       
 
-        String SQL = "DELETE FROM tb_alunos WHERE fd_aluno = ?";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        pstm.setInt(1, 1);
-        pstm.execute();
-        pstm.close();
-        conn.close();
+        
     }
 
     public List<tb_funcionarios> Select(int codigo) throws SQLException {
@@ -66,15 +61,7 @@ public class DaoFuncionarios {
 
     public void Select() throws SQLException {
 
-        Connection conn = Conexao.getConexao();
-
-        String SQL = "SELECT * FROM  tb_alunos";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        ResultSet rs = pstm.executeQuery();
-        while (rs.next()) {
-        }
-        pstm.close();
-        conn.close();
+        
     }
 
     public List<tb_funcionarios> SelectCpf(String cpf) {
@@ -120,12 +107,7 @@ public class DaoFuncionarios {
 
     public void Delete(int codigo) throws SQLException {
 
-        Connection conn = Conexao.getConexao();
-        String SQL = "UPDATE tb_funcionarios SET fd_status = 'I' WHERE fd_curso = ?";
-        PreparedStatement pstm = conn.prepareStatement(SQL);
-        pstm.setInt(1, codigo);
-        pstm.execute();
-        conn.close();
+       
 
     }
 }

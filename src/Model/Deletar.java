@@ -1,12 +1,14 @@
 package Model;
 
-import ConnectionFactory.Conexao;
+
 import Daos.DaoAluno;
+import Daos.DaoCargo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Messages.Cmessage;
 import Views.CadAluno;
+import Views.CadCargos;
 import Views.CadUsuarios;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -18,42 +20,20 @@ public class Deletar extends JFrame {
 
     Cmessage msg = new Cmessage();
     DaoAluno daoAluno = new DaoAluno();
+    DaoCargo daoCargo = new DaoCargo();
     Limpar limpa = new Limpar();
 
-    public boolean Delete(JTextField txtCodigo, String Tabela, String Campo) throws SQLException {
-        if (msg.MsgConfExclusao() == true) {
-
-            int codigo = Integer.parseInt(txtCodigo.getText());
-            try (Connection conn = Conexao.getConexao()) {
-                String SQL = "UPDATE " + Tabela + " SET fd_status='E' WHERE " + Campo + " =?";
-                try (PreparedStatement pstm = conn.prepareStatement(SQL)) {
-                    pstm.setInt(1, codigo);
-                    pstm.execute();
-                }
-
-                msg.msgExcluido();
-                return true;
-            }
-        } else {
-            return false;
-        }
+    public void Delete(CadCargos c) throws SQLException {
+        int codigo = Integer.parseInt(c.txtCodigo.getText());
+            daoCargo.UpdateDelete(codigo);
+            
     }
 
     public boolean DeleteUser(CadUsuarios user, String Tabela) throws SQLException {
         if (msg.MsgConfExclusao() == true) {
             int codigo = Integer.parseInt(user.txtCodigo.getText());
-            try (Connection conn = Conexao.getConexao()) {
-                String SQL = "DELETE FROM " + Tabela + " WHERE fd_funcionario = ?";
-                try (PreparedStatement pstm = conn.prepareStatement(SQL)) {
-                    pstm.setInt(1, codigo);
-                    pstm.execute();
-                }
-                msg.msgExcluido();
-                return true;
-            }
-        } else {
-            return false;
         }
+            return false;
     }
 
     public void Alunos(CadAluno ca) throws SQLException {

@@ -4,7 +4,6 @@
  */
 package Views;
 
-import org.entities.classes.tb_cursos;
 import org.entities.classes.tb_itens;
 import Model.Deletar;
 import Model.Gravar;
@@ -18,7 +17,6 @@ import Theme.Tema;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
@@ -329,34 +327,6 @@ public class CadItens extends javax.swing.JFrame {
 /*
      *Metodo listar dados vindos do banco
      */
-
-    public void Listar() throws SQLException {
-        int codigo = Integer.parseInt(txtCodigo.getText());
-
-        if (val.SelectReturn(codigo, "item", "itens") == true) {
-
-            List<tb_itens> item = dao.Select(codigo);
-
-            for (tb_itens car : item) {
-                txtItem.setText(car.getFd_descricao());
-                //  txtPreco.setText(car.getValor());
-                if (car.getFd_status().equals("A")) {
-                    comboStatus.setSelectedIndex(1);
-                } else {
-                    comboStatus.setSelectedIndex(2);
-                }
-            }
-        } else {
-            msg.msgNenhumRegistro();
-
-        }
-    }
-
-    public void DeletarCurso() throws SQLException {
-        int codigo = Integer.parseInt(txtCodigo.getText());
-        deleta.Delete(txtCodigo, "tb_itens", "fd_item");
-    }
-
     private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
