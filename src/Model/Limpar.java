@@ -28,7 +28,8 @@ public class Limpar {
     }
 
     public void LimpaDisciplina(CadDisciplinas dis) {
-
+        
+        dis.txtCodigo.setText("");
         dis.txtDisciplina.setText("");
         dis.comboStatus.setSelectedIndex(0);
 

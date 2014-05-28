@@ -389,14 +389,23 @@ public class Validacoes extends JFrame {
     }
 
     public void ButtonClick(CadDisciplinas c) {
-
-        c.btnExcluir.setEnabled(false);
-        c.btnLimpar.setEnabled(false);
-        c.bntRelatorio.setEnabled(false);
-        c.btnSalvar.setEnabled(false);
-        c.btnBuscar.setEnabled(true);
-        c.txtCodigo.setEnabled(true);
-        c.txtCodigo.grabFocus();
+        if(c.txtCodigo.getText().equals("")){
+            c.btnExcluir.setEnabled(false);
+            c.btnLimpar.setEnabled(false);
+            c.bntRelatorio.setEnabled(false);
+            c.btnSalvar.setEnabled(false);
+            c.btnBuscar.setEnabled(true);
+            c.txtCodigo.setEnabled(true);
+            c.txtCodigo.grabFocus();
+        }else{
+            c.btnExcluir.setEnabled(true);
+            c.btnLimpar.setEnabled(true);
+            c.bntRelatorio.setEnabled(true);
+            c.btnSalvar.setEnabled(false);
+            c.btnBuscar.setEnabled(true);
+            c.txtCodigo.setEnabled(true);
+            c.txtCodigo.grabFocus();
+        }
     }
 
     public void ButtonClick(CadMatriculas c) {

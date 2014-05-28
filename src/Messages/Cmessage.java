@@ -62,7 +62,7 @@ public class Cmessage {
 
     public void msgExcluido() {
 
-        JOptionPane.showMessageDialog(null, "Registro Exclu�do com Sucesso!");
+        JOptionPane.showMessageDialog(null, "Registro Excluído com Sucesso!");
     }
 
     public void MsgAcesso() {

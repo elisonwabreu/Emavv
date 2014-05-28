@@ -262,7 +262,7 @@ public class CadCursos extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            deleta.Delete(txtCodigo, "tb_cursos", "fd_curso");
+            deleta.Delete(this);
             limpa.LimpaCurso(this);
         } catch (SQLException ex) {
             Logger.getLogger(CadCursos.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,17 +1,12 @@
 package Daos;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import Messages.Cmessage;
 import org.entities.classes.tb_disciplinas;
 import ConnectionFactory.JPAUtil;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.entities.classes.tb_cursos;
 
 public class DaoDisciplinas {
 
@@ -40,7 +35,11 @@ public class DaoDisciplinas {
     }
 
     public List<tb_disciplinas> Select(int codigo) throws SQLException {
-        return null;
+       Query q = manager.createQuery("select a from tb_disciplinas a where "
+                + "a.fd_disciplina = :fd_disciplina");
+        q.setParameter("fd_disciplina", codigo);
+        List<tb_disciplinas> disc = q.getResultList();
+        return disc;
 
         
     }
@@ -67,8 +66,25 @@ public class DaoDisciplinas {
         return disc;
     }
 
-    public void Update() throws SQLException {
+    public boolean UpdateDelete(int codigo) throws SQLException {
 
-        
+        if (msg.MsgConfExclusao()== true) {
+            
+            tb_disciplinas c = (tb_disciplinas) manager.find(tb_disciplinas.class,codigo);
+            try{
+            manager.getTransaction().begin();
+             c.setFd_status("E");
+            manager.getTransaction().commit();
+           // manager.close();
+            }catch(Exception e){
+                manager.getTransaction().rollback();
+            }
+            msg.msgExcluido();
+                
+            return true;
+            
+        } else {
+            return false;
+        }
     }
 }

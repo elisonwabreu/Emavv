@@ -3,12 +3,16 @@ package Model;
 
 import Daos.DaoAluno;
 import Daos.DaoCargo;
+import Daos.DaoCursos;
+import Daos.DaoDisciplinas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Messages.Cmessage;
 import Views.CadAluno;
 import Views.CadCargos;
+import Views.CadCursos;
+import Views.CadDisciplinas;
 import Views.CadUsuarios;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -21,11 +25,23 @@ public class Deletar extends JFrame {
     Cmessage msg = new Cmessage();
     DaoAluno daoAluno = new DaoAluno();
     DaoCargo daoCargo = new DaoCargo();
+    DaoCursos daoCurso = new DaoCursos();
+    DaoDisciplinas daodisc = new DaoDisciplinas();
     Limpar limpa = new Limpar();
 
     public void Delete(CadCargos c) throws SQLException {
         int codigo = Integer.parseInt(c.txtCodigo.getText());
             daoCargo.UpdateDelete(codigo);
+            
+    }
+    public void Delete(CadCursos c) throws SQLException {
+        int codigo = Integer.parseInt(c.txtCodigo.getText());
+            daoCurso.UpdateDelete(codigo);
+            
+    }
+    public void Delete(CadDisciplinas c) throws SQLException {
+        int codigo = Integer.parseInt(c.txtCodigo.getText());
+            daodisc.UpdateDelete(codigo);
             
     }
 

@@ -528,7 +528,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            delta.Delete(txtCidade, "tb_funcionarios", "fd_funcionario");
+            delta.Delete(this);
         } catch (SQLException ex) {
             Logger.getLogger(CadFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
         }

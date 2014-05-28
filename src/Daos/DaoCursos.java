@@ -29,6 +29,7 @@ public class DaoCursos {
             return false;
 
         }
+        
 
     }
     //Metodo para deletar um curso
@@ -52,8 +53,8 @@ public class DaoCursos {
     public List<tb_cursos> Select(int codigo) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_cursos a where "
-                + "a.td_curso = :td_curso");
-        q.setParameter("td_curso", codigo);
+                + "a.fd_curso = :fd_curso");
+        q.setParameter("fd_curso", codigo);
         List<tb_cursos> curso = q.getResultList();
         return curso;
     }
@@ -62,7 +63,7 @@ public class DaoCursos {
         String jpql = "";
 
         if (descricao.equals("")) {
-            jpql = "select a from tb_cursos a";
+            jpql = "select a from tb_cursos a where a.fd_status <> 'E'";
         } else {
             jpql = "select a from tb_cursos a where a.fd_descricao "
                     + "like :fd_descricao";
@@ -94,6 +95,27 @@ public class DaoCursos {
             manager.close();
             msg.msgGravado();
             return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean UpdateDelete(int codigo) throws SQLException {
+
+        if (msg.MsgConfExclusao()== true) {
+            
+            tb_cursos c = (tb_cursos) manager.find(tb_cursos.class,codigo);
+            try{
+            manager.getTransaction().begin();
+             c.setFd_status("E");
+            manager.getTransaction().commit();
+           // manager.close();
+            }catch(Exception e){
+                manager.getTransaction().rollback();
+            }
+            msg.msgExcluido();
+                
+            return true;
+            
         } else {
             return false;
         }

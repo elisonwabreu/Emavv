@@ -222,7 +222,9 @@ public class CadDisciplinas extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            deleta.Delete(txtCodigo, "tb_disciplinas", "fd_disciplina");
+            deleta.Delete(this);
+            limpa.LimpaDisciplina(this);
+            val.ButtonClick(this);
         } catch (SQLException ex) {
             Logger.getLogger(CadDisciplinas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -233,7 +235,7 @@ public class CadDisciplinas extends javax.swing.JFrame {
 
             if (val.KeyPressedText(this) == false) {
                 try {
-                    if (select.ListarDisciplinas(this) != true) {
+                    if (select.ListarDisciplinas(this) == true) {
 
                         val.ButtonClick(this);
                     }
