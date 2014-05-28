@@ -7,6 +7,7 @@ package Views;
 import Daos.DaoUsuarios;
 import Messages.Cmessage;
 import Model.Selecionar;
+import Model.Validacoes;
 import Theme.Tema;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -25,6 +26,7 @@ public class Form_TelaLogin extends javax.swing.JFrame {
     Daos.DaoUsuarios novo = new DaoUsuarios();
     Cmessage a = new Cmessage();
     Selecionar selec = new Selecionar();
+    Validacoes val = new Validacoes();
 
     /**
      * Creates new form Form_TelaLogin

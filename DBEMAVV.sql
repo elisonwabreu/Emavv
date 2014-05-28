@@ -137,7 +137,7 @@ CREATE TABLE tb_usuarios (
 --CRIAÇÃO DO USUÁRIO PADRÃO DO SISTEMA ------------------------------------------------
 INSERT INTO tb_usuarios (fd_funcionario,fd_login,fd_senha,fd_status)
 VALUES
-(1,'admin','admin','A');
+(1,'ADMIN','ADMIN','A');
 --FIM DA CRIAÇÃO DO USUARIO PADRÃO ----------------------------------------------------
 
 CREATE TABLE tb_mensalidades (

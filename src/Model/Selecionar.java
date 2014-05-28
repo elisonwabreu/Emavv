@@ -61,24 +61,30 @@ public class Selecionar extends JFrame {
         DaoUsuarios dao = new DaoUsuarios();
 
         String login = c.txtLogin.getText();
-
+        if(c.txtLogin.getText().equals("") || c.txtSenha.getText().equals("")){
+            msg.msgLogin();
+            return false;
+        }else{
         List<tb_usuarios> user = dao.Select(login);
 
         if (user.size() > 0) {
             for (tb_usuarios car : user) {
 
-                if (car.getFd_login().equals(c.txtLogin.getText()) && car.getFd_senha().equals(c.txtSenha.getText())) {
-
+                if (car.getFd_login().equals(c.txtLogin.getText()) &&
+                        car.getFd_senha().equals(c.txtSenha.getText())) {
                     return true;
-
-                } else if ((car.getFd_login() == null ? c.txtLogin.getText() != null
-                        : !car.getFd_senha().equals(c.txtLogin.getText())) || (car.getFd_senha() == null
-                        ? c.txtSenha.getText() != null : !dao.getFd_senha().equals(c.txtSenha.getText()))) {
-
+                } else if (car.getFd_login().equals(c.txtLogin.getText()) ||
+                           car.getFd_senha() != c.txtSenha.getText()) {
+                    msg.msgLogin();
+                    return false;
+                }else if (car.getFd_login() != c.txtLogin.getText() || 
+                          car.getFd_senha() != c.txtSenha.getText()) {
+                    msg.msgLogin();
+                    return false;
                 }
             }
         }
-
+        }
         msg.msgLogin();
         return false;
 
