@@ -4,6 +4,7 @@
  */
 package Model;
 
+import Funcao.Limpar;
 import org.entities.classes.tb_alunos;
 import org.entities.classes.tb_cargos;
 import org.entities.classes.tb_cursos;
@@ -294,8 +295,9 @@ public class Selecionar extends JFrame {
         DaoItens dao = new DaoItens();
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
-
-            List<tb_itens> item = dao.Select(codigo);
+       
+        List<tb_itens> item = dao.Select(codigo);
+         if(c.txtCodigo.getText() != ""){
          if (item.size()>0) {
             for (tb_itens cr : item) {
                 c.txtItem.setText(cr.getFd_descricao());
@@ -307,10 +309,11 @@ public class Selecionar extends JFrame {
                     c.comboStatus.setSelectedIndex(2);
                 }
             }
+         }
             return true;
         } else {
             msg.msgNenhumRegistro();
-            limpa.LimpaCurso(c);
+            limpa.LimpaItens(c);
             return false;
         }
     }

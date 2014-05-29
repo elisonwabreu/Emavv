@@ -215,21 +215,6 @@ public class Validacoes extends JFrame {
         }
     }
 
-    public boolean KeyPressedText(CadItens c) {
-
-        if (c.txtCodigo.getText().equals("")) {
-
-            c.btnSalvar.setEnabled(true);
-            c.txtCodigo.setEnabled(false);
-
-            return true;
-        } else {
-            c.btnSalvar.setEnabled(true);
-            c.txtCodigo.setEnabled(false);
-            return false;
-        }
-    }
-
     public boolean KeyPressedText(CadDisciplinas c) {
 
         if (c.txtCodigo.getText().equals("")) {
@@ -244,7 +229,24 @@ public class Validacoes extends JFrame {
             return false;
         }
     }
+    public boolean KeyPressedText(CadItens c) {
 
+        if (c.txtCodigo.getText().equals("")) {
+
+            c.btnSalvar.setEnabled(true);
+            c.txtCodigo.setEnabled(false);
+            c.btnExcluir.setEnabled(false);
+            c.btnLimpar.setEnabled(true);
+
+            return true;
+        } else {
+            c.btnSalvar.setEnabled(true);
+            c.txtCodigo.setEnabled(true);
+            c.btnExcluir.setEnabled(true);
+            c.btnLimpar.setEnabled(true);
+            return false;
+        }
+    }
     //-------------------------------------------------------------------
     public boolean KeyPressedText(CadCargos c) {
 
@@ -378,14 +380,24 @@ public class Validacoes extends JFrame {
     }
 
     public void ButtonClick(CadItens c) {
-
-        c.btnExcluir.setEnabled(false);
-        c.btnLimpar.setEnabled(false);
-        c.bntRelatorio.setEnabled(false);
-        c.btnSalvar.setEnabled(false);
-        c.btnBuscar.setEnabled(true);
-        c.txtCodigo.setEnabled(true);
-        c.txtCodigo.grabFocus();
+        if(c.txtCodigo.getText().equals("")){
+                c.btnExcluir.setEnabled(false);
+                c.btnLimpar.setEnabled(true);
+                c.bntRelatorio.setEnabled(false);
+                c.btnSalvar.setEnabled(true);
+                c.btnBuscar.setEnabled(true);
+                c.txtCodigo.setEnabled(false);
+                c.txtCodigo.grabFocus();
+        }else{
+                c.btnExcluir.setEnabled(true);
+                c.btnLimpar.setEnabled(true);
+                c.bntRelatorio.setEnabled(true);
+                c.btnSalvar.setEnabled(true);
+                c.btnBuscar.setEnabled(true);
+                c.txtCodigo.setEnabled(true);
+                c.txtCodigo.grabFocus();
+        
+        }
     }
 
     public void ButtonClick(CadDisciplinas c) {

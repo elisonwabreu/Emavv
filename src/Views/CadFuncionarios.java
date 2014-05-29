@@ -8,9 +8,9 @@ import org.entities.classes.tb_funcionarios;
 import Messages.Cmessage;
 import Model.Deletar;
 import Model.Gravar;
-import Model.InsereLetras;
-import Model.InsereNumeros;
-import Model.Limpar;
+import Funcao.InsereLetras;
+import Funcao.InsereNumeros;
+import Funcao.Limpar;
 import Model.Selecionar;
 import Model.Validacoes;
 import Theme.Tema;
@@ -502,6 +502,8 @@ public class CadFuncionarios extends javax.swing.JFrame {
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
 
         limpa.LimpaFuncionario(this);
+        this.txtCodigo.setEnabled(true);
+        this.btnBuscar.setEnabled(true);
 
     }//GEN-LAST:event_btnLimparActionPerformed
 

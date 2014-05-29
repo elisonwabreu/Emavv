@@ -43,11 +43,32 @@ public class DaoItens {
         }
         return false;
     }
+    public boolean UpdateDelete(int codigo) throws SQLException {
+
+        if (msg.MsgConfExclusao()== true) {
+            
+            tb_itens c = (tb_itens) manager.find(tb_itens.class,codigo);
+            try{
+            manager.getTransaction().begin();
+             c.setFd_status("E");
+            manager.getTransaction().commit();
+           // manager.close();
+            }catch(Exception e){
+                manager.getTransaction().rollback();
+            }
+            msg.msgExcluido();
+                
+            return true;
+            
+        } else {
+            return false;
+        }
+    }
 
     public List<tb_itens> Select(int codigo) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_itens as a "
-                + "where a.fd_nome like :fd_nome and a.fd_status <> 'E'");
+                + "where a.fd_item = :fd_item and a.fd_status <> 'E'");
         q.setParameter("fd_item", codigo);
         List<tb_itens> item = q.getResultList();
         return item;

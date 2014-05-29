@@ -59,10 +59,28 @@ public class DaoFuncionarios {
         return funcionario;
     }
 
-    public void Select() throws SQLException {
+     public boolean UpdateDelete(int codigo) throws SQLException {
 
-        
+        if (msg.MsgConfExclusao()== true) {
+            
+            tb_funcionarios c = (tb_funcionarios) manager.find(tb_funcionarios.class,codigo);
+            try{
+            manager.getTransaction().begin();
+             c.setFd_status("E");
+            manager.getTransaction().commit();
+           // manager.close();
+            }catch(Exception e){
+                manager.getTransaction().rollback();
+            }
+            msg.msgExcluido();
+                
+            return true;
+            
+        } else {
+            return false;
+        }
     }
+
 
     public List<tb_funcionarios> SelectCpf(String cpf) {
 

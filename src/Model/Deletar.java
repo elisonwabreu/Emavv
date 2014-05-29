@@ -1,10 +1,13 @@
 package Model;
 
 
+import Funcao.Limpar;
 import Daos.DaoAluno;
 import Daos.DaoCargo;
 import Daos.DaoCursos;
 import Daos.DaoDisciplinas;
+import Daos.DaoFuncionarios;
+import Daos.DaoItens;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,6 +16,8 @@ import Views.CadAluno;
 import Views.CadCargos;
 import Views.CadCursos;
 import Views.CadDisciplinas;
+import Views.CadFuncionarios;
+import Views.CadItens;
 import Views.CadUsuarios;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -26,7 +31,9 @@ public class Deletar extends JFrame {
     DaoAluno daoAluno = new DaoAluno();
     DaoCargo daoCargo = new DaoCargo();
     DaoCursos daoCurso = new DaoCursos();
+    DaoItens daoItens = new DaoItens();
     DaoDisciplinas daodisc = new DaoDisciplinas();
+    DaoFuncionarios daoFunc = new DaoFuncionarios();
     Limpar limpa = new Limpar();
 
     public void Delete(CadCargos c) throws SQLException {
@@ -39,9 +46,19 @@ public class Deletar extends JFrame {
             daoCurso.UpdateDelete(codigo);
             
     }
+    public void Delete(CadItens c) throws SQLException {
+        int codigo = Integer.parseInt(c.txtCodigo.getText());
+            daoItens.UpdateDelete(codigo);
+            
+    }
     public void Delete(CadDisciplinas c) throws SQLException {
         int codigo = Integer.parseInt(c.txtCodigo.getText());
             daodisc.UpdateDelete(codigo);
+            
+    }
+    public void Delete(CadFuncionarios c) throws SQLException {
+        int codigo = Integer.parseInt(c.txtCodigo.getText());
+            daoFunc.UpdateDelete(codigo);
             
     }
 

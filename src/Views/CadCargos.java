@@ -6,11 +6,11 @@ package Views;
 
 import org.entities.classes.tb_cargos;
 import Model.Deletar;
-import Model.Limpar;
+import Funcao.Limpar;
 import Daos.DaoCargo;
 import Messages.Cmessage;
 import Model.Gravar;
-import Model.InsereNumeros;
+import Funcao.InsereNumeros;
 import Model.Selecionar;
 import Model.Validacoes;
 import Theme.Tema;

@@ -7,10 +7,10 @@ package Views;
 import org.entities.classes.tb_itens;
 import Model.Deletar;
 import Model.Gravar;
-import Model.Limpar;
+import Funcao.Limpar;
 import Daos.DaoItens;
 import Messages.Cmessage;
-import Model.InsereNumeros;
+import Funcao.InsereNumeros;
 import Model.Selecionar;
 import Model.Validacoes;
 import Theme.Tema;
@@ -135,6 +135,7 @@ public class CadItens extends javax.swing.JFrame {
 
         bntRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/relatorio_16x16.png"))); // NOI18N
         bntRelatorio.setText("Relatório");
+        bntRelatorio.setEnabled(false);
 
         btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/vassoura_16x16.png"))); // NOI18N
         btnLimpar.setText("Limpar");
@@ -221,6 +222,7 @@ public class CadItens extends javax.swing.JFrame {
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
 
         limpa.LimpaItens(this);
+        this.txtCodigo.setEnabled(true);
 
     }//GEN-LAST:event_btnLimparActionPerformed
 
@@ -236,6 +238,7 @@ public class CadItens extends javax.swing.JFrame {
         if (val.ValidaGravacaoItem(this)) {
             try {
                 novoItem.Itens(this);
+                limpa.LimpaItens(this);
             } catch (SQLException ex) {
                 Logger.getLogger(CadItens.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -244,7 +247,8 @@ public class CadItens extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            deleta.Delete(txtCodigo, "tb_itens", "fd_item");
+            deleta.Delete(this);
+            limpa.LimpaItens(this);
         } catch (SQLException ex) {
             Logger.getLogger(CadItens.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -256,9 +260,9 @@ public class CadItens extends javax.swing.JFrame {
 
             if (val.KeyPressedText(this) == false) {
                 try {
-                    if (sel.ListarItens(this) != true) {
+                    if (sel.ListarItens(this) == true) {
 
-                        val.ButtonClick(this);
+                       // val.ButtonClick(this);
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);

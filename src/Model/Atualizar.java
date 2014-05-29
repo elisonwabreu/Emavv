@@ -4,6 +4,7 @@
  */
 package Model;
 
+import Funcao.Limpar;
 import Daos.DaoAluno;
 import Views.CadAluno;
 import java.sql.SQLException;

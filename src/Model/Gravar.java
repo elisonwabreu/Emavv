@@ -4,6 +4,7 @@
  */
 package Model;
 
+import Funcao.Limpar;
 import Daos.DaoAluno;
 import Daos.DaoCargo;
 import Daos.DaoCursos;

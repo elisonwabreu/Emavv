@@ -10,10 +10,10 @@ import Daos.DaoAluno;
 import Messages.Cmessage;
 import Model.Atualizar;
 import Model.Gravar;
-import Model.InsereLetras;
-import Model.InsereNumeros;
+import Funcao.InsereLetras;
+import Funcao.InsereNumeros;
 
-import Model.Limpar;
+import Funcao.Limpar;
 import Model.Selecionar;
 import Model.Validacoes;
 import Theme.Tema;

@@ -76,7 +76,7 @@ public class FormBusca extends javax.swing.JFrame {
 
         btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/seta_esquerda.png"))); // NOI18N
 
-        jGridBusca.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jGridBusca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jGridBusca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -94,6 +94,7 @@ public class FormBusca extends javax.swing.JFrame {
             }
         });
         jGridBusca.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jGridBusca.getTableHeader().setReorderingAllowed(false);
         jGridBusca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jGridBuscaMouseClicked(evt);
