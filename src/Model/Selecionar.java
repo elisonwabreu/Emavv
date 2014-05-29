@@ -456,7 +456,7 @@ public class Selecionar extends JFrame {
                         for (int i = 0; i < aluno.size(); i++) {
                             f.jGridBusca.setValueAt(aluno.get(i).getFd_aluno(), i, 0);
                             f.jGridBusca.setValueAt(aluno.get(i).getFd_nome(), i, 1);
-                            f.jGridBusca.setValueAt(aluno.get(i).getFd_cpf(), i, 2);
+                            f.jGridBusca.setValueAt(aluno.get(i).getFd_status(), i, 2);
 
                         }
                     }

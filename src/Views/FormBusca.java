@@ -15,6 +15,8 @@ import Views.CadCargos;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -35,6 +37,12 @@ public class FormBusca extends javax.swing.JFrame {
     public FormBusca() {
         initComponents();
         setIcon();
+        jGridBusca.getColumnModel().getColumn(1).setMaxWidth(500);
+        jGridBusca.getColumnModel().getColumn(1).setMinWidth(250);
+        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();  
+        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+        jGridBusca.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        jGridBusca.getColumnModel().getColumn(2).setCellRenderer(centralizado);
     }
 
     /**
