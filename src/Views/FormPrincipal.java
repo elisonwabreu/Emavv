@@ -47,6 +47,8 @@ public class FormPrincipal extends javax.swing.JFrame {
         jMenuCadCursos = new javax.swing.JMenuItem();
         jMenuNovoDIsc = new javax.swing.JMenu();
         jMenuCadDisc = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuCadMensalidades = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuNovoItem = new javax.swing.JMenu();
         jMenuCadItem = new javax.swing.JMenuItem();
@@ -169,6 +171,18 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         jMenu3.add(jMenuNovoDIsc);
 
+        jMenu6.setText("Mensalidades");
+
+        jMenuCadMensalidades.setText("Acompanhamento");
+        jMenuCadMensalidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCadMensalidadesActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuCadMensalidades);
+
+        jMenu3.add(jMenu6);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/caixa_16x16.png"))); // NOI18N
@@ -278,6 +292,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         novo.setVisible(true);
     }//GEN-LAST:event_GeraMatriculaActionPerformed
 
+    private void jMenuCadMensalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadMensalidadesActionPerformed
+       CadMensalidades novo = new CadMensalidades();
+       novo.setVisible(true);
+    }//GEN-LAST:event_jMenuCadMensalidadesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -325,12 +344,14 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuCadCargo;
     private javax.swing.JMenuItem jMenuCadCursos;
     private javax.swing.JMenuItem jMenuCadDisc;
     private javax.swing.JMenuItem jMenuCadFunc;
     private javax.swing.JMenuItem jMenuCadItem;
+    private javax.swing.JMenuItem jMenuCadMensalidades;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu jMenuNovoCargo;
     private javax.swing.JMenu jMenuNovoCurso;
