@@ -53,7 +53,14 @@ public class DaoCargo {
         List<tb_cargos> cargo = q.getResultList();
         return cargo;
     }
+    public List<tb_cargos> SelectFormBusca() throws SQLException {
 
+        Query q = manager.createQuery("select a from tb_cargos a where "
+                + "a.fd_status <> 'E' order by a.fd_cargo").setMaxResults(3);
+       
+        List<tb_cargos> cargo = q.getResultList();
+        return cargo;
+    }
     public List<tb_cargos> Select(String descricao) throws SQLException {
 
         String jpql = "";

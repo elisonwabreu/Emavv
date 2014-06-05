@@ -15,6 +15,8 @@ import Model.Validacoes;
 import Theme.Tema;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +27,9 @@ import javax.swing.text.MaskFormatter;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import org.entities.classes.tb_cargos;
 
@@ -275,13 +279,13 @@ public class CadCargos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDescricaoKeyReleased
 
     private void bntRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRelatorioActionPerformed
+        
         try {
             geraRelatorio();
-        } catch (JRException ex) {
-            Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (JRException | SQLException ex) {
             Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_bntRelatorioActionPerformed
 
     public static void main(String args[]) {
@@ -326,12 +330,18 @@ public class CadCargos extends javax.swing.JFrame {
     }
     public void geraRelatorio() throws JRException, SQLException{
       
-        List<tb_cargos> cargos = dao.Select(3);
+        List<tb_cargos> cargos = dao.SelectFormBusca();
         HashMap map = new HashMap();
-        
+    
+     
+
         JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(cargos);
-        JasperPrint jsPrint = JasperFillManager.fillReport("C:/Users/suporte/Documents/Elison/Emavv/src/Relatorios/Cargos/irCargos.jasper", map, ds);
-        JasperViewer jsView = new JasperViewer(jsPrint,true);
+        
+        
+        
+        JasperPrint jsPrint =  JasperFillManager.fillReport("JasperReport/irCargos.jasper", map, ds);
+        JasperViewer jsView = new JasperViewer(jsPrint,false);
         jsView.setVisible(true);
+        jsView.toFront();
     }
 }

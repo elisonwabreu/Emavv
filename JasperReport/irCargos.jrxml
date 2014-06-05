@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="irCargos" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0177e374-8cfd-47e5-8662-d45166682ea9">
+	<property name="ireport.zoom" value="1.6105100000000019"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="146"/>
+	<subDataset name="dataset1" uuid="c5ae278a-e0f5-40d6-9c5c-c82450502e00"/>
+	<queryString>
+		<![CDATA[SELECT
+     *
+FROM
+      tb_cargos
+WHERE
+     fd_status <> 'E'
+ORDER BY
+   fd_cargo]]>
+	</queryString>
+	<field name="fd_cargo" class="java.lang.Integer"/>
+	<field name="fd_descricao" class="java.lang.String"/>
+	<field name="fd_status" class="java.lang.String"/>
+	<field name="fd_data_cadastro" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="af062561-c793-4fc6-b265-02ba513d8db9" x="0" y="0" width="139" height="42"/>
+				<textElement>
+					<font fontName="Comic Sans MS" size="24" isBold="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[EMAVV]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="2a290521-c404-4f7b-8e5e-55eca65ff6cb" x="0" y="67" width="555" height="1"/>
+			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="70ef5209-67ce-4ecf-9cf2-133a1ba212bf" x="0" y="42" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm">
+				<reportElement uuid="ddef2106-7c9c-4452-a4ad-e1498aeeb8f6" x="63" y="42" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="25673c23-5bf2-4b64-b8fe-39f7b616723f" x="231" y="0" width="104" height="42"/>
+				<textElement>
+					<font fontName="Comic Sans MS" size="24" isBold="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[CARGOS]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="5b2c07dd-4fa1-4868-8c84-715130fbdcce" x="471" y="4" width="59" height="62"/>
+				<imageExpression><![CDATA["C:\\Users\\suporte\\Documents\\Elison\\Emavv\\img\\Sifra.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2452707e-3ba5-48e0-b3ec-333f30974456" x="0" y="0" width="79" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b886402f-2731-4551-aad0-8c6b6ea39a88" x="79" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Cargo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="33414290-4e01-4241-a27f-7ba0a4956e82" x="200" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6e9912e5-7865-4759-b718-85ea1f48a988" x="300" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Data de Cadastro]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="395af0c8-1d64-4ef6-af64-0a424c9f715d" x="0" y="20" width="555" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement uuid="d6c56a03-87c2-4dd0-bc0e-7e977f42c10f" x="100" y="0" width="100" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fd_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bc34b022-c960-47ac-a06c-178da625d42e" x="200" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fd_status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4cbf810b-3f31-4570-8b65-456bb6a200bd" x="300" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fd_data_cadastro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="10e0cc88-22b4-429e-b426-f52902ea6abc" x="16" y="0" width="84" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fd_cargo}.intValue()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement uuid="a1f0eb48-c578-42e7-b291-8b335e9df75a" x="455" y="34" width="100" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="a3d1c3ee-90ba-4dac-876d-e1691caeebfe" x="0" y="33" width="555" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,5 +1,6 @@
 package org.entities.classes;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,8 +13,17 @@ public class tb_cargos {
     int fd_cargo;
     String fd_descricao;
     String fd_status;
+    Date fd_data_cadastro;
 
     public tb_cargos() {
+    }
+
+    public Date getFd_data_cadastro() {
+        return fd_data_cadastro;
+    }
+
+    public void setFd_data_cadastro(Date fd_data_cadastro) {
+        this.fd_data_cadastro = fd_data_cadastro;
     }
 
     public tb_cargos(int fd_cargo, String fd_descricao, String fd_status) {
