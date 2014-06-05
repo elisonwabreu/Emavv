@@ -541,8 +541,10 @@
           <Image iconType="3" name="/Img/relatorio_16x16.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Relat&#xf3;rio"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntRelatorioActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>

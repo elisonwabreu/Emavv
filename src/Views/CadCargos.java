@@ -4,23 +4,30 @@
  */
 package Views;
 
-import org.entities.classes.tb_cargos;
-import Model.Deletar;
-import Funcao.Limpar;
 import Daos.DaoCargo;
-import Messages.Cmessage;
-import Model.Gravar;
 import Funcao.InsereNumeros;
+import Funcao.Limpar;
+import Messages.Cmessage;
+import Model.Deletar;
+import Model.Gravar;
 import Model.Selecionar;
 import Model.Validacoes;
 import Theme.Tema;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
+import org.entities.classes.tb_cargos;
 
 /**
  *
@@ -133,7 +140,11 @@ public class CadCargos extends javax.swing.JFrame {
 
         bntRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/relatorio_16x16.png"))); // NOI18N
         bntRelatorio.setText("Relatório");
-        bntRelatorio.setEnabled(false);
+        bntRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntRelatorioActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/vassoura_16x16.png"))); // NOI18N
         btnLimpar.setText("Limpar");
@@ -263,6 +274,16 @@ public class CadCargos extends javax.swing.JFrame {
         val.setTextUp(this);
     }//GEN-LAST:event_txtDescricaoKeyReleased
 
+    private void bntRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRelatorioActionPerformed
+        try {
+            geraRelatorio();
+        } catch (JRException ex) {
+            Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bntRelatorioActionPerformed
+
     public static void main(String args[]) {
 
         try {
@@ -303,5 +324,14 @@ public class CadCargos extends javax.swing.JFrame {
     private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
-
+    public void geraRelatorio() throws JRException, SQLException{
+      
+        List<tb_cargos> cargos = dao.Select(3);
+        HashMap map = new HashMap();
+        
+        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(cargos);
+        JasperPrint jsPrint = JasperFillManager.fillReport("C:/Users/suporte/Documents/Elison/Emavv/src/Relatorios/Cargos/irCargos.jasper", map, ds);
+        JasperViewer jsView = new JasperViewer(jsPrint,true);
+        jsView.setVisible(true);
+    }
 }

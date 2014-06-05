@@ -29,6 +29,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -259,7 +263,11 @@ public class CadAluno extends javax.swing.JFrame {
 
         bntRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/relatorio_16x16.png"))); // NOI18N
         bntRelatorio.setText("Relatório");
-        bntRelatorio.setEnabled(false);
+        bntRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntRelatorioActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/vassoura_16x16.png"))); // NOI18N
         btnLimpar.setText("Limpar");
@@ -571,6 +579,10 @@ public class CadAluno extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
+    private void bntRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRelatorioActionPerformed
+        gerarrelatorio();
+    }//GEN-LAST:event_bntRelatorioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -655,5 +667,17 @@ public class CadAluno extends javax.swing.JFrame {
 
     private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    }
+    
+    public void gerarrelatorio(){
+        
+        try {
+            JasperPrint print = JasperFillManager.fillReport("/Relatorios/Aluno.jasper", null);
+            JasperViewer view = new JasperViewer(print, true);
+            view.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }
