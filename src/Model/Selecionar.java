@@ -539,6 +539,24 @@ public class Selecionar extends JFrame {
                     msg.msgNenhumRegistro();
                 }
                 break;
+                case 7:
+                DaoAluno daoalu2 = new DaoAluno();
+                List<tb_alunos> aluno2 = daoalu2.Select(f.txtCampoBusca.getText().toUpperCase());
+                DefaultTableModel model7 = (DefaultTableModel) f.jGridBusca.getModel();
+                model7.setNumRows(aluno2.size());
+                if (aluno2.size() > 0) {
+                    for (tb_alunos al : aluno2) {
+                        for (int i = 0; i < aluno2.size(); i++) {
+                            f.jGridBusca.setValueAt(aluno2.get(i).getFd_aluno(), i, 0);
+                            f.jGridBusca.setValueAt(aluno2.get(i).getFd_nome(), i, 1);
+                            f.jGridBusca.setValueAt(aluno2.get(i).getFd_status(), i, 2);
+
+                        }
+                    }
+                } else {
+                    msg.msgNenhumRegistro();
+                }
+                break;
         }
 
     }

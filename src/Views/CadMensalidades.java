@@ -6,15 +6,22 @@
 
 package Views;
 
+import Model.Selecionar;
+import Model.Validacoes;
 import Theme.Tema;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author suporte
  */
 public class CadMensalidades extends javax.swing.JFrame {
-
+    Validacoes val = new Validacoes();
+    Selecionar sel = new Selecionar();
     /**
      * Creates new form CadMensalidades
      */
@@ -79,8 +86,18 @@ public class CadMensalidades extends javax.swing.JFrame {
         setType(java.awt.Window.Type.UTILITY);
 
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyPressed(evt);
+            }
+        });
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/lupa_16x16.png"))); // NOI18N
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
@@ -278,6 +295,15 @@ public class CadMensalidades extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+       val.clickBtPesquisa(7, txtCodigo, "tb_alunos");
+       
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+        
+    }//GEN-LAST:event_txtCodigoKeyPressed
 
     /**
      * @param args the command line arguments
