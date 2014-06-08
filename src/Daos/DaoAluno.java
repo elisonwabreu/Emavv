@@ -64,6 +64,15 @@ public class DaoAluno {
         List<tb_alunos> aluno = q.getResultList();
         return aluno;
     }
+    public List<tb_alunos> SelectAlunoPag() throws SQLException {
+
+        Query q = manager.createQuery("select a from tb_alunos a "
+                + "inner join tb_mensalidades m on m.fd_aluno = a.fd_aluno"
+                + "order by fd_aluno desc")/*.setMaxResults(1)*/;
+        
+        List<tb_alunos> aluno = q.getResultList();
+        return aluno;
+    }
 
     public List<tb_alunos> Select(String nome) throws SQLException {
 

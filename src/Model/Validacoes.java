@@ -543,6 +543,15 @@ public class Validacoes extends JFrame {
         busca.tabela = tabela;
 
     }
+    public void clickBtPesquisaa(int tableIndex, CadMatriculas a, String tabela) {
+
+        FormBusca busca = new FormBusca();
+        busca.setVisible(true);
+        busca.tableIndex = tableIndex;
+        busca.setTxtCodigo(a.txtCodCurso);
+        busca.tabela = tabela;
+
+    }
 
     public void setTextUp(CadCargos c) {
 

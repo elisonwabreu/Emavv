@@ -3,7 +3,10 @@ package org.entities.classes;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class tb_mensalidades {
@@ -16,6 +19,17 @@ public class tb_mensalidades {
   private Date fd_vencimento;
   private double fd_valor;
   private String fd_status;
+  /*@ManyToMany
+  @Fetch(FetchMode.JOIN)
+  private tb_alunos alunos;*/
+
+  /*  public tb_alunos getAlunos() {
+  return alunos;
+  }
+  
+  public void setAlunos(tb_alunos alunos) {
+  this.alunos = alunos;
+  }*/
 
     public tb_mensalidades(int fd_matricula, int fd_curso, int fd_aluno, Date fd_vencimento,
                         double fd_valor, String fd_status)
@@ -26,6 +40,10 @@ public class tb_mensalidades {
         this.fd_vencimento = fd_vencimento;
         this.fd_valor = fd_valor;
         this.fd_status = fd_status;
+    }
+
+    public tb_mensalidades() {
+        
     }
 
     public int getFd_matricula() {

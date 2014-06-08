@@ -4,18 +4,15 @@
  */
 package Model;
 
-import Funcao.Limpar;
-import org.entities.classes.tb_alunos;
-import org.entities.classes.tb_cargos;
-import org.entities.classes.tb_cursos;
 import Daos.DaoAluno;
-import Daos.DaoUsuarios;
 import Daos.DaoCargo;
 import Daos.DaoCursos;
 import Daos.DaoDisciplinas;
 import Daos.DaoFuncionarios;
 import Daos.DaoItens;
 import Daos.DaoMatricula;
+import Daos.DaoUsuarios;
+import Funcao.Limpar;
 import Messages.Cmessage;
 import Views.CadAluno;
 import Views.CadCargos;
@@ -32,10 +29,14 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import org.entities.classes.tb_alunos;
+import org.entities.classes.tb_cargos;
+import org.entities.classes.tb_cursos;
 import org.entities.classes.tb_disciplinas;
 import org.entities.classes.tb_funcionarios;
 import org.entities.classes.tb_itens;
 import org.entities.classes.tb_matriculas;
+import org.entities.classes.tb_mensalidades;
 import org.entities.classes.tb_usuarios;
 
 /**
@@ -286,6 +287,31 @@ public class Selecionar extends JFrame {
         } else {
             msg.msgNenhumRegistro();
             limpa.LimpaCurso(c);
+            return false;
+        }
+    }
+    public boolean ListarCursos(CadMatriculas c) throws SQLException {
+
+        DaoCursos dao = new DaoCursos();
+
+        int codigo = Integer.parseInt(c.txtCodCurso.getText());
+
+            List<tb_cursos> curso = dao.Select(codigo);
+         if (curso.size()>0) {
+            for (tb_cursos cr : curso) {
+                c.txtDescricaoCurso.setText(cr.getFd_descricao());
+                /*c.txtValor.setText(String.valueOf(cr.getFd_valor()));*/
+
+                /* if (cr.getFd_status().equals("A")) {
+                c.cbStatus.setSelectedIndex(1);
+                } else {
+                c.cbStatus.setSelectedIndex(2);
+                }*/
+            }
+            return true;
+        } else {
+            msg.msgNenhumRegistro();
+            /*limpa.LimpaCurso(c);*/
             return false;
         }
     }
@@ -541,7 +567,8 @@ public class Selecionar extends JFrame {
                 break;
                 case 7:
                 DaoAluno daoalu2 = new DaoAluno();
-                List<tb_alunos> aluno2 = daoalu2.Select(f.txtCampoBusca.getText().toUpperCase());
+                tb_mensalidades mens = new tb_mensalidades();
+                List<tb_alunos> aluno2 = daoalu2.SelectAlunoPag();
                 DefaultTableModel model7 = (DefaultTableModel) f.jGridBusca.getModel();
                 model7.setNumRows(aluno2.size());
                 if (aluno2.size() > 0) {

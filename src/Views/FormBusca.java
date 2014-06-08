@@ -72,6 +72,11 @@ public class FormBusca extends javax.swing.JFrame {
         });
 
         cbFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Código", "Descrição" }));
+        cbFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFiltroActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Procurar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +188,10 @@ public class FormBusca extends javax.swing.JFrame {
          setJtableValue(tableIndex);
         }
     }//GEN-LAST:event_jGridBuscaKeyPressed
+
+    private void cbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbFiltroActionPerformed
 
     /**
      * @param args the command line arguments

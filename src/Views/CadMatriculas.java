@@ -38,11 +38,11 @@ public class CadMatriculas extends javax.swing.JFrame {
     public CadMatriculas() {
         initComponents();
         setIcon();
-        jTable1.getColumnModel().getColumn(1).setMaxWidth(500);
-        jTable1.getColumnModel().getColumn(1).setMinWidth(450);
+        jGridMatricula.getColumnModel().getColumn(1).setMaxWidth(500);
+        jGridMatricula.getColumnModel().getColumn(1).setMinWidth(450);
        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();  
        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
-       jTable1.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+       jGridMatricula.getColumnModel().getColumn(1).setCellRenderer(centralizado);
     }
 
     /**
@@ -70,11 +70,11 @@ public class CadMatriculas extends javax.swing.JFrame {
         txtDtCadastro = new javax.swing.JTextField();
         this.txtDtCadastro = new JFormattedTextField(fmtDtCadastro);
         lblCodigo2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCodCurso = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        txtDescricaoCurso = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jGridMatricula = new javax.swing.JTable();
         lblCodigo3 = new javax.swing.JLabel();
         lblCodigo4 = new javax.swing.JLabel();
 
@@ -157,11 +157,23 @@ public class CadMatriculas extends javax.swing.JFrame {
 
         lblCodigo2.setText("Data Matricula");
 
+        txtCodCurso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodCurso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodCursoKeyPressed(evt);
+            }
+        });
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/lupa_16x16.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setEditable(false);
+        txtDescricaoCurso.setEditable(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jGridMatricula.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null}
@@ -185,7 +197,7 @@ public class CadMatriculas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jGridMatricula);
 
         lblCodigo3.setText("Cod.");
 
@@ -213,11 +225,11 @@ public class CadMatriculas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSalvar))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2))
+                        .addComponent(txtDescricaoCurso))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -268,12 +280,12 @@ public class CadMatriculas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtCodCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(lblCodigo4)
                         .addGap(8, 8, 8)
-                        .addComponent(jTextField2)))
+                        .addComponent(txtDescricaoCurso)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -343,6 +355,24 @@ public class CadMatriculas extends javax.swing.JFrame {
         novo.convertMatricula(this);
     }//GEN-LAST:event_btnMatriculaActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       val.clickBtPesquisaa(4, this, "tb_cursos");
+        txtCodigo.setEnabled(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtCodCursoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodCursoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            if (val.KeyPressedText(this) == true) {
+                try {
+                       sel.ListarCursos(this);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadCursos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_txtCodCursoKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -385,17 +415,17 @@ public class CadMatriculas extends javax.swing.JFrame {
     public javax.swing.JButton btnMatricula;
     public javax.swing.JButton btnSalvar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JTable jGridMatricula;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCodigo1;
     private javax.swing.JLabel lblCodigo2;
     private javax.swing.JLabel lblCodigo3;
     private javax.swing.JLabel lblCodigo4;
     private javax.swing.JLabel lblNome;
+    public javax.swing.JTextField txtCodCurso;
     public javax.swing.JTextField txtCodigo;
+    public javax.swing.JTextField txtDescricaoCurso;
     public javax.swing.JTextField txtDtCadastro;
     public javax.swing.JTextField txtMatricula;
     public javax.swing.JTextField txtNome;

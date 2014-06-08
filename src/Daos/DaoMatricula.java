@@ -36,4 +36,13 @@ public class DaoMatricula {
         List<tb_matriculas> matricula = q.getResultList();
         return matricula;
     }
+    
+    public List<tb_matriculas> SelectMatricula(int matriculaexit) throws SQLException {
+
+        Query q = manager.createQuery("select a.fd_matricula from tb_matriculas a "
+                + "where a.fd_matricula = :fd_matricula");
+         q.setParameter("fd_matricula", matriculaexit);
+        List<tb_matriculas> matricula = q.getResultList();
+        return matricula;
+    }
 }

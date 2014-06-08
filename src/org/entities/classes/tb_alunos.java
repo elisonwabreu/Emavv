@@ -5,7 +5,10 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -35,6 +38,17 @@ public class tb_alunos implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     Date fd_data_cadastro;
     String fd_status;
+    /* @ManyToMany
+    @Fetch(FetchMode.JOIN)
+    tb_mensalidades mensalidade;*/
+
+    /* public tb_mensalidades getMensalidade() {
+    return mensalidade;
+    }
+    
+    public void setMensalidade(tb_mensalidades mensalidade) {
+    this.mensalidade = mensalidade;
+    }*/
 
     //int fd_matricula;
     public void setFd_data_cadastro(Date fd_data_cadastro) {

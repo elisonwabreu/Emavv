@@ -6,6 +6,7 @@ package Model;
 
 import Funcao.Limpar;
 import Daos.DaoAluno;
+import Daos.DaoMatriculados;
 import Daos.DaoCargo;
 import Daos.DaoCursos;
 import Daos.DaoDisciplinas;
@@ -30,13 +31,14 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import org.entities.classes.Matriculados;
+
 import org.entities.classes.tb_alunos;
 import org.entities.classes.tb_cargos;
 import org.entities.classes.tb_cursos;
 import org.entities.classes.tb_disciplinas;
 import org.entities.classes.tb_funcionarios;
 import org.entities.classes.tb_itens;
+import org.entities.classes.tb_matriculados;
 import org.entities.classes.tb_matriculas;
 import org.entities.classes.tb_usuarios;
 
@@ -332,16 +334,47 @@ public class Gravar extends JFrame {
     public void GravaMatricula(CadMatriculas a) throws ParseException, SQLException {
         DaoMatricula matr = new DaoMatricula();
         tb_matriculas novoMatr = new tb_matriculas();
-
         int codAluno = Integer.parseInt(a.txtCodigo.getText());
         int matricula = Integer.parseInt(a.txtMatricula.getText());
-        String data = a.txtDtCadastro.getText();
+        
+        List<tb_matriculas> matricad = matr.SelectMatricula(Integer.parseInt(a.txtMatricula.getText()));
 
-        novoMatr.setFd_matricula(matricula);
-        novoMatr.setFd_aluno(codAluno);
-        novoMatr.setFd_data_matricula(val.FormataData(data));
+            if(matricad.size()>0){
+            for(tb_matriculas cr  : matricad){
+                if(matricula == cr.getFd_matricula()){
 
-        matr.Inserir(novoMatr);
+                    DaoMatriculados matr2 = new DaoMatriculados();
+                    tb_matriculados novomatr2 = new tb_matriculados();
+                    int codCurso = Integer.parseInt(a.txtCodCurso.getText());
+
+                    novomatr2.setFd_matricula(matricula);
+                    novomatr2.setFd_curso(codCurso);
+                    novomatr2.setFd_aluno(codAluno);
+                    matr2.Inserir(novomatr2);
+                }else{
+                    String data = a.txtDtCadastro.getText();
+
+                    novoMatr.setFd_matricula(matricula);
+                    novoMatr.setFd_aluno(codAluno);
+                    novoMatr.setFd_data_matricula(val.FormataData(data));
+
+                    matr.Inserir(novoMatr);
+                    
+                    DaoMatriculados matr2 = new DaoMatriculados();
+                    tb_matriculados novomatr2 = new tb_matriculados();
+                    int codCurso = Integer.parseInt(a.txtCodCurso.getText());
+
+                    novomatr2.setFd_matricula(matricula);
+                    novomatr2.setFd_curso(codCurso);
+                    novomatr2.setFd_aluno(codAluno);
+                    matr2.Inserir(novomatr2);
+        
+                } 
+            }
+            }else{
+                System.out.print("ooooooooooooooooo");
+            }
+        
     }
     public void GravaMatricula(int codigo) throws ParseException, SQLException {
         DaoMatricula matr = new DaoMatricula();
