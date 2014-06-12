@@ -144,6 +144,7 @@ public class CadMatriculas extends javax.swing.JFrame {
             }
         });
 
+        txtDtCadastro.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtDtCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDtCadastroActionPerformed(evt);
@@ -363,13 +364,12 @@ public class CadMatriculas extends javax.swing.JFrame {
     private void txtCodCursoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodCursoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
-            if (val.KeyPressedText(this) == true) {
-                try {
+                    try {
                        sel.ListarCursos(this);
-                } catch (SQLException ex) {
-                    Logger.getLogger(CadCursos.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+                        } catch (SQLException ex) {
+                        Logger.getLogger(CadCursos.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+           
         }
     }//GEN-LAST:event_txtCodCursoKeyPressed
 

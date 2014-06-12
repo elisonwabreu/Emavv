@@ -12,22 +12,13 @@ import javax.persistence.Temporal;
 public class tb_matriculas implements Serializable {
 
     @Id
-    //@GeneratedValue
-    //public int fd_codigo;
     public int fd_matricula;
     public int fd_aluno;
     @Temporal(javax.persistence.TemporalType.DATE)
     public Date fd_data_matricula;
-    //public int fd_usuario;
-/*
-    public int getFd_codigo() {
-        return fd_codigo;
-    }
 
-    public void setFd_codigo(int fd_codigo) {
-        this.fd_codigo = fd_codigo;
-    }
-*/
+
+ 
     public int getFd_matricula() {
         return fd_matricula;
     }

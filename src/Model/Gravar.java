@@ -336,8 +336,9 @@ public class Gravar extends JFrame {
         tb_matriculas novoMatr = new tb_matriculas();
         int codAluno = Integer.parseInt(a.txtCodigo.getText());
         int matricula = Integer.parseInt(a.txtMatricula.getText());
+   
         
-        List<tb_matriculas> matricad = matr.SelectMatricula(Integer.parseInt(a.txtMatricula.getText()));
+        List<tb_matriculas> matricad = matr.SelectMatricula(matricula);
 
             if(matricad.size()>0){
             for(tb_matriculas cr  : matricad){
@@ -351,6 +352,7 @@ public class Gravar extends JFrame {
                     novomatr2.setFd_curso(codCurso);
                     novomatr2.setFd_aluno(codAluno);
                     matr2.Inserir(novomatr2);
+                    
                 }else{
                     String data = a.txtDtCadastro.getText();
 
