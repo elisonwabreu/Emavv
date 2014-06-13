@@ -13,6 +13,15 @@ public class tb_disciplinas implements Serializable {
     public int fd_disciplina;
     public String fd_descricao;
     public String fd_status;
+    public int fd_curso;
+
+    public int getFd_curso() {
+        return fd_curso;
+    }
+
+    public void setFd_curso(int fd_curso) {
+        this.fd_curso = fd_curso;
+    }
 
     public tb_disciplinas() {
     }

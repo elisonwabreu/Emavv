@@ -118,11 +118,10 @@ CREATE TABLE tb_matriculas (
 );
 
 CREATE TABLE tb_matriculados (
-  fd_matricula INTEGER UNIQUE REFERENCES tb_matriculas(fd_matricula),
+  fd_matricula INTEGER REFERENCES tb_matriculas(fd_matricula),
   fd_curso INTEGER REFERENCES tb_cursos(fd_curso),
   fd_aluno INTEGER REFERENCES tb_alunos(fd_aluno),
-  PRIMARY KEY (fd_matricula, fd_aluno)
-  
+    
 );
 
 

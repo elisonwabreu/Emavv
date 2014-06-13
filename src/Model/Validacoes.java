@@ -217,15 +217,19 @@ public class Validacoes extends JFrame {
 
     public boolean KeyPressedText(CadDisciplinas c) {
 
-        if (c.txtCodigo.getText().equals("")) {
+        if (c.txtCodDisciplina.getText().equals("")) {
 
             c.btnSalvar.setEnabled(true);
-            c.txtCodigo.setEnabled(false);
-
+            c.txtCodDisciplina.setEnabled(false);
+            c.txtDescricao.grabFocus();
             return true;
+            
         } else {
             c.btnSalvar.setEnabled(true);
-            c.txtCodigo.setEnabled(false);
+            c.btnExcluir.setEnabled(true);
+            c.btnLimpar.setEnabled(true);
+            c.txtCodDisciplina.setEnabled(true);
+            c.txtDescricao.grabFocus();
             return false;
         }
     }
@@ -400,14 +404,14 @@ public class Validacoes extends JFrame {
         }
     }
 
-    public void ButtonClick(CadDisciplinas c) {
-        if(c.txtCodigo.getText().equals("")){
+    public void ButtonClick(CadDisciplinas c){
+            if(c.txtCodigo.getText().equals("")){
             c.btnExcluir.setEnabled(false);
             c.btnLimpar.setEnabled(false);
             c.bntRelatorio.setEnabled(false);
             c.btnSalvar.setEnabled(false);
             c.btnBuscar.setEnabled(true);
-            c.txtCodigo.setEnabled(true);
+            c.txtCodDisciplina.setEnabled(true);
             c.txtCodigo.grabFocus();
         }else{
             c.btnExcluir.setEnabled(true);
@@ -415,7 +419,7 @@ public class Validacoes extends JFrame {
             c.bntRelatorio.setEnabled(true);
             c.btnSalvar.setEnabled(false);
             c.btnBuscar.setEnabled(true);
-            c.txtCodigo.setEnabled(true);
+            c.txtCodDisciplina.setEnabled(true);
             c.txtCodigo.grabFocus();
         }
     }

@@ -48,10 +48,10 @@ public class DaoDisciplinas {
         String jpql = "";
 
         if (descricao.equals("")) {
-            jpql = "select a from tb_disciplinas a";
+            jpql = "select a from tb_disciplinas a where a.fd_status <> 'E'";
         } else {
             jpql = "select a from tb_disciplinas a where a.fd_descricao "
-                    + "like :fd_descricao";
+                    + "like :fd_descricao and a.fd_status <> 'E' ";
         }
 
         Query q = manager.createQuery(jpql);

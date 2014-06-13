@@ -236,6 +236,7 @@ public class Gravar extends JFrame {
 
         String descricao = dis.txtDisciplina.getText();
         String status = dis.comboStatus.getSelectedItem().toString();
+        int codidoCurso =  Integer.parseInt(dis.txtCodigo.getText());
 
         if (dis.comboStatus.getSelectedIndex() == 1) {
             status = "A";
@@ -244,6 +245,7 @@ public class Gravar extends JFrame {
         }
         novo.setFd_descricao(descricao.toUpperCase());
         novo.setFd_status(status);
+        novo.setFd_curso(codidoCurso);
 
         disciplina.Inserir(novo);
 

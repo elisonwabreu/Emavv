@@ -415,7 +415,7 @@ public class CadMatriculas extends javax.swing.JFrame {
     public javax.swing.JButton btnMatricula;
     public javax.swing.JButton btnSalvar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JTable jGridMatricula;
+    public javax.swing.JTable jGridMatricula;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCodigo1;

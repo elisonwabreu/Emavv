@@ -52,7 +52,7 @@ public class Deletar extends JFrame {
             
     }
     public void Delete(CadDisciplinas c) throws SQLException {
-        int codigo = Integer.parseInt(c.txtCodigo.getText());
+        int codigo = Integer.parseInt(c.txtCodDisciplina.getText());
             daodisc.UpdateDelete(codigo);
             
     }

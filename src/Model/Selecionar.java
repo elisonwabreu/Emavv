@@ -290,6 +290,31 @@ public class Selecionar extends JFrame {
             return false;
         }
     }
+    public boolean ListarCursos(CadDisciplinas c) throws SQLException {
+
+        DaoCursos dao = new DaoCursos();
+
+        int codigo = Integer.parseInt(c.txtCodigo.getText());
+
+            List<tb_cursos> curso = dao.Select(codigo);
+         if (curso.size()>0) {
+            for (tb_cursos cr : curso) {
+                c.txtDescricao.setText(cr.getFd_descricao());
+               // c.txtValor.setText(String.valueOf(cr.getFd_valor()));
+
+                if (cr.getFd_status().equals("A")) {
+                    c.cbStatus.setSelectedIndex(1);
+                } else {
+                    c.cbStatus.setSelectedIndex(2);
+                }
+            }
+            return true;
+        } else {
+            msg.msgNenhumRegistro();
+            
+            return false;
+        }
+    }
     public boolean ListarCursos(CadMatriculas c) throws SQLException {
 
         DaoCursos dao = new DaoCursos();
@@ -348,7 +373,7 @@ public class Selecionar extends JFrame {
 
         DaoDisciplinas dao = new DaoDisciplinas();
 
-        int codigo = Integer.parseInt(c.txtCodigo.getText());
+        int codigo = Integer.parseInt(c.txtCodDisciplina.getText());
 
             List<tb_disciplinas> disc = dao.Select(codigo);
         if (disc.size()>0) {
