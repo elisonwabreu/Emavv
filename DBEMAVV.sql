@@ -67,6 +67,7 @@ CREATE TABLE tb_disciplinas (
   fd_disciplina SERIAL,
   fd_descricao VARCHAR(50) NOT NULL,
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN('A','I','E')),
+  fd_curso INT NOT NULL REFERENCES tb_cursos(fd_curso),
   fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY(fd_disciplina)
 );

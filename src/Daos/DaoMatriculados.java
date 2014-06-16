@@ -2,12 +2,8 @@ package Daos;
 
 import ConnectionFactory.JPAUtil;
 import Messages.Cmessage;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.persistence.EntityManager;
-import org.entities.classes.tb_cursos;
 import org.entities.classes.tb_matriculados;
 
 
