@@ -51,6 +51,7 @@ public class CadItens extends javax.swing.JFrame {
         initComponents();
         txtCodigo.setDocument(new InsereNumeros());
         setIcon();
+        
     }
 
     /**
@@ -75,6 +76,8 @@ public class CadItens extends javax.swing.JFrame {
         btnLimpar = new javax.swing.JButton();
         lblPreco = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
+        lblQtde = new javax.swing.JLabel();
+        lblQtdeItem = new javax.swing.JLabel();
 
         jButton2.setText("jButton2");
 
@@ -147,7 +150,16 @@ public class CadItens extends javax.swing.JFrame {
         });
 
         lblPreco.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        lblPreco.setText("Preço");
+        lblPreco.setText("Preço:");
+
+        txtPreco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lblQtde.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lblQtde.setText("Qtd.:");
+
+        lblQtdeItem.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        lblQtdeItem.setForeground(new java.awt.Color(255, 0, 0));
+        lblQtdeItem.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -184,7 +196,11 @@ public class CadItens extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblPreco)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83)
+                                .addComponent(lblQtde)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblQtdeItem, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -205,14 +221,16 @@ public class CadItens extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPreco))
+                    .addComponent(lblPreco)
+                    .addComponent(lblQtde)
+                    .addComponent(lblQtdeItem))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bntRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -243,6 +261,11 @@ public class CadItens extends javax.swing.JFrame {
                 Logger.getLogger(CadItens.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        if(msg.MsgConfItens() == true){
+            CadSAldos saldo = new CadSAldos(this);
+            saldo.setVisible(true);
+            
+            }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -323,6 +346,8 @@ public class CadItens extends javax.swing.JFrame {
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblItem;
     private javax.swing.JLabel lblPreco;
+    private javax.swing.JLabel lblQtde;
+    private javax.swing.JLabel lblQtdeItem;
     private javax.swing.JLabel lblStatus;
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtItem;
@@ -334,4 +359,6 @@ public class CadItens extends javax.swing.JFrame {
     private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
+    
+    
 }

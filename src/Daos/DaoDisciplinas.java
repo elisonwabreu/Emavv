@@ -40,6 +40,13 @@ public class DaoDisciplinas {
         q.setParameter("fd_disciplina", codigo);
         List<tb_disciplinas> disc = q.getResultList();
         return disc;
+    }
+    public List<tb_disciplinas> SelectDiscCurso(int codigo) throws SQLException {
+       Query q = manager.createQuery("select a from tb_disciplinas a where "
+                + "a.fd_curso = :fd_curso and fd_status <> 'E'");
+        q.setParameter("fd_curso", codigo);
+        List<tb_disciplinas> disc = q.getResultList();
+        return disc;
 
         
     }

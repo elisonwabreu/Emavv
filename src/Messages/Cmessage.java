@@ -83,6 +83,10 @@ public class Cmessage {
 
         JOptionPane.showMessageDialog(null, "Nenhum registo encontrado!");
     }
+    public void msgNenhumRegistroDisc() {
+
+        JOptionPane.showMessageDialog(null, "Esse curso não possui Disciplinas cadastradas!");
+    }
     public boolean MsgConfMatricula() {
 
         if (JOptionPane.showConfirmDialog(null, "Deseja Gerar Matricula Agora?", "Matricula",
@@ -95,5 +99,16 @@ public class Cmessage {
             return false;
         }
     }
-    
+    public boolean MsgConfItens() {
+
+        if (JOptionPane.showConfirmDialog(null, "Deseja Informar /n/r Quantidade desse Item?", "Itens",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+            return true;
+
+        } else {
+
+            return false;
+        }
+    }
 }

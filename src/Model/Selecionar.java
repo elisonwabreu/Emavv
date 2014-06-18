@@ -318,29 +318,42 @@ public class Selecionar extends JFrame {
     public boolean ListarCursos(CadMatriculas c) throws SQLException {
 
         DaoCursos dao = new DaoCursos();
+        DaoDisciplinas disc =  new DaoDisciplinas();
 
         int codigo = Integer.parseInt(c.txtCodCurso.getText());
-
             List<tb_cursos> curso = dao.Select(codigo);
+            List<tb_disciplinas> disciplina = disc.SelectDiscCurso(codigo);
          if (curso.size()>0) {
             for (tb_cursos cr : curso) {
                 c.txtDescricaoCurso.setText(cr.getFd_descricao());
-                /*c.txtValor.setText(String.valueOf(cr.getFd_valor()));*/
-
-                /* if (cr.getFd_status().equals("A")) {
-                c.cbStatus.setSelectedIndex(1);
-                } else {
-                c.cbStatus.setSelectedIndex(2);
-                }*/
             }
             return true;
         } else {
             msg.msgNenhumRegistro();
-            /*limpa.LimpaCurso(c);*/
             return false;
         }
     }
+    public boolean ListarDisciplinas(CadMatriculas c) throws SQLException {
 
+        DaoDisciplinas disc =  new DaoDisciplinas();
+        int codigo = Integer.parseInt(c.txtCodCurso.getText());
+            List<tb_disciplinas> disciplina = disc.SelectDiscCurso(codigo);
+            DefaultTableModel model = (DefaultTableModel) c.jGridMatricula.getModel();
+            model.setNumRows(disciplina.size());
+         if (disciplina.size()>0) {
+            for (tb_disciplinas cr : disciplina) {
+                for (int i = 0; i < disciplina.size(); i++) {
+                            c.jGridMatricula.setValueAt(disciplina.get(i).getFd_disciplina(), i, 0);
+                            c.jGridMatricula.setValueAt(disciplina.get(i).getFd_descricao(), i, 1);
+                            }
+            }
+            return true;
+        } else {
+            msg.msgNenhumRegistroDisc();
+            c.jGridMatricula.setName("");
+            return false;
+        }
+    }
     public boolean ListarItens(CadItens c) throws SQLException {
 
         DaoItens dao = new DaoItens();

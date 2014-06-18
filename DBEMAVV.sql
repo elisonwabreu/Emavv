@@ -103,6 +103,7 @@ CREATE TABLE tb_itens (
   fd_item SERIAL,
   fd_descricao VARCHAR(50) NOT NULL,
   fd_valor NUMERIC(14,6) NOT NULL CHECK (fd_valor > 0),
+ -- fd_qtde INT NOT NULL CHECK (fd_qtde > 0),
   fd_status CHAR(1) NOT NULL CHECK (fd_status IN('A','I','E')),
   fd_data_cadastro timestamp default current_timestamp,
   PRIMARY KEY(fd_item)
