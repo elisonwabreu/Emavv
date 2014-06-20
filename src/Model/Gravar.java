@@ -294,7 +294,7 @@ public class Gravar extends JFrame {
 
         item.Inserir(novo);
 
-        limpa.LimpaItens(i);
+        //limpa.LimpaItens(i);
 
     }
 

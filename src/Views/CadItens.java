@@ -262,7 +262,8 @@ public class CadItens extends javax.swing.JFrame {
             }
         }
         if(msg.MsgConfItens() == true){
-            CadSAldos saldo = new CadSAldos(this);
+            CadSAldos saldo = new CadSAldos();
+            saldo.envia(this, txtCodigo.getText(), txtItem.getText());
             saldo.setVisible(true);
             
             }
