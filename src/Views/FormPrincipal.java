@@ -33,6 +33,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         btnLogout = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         AluCadastro = new javax.swing.JMenuItem();
@@ -52,6 +53,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuNovoItem = new javax.swing.JMenu();
         jMenuCadItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu11 = new javax.swing.JMenu();
         jMenu12 = new javax.swing.JMenu();
@@ -77,6 +79,15 @@ public class FormPrincipal extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/10889_64x64.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(434, 25));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Aluno_16x16.png"))); // NOI18N
         jMenu1.setText("Aluno");
@@ -202,6 +213,14 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         jMenu4.add(jMenuNovoItem);
 
+        jMenuItem1.setText("Saldo");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/impressora.png"))); // NOI18N
@@ -229,11 +248,17 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnSair)
                 .addContainerGap(273, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(225, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogout)
                     .addComponent(btnSair))
@@ -297,6 +322,16 @@ public class FormPrincipal extends javax.swing.JFrame {
        novo.setVisible(true);
     }//GEN-LAST:event_jMenuCadMensalidadesActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       CadSAldos saldo = new CadSAldos();
+       saldo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FormVendas venda = new FormVendas();
+        venda.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -337,6 +372,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem GeraMatricula;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnSair;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
@@ -352,6 +388,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuCadFunc;
     private javax.swing.JMenuItem jMenuCadItem;
     private javax.swing.JMenuItem jMenuCadMensalidades;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu jMenuNovoCargo;
     private javax.swing.JMenu jMenuNovoCurso;
