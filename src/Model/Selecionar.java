@@ -23,6 +23,7 @@ import Views.CadItens;
 import Views.CadMatriculas;
 import Views.CadUsuarios;
 import Views.FormBusca;
+import Views.FormVendas;
 import Views.Form_TelaLogin;
 import java.sql.SQLException;
 import java.util.List;
@@ -381,7 +382,26 @@ public class Selecionar extends JFrame {
             return false;
         }
     }
+    public boolean ListarItens(FormVendas c) throws SQLException {
 
+        DaoItens dao = new DaoItens();
+
+        int codigo = Integer.parseInt(c.txtCodigo.getText());
+       
+        List<tb_itens> item = dao.Select(codigo);
+         if(c.txtCodigo.getText() != ""){
+         if (item.size()>0) {
+            for (tb_itens cr : item) {
+                c.txtValorUnitario.setText(String.valueOf(cr.getFd_valor()));
+            }
+         }
+            return true;
+        } else {
+            msg.msgNenhumRegistro();
+           // limpa.LimpaItens(c);
+            return false;
+        }
+    }
     public boolean ListarDisciplinas(CadDisciplinas c) throws SQLException {
 
         DaoDisciplinas dao = new DaoDisciplinas();

@@ -24,13 +24,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
-import net.sf.jasperreports.engine.JRException;
+/*import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
+import net.sf.jasperreports.view.JasperViewer;*/
 import org.entities.classes.tb_cargos;
 
 /**
@@ -280,11 +280,11 @@ public class CadCargos extends javax.swing.JFrame {
 
     private void bntRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRelatorioActionPerformed
         
-        try {
-            geraRelatorio();
+        /*try {
+        geraRelatorio();
         } catch (JRException | SQLException ex) {
-            Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
         
     }//GEN-LAST:event_bntRelatorioActionPerformed
 
@@ -328,20 +328,20 @@ public class CadCargos extends javax.swing.JFrame {
     private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
     }
-    public void geraRelatorio() throws JRException, SQLException{
-      
-        List<tb_cargos> cargos = dao.SelectFormBusca();
-        HashMap map = new HashMap();
+    /* public void geraRelatorio() throws JRException, SQLException{
     
-     
-
-        JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(cargos);
-        
-        
-        
-        JasperPrint jsPrint =  JasperFillManager.fillReport("JasperReport/irCargos.jasper", map, ds);
-        JasperViewer jsView = new JasperViewer(jsPrint,false);
-        jsView.setVisible(true);
-        jsView.toFront();
-    }
+    List<tb_cargos> cargos = dao.SelectFormBusca();
+    HashMap map = new HashMap();
+    
+    
+    
+    JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(cargos);
+    
+    
+    
+    JasperPrint jsPrint =  JasperFillManager.fillReport("JasperReport/irCargos.jasper", map, ds);
+    JasperViewer jsView = new JasperViewer(jsPrint,false);
+    jsView.setVisible(true);
+    jsView.toFront();
+    }*/
 }

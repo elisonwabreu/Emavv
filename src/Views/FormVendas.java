@@ -4,10 +4,16 @@
  */
 package Views;
 
+import Funcao.Vendas;
 import Model.Selecionar;
 import Model.Validacoes;
 import Theme.Tema;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +23,7 @@ public class FormVendas extends javax.swing.JFrame {
 
      Validacoes val = new Validacoes();
      Selecionar sel = new Selecionar();
+     Vendas venda =  new Vendas();
      
     public FormVendas() {
         setIcon();
@@ -91,6 +98,14 @@ public class FormVendas extends javax.swing.JFrame {
 
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCodigo.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyReleased(evt);
+            }
+        });
 
         btnPagar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/6940_32x32.png"))); // NOI18N
@@ -283,6 +298,32 @@ public class FormVendas extends javax.swing.JFrame {
         pagar.setVisible(true);
     }//GEN-LAST:event_btnPagarActionPerformed
 
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            
+          if(this.txtQtdItem.getText().equals("")){
+               JOptionPane.showMessageDialog(null, "Informe a quantidade");
+          }else if(this.txtQtdItem.getText().equals("0")){
+               JOptionPane.showMessageDialog(null, "Não é permitido valor 0,00 na quantidade.");
+          }else{
+                try {
+                    if (sel.ListarItens(this) == true) {
+
+                       venda.CalcVenda(this);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
+                }
+          
+        }
+        }
+    }//GEN-LAST:event_txtCodigoKeyPressed
+
+    private void txtCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -331,11 +372,11 @@ public class FormVendas extends javax.swing.JFrame {
     private javax.swing.JLabel lblValorTotal;
     private javax.swing.JLabel lblValorUnid;
     public javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtQtdItem;
+    public javax.swing.JTextField txtQtdItem;
     private javax.swing.JFormattedTextField txtSubTotal;
-    private javax.swing.JFormattedTextField txtTotalGeral;
-    private javax.swing.JFormattedTextField txtValorTotal;
-    private javax.swing.JFormattedTextField txtValorUnitario;
+    public javax.swing.JFormattedTextField txtTotalGeral;
+    public javax.swing.JFormattedTextField txtValorTotal;
+    public javax.swing.JFormattedTextField txtValorUnitario;
     // End of variables declaration//GEN-END:variables
 private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
