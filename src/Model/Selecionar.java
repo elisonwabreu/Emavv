@@ -393,6 +393,8 @@ public class Selecionar extends JFrame {
          if (item.size()>0) {
             for (tb_itens cr : item) {
                 c.txtValorUnitario.setText(String.valueOf(cr.getFd_valor()));
+                c.lblProdutos.setText(cr.getFd_descricao());
+               
             }
          }
             return true;

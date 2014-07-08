@@ -13,12 +13,12 @@ import Views.FormVendas;
  */
 public class Vendas {
     
-    public void CalcVenda(FormVendas c){
+    public void CalcVenda(FormVendas c, double x){
     //variaveis
         int     quantidade;
         double  ValorTotal;
         double  ValorUnid;
-        double  ValorGeral = 0.0;
+        double  ValorGeral = x;
     //recuperação de valores
         quantidade = Integer.parseInt(c.txtQtdItem.getText());
         ValorUnid = Double.parseDouble(c.txtValorUnitario.getText());
@@ -28,6 +28,7 @@ public class Vendas {
         
         c.txtValorTotal.setText(String.valueOf(ValorTotal));
         c.txtTotalGeral.setText(String.valueOf(ValorGeral));
+       
         //return ValorTotal;
     }
     
