@@ -10,6 +10,10 @@ import Model.Selecionar;
 import Model.Validacoes;
 import Theme.Tema;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +26,10 @@ public class FormTelaPagamento extends javax.swing.JFrame {
     public FormTelaPagamento() {
         setIcon();
         initComponents();
+    }
+
+   public void TelaPagamento(String text) {
+       this.txtValorPag.setText(text);
     }
 
     /**
@@ -42,9 +50,9 @@ public class FormTelaPagamento extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtValorRec = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        txtValorPag = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jFormattedTextField3 = new javax.swing.JFormattedTextField();
@@ -119,14 +127,15 @@ public class FormTelaPagamento extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(221, 221, 221));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jFormattedTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        txtValorRec.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        txtValorRec.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        txtValorRec.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel3.setText("Valor Recebido");
 
-        jFormattedTextField2.setEditable(false);
-        jFormattedTextField2.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        txtValorPag.setEditable(false);
+        txtValorPag.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        txtValorPag.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
 
         jLabel4.setText("Valor a Pagar");
 
@@ -145,8 +154,8 @@ public class FormTelaPagamento extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFormattedTextField1)
-                    .addComponent(jFormattedTextField2)
+                    .addComponent(txtValorRec)
+                    .addComponent(txtValorPag)
                     .addComponent(jFormattedTextField3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,11 +174,11 @@ public class FormTelaPagamento extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtValorRec, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtValorPag, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -192,6 +201,11 @@ public class FormTelaPagamento extends javax.swing.JFrame {
         txtCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtCodigoMouseClicked(evt);
+            }
+        });
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyPressed(evt);
             }
         });
 
@@ -271,6 +285,17 @@ public class FormTelaPagamento extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jToggleButton1MouseClicked
 
+    private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+        
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                sel.ListarAlunos(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(FormTelaPagamento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         }
+    }//GEN-LAST:event_txtCodigoKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -312,8 +337,6 @@ public class FormTelaPagamento extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -325,8 +348,10 @@ public class FormTelaPagamento extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtNome;
+    public javax.swing.JTextField txtCodigo;
+    public javax.swing.JTextField txtNome;
+    private javax.swing.JFormattedTextField txtValorPag;
+    private javax.swing.JFormattedTextField txtValorRec;
     // End of variables declaration//GEN-END:variables
 
 private void setIcon() {

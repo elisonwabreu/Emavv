@@ -24,6 +24,7 @@ public class FormVendas extends javax.swing.JFrame {
      Validacoes val = new Validacoes();
      Selecionar sel = new Selecionar();
      Vendas venda =  new Vendas();
+     FormTelaPagamento paga =  new FormTelaPagamento();
      
     public FormVendas() {
         setIcon();
@@ -142,6 +143,7 @@ public class FormVendas extends javax.swing.JFrame {
         txtTotalGeral.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤#,##0.00"))));
         txtTotalGeral.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalGeral.setText("0.00");
+        txtTotalGeral.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         txtValorTotal.setEditable(false);
         txtValorTotal.setBackground(new java.awt.Color(255, 255, 255));
@@ -263,8 +265,13 @@ public class FormVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+        String pago = txtTotalGeral.getText();
+        paga.TelaPagamento(pago);
+        
         FormTelaPagamento pagar =  new FormTelaPagamento();
         pagar.setVisible(true);
+        
+       
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed

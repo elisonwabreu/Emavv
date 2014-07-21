@@ -23,8 +23,10 @@ import Views.CadItens;
 import Views.CadMatriculas;
 import Views.CadUsuarios;
 import Views.FormBusca;
+import Views.FormTelaPagamento;
 import Views.FormVendas;
 import Views.Form_TelaLogin;
+import java.io.PrintStream;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JFrame;
@@ -192,6 +194,30 @@ public class Selecionar extends JFrame {
         } else {
             msg.msgNenhumRegistro();
             limpa.LimpaAluno(a);
+            return false;
+        }
+    }
+    public boolean ListarAlunos(FormTelaPagamento a) throws SQLException {
+
+        DaoAluno dao = new DaoAluno();
+
+        tb_alunos alu = new tb_alunos(0, null, null);
+
+        int codigo = Integer.parseInt(a.txtCodigo.getText());
+
+        List<tb_alunos> aluno = dao.Select(codigo);
+
+        if (aluno.size() > 0) {
+
+            for (tb_alunos al : aluno) {
+
+                a.txtNome.setText(al.getFd_nome());
+            }
+            return true;
+
+        } else {
+            msg.msgNenhumRegistro();
+           // limpa.LimpaAluno(a);
             return false;
         }
     }
@@ -394,7 +420,7 @@ public class Selecionar extends JFrame {
             for (tb_itens cr : item) {
                 c.txtValorUnitario.setText(String.valueOf(cr.getFd_valor()));
                 c.lblProdutos.setText(cr.getFd_descricao());
-               
+                
             }
          }
             return true;
