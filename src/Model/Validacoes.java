@@ -19,6 +19,7 @@ import Views.CadItens;
 import Views.CadMatriculas;
 import Views.CadUsuarios;
 import Views.FormBusca;
+import Views.FormGeraMensalidade;
 import Views.Form_TelaLogin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -214,7 +215,20 @@ public class Validacoes extends JFrame {
             return false;
         }
     }
+    public boolean KeyPressedText(FormGeraMensalidade c) {
 
+        if (c.txtCodigo.getText().equals("")) {
+            
+            msg.msgFormGeraMensalidade();
+            return false;
+            
+        } else {
+            c.btnGeraMensalidade.setEnabled(true);
+            c.txtCodigo.setEnabled(false);
+            c.txtNomeAluno.setEnabled(false);
+            return true;
+        }
+    }
     public boolean KeyPressedText(CadDisciplinas c) {
 
         if (c.txtCodDisciplina.getText().equals("")) {

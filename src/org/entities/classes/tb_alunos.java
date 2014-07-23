@@ -2,9 +2,12 @@ package org.entities.classes;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.Fetch;
@@ -38,19 +41,30 @@ public class tb_alunos implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     Date fd_data_cadastro;
     String fd_status;
-    /* @ManyToMany
-    @Fetch(FetchMode.JOIN)
-    tb_mensalidades mensalidade;*/
+    @ManyToMany(mappedBy = "tb_alunos",targetEntity = tb_cursos.class)
+    //@JoinTable(name="person_has_notebooks", joinColumns={@JoinColumn(name="person_id")}, inverseJoinColumns={@JoinColumn(name="notebook_id")})
+    List tb_cursos;
+    @ManyToMany(mappedBy = "tb_alunos",targetEntity = tb_matriculados.class)
+    List tb_matriculados;
 
-    /* public tb_mensalidades getMensalidade() {
-    return mensalidade;
+    public List getTb_cursos() {
+        return tb_cursos;
     }
-    
-    public void setMensalidade(tb_mensalidades mensalidade) {
-    this.mensalidade = mensalidade;
-    }*/
 
-    //int fd_matricula;
+    public void setTb_cursos(List tb_cursos) {
+        this.tb_cursos = tb_cursos;
+    }
+
+    public List getTb_matriculados() {
+        return tb_matriculados;
+    }
+
+    public void setTb_matriculados(List tb_matriculados) {
+        this.tb_matriculados = tb_matriculados;
+    }
+
+    
+    
     public void setFd_data_cadastro(Date fd_data_cadastro) {
         this.fd_data_cadastro = fd_data_cadastro;
     }

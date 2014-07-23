@@ -8,6 +8,10 @@ package Views;
 
 import Model.Selecionar;
 import Model.Validacoes;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,7 +42,7 @@ public class FormGeraMensalidade extends javax.swing.JFrame {
         txtNomeAluno = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         cbCursos = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        btnGeraMensalidade = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,9 +65,12 @@ public class FormGeraMensalidade extends javax.swing.JFrame {
 
         jLabel15.setText("Aluno");
 
+        txtNomeAluno.setEditable(false);
+
         jLabel18.setText("Curso");
 
-        jButton1.setText("Gerar");
+        btnGeraMensalidade.setText("Gerar");
+        btnGeraMensalidade.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,7 +93,7 @@ public class FormGeraMensalidade extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel18)
                     .addComponent(cbCursos, 0, 158, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnGeraMensalidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -104,7 +111,7 @@ public class FormGeraMensalidade extends javax.swing.JFrame {
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtNomeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGeraMensalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -112,7 +119,19 @@ public class FormGeraMensalidade extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
+            if (val.KeyPressedText(this) == true) {
+                try {
+                    if (sel.ListarAlunos(this) != true) {
+
+                       // val.ButtonClick(this);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -121,7 +140,7 @@ public class FormGeraMensalidade extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
-     * aaaaaaaaaaaa@param args the command line arguments
+     * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -157,8 +176,8 @@ public class FormGeraMensalidade extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnGeraMensalidade;
     public javax.swing.JComboBox cbCursos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel18;

@@ -23,6 +23,7 @@ import Views.CadItens;
 import Views.CadMatriculas;
 import Views.CadUsuarios;
 import Views.FormBusca;
+import Views.FormGeraMensalidade;
 import Views.FormTelaPagamento;
 import Views.FormVendas;
 import Views.Form_TelaLogin;
@@ -194,6 +195,31 @@ public class Selecionar extends JFrame {
         } else {
             msg.msgNenhumRegistro();
             limpa.LimpaAluno(a);
+            return false;
+        }
+    }
+    public boolean ListarAlunos(FormGeraMensalidade a) throws SQLException {
+
+        DaoAluno dao = new DaoAluno();
+
+        tb_alunos alu = new tb_alunos(0, null, null);
+
+        int codigo = Integer.parseInt(a.txtCodigo.getText());
+
+        List<tb_alunos> aluno = dao.SelectGeraMensalidade(codigo);
+
+        if (aluno.size() > 0) {
+
+            for (tb_alunos al : aluno) {
+
+                a.txtNomeAluno.setText(al.getFd_nome());
+
+            }
+            return true;
+
+        } else {
+            msg.msgNenhumRegistro();
+            
             return false;
         }
     }

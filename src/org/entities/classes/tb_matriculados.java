@@ -1,8 +1,10 @@
 package org.entities.classes;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class tb_matriculados implements Serializable {
@@ -10,7 +12,17 @@ public class tb_matriculados implements Serializable {
     private  int  fd_matricula;
     private  int  fd_curso;
     private  int  fd_aluno;
+    @ManyToMany(mappedBy = "tb_matriculados",targetEntity = tb_alunos.class)
+    List tb_alunos;
 
+    public List getTb_alunos() {
+        return tb_alunos;
+    }
+
+    public void setTb_alunos(List tb_alunos) {
+        this.tb_alunos = tb_alunos;
+    }
+    
     public int getFd_curso() {
         return fd_curso;
     }

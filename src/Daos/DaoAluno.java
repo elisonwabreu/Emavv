@@ -46,7 +46,17 @@ public class DaoAluno {
         }
         return false;
     }
+    
+    public List<tb_alunos> SelectGeraMensalidade(int codigo) throws SQLException {
 
+        Query q = manager.createQuery("select a.fd_nome, c. from tb_alunos a"
+                + "inner join tb_cursos c "
+                + "where a.fd_aluno = :fd_aluno and a.fd_status <> 'E'");
+        q.setParameter("fd_aluno", codigo);
+        List<tb_alunos> aluno = q.getResultList();
+        return aluno;
+    }
+    
     public List<tb_alunos> Select(int codigo) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_alunos a "

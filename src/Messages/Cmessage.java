@@ -48,13 +48,14 @@ public class Cmessage {
     }
 
     public void msgGravado() {
-
         confirma = new ImageIcon("/Img/Check.png");
-
-        JOptionPane.showMessageDialog(null, "Registro Salvo com Sucesso!", "Gravação", JOptionPane.INFORMATION_MESSAGE);
-       
+        JOptionPane.showMessageDialog(null, "Registro Salvo com Sucesso!", "Gravação", JOptionPane.INFORMATION_MESSAGE); 
     }
-
+    
+    public void msgFormGeraMensalidade() {
+        confirma = new ImageIcon("/Img/Check.png");
+        JOptionPane.showMessageDialog(null, "Informe um aluno!", "", JOptionPane.INFORMATION_MESSAGE); 
+    }
     public void msgEditado() {
 
         JOptionPane.showMessageDialog(null, "Registro Editado com Sucesso!");
