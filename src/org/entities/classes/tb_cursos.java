@@ -16,18 +16,17 @@ public class tb_cursos implements Serializable {
     String fd_descricao;
     double fd_valor;
     String fd_status;
-    @ManyToMany(mappedBy = "tb_cursos",targetEntity = tb_alunos.class)
-            
+    /* @ManyToMany(mappedBy = "tb_cursos",targetEntity = tb_alunos.class)
+    
     List tb_alunos;
-
+    
     public List getTb_alunos() {
-        return tb_alunos;
+    return tb_alunos;
     }
-
+    
     public void setTb_alunos(List tb_alunos) {
-        this.tb_alunos = tb_alunos;
-    }
-
+    this.tb_alunos = tb_alunos;
+    }*/
 
     public tb_cursos() {
     }

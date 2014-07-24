@@ -4,48 +4,47 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class tb_matriculados implements Serializable {
     @Id
-    private  int  fd_matricula;
-    private  int  fd_curso;
-    private  int  fd_aluno;
-    @ManyToMany(mappedBy = "tb_matriculados",targetEntity = tb_alunos.class)
-    List tb_alunos;
-
-    public List getTb_alunos() {
-        return tb_alunos;
-    }
-
-    public void setTb_alunos(List tb_alunos) {
-        this.tb_alunos = tb_alunos;
-    }
+    @OneToOne
+    @JoinColumn(name = "fd_matricula")
+    private  Matriculas  fd_matricula;
     
-    public int getFd_curso() {
-        return fd_curso;
+    @OneToMany
+    @JoinColumn(name = "fd_aluno")
+    private List<tb_alunos> fd_aluno;
+    
+    @OneToMany
+    @JoinColumn(name = "fd_curso")
+    private List<tb_cursos> fd_curso;
+    
+   
+    public tb_cursos getFd_curso() {
+        return (tb_cursos) fd_curso;
     }
 
-    public int getFd_matricula() {
+    public Matriculas getFd_matricula() {
         return fd_matricula;
     }
 
-    public void setFd_matricula(int fd_matricula) {
+    public void setFd_matricula(Matriculas fd_matricula) {
         this.fd_matricula = fd_matricula;
     }
 
-    public int getFd_aluno() {
-        return fd_aluno;
+    public tb_alunos getFd_aluno() {
+        return (tb_alunos) fd_aluno;
     }
 
-    public void setFd_aluno(int fd_aluno) {
+    public void setFd_aluno(List<tb_alunos> fd_aluno) {
         this.fd_aluno = fd_aluno;
     }
 
-    public void setFd_curso(int fd_curso) {
+    public void setFd_curso(List<tb_cursos> fd_curso) {
         this.fd_curso = fd_curso;
     }
-
-    
 }

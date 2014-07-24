@@ -26,6 +26,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -39,7 +40,7 @@ import org.entities.classes.tb_disciplinas;
 import org.entities.classes.tb_funcionarios;
 import org.entities.classes.tb_itens;
 import org.entities.classes.tb_matriculados;
-import org.entities.classes.tb_matriculas;
+import org.entities.classes.Matriculas;
 import org.entities.classes.tb_usuarios;
 
 /**
@@ -335,42 +336,47 @@ public class Gravar extends JFrame {
 
     public void GravaMatricula(CadMatriculas a) throws ParseException, SQLException {
         DaoMatricula matr = new DaoMatricula();
-        tb_matriculas novoMatr = new tb_matriculas();
-        int codAluno = Integer.parseInt(a.txtCodigo.getText());
+        Matriculas novoMatr = new Matriculas();
+        
+        List lsAluno = new ArrayList();
+        List lsCurso = new ArrayList();
+        lsAluno.add(Integer.parseInt(a.txtCodigo.getText()));
+        lsCurso.add(Integer.parseInt(a.txtCodCurso.getText()));
+        tb_alunos alu = new tb_alunos();
+        alu.setFd_aluno(Integer.parseInt(a.txtCodigo.getText()));
+
+        
         int matricula = Integer.parseInt(a.txtMatricula.getText());
    
-        
-        List<tb_matriculas> matricad = matr.SelectMatricula(matricula);
+        List<Matriculas> matricad = matr.SelectMatricula(matricula);
 
             if(matricad.size()>0){
-            for(tb_matriculas cr  : matricad){
+            for(Matriculas cr  : matricad){
                 if(matricula == cr.getFd_matricula()){
 
                     DaoMatriculados matr2 = new DaoMatriculados();
                     tb_matriculados novomatr2 = new tb_matriculados();
-                    int codCurso = Integer.parseInt(a.txtCodCurso.getText());
 
-                    novomatr2.setFd_matricula(matricula);
-                    novomatr2.setFd_curso(codCurso);
-                    novomatr2.setFd_aluno(codAluno);
+                    novomatr2.setFd_matricula(novoMatr);
+                    novomatr2.setFd_curso(lsCurso);
+                    novomatr2.setFd_aluno(lsAluno);
                     matr2.Inserir(novomatr2);
                     
                 }else{
                     String data = a.txtDtCadastro.getText();
 
                     novoMatr.setFd_matricula(matricula);
-                    novoMatr.setFd_aluno(codAluno);
+                    novoMatr.setFd_aluno(alu);
                     novoMatr.setFd_data_matricula(val.FormataData(data));
 
                     matr.Inserir(novoMatr);
                     
                     DaoMatriculados matr2 = new DaoMatriculados();
                     tb_matriculados novomatr2 = new tb_matriculados();
-                    int codCurso = Integer.parseInt(a.txtCodCurso.getText());
-
-                    novomatr2.setFd_matricula(matricula);
-                    novomatr2.setFd_curso(codCurso);
-                    novomatr2.setFd_aluno(codAluno);
+                    
+                    novomatr2.setFd_matricula(novoMatr);
+                    novomatr2.setFd_curso(lsCurso);
+                    novomatr2.setFd_aluno(lsAluno);
                     matr2.Inserir(novomatr2);
         
                 } 
@@ -382,8 +388,9 @@ public class Gravar extends JFrame {
     }
     public void GravaMatricula(int codigo) throws ParseException, SQLException {
         DaoMatricula matr = new DaoMatricula();
-        tb_matriculas novoMatr = new tb_matriculas();
-
+        Matriculas novoMatr = new Matriculas();
+        tb_alunos al = new tb_alunos();
+        al.setFd_aluno(codigo);
                
         java.util.Date date = new java.util.Date(System.currentTimeMillis());
         SimpleDateFormat novaData = new SimpleDateFormat("yyyyHHmmss");
@@ -391,7 +398,7 @@ public class Gravar extends JFrame {
         String matricula = novaData.format(date);
         
         novoMatr.setFd_matricula(Integer.parseInt(matricula));
-        novoMatr.setFd_aluno(codigo);
+        novoMatr.setFd_aluno(al);
         novoMatr.setFd_data_matricula(date);
             JOptionPane.showMessageDialog(null, "A matricula gerada  \r\n é: "+matricula+".");
         matr.Inserir(novoMatr);

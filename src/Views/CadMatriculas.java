@@ -302,8 +302,10 @@ public class CadMatriculas extends javax.swing.JFrame {
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
+        
             if (val.KeyPressedText(this) == false) {
                 try {
+                    
                     if (sel.ListarMAtricula(this) != true) {
 
                         val.ButtonClick(this);

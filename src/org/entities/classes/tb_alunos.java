@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -41,29 +42,6 @@ public class tb_alunos implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     Date fd_data_cadastro;
     String fd_status;
-    @ManyToMany(mappedBy = "tb_alunos",targetEntity = tb_cursos.class)
-    //@JoinTable(name="person_has_notebooks", joinColumns={@JoinColumn(name="person_id")}, inverseJoinColumns={@JoinColumn(name="notebook_id")})
-    List tb_cursos;
-    @ManyToMany(mappedBy = "tb_alunos",targetEntity = tb_matriculados.class)
-    List tb_matriculados;
-
-    public List getTb_cursos() {
-        return tb_cursos;
-    }
-
-    public void setTb_cursos(List tb_cursos) {
-        this.tb_cursos = tb_cursos;
-    }
-
-    public List getTb_matriculados() {
-        return tb_matriculados;
-    }
-
-    public void setTb_matriculados(List tb_matriculados) {
-        this.tb_matriculados = tb_matriculados;
-    }
-
-    
     
     public void setFd_data_cadastro(Date fd_data_cadastro) {
         this.fd_data_cadastro = fd_data_cadastro;

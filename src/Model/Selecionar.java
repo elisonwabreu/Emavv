@@ -39,7 +39,8 @@ import org.entities.classes.tb_cursos;
 import org.entities.classes.tb_disciplinas;
 import org.entities.classes.tb_funcionarios;
 import org.entities.classes.tb_itens;
-import org.entities.classes.tb_matriculas;
+import org.entities.classes.tb_matriculados;
+import org.entities.classes.Matriculas;
 import org.entities.classes.tb_mensalidades;
 import org.entities.classes.tb_usuarios;
 
@@ -523,24 +524,27 @@ public class Selecionar extends JFrame {
 
         DaoAluno dao = new DaoAluno();
         DaoMatricula matr = new DaoMatricula();
-        tb_matriculas mat = new tb_matriculas();
+        Matriculas mat = new Matriculas();
         tb_alunos alu = new tb_alunos(0, null, null);
         int codigo = Integer.parseInt(c.txtCodigo.getText());
-        List<tb_alunos> aluno = dao.Select(codigo);
-        List<tb_matriculas> matricula = matr.Select(codigo);
-        if (aluno.size() > 0) {
+        
+        //List<tb_alunos> aluno = dao.Select(codigo);
+        List<Matriculas> matricula = matr.Select(codigo);
+        /*if (aluno.size() > 0) {
 
             for (tb_alunos al : aluno) {
 
                 c.txtNome.setText(al.getFd_nome());
 
-            }
+            }*/
             if (matricula.size() > 0) {
 
-                for (tb_matriculas al : matricula) {
+                for (Matriculas al : matricula) {
 
+                    c.txtNome.setText(al.getFd_aluno().getFd_nome());
                     c.txtMatricula.setText(String.valueOf(al.getFd_matricula()));
                     c.txtDtCadastro.setText(val.FormataDataSelec(al.getFd_data_matricula().toString()));
+                    c.txtCodCurso.setText(String.valueOf(al.getFd_curso().getFd_curso()));
                 }
                 return true;
 
@@ -549,8 +553,8 @@ public class Selecionar extends JFrame {
                 limpa.LimpaMatricula(c);
                 return false;
             }
-        }
-        return false;
+       //}
+       // return false;
     }
 
     public void setSelectOnJTable(FormBusca f, String tabela, int TableIndex) throws SQLException {
