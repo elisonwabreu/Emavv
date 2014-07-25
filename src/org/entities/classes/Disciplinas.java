@@ -5,15 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
-public class tb_disciplinas implements Serializable {
+@Entity(name = "tb_disciplinas")
+public class Disciplinas implements Serializable {
 
     @Id
     @GeneratedValue
-    public int fd_disciplina;
-    public String fd_descricao;
-    public String fd_status;
-    public int fd_curso;
+    private int fd_disciplina;
+    private String fd_descricao;
+    private String fd_status;
+    private int fd_curso;
 
     public int getFd_curso() {
         return fd_curso;
@@ -23,10 +23,10 @@ public class tb_disciplinas implements Serializable {
         this.fd_curso = fd_curso;
     }
 
-    public tb_disciplinas() {
+    public Disciplinas() {
     }
 
-    public tb_disciplinas(int fd_disciplina, String fd_descricao, String fd_status) {
+    public Disciplinas(int fd_disciplina, String fd_descricao, String fd_status) {
 
         this.fd_disciplina = fd_disciplina;
         this.fd_descricao = fd_descricao;

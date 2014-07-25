@@ -4,7 +4,7 @@
  */
 package Views;
 
-import org.entities.classes.tb_cursos;
+import org.entities.classes.Cursos;
 import Daos.DaoCursos;
 import Messages.Cmessage;
 import Model.Validacoes;
@@ -29,7 +29,7 @@ import javax.swing.text.MaskFormatter;
  */
 public class CadCursos extends javax.swing.JFrame {
 
-    tb_cursos curso;
+    Cursos curso;
     Deletar deleta = new Deletar();
     DaoCursos dao = new DaoCursos();
     Cmessage msg = new Cmessage();
@@ -49,7 +49,7 @@ public class CadCursos extends javax.swing.JFrame {
      * Creates new form Form_Principal
      */
     public CadCursos() {
-        this.curso = new tb_cursos();
+        this.curso = new Cursos();
         initComponents();
         txtCodigo.setDocument(new InsereNumeros());
         setIcon();

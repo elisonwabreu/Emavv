@@ -7,41 +7,39 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  *
  * @author athalias
  */
-@Entity
-public class tb_alunos implements Serializable {
+@Entity(name = "tb_alunos")
+/*@Table(name = "tb_alunos")*/
+public class Alunos implements Serializable {
 
     @Id
     @GeneratedValue
-    int fd_aluno;
-    String fd_nome;
-    String fd_cpf;
-    String fd_rg;
+    private int fd_aluno;
+    private String fd_nome;
+    private String fd_cpf;
+    private String fd_rg;
     @Temporal(javax.persistence.TemporalType.DATE)
-    Date fd_data_nasc;
-    String fd_sexo;
-    String fd_endereco;
-    String fd_numero;
-    String fd_bairro;
-    String fd_cep;
-    String fd_cidade;
-    String fd_uf;
-    String fd_telefone;
-    String fd_celular;
-    String fd_email;
+    private Date fd_data_nasc;
+    private String fd_sexo;
+    private String fd_endereco;
+    private String fd_numero;
+    private String fd_bairro;
+    private String fd_cep;
+    private String fd_cidade;
+    private String fd_uf;
+    private String fd_telefone;
+    private String fd_celular;
+    private String fd_email;
     @Temporal(javax.persistence.TemporalType.DATE)
-    Date fd_data_cadastro;
-    String fd_status;
+    private Date fd_data_cadastro;
+    private String fd_status;
+    
     
     public void setFd_data_cadastro(Date fd_data_cadastro) {
         this.fd_data_cadastro = fd_data_cadastro;
@@ -51,10 +49,10 @@ public class tb_alunos implements Serializable {
         return fd_data_cadastro;
     }
 
-    public tb_alunos() {
+    public Alunos() {
     }
 
-    public tb_alunos(int fd_aluno, String fd_nome, String fd_status) {
+    public Alunos(int fd_aluno, String fd_nome, String fd_status) {
 
         this.fd_aluno = fd_aluno;
         this.fd_nome = fd_nome;
@@ -62,14 +60,6 @@ public class tb_alunos implements Serializable {
 
     }
 
-    /* public int getFd_atricula() {
-     return fd_matricula;
-     }
-
-     public void setMatricula(int fd_matricula) {
-     this.fd_matricula = fd_matricula;
-     }
-     */
     public int getFd_aluno() {
         return fd_aluno;
     }

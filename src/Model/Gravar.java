@@ -33,15 +33,15 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import org.entities.classes.tb_alunos;
-import org.entities.classes.tb_cargos;
-import org.entities.classes.tb_cursos;
-import org.entities.classes.tb_disciplinas;
-import org.entities.classes.tb_funcionarios;
-import org.entities.classes.tb_itens;
-import org.entities.classes.tb_matriculados;
+import org.entities.classes.Alunos;
+import org.entities.classes.Cargos;
+import org.entities.classes.Cursos;
+import org.entities.classes.Disciplinas;
+import org.entities.classes.Funcionarios;
+import org.entities.classes.Itens;
+import org.entities.classes.Matriculados;
 import org.entities.classes.Matriculas;
-import org.entities.classes.tb_usuarios;
+import org.entities.classes.Usuarios;
 
 /**
  *
@@ -50,7 +50,7 @@ import org.entities.classes.tb_usuarios;
 public class Gravar extends JFrame {
 
     Validacoes val = new Validacoes();
-    tb_cargos cargo = new tb_cargos();
+    Cargos cargo = new Cargos();
     DaoCargo dao = new DaoCargo();
     Limpar limpa = new Limpar();
 
@@ -86,7 +86,7 @@ public class Gravar extends JFrame {
     public void Aluno(CadAluno a) throws SQLException, ParseException {
 
         DaoAluno al = new DaoAluno();
-        tb_alunos aluno = new tb_alunos();
+        Alunos aluno = new Alunos();
         //int codigo = Integer.parseInt(a.txtCodigo.getText()); 
         String nome = a.txtNome.getText();
         String cpf = val.AjusteCaracter(a.txtCpf.getText());
@@ -172,7 +172,7 @@ public class Gravar extends JFrame {
     public void Funcionario(CadFuncionarios fun) throws SQLException, ParseException {
         //Instacia DaoFuncionarios
         DaoFuncionarios func = new DaoFuncionarios();
-        tb_funcionarios funcionario = new tb_funcionarios();
+        Funcionarios funcionario = new Funcionarios();
 
         String nome = fun.txtNome.getText();
         String cpf = fun.txtCpf.getText();
@@ -233,7 +233,7 @@ public class Gravar extends JFrame {
     public void DisciplinaGravar(CadDisciplinas dis) throws SQLException {
         //Instacia DaoDisciplinas
         DaoDisciplinas disciplina = new DaoDisciplinas();
-        tb_disciplinas novo = new tb_disciplinas(0, null, null);
+        Disciplinas novo = new Disciplinas(0, null, null);
 
         String descricao = dis.txtDisciplina.getText();
         String status = dis.comboStatus.getSelectedItem().toString();
@@ -255,7 +255,7 @@ public class Gravar extends JFrame {
     public void Cursos(CadCursos c) throws SQLException {
         //Instacia DaoDisciplinas
         DaoCursos curso = new DaoCursos();
-        tb_cursos novo = new tb_cursos();
+        Cursos novo = new Cursos();
         //int codigo = Integer.parseInt(c.txtCodigo.getText());
         String descricao = c.txtDescricao.getText();
         double valor = Double.parseDouble(c.txtValor.getText());
@@ -278,7 +278,7 @@ public class Gravar extends JFrame {
     public void Itens(CadItens i) throws SQLException {
         //Instacia DaoDisciplinas
         DaoItens item = new DaoItens();
-        tb_itens novo = new tb_itens(0, null, 0.0, null);
+        Itens novo = new Itens(0, null, 0.0, null);
 
         String descricao = i.txtItem.getText();
         Double valor = Double.parseDouble(i.txtPreco.getText());
@@ -302,7 +302,7 @@ public class Gravar extends JFrame {
     public void insertUsuario(CadUsuarios u) throws SQLException {
 
         DaoUsuarios user = new DaoUsuarios();
-        tb_usuarios usuario = new tb_usuarios();
+        Usuarios usuario = new Usuarios();
 
         int cod = Integer.parseInt(u.txtCodigo.getText());
         String nomeUser = u.txtUsuario.getText();
@@ -342,7 +342,7 @@ public class Gravar extends JFrame {
         List lsCurso = new ArrayList();
         lsAluno.add(Integer.parseInt(a.txtCodigo.getText()));
         lsCurso.add(Integer.parseInt(a.txtCodCurso.getText()));
-        tb_alunos alu = new tb_alunos();
+        Alunos alu = new Alunos();
         alu.setFd_aluno(Integer.parseInt(a.txtCodigo.getText()));
 
         
@@ -355,7 +355,7 @@ public class Gravar extends JFrame {
                 if(matricula == cr.getFd_matricula()){
 
                     DaoMatriculados matr2 = new DaoMatriculados();
-                    tb_matriculados novomatr2 = new tb_matriculados();
+                    Matriculados novomatr2 = new Matriculados();
 
                     novomatr2.setFd_matricula(novoMatr);
                     novomatr2.setFd_curso(lsCurso);
@@ -372,7 +372,7 @@ public class Gravar extends JFrame {
                     matr.Inserir(novoMatr);
                     
                     DaoMatriculados matr2 = new DaoMatriculados();
-                    tb_matriculados novomatr2 = new tb_matriculados();
+                    Matriculados novomatr2 = new Matriculados();
                     
                     novomatr2.setFd_matricula(novoMatr);
                     novomatr2.setFd_curso(lsCurso);
@@ -389,7 +389,7 @@ public class Gravar extends JFrame {
     public void GravaMatricula(int codigo) throws ParseException, SQLException {
         DaoMatricula matr = new DaoMatricula();
         Matriculas novoMatr = new Matriculas();
-        tb_alunos al = new tb_alunos();
+        Alunos al = new Alunos();
         al.setFd_aluno(codigo);
                
         java.util.Date date = new java.util.Date(System.currentTimeMillis());

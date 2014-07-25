@@ -2,7 +2,7 @@ package org.entities.classes;
 
 import java.sql.Date;
 
-public class SaldoItem extends tb_itens {
+public class SaldoItem extends Itens {
 
     public SaldoItem(int codigo, String descricao, double valor, String status) {
         super(codigo, descricao, valor, status);

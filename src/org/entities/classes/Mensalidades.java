@@ -1,39 +1,25 @@
 package org.entities.classes;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
-@Entity
-public class tb_mensalidades {
-    
-  @Id  
-  private int fd_matricula;
-  private int fd_curso;
-  private int fd_aluno;
-  @Temporal(javax.persistence.TemporalType.DATE)
-  private Date fd_vencimento;
-  private double fd_valor;
-  private String fd_status;
-  /*@ManyToMany
-  @Fetch(FetchMode.JOIN)
-  private tb_alunos alunos;*/
+@Entity(name = "tb_mensalidades")
+public class Mensalidades implements Serializable {
 
-  /*  public tb_alunos getAlunos() {
-  return alunos;
-  }
-  
-  public void setAlunos(tb_alunos alunos) {
-  this.alunos = alunos;
-  }*/
+    @Id
+    private int fd_matricula;
+    private int fd_curso;
+    private int fd_aluno;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fd_vencimento;
+    private double fd_valor;
+    private String fd_status;
 
-    public tb_mensalidades(int fd_matricula, int fd_curso, int fd_aluno, Date fd_vencimento,
-                        double fd_valor, String fd_status)
-    {
+    public Mensalidades(int fd_matricula, int fd_curso, int fd_aluno,
+            Date fd_vencimento,double fd_valor, String fd_status) {
         this.fd_matricula = fd_matricula;
         this.fd_curso = fd_curso;
         this.fd_aluno = fd_aluno;
@@ -42,8 +28,8 @@ public class tb_mensalidades {
         this.fd_status = fd_status;
     }
 
-    public tb_mensalidades() {
-        
+    public Mensalidades() {
+
     }
 
     public int getFd_matricula() {
@@ -93,5 +79,5 @@ public class tb_mensalidades {
     public void setFd_status(String fd_status) {
         this.fd_status = fd_status;
     }
-  
+
 }

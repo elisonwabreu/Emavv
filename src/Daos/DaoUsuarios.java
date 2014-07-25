@@ -7,15 +7,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import org.entities.classes.tb_usuarios;
+import org.entities.classes.Usuarios;
 
-public class DaoUsuarios extends tb_usuarios {
+public class DaoUsuarios extends Usuarios {
 
     Cmessage msg = new Cmessage();
 
     EntityManager manager = JPAUtil.getEntityManager();
 
-    public boolean Inserir(tb_usuarios user) throws SQLException {
+    public boolean Inserir(Usuarios user) throws SQLException {
         if (msg.MsgConfGravacao() == true) {
 
             manager.getTransaction().begin();
@@ -32,27 +32,27 @@ public class DaoUsuarios extends tb_usuarios {
 
     }
 
-    public List<tb_usuarios> Select(String login) throws SQLException {
+    public List<Usuarios> Select(String login) throws SQLException {
         Query q = manager.createQuery("select a from tb_usuarios as a "
                 + "where a.fd_login = :fd_login and a.fd_status <> 'E'");
         q.setParameter("fd_login", login);
-        List<tb_usuarios> user = q.getResultList();
+        List<Usuarios> user = q.getResultList();
         return user;
 
     }
 
-    public List<tb_usuarios> Select(int codigo) throws SQLException {
+    public List<Usuarios> Select(int codigo) throws SQLException {
         Query q = manager.createQuery("select a from tb_usuarios as a "
                 + "where a.fd_funcionario = :fd_funcionario and a.fd_status <> 'E'");
         q.setParameter("fd_funcionario", codigo);
-        List<tb_usuarios> user = q.getResultList();
+        List<Usuarios> user = q.getResultList();
         return user;
 
     }
 
     public boolean Delete(int codigo) throws SQLException {
         if (msg.MsgConfExclusao() == true) {
-            tb_usuarios user = (tb_usuarios) manager.find(tb_usuarios.class, codigo);
+            Usuarios user = (Usuarios) manager.find(Usuarios.class, codigo);
             user.setFd_status("E");
             manager.getTransaction().begin();
             manager.persist(user);
@@ -63,11 +63,11 @@ public class DaoUsuarios extends tb_usuarios {
         return false;
     }
 
-    public boolean Update(tb_usuarios a, String status) throws SQLException {
+    public boolean Update(Usuarios a, String status) throws SQLException {
 
         if (msg.MsgConfGravacao() == true) {
 
-            tb_usuarios user = (tb_usuarios) manager.find(tb_usuarios.class, a.getFd_funcionario());
+            Usuarios user = (Usuarios) manager.find(Usuarios.class, a.getFd_funcionario());
 
             user.setFd_login(a.getFd_login());
             user.setFd_senha(a.getFd_senha());

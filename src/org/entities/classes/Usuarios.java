@@ -4,14 +4,14 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
-public class tb_usuarios implements Serializable {
+@Entity(name = "tb_usuarios")
+public class Usuarios implements Serializable {
 
     @Id
-    int fd_funcionario;
-    String fd_login;
-    String fd_senha;
-    String fd_status;
+    private int fd_funcionario;
+    private String fd_login;
+    private String fd_senha;
+    private String fd_status;
 
     public String getFd_status() {
         return fd_status;

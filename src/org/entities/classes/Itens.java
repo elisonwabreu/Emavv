@@ -9,8 +9,8 @@ import javax.persistence.Id;
  *
  * @author elison
  */
-@Entity
-public class tb_itens implements Serializable {
+@Entity(name = "tb_itens")
+public class Itens implements Serializable {
 
     @Id
     @GeneratedValue
@@ -19,10 +19,10 @@ public class tb_itens implements Serializable {
     private double fd_valor;
     private String fd_status;
 
-    public tb_itens() {
+    public Itens() {
     }
 
-    public tb_itens(int fd_item, String fd_descricao, double fd_valor, String fd_status) {
+    public Itens(int fd_item, String fd_descricao, double fd_valor, String fd_status) {
 
         this.fd_item = fd_item;
         this.fd_descricao = fd_descricao;

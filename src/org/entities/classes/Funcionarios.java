@@ -8,33 +8,33 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 
 @Entity(name = "tb_funcionarios")
-public class tb_funcionarios implements Serializable {
+public class Funcionarios implements Serializable {
 
     @Id
     @GeneratedValue
-    int fd_funcionario;
-    String fd_nome;
-    String fd_cpf;
-    String fd_rg;
+    private int fd_funcionario;
+    private String fd_nome;
+    private String fd_cpf;
+    private String fd_rg;
     @Temporal(javax.persistence.TemporalType.DATE)
-    Date fd_data_nasc;
-    String fd_sexo;
-    String fd_endereco;
-    String fd_numero;
-    String fd_bairro;
-    String fd_cep;
-    String fd_cidade;
-    String fd_uf;
-    String fd_telefone;
-    String fd_celular;
-    String fd_email;
-    String fd_status;
+    private Date fd_data_nasc;
+    private String fd_sexo;
+    private String fd_endereco;
+    private String fd_numero;
+    private String fd_bairro;
+    private String fd_cep;
+    private String fd_cidade;
+    private String fd_uf;
+    private String fd_telefone;
+    private String fd_celular;
+    private String fd_email;
+    private String fd_status;
 //    Blob fd_imagem;
 
-    public tb_funcionarios() {
+    public Funcionarios() {
     }
 
-    public tb_funcionarios(int fd_funcionario, String fd_nome, String fd_status) {
+    public Funcionarios(int fd_funcionario, String fd_nome, String fd_status) {
 
         this.fd_funcionario = fd_funcionario;
         this.fd_nome = fd_nome;

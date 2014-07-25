@@ -8,6 +8,8 @@ package Views;
 
 import Model.Selecionar;
 import Model.Validacoes;
+import Theme.Tema;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -24,6 +26,7 @@ public class FormGeraMensalidade extends javax.swing.JFrame {
             
     public FormGeraMensalidade() {
         initComponents();
+        setIcon();
     }
 
     /**
@@ -44,7 +47,8 @@ public class FormGeraMensalidade extends javax.swing.JFrame {
         cbCursos = new javax.swing.JComboBox();
         btnGeraMensalidade = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel14.setText("Cod.");
         jLabel14.setToolTipText("");
@@ -116,6 +120,7 @@ public class FormGeraMensalidade extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
@@ -168,7 +173,9 @@ public class FormGeraMensalidade extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
+                Tema.Tema();
                 new FormGeraMensalidade().setVisible(true);
             }
         });
@@ -184,4 +191,7 @@ public class FormGeraMensalidade extends javax.swing.JFrame {
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtNomeAluno;
     // End of variables declaration//GEN-END:variables
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));
+    }
 }

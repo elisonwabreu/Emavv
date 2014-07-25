@@ -1,37 +1,24 @@
 package org.entities.classes;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
-@Entity
-public class tb_cursos implements Serializable {
+@Entity(name = "tb_cursos")
+public class Cursos implements Serializable {
 
     @Id
     @GeneratedValue
-    int fd_curso;
-    String fd_descricao;
-    double fd_valor;
-    String fd_status;
-    /* @ManyToMany(mappedBy = "tb_cursos",targetEntity = tb_alunos.class)
-    
-    List tb_alunos;
-    
-    public List getTb_alunos() {
-    return tb_alunos;
-    }
-    
-    public void setTb_alunos(List tb_alunos) {
-    this.tb_alunos = tb_alunos;
-    }*/
+    private int fd_curso;
+    private String fd_descricao;
+    private double fd_valor;
+    private String fd_status;
 
-    public tb_cursos() {
+    public Cursos() {
     }
 
-    public tb_cursos(int fd_curso, String fd_descricao, String fd_status) {
+    public Cursos(int fd_curso, String fd_descricao, String fd_status) {
         this.fd_curso = fd_curso;
         this.fd_descricao = fd_descricao;
         this.fd_status = fd_status;

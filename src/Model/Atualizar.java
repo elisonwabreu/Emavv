@@ -10,7 +10,7 @@ import Views.CadAluno;
 import java.sql.SQLException;
 import java.text.ParseException;
 import javax.swing.JFrame;
-import org.entities.classes.tb_alunos;
+import org.entities.classes.Alunos;
 
 /**
  *
@@ -24,7 +24,7 @@ public class Atualizar extends JFrame {
     public void AtualizarAluno(CadAluno a) throws ParseException, SQLException {
 
         DaoAluno al = new DaoAluno();
-        tb_alunos aluno = new tb_alunos();
+        Alunos aluno = new Alunos();
         //int codigo = Integer.parseInt(a.txtCodigo.getText()); 
         String nome = a.txtNome.getText();
         String cpf = val.AjusteCaracter(a.txtCpf.getText());

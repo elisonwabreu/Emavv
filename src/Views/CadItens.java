@@ -4,7 +4,7 @@
  */
 package Views;
 
-import org.entities.classes.tb_itens;
+import org.entities.classes.Itens;
 import Model.Deletar;
 import Model.Gravar;
 import Funcao.Limpar;
@@ -28,7 +28,7 @@ import javax.swing.text.MaskFormatter;
  */
 public class CadItens extends javax.swing.JFrame {
 
-    tb_itens item;
+    Itens item;
     Deletar deleta = new Deletar();
     DaoItens dao = new DaoItens();
     Cmessage msg = new Cmessage();

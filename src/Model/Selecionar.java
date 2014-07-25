@@ -33,16 +33,16 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import org.entities.classes.tb_alunos;
-import org.entities.classes.tb_cargos;
-import org.entities.classes.tb_cursos;
-import org.entities.classes.tb_disciplinas;
-import org.entities.classes.tb_funcionarios;
-import org.entities.classes.tb_itens;
-import org.entities.classes.tb_matriculados;
+import org.entities.classes.Alunos;
+import org.entities.classes.Cargos;
+import org.entities.classes.Cursos;
+import org.entities.classes.Disciplinas;
+import org.entities.classes.Funcionarios;
+import org.entities.classes.Itens;
+import org.entities.classes.Matriculados;
 import org.entities.classes.Matriculas;
-import org.entities.classes.tb_mensalidades;
-import org.entities.classes.tb_usuarios;
+import org.entities.classes.Mensalidades;
+import org.entities.classes.Usuarios;
 
 /**
  *
@@ -70,10 +70,10 @@ public class Selecionar extends JFrame {
             msg.msgLogin();
             return false;
         }else{
-        List<tb_usuarios> user = dao.Select(login);
+        List<Usuarios> user = dao.Select(login);
 
         if (user.size() > 0) {
-            for (tb_usuarios car : user) {
+            for (Usuarios car : user) {
 
                 if (car.getFd_login().equals(c.txtLogin.getText()) &&
                         car.getFd_senha().equals(c.txtSenha.getText())) {
@@ -101,11 +101,11 @@ public class Selecionar extends JFrame {
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
 
-        List<tb_cargos> cargos = dao.Select(codigo);
+        List<Cargos> cargos = dao.Select(codigo);
 
         if (cargos.size() > 0) {
 
-            for (tb_cargos car : cargos) {
+            for (Cargos car : cargos) {
                 c.txtDescricao.setText(car.getFd_descricao());
                 if (car.getFd_status().equals("A")) {
                     c.cbStatus.setSelectedIndex(1);
@@ -127,11 +127,11 @@ public class Selecionar extends JFrame {
 
         String status = "A";
 
-        List<tb_cargos> cargos = dao.SelectC(status);
+        List<Cargos> cargos = dao.SelectC(status);
 
         if (cargos.size() > 0) {
 
-            for (tb_cargos car : cargos) {
+            for (Cargos car : cargos) {
                 
               
                 c.txtCargo.setText(car.getFd_descricao());
@@ -148,15 +148,15 @@ public class Selecionar extends JFrame {
 
         DaoAluno dao = new DaoAluno();
 
-        tb_alunos alu = new tb_alunos(0, null, null);
+        Alunos alu = new Alunos(0, null, null);
 
         int codigo = Integer.parseInt(a.txtCodigo.getText());
 
-        List<tb_alunos> aluno = dao.Select(codigo);
+        List<Alunos> aluno = dao.Select(codigo);
 
         if (aluno.size() > 0) {
 
-            for (tb_alunos al : aluno) {
+            for (Alunos al : aluno) {
 
                 a.txtNome.setText(al.getFd_nome());
 
@@ -203,15 +203,15 @@ public class Selecionar extends JFrame {
 
         DaoAluno dao = new DaoAluno();
 
-        tb_alunos alu = new tb_alunos(0, null, null);
+        Alunos alu = new Alunos(0, null, null);
 
         int codigo = Integer.parseInt(a.txtCodigo.getText());
 
-        List<tb_alunos> aluno = dao.SelectGeraMensalidade(codigo);
+        List<Alunos> aluno = dao.Select(codigo);
 
         if (aluno.size() > 0) {
 
-            for (tb_alunos al : aluno) {
+            for (Alunos al : aluno) {
 
                 a.txtNomeAluno.setText(al.getFd_nome());
 
@@ -228,15 +228,15 @@ public class Selecionar extends JFrame {
 
         DaoAluno dao = new DaoAluno();
 
-        tb_alunos alu = new tb_alunos(0, null, null);
+        Alunos alu = new Alunos(0, null, null);
 
         int codigo = Integer.parseInt(a.txtCodigo.getText());
 
-        List<tb_alunos> aluno = dao.Select(codigo);
+        List<Alunos> aluno = dao.Select(codigo);
 
         if (aluno.size() > 0) {
 
-            for (tb_alunos al : aluno) {
+            for (Alunos al : aluno) {
 
                 a.txtNome.setText(al.getFd_nome());
             }
@@ -254,9 +254,9 @@ public class Selecionar extends JFrame {
             
         int codigo;
 
-        List<tb_alunos> aluno = dao.Select();
+        List<Alunos> aluno = dao.Select();
         if (aluno.size() > 0) {
-            for (tb_alunos al : aluno) {
+            for (Alunos al : aluno) {
                 codigo = al.getFd_aluno();
             return codigo;
         }
@@ -267,15 +267,15 @@ public class Selecionar extends JFrame {
 
         DaoFuncionarios dao = new DaoFuncionarios();
 
-        tb_funcionarios func = new tb_funcionarios(0, null, null);
+        Funcionarios func = new Funcionarios(0, null, null);
 
         int codigo = Integer.parseInt(fun.txtCodigo.getText());
 
-        List<tb_funcionarios> fuincionario = dao.Select(codigo);
+        List<Funcionarios> fuincionario = dao.Select(codigo);
 
         if (fuincionario.size() > 0) {
 
-            for (tb_funcionarios al : fuincionario) {
+            for (Funcionarios al : fuincionario) {
 
                 fun.txtNome.setText(al.getFd_nome());
 
@@ -325,9 +325,9 @@ public class Selecionar extends JFrame {
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
 
-            List<tb_cursos> curso = dao.Select(codigo);
+            List<Cursos> curso = dao.Select(codigo);
          if (curso.size()>0) {
-            for (tb_cursos cr : curso) {
+            for (Cursos cr : curso) {
                 c.txtDescricao.setText(cr.getFd_descricao());
                 c.txtValor.setText(String.valueOf(cr.getFd_valor()));
 
@@ -350,9 +350,9 @@ public class Selecionar extends JFrame {
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
 
-            List<tb_cursos> curso = dao.Select(codigo);
+            List<Cursos> curso = dao.Select(codigo);
          if (curso.size()>0) {
-            for (tb_cursos cr : curso) {
+            for (Cursos cr : curso) {
                 c.txtDescricao.setText(cr.getFd_descricao());
                // c.txtValor.setText(String.valueOf(cr.getFd_valor()));
 
@@ -375,10 +375,10 @@ public class Selecionar extends JFrame {
         DaoDisciplinas disc =  new DaoDisciplinas();
 
         int codigo = Integer.parseInt(c.txtCodCurso.getText());
-            List<tb_cursos> curso = dao.Select(codigo);
-            List<tb_disciplinas> disciplina = disc.SelectDiscCurso(codigo);
+            List<Cursos> curso = dao.Select(codigo);
+            List<Disciplinas> disciplina = disc.SelectDiscCurso(codigo);
          if (curso.size()>0) {
-            for (tb_cursos cr : curso) {
+            for (Cursos cr : curso) {
                 c.txtDescricaoCurso.setText(cr.getFd_descricao());
             }
             return true;
@@ -391,11 +391,11 @@ public class Selecionar extends JFrame {
 
         DaoDisciplinas disc =  new DaoDisciplinas();
         int codigo = Integer.parseInt(c.txtCodCurso.getText());
-            List<tb_disciplinas> disciplina = disc.SelectDiscCurso(codigo);
+            List<Disciplinas> disciplina = disc.SelectDiscCurso(codigo);
             DefaultTableModel model = (DefaultTableModel) c.jGridMatricula.getModel();
             model.setNumRows(disciplina.size());
          if (disciplina.size()>0) {
-            for (tb_disciplinas cr : disciplina) {
+            for (Disciplinas cr : disciplina) {
                 for (int i = 0; i < disciplina.size(); i++) {
                             c.jGridMatricula.setValueAt(disciplina.get(i).getFd_disciplina(), i, 0);
                             c.jGridMatricula.setValueAt(disciplina.get(i).getFd_descricao(), i, 1);
@@ -414,10 +414,10 @@ public class Selecionar extends JFrame {
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
        
-        List<tb_itens> item = dao.Select(codigo);
+        List<Itens> item = dao.Select(codigo);
          if(c.txtCodigo.getText() != ""){
          if (item.size()>0) {
-            for (tb_itens cr : item) {
+            for (Itens cr : item) {
                 c.txtItem.setText(cr.getFd_descricao());
                 c.txtPreco.setText(String.valueOf(cr.getFd_valor()));
 
@@ -441,10 +441,10 @@ public class Selecionar extends JFrame {
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
        
-        List<tb_itens> item = dao.Select(codigo);
+        List<Itens> item = dao.Select(codigo);
          if(c.txtCodigo.getText() != ""){
          if (item.size()>0) {
-            for (tb_itens cr : item) {
+            for (Itens cr : item) {
                 c.txtValorUnitario.setText(String.valueOf(cr.getFd_valor()));
                 c.lblProdutos.setText(cr.getFd_descricao());
                 
@@ -463,9 +463,9 @@ public class Selecionar extends JFrame {
 
         int codigo = Integer.parseInt(c.txtCodDisciplina.getText());
 
-            List<tb_disciplinas> disc = dao.Select(codigo);
+            List<Disciplinas> disc = dao.Select(codigo);
         if (disc.size()>0) {
-            for (tb_disciplinas cr : disc) {
+            for (Disciplinas cr : disc) {
                 c.txtDisciplina.setText(cr.getFd_descricao());
                 if (cr.getFd_status().equals("A")) {
                     c.comboStatus.setSelectedIndex(1);
@@ -486,10 +486,10 @@ public class Selecionar extends JFrame {
         DaoUsuarios dao = new DaoUsuarios();
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
-        List<tb_funcionarios> fuincionario = daoufun.Select(codigo);
-        List<tb_usuarios> user = dao.Select(codigo);
+        List<Funcionarios> fuincionario = daoufun.Select(codigo);
+        List<Usuarios> user = dao.Select(codigo);
 
-        for (tb_usuarios cr : user) {
+        for (Usuarios cr : user) {
             c.txtUsuario.setText(cr.getFd_login());
             c.txtSenha.setText(cr.getFd_senha());
             if (cr.getFd_status().equals("A")) {
@@ -499,7 +499,7 @@ public class Selecionar extends JFrame {
             }
             if (fuincionario.size() > 0) {
 
-                for (tb_funcionarios al : fuincionario) {
+                for (Funcionarios al : fuincionario) {
 
                     c.txtNome.setText(al.getFd_nome());
 
@@ -525,7 +525,7 @@ public class Selecionar extends JFrame {
         DaoAluno dao = new DaoAluno();
         DaoMatricula matr = new DaoMatricula();
         Matriculas mat = new Matriculas();
-        tb_alunos alu = new tb_alunos(0, null, null);
+        Alunos alu = new Alunos(0, null, null);
         int codigo = Integer.parseInt(c.txtCodigo.getText());
         
         //List<tb_alunos> aluno = dao.Select(codigo);
@@ -571,11 +571,11 @@ public class Selecionar extends JFrame {
             case 1:
                 DaoCargo dao = new DaoCargo();
                 
-                List<tb_cargos> cargo = dao.Select(f.txtCampoBusca.getText().toUpperCase());
+                List<Cargos> cargo = dao.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model = (DefaultTableModel) f.jGridBusca.getModel();
                 model.setNumRows(cargo.size());
                 if (cargo.size() > 0) {
-                    for (tb_cargos ca : cargo) {
+                    for (Cargos ca : cargo) {
                         for (int i = 0; i < cargo.size(); i++) {
                             f.jGridBusca.setValueAt(cargo.get(i).getFd_cargo(), i, 0);
                             f.jGridBusca.setValueAt(cargo.get(i).getFd_descricao(), i, 1);
@@ -590,11 +590,11 @@ public class Selecionar extends JFrame {
 
             case 2:
                 DaoAluno daoalu = new DaoAluno();
-                List<tb_alunos> aluno = daoalu.Select(f.txtCampoBusca.getText().toUpperCase());
+                List<Alunos> aluno = daoalu.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model2 = (DefaultTableModel) f.jGridBusca.getModel();
                 model2.setNumRows(aluno.size());
                 if (aluno.size() > 0) {
-                    for (tb_alunos al : aluno) {
+                    for (Alunos al : aluno) {
                         for (int i = 0; i < aluno.size(); i++) {
                             f.jGridBusca.setValueAt(aluno.get(i).getFd_aluno(), i, 0);
                             f.jGridBusca.setValueAt(aluno.get(i).getFd_nome(), i, 1);
@@ -609,11 +609,11 @@ public class Selecionar extends JFrame {
 
             case 3:
                 DaoFuncionarios daofunc = new DaoFuncionarios();
-                List<tb_funcionarios> func = daofunc.Select(f.txtCampoBusca.getText().toUpperCase());
+                List<Funcionarios> func = daofunc.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model3 = (DefaultTableModel) f.jGridBusca.getModel();
                 model3.setNumRows(func.size());
                 if (func.size() > 0) {
-                    for (tb_funcionarios al : func) {
+                    for (Funcionarios al : func) {
                         for (int i = 0; i < func.size(); i++) {
                             f.jGridBusca.setValueAt(func.get(i).getFd_funcionario(), i, 0);
                             f.jGridBusca.setValueAt(func.get(i).getFd_nome(), i, 1);
@@ -628,11 +628,11 @@ public class Selecionar extends JFrame {
 
             case 4:
                 DaoCursos daocurso = new DaoCursos();
-                List<tb_cursos> curso = daocurso.Select(f.txtCampoBusca.getText().toUpperCase());
+                List<Cursos> curso = daocurso.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model4 = (DefaultTableModel) f.jGridBusca.getModel();
                 model4.setNumRows(curso.size());
                 if (curso.size() > 0) {
-                    for (tb_cursos c : curso) {
+                    for (Cursos c : curso) {
                         for (int i = 0; i < curso.size(); i++) {
                             f.jGridBusca.setValueAt(curso.get(i).getFd_curso(), i, 0);
                             f.jGridBusca.setValueAt(curso.get(i).getFd_descricao(), i, 1);
@@ -647,11 +647,11 @@ public class Selecionar extends JFrame {
 
             case 5:
                 DaoDisciplinas daodisc = new DaoDisciplinas();
-                List<tb_disciplinas> disc = daodisc.Select(f.txtCampoBusca.getText().toUpperCase());
+                List<Disciplinas> disc = daodisc.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model5 = (DefaultTableModel) f.jGridBusca.getModel();
                 model5.setNumRows(disc.size());
                 if (disc.size() > 0) {
-                    for (tb_disciplinas c : disc) {
+                    for (Disciplinas c : disc) {
                         for (int i = 0; i < disc.size(); i++) {
                             f.jGridBusca.setValueAt(disc.get(i).getFd_disciplina(), i, 0);
                             f.jGridBusca.setValueAt(disc.get(i).getFd_descricao(), i, 1);
@@ -665,11 +665,11 @@ public class Selecionar extends JFrame {
                 break;
             case 6:
                 DaoItens daoitem = new DaoItens();
-                List<tb_itens> item = daoitem.Select(f.txtCampoBusca.getText().toUpperCase());
+                List<Itens> item = daoitem.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model6 = (DefaultTableModel) f.jGridBusca.getModel();
                 model6.setNumRows(item.size());
                 if (item.size() > 0) {
-                    for (tb_itens c : item) {
+                    for (Itens c : item) {
                         for (int i = 0; i < item.size(); i++) {
                             f.jGridBusca.setValueAt(item.get(i).getFd_item(), i, 0);
                             f.jGridBusca.setValueAt(item.get(i).getFd_descricao(), i, 1);
@@ -683,12 +683,12 @@ public class Selecionar extends JFrame {
                 break;
                 case 7:
                 DaoAluno daoalu2 = new DaoAluno();
-                tb_mensalidades mens = new tb_mensalidades();
-                List<tb_alunos> aluno2 = daoalu2.SelectAlunoPag();
+                Mensalidades mens = new Mensalidades();
+                List<Alunos> aluno2 = daoalu2.SelectAlunoPag();
                 DefaultTableModel model7 = (DefaultTableModel) f.jGridBusca.getModel();
                 model7.setNumRows(aluno2.size());
                 if (aluno2.size() > 0) {
-                    for (tb_alunos al : aluno2) {
+                    for (Alunos al : aluno2) {
                         for (int i = 0; i < aluno2.size(); i++) {
                             f.jGridBusca.setValueAt(aluno2.get(i).getFd_aluno(), i, 0);
                             f.jGridBusca.setValueAt(aluno2.get(i).getFd_nome(), i, 1);

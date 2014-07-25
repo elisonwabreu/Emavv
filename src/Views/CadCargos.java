@@ -31,7 +31,8 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;*/
-import org.entities.classes.tb_cargos;
+
+import org.entities.classes.Cargos;
 
 /**
  *
@@ -47,7 +48,7 @@ public class CadCargos extends javax.swing.JFrame {
     private MaskFormatter fmtCelular;
     private MaskFormatter fmtFone;
 
-    tb_cargos cargo = new tb_cargos(0, null, null);
+    Cargos cargo = new Cargos(0, null, null);
     DaoCargo dao = new DaoCargo();
     Cmessage msg = new Cmessage();
     Validacoes val = new Validacoes();

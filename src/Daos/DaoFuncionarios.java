@@ -1,6 +1,6 @@
 package Daos;
 
-import org.entities.classes.tb_funcionarios;
+import org.entities.classes.Funcionarios;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,14 +10,14 @@ import ConnectionFactory.*;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.entities.classes.tb_alunos;
+import org.entities.classes.Alunos;
 
 public class DaoFuncionarios {
 
     Cmessage msg = new Cmessage();
     EntityManager manager = JPAUtil.getEntityManager();
 
-    public boolean Inserir(tb_funcionarios func) throws SQLException {
+    public boolean Inserir(Funcionarios func) throws SQLException {
         if (msg.MsgConfGravacao() == true) {
 
             manager.getTransaction().begin();
@@ -41,21 +41,21 @@ public class DaoFuncionarios {
         
     }
 
-    public List<tb_funcionarios> Select(int codigo) throws SQLException {
+    public List<Funcionarios> Select(int codigo) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_funcionarios a "
                 + "where a.fd_funcionario = :fd_funcionario and a.fd_status <> 'E'");
         q.setParameter("fd_funcionario", codigo);
-        List<tb_funcionarios> funcionario = q.getResultList();
+        List<Funcionarios> funcionario = q.getResultList();
         return funcionario;
     }
 
-    public List<tb_funcionarios> Select(String nome) throws SQLException {
+    public List<Funcionarios> Select(String nome) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_funcionarios as a "
                 + "where a.fd_nome like :fd_nome and a.fd_status <> 'E'");
         q.setParameter("fd_nome", "%" + nome + "%");
-        List<tb_funcionarios> funcionario = q.getResultList();
+        List<Funcionarios> funcionario = q.getResultList();
         return funcionario;
     }
 
@@ -63,7 +63,7 @@ public class DaoFuncionarios {
 
         if (msg.MsgConfExclusao()== true) {
             
-            tb_funcionarios c = (tb_funcionarios) manager.find(tb_funcionarios.class,codigo);
+            Funcionarios c = (Funcionarios) manager.find(Funcionarios.class,codigo);
             try{
             manager.getTransaction().begin();
              c.setFd_status("E");
@@ -82,20 +82,20 @@ public class DaoFuncionarios {
     }
 
 
-    public List<tb_funcionarios> SelectCpf(String cpf) {
+    public List<Funcionarios> SelectCpf(String cpf) {
 
         Query q = manager.createQuery("select a from tb_funcionarios a "
                 + "where a.fd_cpf = :fd_cpf");
         q.setParameter("fd_cpf", cpf);
-        List<tb_funcionarios> funcionario = q.getResultList();
+        List<Funcionarios> funcionario = q.getResultList();
         return funcionario;
     }
 
-    public boolean Update(tb_funcionarios a, String status) {
+    public boolean Update(Funcionarios a, String status) {
 
         if (msg.MsgConfGravacao() == true) {
 
-            tb_funcionarios func = (tb_funcionarios) manager.find(tb_funcionarios.class, a.getFd_funcionario());
+            Funcionarios func = (Funcionarios) manager.find(Funcionarios.class, a.getFd_funcionario());
 
             func.setFd_nome(a.getFd_nome());
             func.setFd_cpf(a.getFd_cpf());

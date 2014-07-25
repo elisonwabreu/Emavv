@@ -4,7 +4,7 @@
  */
 package Views;
 
-import org.entities.classes.tb_disciplinas;
+import org.entities.classes.Disciplinas;
 import Model.Gravar;
 import Model.Validacoes;
 import Funcao.Limpar;
@@ -27,7 +27,7 @@ import javax.swing.text.MaskFormatter;
  */
 public class CadDisciplinas extends javax.swing.JFrame {
 
-    tb_disciplinas diciplina = new tb_disciplinas(0, null, null);
+    Disciplinas diciplina = new Disciplinas(0, null, null);
     Gravar novoDisciplina = new Gravar();
     Validacoes val = new Validacoes();
     Limpar limpa = new Limpar();

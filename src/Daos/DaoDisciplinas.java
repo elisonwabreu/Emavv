@@ -3,7 +3,7 @@ package Daos;
 import java.sql.SQLException;
 import java.util.List;
 import Messages.Cmessage;
-import org.entities.classes.tb_disciplinas;
+import org.entities.classes.Disciplinas;
 import ConnectionFactory.JPAUtil;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -13,7 +13,7 @@ public class DaoDisciplinas {
     Cmessage msg = new Cmessage();
     EntityManager manager = JPAUtil.getEntityManager();
 
-    public boolean Inserir(tb_disciplinas a) throws SQLException {
+    public boolean Inserir(Disciplinas a) throws SQLException {
 
         if (msg.MsgConfGravacao() == true) {
             manager.getTransaction().begin();
@@ -34,24 +34,24 @@ public class DaoDisciplinas {
        
     }
 
-    public List<tb_disciplinas> Select(int codigo) throws SQLException {
+    public List<Disciplinas> Select(int codigo) throws SQLException {
        Query q = manager.createQuery("select a from tb_disciplinas a where "
                 + "a.fd_disciplina = :fd_disciplina");
         q.setParameter("fd_disciplina", codigo);
-        List<tb_disciplinas> disc = q.getResultList();
+        List<Disciplinas> disc = q.getResultList();
         return disc;
     }
-    public List<tb_disciplinas> SelectDiscCurso(int codigo) throws SQLException {
+    public List<Disciplinas> SelectDiscCurso(int codigo) throws SQLException {
        Query q = manager.createQuery("select a from tb_disciplinas a where "
                 + "a.fd_curso = :fd_curso and fd_status <> 'E'");
         q.setParameter("fd_curso", codigo);
-        List<tb_disciplinas> disc = q.getResultList();
+        List<Disciplinas> disc = q.getResultList();
         return disc;
 
         
     }
 
-    public List<tb_disciplinas> Select(String descricao) throws SQLException {
+    public List<Disciplinas> Select(String descricao) throws SQLException {
         String jpql = "";
 
         if (descricao.equals("")) {
@@ -69,7 +69,7 @@ public class DaoDisciplinas {
             q.setParameter("fd_descricao", "%" + descricao + "%");
         }
 
-        List<tb_disciplinas> disc = q.getResultList();
+        List<Disciplinas> disc = q.getResultList();
         return disc;
     }
 
@@ -77,7 +77,7 @@ public class DaoDisciplinas {
 
         if (msg.MsgConfExclusao()== true) {
             
-            tb_disciplinas c = (tb_disciplinas) manager.find(tb_disciplinas.class,codigo);
+            Disciplinas c = (Disciplinas) manager.find(Disciplinas.class,codigo);
             try{
             manager.getTransaction().begin();
              c.setFd_status("E");

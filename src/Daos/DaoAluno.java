@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.entities.classes.tb_alunos;
+import org.entities.classes.Alunos;
+import org.entities.classes.Matriculas;
 
 /**
  *
@@ -17,7 +18,7 @@ public class DaoAluno {
     Cmessage msg = new Cmessage();
     EntityManager manager = JPAUtil.getEntityManager();
 
-    public boolean Inserir(tb_alunos al) throws SQLException {
+    public boolean Inserir(Alunos al) throws SQLException {
 
         if (msg.MsgConfGravacao() == true) {
 
@@ -36,7 +37,7 @@ public class DaoAluno {
     public boolean Delete(int codigo) throws SQLException {
 
         if (msg.MsgConfExclusao() == true) {
-            tb_alunos aluno = (tb_alunos) manager.find(tb_alunos.class, codigo);
+            Alunos aluno = (Alunos) manager.find(Alunos.class, codigo);
             aluno.setFd_status("E");
             manager.getTransaction().begin();
             manager.persist(aluno);
@@ -47,66 +48,77 @@ public class DaoAluno {
         return false;
     }
     
-    public List<tb_alunos> SelectGeraMensalidade(int codigo) throws SQLException {
+    public List<Alunos> SelectGeraMensalidade(int codigo) throws SQLException {
 
         Query q = manager.createQuery("select a.fd_nome, c. from tb_alunos a"
                 + "inner join tb_cursos c "
                 + "where a.fd_aluno = :fd_aluno and a.fd_status <> 'E'");
         q.setParameter("fd_aluno", codigo);
-        List<tb_alunos> aluno = q.getResultList();
+        List<Alunos> aluno = q.getResultList();
         return aluno;
     }
     
-    public List<tb_alunos> Select(int codigo) throws SQLException {
+    public List<Alunos> Select(int codigo) throws SQLException {
 
         Query q = manager.createQuery("select a.fd_nome from tb_alunos a "
                 + "where a.fd_aluno = :fd_aluno and a.fd_status <> 'E'");
         q.setParameter("fd_aluno", codigo);
-        List<tb_alunos> aluno = q.getResultList();
+        List<Alunos> aluno = q.getResultList();
         return aluno;
     }
-    
-    public List<tb_alunos> Select() throws SQLException {
+    public List<Matriculas> SelectTT(int codigo) throws SQLException {
+
+        Query q = manager.createQuery("select m from tb_matriculas m "
+                + " where m.fd_aluno = :fd_aluno ");
+        
+        Alunos aluno = new Alunos();
+        aluno.setFd_aluno(codigo);
+        
+        q.setParameter("fd_aluno", aluno);
+        List<Matriculas> matricula = q.getResultList();
+        return matricula;
+    }
+    public List<Alunos> Select() throws SQLException {
 
         Query q = manager.createQuery("select a from tb_alunos a "
                 + "order by fd_aluno desc").setMaxResults(1);
         
-        List<tb_alunos> aluno = q.getResultList();
+        List<Alunos> aluno = q.getResultList();
         return aluno;
     }
-    public List<tb_alunos> SelectAlunoPag() throws SQLException {
+    public List<Alunos> SelectAlunoPag() throws SQLException {
 
         Query q = manager.createQuery("select a from tb_alunos a "
                 + "inner join tb_mensalidades m on m.fd_aluno = a.fd_aluno"
                 + "order by fd_aluno desc")/*.setMaxResults(1)*/;
         
-        List<tb_alunos> aluno = q.getResultList();
+        List<Alunos> aluno = q.getResultList();
         return aluno;
     }
 
-    public List<tb_alunos> Select(String nome) throws SQLException {
+    public List<Alunos> Select(String nome) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_alunos as a "
                 + "where a.fd_nome like :fd_nome and a.fd_status <> 'E'");
         q.setParameter("fd_nome", "%" + nome + "%");
-        List<tb_alunos> aluno = q.getResultList();
+        List<Alunos> aluno = q.getResultList();
         return aluno;
     }
     
-    public List<tb_alunos> SelectCpf(String cpf) {
+    public List<Alunos> SelectCpf(String cpf) {
 
         Query q = manager.createQuery("select a from tb_alunos a "
                 + "where a.fd_cpf = :fd_cpf");
         q.setParameter("fd_cpf", cpf);
-        List<tb_alunos> aluno = q.getResultList();
+        List<Alunos> aluno = q.getResultList();
         return aluno;
     }
 
-    public boolean Update(tb_alunos a, String status) {
+    public boolean Update(Alunos a, String status) {
 
         if (msg.MsgConfGravacao() == true) {
 
-            tb_alunos aluno = (tb_alunos) manager.find(tb_alunos.class, a.getFd_aluno());
+            Alunos aluno = (Alunos) manager.find(Alunos.class, a.getFd_aluno());
 
             aluno.setFd_nome(a.getFd_nome());
             aluno.setFd_cpf(a.getFd_cpf());
@@ -134,10 +146,10 @@ public class DaoAluno {
         }
     }
 
-    public boolean Update(tb_alunos a) {
+    public boolean Update(Alunos a) {
 
         if (msg.MsgConfGravacao() == true) {
-            tb_alunos aluno = (tb_alunos) manager.find(tb_alunos.class, a.getFd_aluno());
+            Alunos aluno = (Alunos) manager.find(Alunos.class, a.getFd_aluno());
 
             manager.getTransaction().begin();
             manager.persist(aluno);

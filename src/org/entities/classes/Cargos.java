@@ -1,21 +1,24 @@
 package org.entities.classes;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
-@Entity
-public class tb_cargos {
+@Entity(name = "tb_cargos")
+public class Cargos implements Serializable {
 
     @Id
     @GeneratedValue
-    int fd_cargo;
-    String fd_descricao;
-    String fd_status;
-    Date fd_data_cadastro;
+    private int fd_cargo;
+    private String fd_descricao;
+    private String fd_status;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fd_data_cadastro;
 
-    public tb_cargos() {
+    public Cargos() {
     }
 
     public Date getFd_data_cadastro() {
@@ -26,7 +29,7 @@ public class tb_cargos {
         this.fd_data_cadastro = fd_data_cadastro;
     }
 
-    public tb_cargos(int fd_cargo, String fd_descricao, String fd_status) {
+    public Cargos(int fd_cargo, String fd_descricao, String fd_status) {
 
         this.fd_cargo = fd_cargo;
         this.fd_descricao = fd_descricao;

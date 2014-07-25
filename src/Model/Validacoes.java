@@ -36,10 +36,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import org.entities.classes.tb_alunos;
-import org.entities.classes.tb_cargos;
-import org.entities.classes.tb_cursos;
-import org.entities.classes.tb_funcionarios;
+import org.entities.classes.Alunos;
+import org.entities.classes.Cargos;
+import org.entities.classes.Cursos;
+import org.entities.classes.Funcionarios;
 
 /**
  *
@@ -646,7 +646,7 @@ public class Validacoes extends JFrame {
         boolean podeGravar = false;
         int getCodigoAluno = 0;
         DaoAluno dao = new DaoAluno();
-        List<tb_alunos> aluno = dao.SelectCpf(cpf);
+        List<Alunos> aluno = dao.SelectCpf(cpf);
 
         if (aluno.size() == 0) {
             podeGravar = true;
@@ -662,7 +662,7 @@ public class Validacoes extends JFrame {
         boolean podeGravar = false;
         int getCodigoFunc = 0;
         DaoFuncionarios dao = new DaoFuncionarios();
-        List<tb_funcionarios> func = dao.SelectCpf(cpf);
+        List<Funcionarios> func = dao.SelectCpf(cpf);
 
         if (func.isEmpty()) {
             podeGravar = true;

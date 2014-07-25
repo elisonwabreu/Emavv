@@ -9,9 +9,9 @@ import java.util.Iterator;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.entities.classes.tb_alunos;
-import org.entities.classes.tb_cursos;
-import org.entities.classes.tb_matriculados;
+import org.entities.classes.Alunos;
+import org.entities.classes.Cursos;
+import org.entities.classes.Matriculados;
 import org.entities.classes.Matriculas;
 
 public class DaoMatricula {
@@ -37,7 +37,7 @@ public class DaoMatricula {
         Query q = manager.createQuery("select m from tb_matriculas m "
                 + " where m.fd_aluno = :fd_aluno ");
         
-        tb_alunos aluno = new tb_alunos();
+        Alunos aluno = new Alunos();
         aluno.setFd_aluno(codigo);
         
         q.setParameter("fd_aluno", aluno);

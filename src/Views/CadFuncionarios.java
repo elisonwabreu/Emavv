@@ -4,7 +4,7 @@
  */
 package Views;
 
-import org.entities.classes.tb_funcionarios;
+import org.entities.classes.Funcionarios;
 import Messages.Cmessage;
 import Model.Deletar;
 import Model.Gravar;
@@ -33,7 +33,7 @@ import javax.swing.text.MaskFormatter;
  */
 public class CadFuncionarios extends javax.swing.JFrame {
 
-    tb_funcionarios funcionario = new tb_funcionarios();
+    Funcionarios funcionario = new Funcionarios();
     Validacoes val = new Validacoes();
     Cmessage msg = new Cmessage();
     Deletar delta = new Deletar();

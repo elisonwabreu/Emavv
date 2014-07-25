@@ -2,35 +2,29 @@ package org.entities.classes;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-@Entity
-@Table(name = "tb_matriculas")
+@Entity(name = "tb_matriculas")
 public class Matriculas implements Serializable {
 
     @Id
-    public int fd_matricula;
-    
+    private int fd_matricula;
+
     @Temporal(javax.persistence.TemporalType.DATE)
-    public Date fd_data_matricula;
-    
+    private Date fd_data_matricula;
+
     @OneToOne
-    @JoinColumn(name="fd_aluno")
-    private tb_alunos fd_aluno;
-    
-    
+    @JoinColumn(name = "fd_aluno")
+    private Alunos fd_aluno;
+
     @OneToOne
     @JoinColumn(name = "fd_curso")
-    private tb_cursos fd_curso;
+    private Cursos fd_curso;
 
-   
-   
     public int getFd_matricula() {
         return fd_matricula;
     }
@@ -39,12 +33,12 @@ public class Matriculas implements Serializable {
         this.fd_matricula = fd_matricula;
     }
 
-    public tb_alunos getFd_aluno() {
+    public Alunos getFd_aluno() {
         return fd_aluno;
     }
 
-    public void setFd_aluno(tb_alunos fd_aluno) {
-        this.fd_aluno = (tb_alunos) fd_aluno;
+    public void setFd_aluno(Alunos fd_aluno) {
+        this.fd_aluno = (Alunos) fd_aluno;
     }
 
     public Date getFd_data_matricula() {
@@ -54,15 +48,15 @@ public class Matriculas implements Serializable {
     public void setFd_data_matricula(Date fd_data_matricula) {
         this.fd_data_matricula = fd_data_matricula;
     }
-    
-    public tb_cursos getFd_curso() {
+
+    public Cursos getFd_curso() {
         return fd_curso;
     }
 
-    public void setFd_curso(tb_cursos fd_curso) {
+    public void setFd_curso(Cursos fd_curso) {
         this.fd_curso = fd_curso;
     }
-    
+
 
     /*
      public int getFd_usuario() {

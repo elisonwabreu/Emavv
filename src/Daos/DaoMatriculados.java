@@ -4,7 +4,7 @@ import ConnectionFactory.JPAUtil;
 import Messages.Cmessage;
 import java.sql.SQLException;
 import javax.persistence.EntityManager;
-import org.entities.classes.tb_matriculados;
+import org.entities.classes.Matriculados;
 
 
 
@@ -12,7 +12,7 @@ public class DaoMatriculados {
 Cmessage msg = new Cmessage();
     EntityManager manager = JPAUtil.getEntityManager();
 
-    public boolean Inserir(tb_matriculados a) throws SQLException {
+    public boolean Inserir(Matriculados a) throws SQLException {
         if (msg.MsgConfGravacao() == true) {
 
             manager.getTransaction().begin();

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import org.entities.classes.tb_itens;
+import org.entities.classes.Itens;
 
 public class DaoItens {
 
@@ -14,7 +14,7 @@ public class DaoItens {
 
     EntityManager manager = JPAUtil.getEntityManager();
 
-    public boolean Inserir(tb_itens a) throws SQLException {
+    public boolean Inserir(Itens a) throws SQLException {
 
         if (msg.MsgConfGravacao() == true) {
             manager.getTransaction().begin();
@@ -33,7 +33,7 @@ public class DaoItens {
     public boolean Delete(int codigo) throws SQLException {
 
         if (msg.MsgConfExclusao() == true) {
-            tb_itens itens = (tb_itens) manager.find(tb_itens.class, codigo);
+            Itens itens = (Itens) manager.find(Itens.class, codigo);
             itens.setFd_status("E");
             manager.getTransaction().begin();
             manager.persist(itens);
@@ -47,7 +47,7 @@ public class DaoItens {
 
         if (msg.MsgConfExclusao()== true) {
             
-            tb_itens c = (tb_itens) manager.find(tb_itens.class,codigo);
+            Itens c = (Itens) manager.find(Itens.class,codigo);
             try{
             manager.getTransaction().begin();
              c.setFd_status("E");
@@ -65,29 +65,29 @@ public class DaoItens {
         }
     }
 
-    public List<tb_itens> Select(int codigo) throws SQLException {
+    public List<Itens> Select(int codigo) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_itens as a "
                 + "where a.fd_item = :fd_item and a.fd_status <> 'E'");
         q.setParameter("fd_item", codigo);
-        List<tb_itens> item = q.getResultList();
+        List<Itens> item = q.getResultList();
         return item;
     }
 
-    public List<tb_itens> Select(String nome) throws SQLException {
+    public List<Itens> Select(String nome) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_itens as a "
                 + "where a.fd_descricao like :fd_descricao and a.fd_status <> 'E'");
         q.setParameter("fd_descricao", "%" + nome + "%");
-        List<tb_itens> item = q.getResultList();
+        List<Itens> item = q.getResultList();
         return item;
     }
 
-    public boolean Update(tb_itens a, String status) throws SQLException {
+    public boolean Update(Itens a, String status) throws SQLException {
 
         if (msg.MsgConfGravacao() == true) {
 
-            tb_itens item = (tb_itens) manager.find(tb_itens.class, a.getFd_item());
+            Itens item = (Itens) manager.find(Itens.class, a.getFd_item());
 
             item.setFd_descricao(a.getFd_descricao());
             item.setFd_valor(a.getFd_valor());
