@@ -1,14 +1,20 @@
 package Daos;
 
-import java.sql.SQLException;
-import java.util.List;
-
-import org.entities.classes.tb_cargos;
 import ConnectionFactory.*;
 import Messages.Cmessage;
 import Views.CadCargos;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type;
+import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import org.entities.classes.tb_cargos;
 
 public class DaoCargo {
 
@@ -38,12 +44,18 @@ public class DaoCargo {
     }
 
     public List<tb_cargos> Select(int codigo) throws SQLException {
-
-        Query q = manager.createQuery("select a from tb_cargos a where "
-                + " a.fd_cargo = :fd_cargo and a.fd_status <> 'E'");
-        q.setParameter("fd_cargo", codigo);
-        List<tb_cargos> cargo = q.getResultList();
-        return cargo;
+        
+        CriteriaBuilder cb = manager.getCriteriaBuilder();
+        CriteriaQuery<tb_cargos> q = cb.createQuery(tb_cargos.class);
+        Root<tb_cargos> c = q.from(tb_cargos.class);
+        ParameterExpression<Integer> p = cb.parameter(Integer.class);
+        Predicate predicate = cb.equal(c.<Integer> get("fd_cargo"), p);
+        q.select(c).where(predicate);
+        TypedQuery<tb_cargos> query = manager.createQuery(q);
+        query.setParameter(p, codigo);
+        List<tb_cargos> result = query.getResultList();
+        
+        return result; 
     }
      public List<tb_cargos> SelectFormBusca(int codigo) throws SQLException {
 

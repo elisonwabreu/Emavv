@@ -29,10 +29,19 @@ import Views.FormVendas;
 import Views.Form_TelaLogin;
 import java.io.PrintStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import org.entities.classes.Matriculas;
 import org.entities.classes.tb_alunos;
 import org.entities.classes.tb_cargos;
 import org.entities.classes.tb_cursos;
@@ -40,7 +49,6 @@ import org.entities.classes.tb_disciplinas;
 import org.entities.classes.tb_funcionarios;
 import org.entities.classes.tb_itens;
 import org.entities.classes.tb_matriculados;
-import org.entities.classes.Matriculas;
 import org.entities.classes.tb_mensalidades;
 import org.entities.classes.tb_usuarios;
 
@@ -53,6 +61,7 @@ public class Selecionar extends JFrame {
     Validacoes val = new Validacoes();
     Cmessage msg = new Cmessage();
     Limpar limpa = new Limpar();
+    EntityManager manager;
 
     public void getJtableValue(int ValueJtable, JTextField txtCodigo) {
 
@@ -703,5 +712,32 @@ public class Selecionar extends JFrame {
         }
 
     }
+    
+    /**
+     *
+     * @param codigo
+     * @param IdField
+     * @param tabela
+     * @return
+     * @throws SQLException
+     */
+    /* public List<Class> Select(int codigo, String IdField,Class c) throws SQLException, InstantiationException, IllegalAccessException {
+        
+        Object tabela = c.newInstance();
+        
+            
+        CriteriaBuilder cb = manager.getCriteriaBuilder();
+        
+        CriteriaQuery<tabela> q = cb.createQuery(tabela.class);
+        Root<tabela> c = q.from(tabela.class);
+        ParameterExpression<Integer> p = cb.parameter(Integer.class);
+        Predicate predicate = cb.equal(c.<Integer> get(IdField), p);
+        q.select(c).where(predicate);
+        TypedQuery<T> query = manager.createQuery(q);
+        query.setParameter(p, codigo);
+        List<T> result = query.getResultList();
+        
+        return result; 
+    }*/
 
 }
