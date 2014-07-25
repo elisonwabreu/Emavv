@@ -4,11 +4,21 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.entities.classes.Cargos;
+
 import ConnectionFactory.*;
 import Messages.Cmessage;
 import Views.CadCargos;
+import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import org.entities.classes.Cargos;
 
 public class DaoCargo {
 
@@ -37,6 +47,7 @@ public class DaoCargo {
         }
     }
 
+
     public List<Cargos> Select(int codigo) throws SQLException {
 
         Query q = manager.createQuery("select a from tb_cargos a where "
@@ -44,6 +55,21 @@ public class DaoCargo {
         q.setParameter("fd_cargo", codigo);
         List<Cargos> cargo = q.getResultList();
         return cargo;
+    }
+    public List<Cargos> SelectCri(int codigo) throws SQLException {
+        
+        CriteriaBuilder cb = manager.getCriteriaBuilder();
+        CriteriaQuery<Cargos> q = cb.createQuery(Cargos.class);
+        Root<Cargos> c = q.from(Cargos.class);
+        ParameterExpression<Integer> p = cb.parameter(Integer.class);
+        Predicate predicate = cb.equal(c.<Integer> get("fd_cargo"), p);
+        q.select(c).where(predicate);
+        TypedQuery<Cargos> query = manager.createQuery(q);
+        query.setParameter(p, codigo);
+        List<Cargos> result = query.getResultList();
+        
+        return result; 
+
     }
      public List<Cargos> SelectFormBusca(int codigo) throws SQLException {
 

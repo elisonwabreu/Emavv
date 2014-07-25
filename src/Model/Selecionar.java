@@ -29,7 +29,15 @@ import Views.FormVendas;
 import Views.Form_TelaLogin;
 import java.io.PrintStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -43,6 +51,17 @@ import org.entities.classes.Matriculados;
 import org.entities.classes.Matriculas;
 import org.entities.classes.Mensalidades;
 import org.entities.classes.Usuarios;
+import org.entities.classes.Matriculas;
+import org.entities.classes.Alunos;
+import org.entities.classes.Cargos;
+import org.entities.classes.Cursos;
+import org.entities.classes.Disciplinas;
+import org.entities.classes.Funcionarios;
+import org.entities.classes.Itens;
+import org.entities.classes.Matriculas;
+import org.entities.classes.Mensalidades;
+import org.entities.classes.Usuarios;
+
 
 /**
  *
@@ -53,6 +72,7 @@ public class Selecionar extends JFrame {
     Validacoes val = new Validacoes();
     Cmessage msg = new Cmessage();
     Limpar limpa = new Limpar();
+    EntityManager manager;
 
     public void getJtableValue(int ValueJtable, JTextField txtCodigo) {
 
@@ -703,5 +723,7 @@ public class Selecionar extends JFrame {
         }
 
     }
+    
+   
 
 }
