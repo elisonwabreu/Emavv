@@ -4,16 +4,18 @@
  */
 package Model;
 
-import Funcao.Limpar;
 import Daos.DaoAluno;
-import Daos.DaoMatriculados;
 import Daos.DaoCargo;
 import Daos.DaoCursos;
 import Daos.DaoDisciplinas;
 import Daos.DaoFuncionarios;
 import Daos.DaoItens;
 import Daos.DaoMatricula;
+import Daos.DaoMatriculados;
+import Daos.DaoMensalidade;
 import Daos.DaoUsuarios;
+import Metodos.GerarMensalidade;
+import Metodos.Limpar;
 import Views.CadAluno;
 import Views.CadCargos;
 import Views.CadCursos;
@@ -22,6 +24,7 @@ import Views.CadFuncionarios;
 import Views.CadItens;
 import Views.CadMatriculas;
 import Views.CadUsuarios;
+import Views.FormGeraMensalidade;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -41,6 +44,7 @@ import org.entities.classes.Funcionarios;
 import org.entities.classes.Itens;
 import org.entities.classes.Matriculados;
 import org.entities.classes.Matriculas;
+import org.entities.classes.Mensalidades;
 import org.entities.classes.Usuarios;
 
 /**
@@ -48,14 +52,14 @@ import org.entities.classes.Usuarios;
  * @author suporte
  */
 public class Gravar extends JFrame {
-
+    
     Validacoes val = new Validacoes();
     Cargos cargo = new Cargos();
     DaoCargo dao = new DaoCargo();
     Limpar limpa = new Limpar();
-
+    
     public void Cargo(CadCargos c) throws SQLException {
-
+        
         if (val.ValidaGravacao(c.txtDescricao, c.cbStatus) == true) {
             String codigo = c.txtCodigo.getText();
             String descricao = c.txtDescricao.getText();
@@ -67,9 +71,9 @@ public class Gravar extends JFrame {
             }
             cargo.setFd_descricao(descricao);
             cargo.setFd_status(status);
-
+            
             if (codigo.trim().equals("")) {
-
+                
                 if (dao.Inserir(cargo) == true) {
                     limpa.LimpaCargo(c);
                     val.ButtonClick(c);
@@ -82,9 +86,9 @@ public class Gravar extends JFrame {
             }
         }
     }
-
+    
     public void Aluno(CadAluno a) throws SQLException, ParseException {
-
+        
         DaoAluno al = new DaoAluno();
         Alunos aluno = new Alunos();
         //int codigo = Integer.parseInt(a.txtCodigo.getText()); 
@@ -95,13 +99,13 @@ public class Gravar extends JFrame {
         String sexo = a.cbSexo.getSelectedItem().toString();
         String endereco = a.txtEndereco.getText();
         String num;
-
+        
         if (a.txtNum.getText().trim().equals("")) {
             num = null;
         } else {
             num = a.txtNum.getText();
         }
-
+        
         String bairro = a.txtbairro.getText();
         String cidade = a.txtCidade.getText();
         String cep = a.txtCep.getText();
@@ -110,7 +114,7 @@ public class Gravar extends JFrame {
         String celular = a.txtCelular.getText();
         String email = a.txtEmail.getText();
         String status = a.cbStatus.getSelectedItem().toString();
-
+        
         if (a.cbSexo.getSelectedIndex() == 1) {
             sexo = "F";
         } else {
@@ -133,20 +137,20 @@ public class Gravar extends JFrame {
             aluno.setFd_cpf(cpf);
         }
         aluno.setFd_rg(rg);
-
+        
         if (dtNasc.equals("  /  /    ")) {
             aluno.setFd_data_nasc(null);
         } else {
             aluno.setFd_data_nasc(val.FormataData(dtNasc));
         }
-
+        
         aluno.setFd_sexo(sexo);
         aluno.setFd_endereco(endereco.toUpperCase());
-
+        
         if (num != null) {
             aluno.setFd_numero(num);
         }
-
+        
         aluno.setFd_bairro(bairro.toUpperCase());
         aluno.setFd_cidade(cidade.toUpperCase());
         aluno.setFd_cep(val.AjusteCaracter(cep));
@@ -155,7 +159,7 @@ public class Gravar extends JFrame {
         aluno.setFd_celular(val.AjusteCaracter(celular));
         aluno.setFd_email(email.toUpperCase());
         aluno.setFd_status(status);
-
+        
         if (a.txtCodigo.getText().equals("")) {
             if (val.ValidaGravacaoAlunos(cpf, a) == true) {
                 if (al.Inserir(aluno) == true) {
@@ -168,12 +172,12 @@ public class Gravar extends JFrame {
             }
         }
     }
-
+    
     public void Funcionario(CadFuncionarios fun) throws SQLException, ParseException {
         //Instacia DaoFuncionarios
         DaoFuncionarios func = new DaoFuncionarios();
         Funcionarios funcionario = new Funcionarios();
-
+        
         String nome = fun.txtNome.getText();
         String cpf = fun.txtCpf.getText();
         String rg = fun.txtRg.getText();
@@ -189,13 +193,13 @@ public class Gravar extends JFrame {
         String cep = fun.txtCep.getText();
         String telefone = fun.txtTelefone.getText();
         String status = fun.comboStatus.getSelectedItem().toString();
-
+        
         if (fun.comboSexo.getSelectedIndex() == 1) {
             status = "F";
         } else {
             status = "M";
         }
-
+        
         if (fun.comboStatus.getSelectedIndex() == 1) {
             status = "A";
         } else {
@@ -216,7 +220,7 @@ public class Gravar extends JFrame {
         funcionario.setFd_email(email.toUpperCase());
         funcionario.setFd_telefone(val.AjusteCaracter(telefone));
         funcionario.setFd_status(status);
-
+        
         if (fun.txtCodigo.getText().equals("")) {
             if (val.ValidaGravacaoFunc(cpf, fun) == true) {
                 if (func.Inserir(funcionario) == true) {
@@ -229,16 +233,16 @@ public class Gravar extends JFrame {
             }
         }
     }
-
+    
     public void DisciplinaGravar(CadDisciplinas dis) throws SQLException {
         //Instacia DaoDisciplinas
         DaoDisciplinas disciplina = new DaoDisciplinas();
         Disciplinas novo = new Disciplinas(0, null, null);
-
+        
         String descricao = dis.txtDisciplina.getText();
         String status = dis.comboStatus.getSelectedItem().toString();
-        int codidoCurso =  Integer.parseInt(dis.txtCodigo.getText());
-
+        int codidoCurso = Integer.parseInt(dis.txtCodigo.getText());
+        
         if (dis.comboStatus.getSelectedIndex() == 1) {
             status = "A";
         } else {
@@ -247,11 +251,11 @@ public class Gravar extends JFrame {
         novo.setFd_descricao(descricao.toUpperCase());
         novo.setFd_status(status);
         novo.setFd_curso(codidoCurso);
-
+        
         disciplina.Inserir(novo);
-
+        
     }
-
+    
     public void Cursos(CadCursos c) throws SQLException {
         //Instacia DaoDisciplinas
         DaoCursos curso = new DaoCursos();
@@ -260,7 +264,7 @@ public class Gravar extends JFrame {
         String descricao = c.txtDescricao.getText();
         double valor = Double.parseDouble(c.txtValor.getText());
         String status = c.cbStatus.getSelectedItem().toString();
-
+        
         if (c.cbStatus.getSelectedIndex() == 1) {
             status = "A";
         } else {
@@ -270,20 +274,20 @@ public class Gravar extends JFrame {
         novo.setFd_descricao(descricao.toUpperCase());
         novo.setFd_status(status);
         novo.setFd_valor(valor);
-
+        
         curso.Inserir(novo);
-
+        
     }
-
+    
     public void Itens(CadItens i) throws SQLException {
         //Instacia DaoDisciplinas
         DaoItens item = new DaoItens();
         Itens novo = new Itens(0, null, 0.0, null);
-
+        
         String descricao = i.txtItem.getText();
         Double valor = Double.parseDouble(i.txtPreco.getText());
         String status = i.comboStatus.getSelectedItem().toString();
-
+        
         if (i.comboStatus.getSelectedIndex() == 1) {
             status = "A";
         } else {
@@ -292,30 +296,29 @@ public class Gravar extends JFrame {
         novo.setFd_descricao(descricao.toUpperCase());
         novo.setFd_valor(valor);
         novo.setFd_status(status);
-
+        
         item.Inserir(novo);
 
         //limpa.LimpaItens(i);
-
     }
-
+    
     public void insertUsuario(CadUsuarios u) throws SQLException {
-
+        
         DaoUsuarios user = new DaoUsuarios();
         Usuarios usuario = new Usuarios();
-
+        
         int cod = Integer.parseInt(u.txtCodigo.getText());
         String nomeUser = u.txtUsuario.getText();
         String senha1 = u.txtSenha.getText();
         String senha2 = u.txtReSenha.getText();
         String status = u.cbStatusUser.getSelectedItem().toString();
-
+        
         if (u.cbStatusUser.getSelectedIndex() == 0) {
             status = "A";
         } else {
             status = "I";
         }
-
+        
         if (val.senhaValida(senha1, senha2) == true) {
             usuario.setFd_funcionario(cod);
             usuario.setFd_login(nomeUser);
@@ -329,11 +332,11 @@ public class Gravar extends JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Ação não executada");
-
+            
         }
-
+        
     }
-
+    
     public void GravaMatricula(CadMatriculas a) throws ParseException, SQLException {
         DaoMatricula matr = new DaoMatricula();
         Matriculas novoMatr = new Matriculas();
@@ -344,31 +347,30 @@ public class Gravar extends JFrame {
         lsCurso.add(Integer.parseInt(a.txtCodCurso.getText()));
         Alunos alu = new Alunos();
         alu.setFd_aluno(Integer.parseInt(a.txtCodigo.getText()));
-
         
         int matricula = Integer.parseInt(a.txtMatricula.getText());
-   
+        
         List<Matriculas> matricad = matr.SelectMatricula(matricula);
-
-            if(matricad.size()>0){
-            for(Matriculas cr  : matricad){
-                if(matricula == cr.getFd_matricula()){
-
+        
+        if (matricad.size() > 0) {
+            for (Matriculas cr : matricad) {
+                if (matricula == cr.getFd_matricula()) {
+                    
                     DaoMatriculados matr2 = new DaoMatriculados();
                     Matriculados novomatr2 = new Matriculados();
-
+                    
                     novomatr2.setFd_matricula(novoMatr);
                     novomatr2.setFd_curso(lsCurso);
                     novomatr2.setFd_aluno(lsAluno);
                     matr2.Inserir(novomatr2);
                     
-                }else{
+                } else {
                     String data = a.txtDtCadastro.getText();
-
+                    
                     novoMatr.setFd_matricula(matricula);
                     novoMatr.setFd_aluno(alu);
                     novoMatr.setFd_data_matricula(val.FormataData(data));
-
+                    
                     matr.Inserir(novoMatr);
                     
                     DaoMatriculados matr2 = new DaoMatriculados();
@@ -378,20 +380,21 @@ public class Gravar extends JFrame {
                     novomatr2.setFd_curso(lsCurso);
                     novomatr2.setFd_aluno(lsAluno);
                     matr2.Inserir(novomatr2);
-        
-                } 
+                    
+                }                
             }
-            }else{
-                System.out.print("ooooooooooooooooo");
-            }
+        } else {
+            System.out.print("ooooooooooooooooo");
+        }
         
     }
+
     public void GravaMatricula(int codigo) throws ParseException, SQLException {
         DaoMatricula matr = new DaoMatricula();
         Matriculas novoMatr = new Matriculas();
         Alunos al = new Alunos();
         al.setFd_aluno(codigo);
-               
+        
         java.util.Date date = new java.util.Date(System.currentTimeMillis());
         SimpleDateFormat novaData = new SimpleDateFormat("yyyyHHmmss");
         SimpleDateFormat novaDataMtr = new SimpleDateFormat("yyyymmdd");
@@ -400,7 +403,34 @@ public class Gravar extends JFrame {
         novoMatr.setFd_matricula(Integer.parseInt(matricula));
         novoMatr.setFd_aluno(al);
         novoMatr.setFd_data_matricula(date);
-            JOptionPane.showMessageDialog(null, "A matricula gerada  \r\n é: "+matricula+".");
+        JOptionPane.showMessageDialog(null, "A matricula gerada  \r\n é: " + matricula + ".");
         matr.Inserir(novoMatr);
+    }
+    
+    public void MensalidadeDDD(FormGeraMensalidade m) throws ParseException, SQLException {
+        DaoMatricula mtr = new DaoMatricula();
+        DaoMensalidade mens = new DaoMensalidade();
+        GerarMensalidade gera = new GerarMensalidade();
+        Mensalidades novo =  new Mensalidades();
+        
+        int idAluno = Integer.parseInt(m.txtCodigo.getText());
+        int idCurso = Integer.parseInt(m.txtCodigoCurso.getText());
+        int matricula;
+        List<Matriculas> matriculas = mtr.Select(idAluno);
+        for (Matriculas al : matriculas) {
+            matricula = al.getFd_matricula();
+            for (int i = 0; i < 6; i++) {
+                
+            novo.setFd_matricula(matricula);
+            novo.setFd_curso(idCurso);
+            novo.setFd_aluno(idAluno);
+            novo.setFd_vencimento(String.valueOf(gera.Gerar()));
+            novo.setFd_valor(100.0);
+            novo.setFd_status("A");
+            mens.Inserir(novo);
+        }
+   
+        }
+        
     }
 }

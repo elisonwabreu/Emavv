@@ -9,9 +9,9 @@ import Daos.DaoCursos;
 import Messages.Cmessage;
 import Model.Validacoes;
 import Model.Deletar;
-import Funcao.Limpar;
+import Metodos.Limpar;
 import Model.Gravar;
-import Funcao.InsereNumeros;
+import Metodos.InsereNumeros;
 
 import Model.Selecionar;
 import Theme.Tema;

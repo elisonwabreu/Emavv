@@ -570,7 +570,17 @@ public class Validacoes extends JFrame {
         busca.tabela = tabela;
 
     }
+    
+    public void clickBtPesquisaa(int tableIndex, FormGeraMensalidade a, String tabela) {
 
+        FormBusca busca = new FormBusca();
+        busca.setVisible(true);
+        busca.tableIndex = tableIndex;
+        busca.setTxtCodigo(a.txtCodigoCurso);
+        busca.tabela = tabela;
+
+    }
+    
     public void setTextUp(CadCargos c) {
 
         String nome = c.txtDescricao.getText().toUpperCase();

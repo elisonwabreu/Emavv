@@ -13,13 +13,13 @@ public class Mensalidades implements Serializable {
     private int fd_matricula;
     private int fd_curso;
     private int fd_aluno;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date fd_vencimento;
+   // @Temporal(javax.persistence.TemporalType.DATE)
+    private String fd_vencimento;
     private double fd_valor;
     private String fd_status;
 
     public Mensalidades(int fd_matricula, int fd_curso, int fd_aluno,
-            Date fd_vencimento,double fd_valor, String fd_status) {
+            String fd_vencimento,double fd_valor, String fd_status) {
         this.fd_matricula = fd_matricula;
         this.fd_curso = fd_curso;
         this.fd_aluno = fd_aluno;
@@ -56,11 +56,11 @@ public class Mensalidades implements Serializable {
         this.fd_aluno = fd_aluno;
     }
 
-    public Date getFd_vencimento() {
+    public String getFd_vencimento() {
         return fd_vencimento;
     }
 
-    public void setFd_vencimento(Date fd_vencimento) {
+    public void setFd_vencimento(String fd_vencimento) {
         this.fd_vencimento = fd_vencimento;
     }
 

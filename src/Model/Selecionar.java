@@ -12,7 +12,7 @@ import Daos.DaoFuncionarios;
 import Daos.DaoItens;
 import Daos.DaoMatricula;
 import Daos.DaoUsuarios;
-import Funcao.Limpar;
+import Metodos.Limpar;
 import Messages.Cmessage;
 import Views.CadAluno;
 import Views.CadCargos;
@@ -364,6 +364,27 @@ public class Selecionar extends JFrame {
             return false;
         }
     }
+    
+    public boolean ListarCursos(FormGeraMensalidade c) throws SQLException {
+
+        DaoCursos dao = new DaoCursos();
+
+        int codigo = Integer.parseInt(c.txtCodigoCurso.getText());
+
+            List<Cursos> curso = dao.Select(codigo);
+         if (curso.size()>0) {
+            for (Cursos cr : curso) {
+                c.txtDescricao.setText(cr.getFd_descricao());
+                
+            }
+            return true;
+        } else {
+            msg.msgNenhumRegistro();
+            
+            return false;
+        }
+    }
+    
     public boolean ListarCursos(CadDisciplinas c) throws SQLException {
 
         DaoCursos dao = new DaoCursos();
@@ -576,7 +597,7 @@ public class Selecionar extends JFrame {
        //}
        // return false;
     }
-
+    
     public void setSelectOnJTable(FormBusca f, String tabela, int TableIndex) throws SQLException {
         /*
          Valores correspondentes TableIndex

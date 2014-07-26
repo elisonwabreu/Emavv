@@ -5,7 +5,7 @@
  */
 package Views;
 
-import Funcao.GeraMatricula;
+import Metodos.GeraMatricula;
 import Model.Gravar;
 import Model.Selecionar;
 import Model.Validacoes;

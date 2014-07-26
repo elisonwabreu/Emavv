@@ -4,7 +4,7 @@
  */
 package Views;
 
-import Funcao.Vendas;
+import Metodos.Vendas;
 import Model.Selecionar;
 import Model.Validacoes;
 import Theme.Tema;

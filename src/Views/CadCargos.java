@@ -5,8 +5,8 @@
 package Views;
 
 import Daos.DaoCargo;
-import Funcao.InsereNumeros;
-import Funcao.Limpar;
+import Metodos.InsereNumeros;
+import Metodos.Limpar;
 import Messages.Cmessage;
 import Model.Deletar;
 import Model.Gravar;

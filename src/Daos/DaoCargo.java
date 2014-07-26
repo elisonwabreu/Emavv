@@ -1,9 +1,5 @@
 package Daos;
 
-import java.sql.SQLException;
-import java.util.List;
-
-import org.entities.classes.Cargos;
 
 import ConnectionFactory.*;
 import Messages.Cmessage;

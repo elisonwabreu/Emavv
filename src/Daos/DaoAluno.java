@@ -60,7 +60,7 @@ public class DaoAluno {
     
     public List<Alunos> Select(int codigo) throws SQLException {
 
-        Query q = manager.createQuery("select a.fd_nome from tb_alunos a "
+        Query q = manager.createQuery("select a from tb_alunos a "
                 + "where a.fd_aluno = :fd_aluno and a.fd_status <> 'E'");
         q.setParameter("fd_aluno", codigo);
         List<Alunos> aluno = q.getResultList();

@@ -1,12 +1,12 @@
 package Views;
 
 import Model.Deletar;
-import Funcao.Limpar;
+import Metodos.Limpar;
 import Daos.DaoFuncionarios;
 import Messages.Cmessage;
 import Model.Gravar;
-import Funcao.InsereLetras;
-import Funcao.InsereNumeros;
+import Metodos.InsereLetras;
+import Metodos.InsereNumeros;
 import Model.Selecionar;
 import Model.Validacoes;
 import Theme.Tema;

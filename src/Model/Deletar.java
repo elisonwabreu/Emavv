@@ -1,7 +1,7 @@
 package Model;
 
 
-import Funcao.Limpar;
+import Metodos.Limpar;
 import Daos.DaoAluno;
 import Daos.DaoCargo;
 import Daos.DaoCursos;

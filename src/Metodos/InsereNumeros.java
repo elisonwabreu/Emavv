@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Funcao;
+package Metodos;
 
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
