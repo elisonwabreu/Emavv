@@ -10,6 +10,7 @@ import javax.persistence.Temporal;
 public class Mensalidades implements Serializable {
 
     @Id
+    private int fd_mensalidade;
     private int fd_matricula;
     private int fd_curso;
     private int fd_aluno;
@@ -30,6 +31,14 @@ public class Mensalidades implements Serializable {
 
     public Mensalidades() {
 
+    }
+
+    public int getFd_mensalidade() {
+        return fd_mensalidade;
+    }
+
+    public void setFd_mensalidade(int fd_mensalidade) {
+        this.fd_mensalidade = fd_mensalidade;
     }
 
     public int getFd_matricula() {

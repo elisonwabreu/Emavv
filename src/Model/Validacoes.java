@@ -4,10 +4,7 @@
  */
 package Model;
 
-import ConnectionFactory.*;
 import Daos.DaoAluno;
-import Daos.DaoCargo;
-import Daos.DaoCursos;
 import Daos.DaoFuncionarios;
 import Messages.Cmessage;
 import Views.CadAluno;
@@ -21,24 +18,16 @@ import Views.CadUsuarios;
 import Views.FormBusca;
 import Views.FormGeraMensalidade;
 import Views.Form_TelaLogin;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 import org.entities.classes.Alunos;
-import org.entities.classes.Cargos;
-import org.entities.classes.Cursos;
 import org.entities.classes.Funcionarios;
 
 /**
@@ -215,6 +204,7 @@ public class Validacoes extends JFrame {
             return false;
         }
     }
+                
     public boolean KeyPressedText(FormGeraMensalidade c) {
 
         if (c.txtCodigo.getText().equals("")) {
@@ -482,7 +472,7 @@ public class Validacoes extends JFrame {
 
     public String AjusteCaracter(String carac) {
 
-        String[] caracEspecial = {".", "-", "(", ")"};
+        String[] caracEspecial = {".", "-", "(", ")","[","]"};
         String str = carac;
 
         for (int i = 0; i < caracEspecial.length; i++) {

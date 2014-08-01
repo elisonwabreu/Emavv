@@ -424,7 +424,7 @@ public class Gravar extends JFrame {
             novo.setFd_matricula(matricula);
             novo.setFd_curso(idCurso);
             novo.setFd_aluno(idAluno);
-            novo.setFd_vencimento(String.valueOf(gera.Gerar()));
+            novo.setFd_vencimento(val.AjusteCaracter(String.valueOf(gera.Gerar())));
             novo.setFd_valor(100.0);
             novo.setFd_status("A");
             mens.Inserir(novo);
