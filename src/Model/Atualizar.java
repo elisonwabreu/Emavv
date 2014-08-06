@@ -109,12 +109,12 @@ public class Atualizar extends JFrame {
         if (a.txtCodigo.getText().equals("")) {
             
             if (val.ValidaGravacaoAlunos(cpf, a) == true) {
-                if (al.Update(aluno, status) == true) {
+                if (al.Update(a, status) == true) {
                     limpa.LimpaAluno(a);
                 }
             }
         } else if (val.ValidaGravacaoAlunos(cpf, a) == true) {
-            if (al.Update(aluno, status) == true) {
+            if (al.Update(a, status) == true) {
                 limpa.LimpaAluno(a);
             }
         }

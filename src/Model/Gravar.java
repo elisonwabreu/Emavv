@@ -88,7 +88,7 @@ public class Gravar extends JFrame {
 
         DaoAluno al = new DaoAluno();
         Alunos aluno = new Alunos();
-        int codigo = Integer.parseInt(a.txtCodigo.getText()); 
+        int codigo = Integer.parseInt(a.txtCodigo.getText());
         String nome = a.txtNome.getText();
         String cpf = val.AjusteCaracter(a.txtCpf.getText());
         String rg = a.txtRg.getText();
@@ -156,18 +156,17 @@ public class Gravar extends JFrame {
         aluno.setFd_celular(val.AjusteCaracter(celular));
         aluno.setFd_email(email.toUpperCase());
         aluno.setFd_status(status);
-        
 
         if (a.txtCodigo.getText().equals("")) {
-        
-        al.Inserir(aluno);
-        limpa.LimpaAluno(a);
-        
+
+            if(al.Inserir(aluno) == true)
+            limpa.LimpaAluno(a);
+
         } else {
-        al.Update(aluno, status);
-        limpa.LimpaAluno(a);
+            if(al.Update(a, status)==true)
+            limpa.LimpaAluno(a);
         }
-        
+
     }
 
     public void Funcionario(CadFuncionarios fun) throws SQLException, ParseException {

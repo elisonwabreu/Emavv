@@ -516,6 +516,7 @@ public class CadAluno extends javax.swing.JFrame {
 
             novoAluno.Aluno(this);
             if (sel.ListarAlunos() > 0) {
+                    
                 if (msg.MsgConfMatricula() == true) {
                     novoAluno.GravaMatricula(sel.ListarAlunos());
                 }
