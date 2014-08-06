@@ -54,5 +54,16 @@ public class DaoMensalidade {
         return mensalidade;
     
     }
+    
+    public List<Mensalidades> Select(int codigo) {
+
+        Query q = manager.createQuery("select a from tb_mensalidades as a "
+                + "where a.fd_mensalidade = :fd_mensalidade")/*.setMaxResults(6)*/;
+        q.setParameter("fd_mensalidade", codigo);
+        List<Mensalidades> mensalidade = q.getResultList();
+        
+        return mensalidade;
+    
+    }
 
 }

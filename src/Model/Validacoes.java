@@ -189,7 +189,6 @@ public class Validacoes extends JFrame {
     /*Fim da validação do preenchimento dos campos de Disciplinas -------------------------------*/
 
     //KeyPressed Event from JTextField
-
     public boolean KeyPressedText(CadMatriculas c) {
 
         if (c.txtCodigo.getText().equals("")) {
@@ -204,14 +203,14 @@ public class Validacoes extends JFrame {
             return false;
         }
     }
-                
+
     public boolean KeyPressedText(FormGeraMensalidade c) {
 
         if (c.txtCodigo.getText().equals("")) {
-            
+
             msg.msgFormGeraMensalidade();
             return false;
-            
+
         } else {
             c.btnGeraMensalidade.setEnabled(true);
             c.txtCodigo.setEnabled(false);
@@ -219,6 +218,7 @@ public class Validacoes extends JFrame {
             return true;
         }
     }
+
     public boolean KeyPressedText(CadDisciplinas c) {
 
         if (c.txtCodDisciplina.getText().equals("")) {
@@ -227,7 +227,7 @@ public class Validacoes extends JFrame {
             c.txtCodDisciplina.setEnabled(false);
             c.txtDescricao.grabFocus();
             return true;
-            
+
         } else {
             c.btnSalvar.setEnabled(true);
             c.btnExcluir.setEnabled(true);
@@ -237,6 +237,7 @@ public class Validacoes extends JFrame {
             return false;
         }
     }
+
     public boolean KeyPressedText(CadItens c) {
 
         if (c.txtCodigo.getText().equals("")) {
@@ -255,7 +256,9 @@ public class Validacoes extends JFrame {
             return false;
         }
     }
+
     //-------------------------------------------------------------------
+
     public boolean KeyPressedText(CadCargos c) {
 
         if (c.txtCodigo.getText().equals("")) {
@@ -388,28 +391,28 @@ public class Validacoes extends JFrame {
     }
 
     public void ButtonClick(CadItens c) {
-        if(c.txtCodigo.getText().equals("")){
-                c.btnExcluir.setEnabled(false);
-                c.btnLimpar.setEnabled(true);
-                c.bntRelatorio.setEnabled(false);
-                c.btnSalvar.setEnabled(true);
-                c.btnBuscar.setEnabled(true);
-                c.txtCodigo.setEnabled(false);
-                c.txtCodigo.grabFocus();
-        }else{
-                c.btnExcluir.setEnabled(true);
-                c.btnLimpar.setEnabled(true);
-                c.bntRelatorio.setEnabled(true);
-                c.btnSalvar.setEnabled(true);
-                c.btnBuscar.setEnabled(true);
-                c.txtCodigo.setEnabled(true);
-                c.txtCodigo.grabFocus();
-        
+        if (c.txtCodigo.getText().equals("")) {
+            c.btnExcluir.setEnabled(false);
+            c.btnLimpar.setEnabled(true);
+            c.bntRelatorio.setEnabled(false);
+            c.btnSalvar.setEnabled(true);
+            c.btnBuscar.setEnabled(true);
+            c.txtCodigo.setEnabled(false);
+            c.txtCodigo.grabFocus();
+        } else {
+            c.btnExcluir.setEnabled(true);
+            c.btnLimpar.setEnabled(true);
+            c.bntRelatorio.setEnabled(true);
+            c.btnSalvar.setEnabled(true);
+            c.btnBuscar.setEnabled(true);
+            c.txtCodigo.setEnabled(true);
+            c.txtCodigo.grabFocus();
+
         }
     }
 
-    public void ButtonClick(CadDisciplinas c){
-            if(c.txtCodigo.getText().equals("")){
+    public void ButtonClick(CadDisciplinas c) {
+        if (c.txtCodigo.getText().equals("")) {
             c.btnExcluir.setEnabled(false);
             c.btnLimpar.setEnabled(false);
             c.bntRelatorio.setEnabled(false);
@@ -417,7 +420,7 @@ public class Validacoes extends JFrame {
             c.btnBuscar.setEnabled(true);
             c.txtCodDisciplina.setEnabled(true);
             c.txtCodigo.grabFocus();
-        }else{
+        } else {
             c.btnExcluir.setEnabled(true);
             c.btnLimpar.setEnabled(true);
             c.bntRelatorio.setEnabled(true);
@@ -472,7 +475,7 @@ public class Validacoes extends JFrame {
 
     public String AjusteCaracter(String carac) {
 
-        String[] caracEspecial = {".", "-", "(", ")","[","]"};
+        String[] caracEspecial = {".", "-", "(", ")", "[", "]"};
         String str = carac;
 
         for (int i = 0; i < caracEspecial.length; i++) {
@@ -492,6 +495,22 @@ public class Validacoes extends JFrame {
         java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
 
         return date;
+    }
+
+    public void ValidaData(String cData) throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        String dataString = cData;
+
+        try {
+            Date data = sdf.parse(dataString);
+        // se passou pra cá, é porque a data é válida
+        } catch (ParseException e) {
+            // se cair aqui, a data é inválida
+            JOptionPane.showMessageDialog(null,"Data inválida");
+        }
+        //  return date;
     }
 
     public String FormataDataSelec(String data) {
@@ -551,6 +570,7 @@ public class Validacoes extends JFrame {
         busca.tabela = tabela;
 
     }
+
     public void clickBtPesquisaa(int tableIndex, CadMatriculas a, String tabela) {
 
         FormBusca busca = new FormBusca();
@@ -560,7 +580,7 @@ public class Validacoes extends JFrame {
         busca.tabela = tabela;
 
     }
-    
+
     public void clickBtPesquisaa(int tableIndex, FormGeraMensalidade a, String tabela) {
 
         FormBusca busca = new FormBusca();
@@ -570,32 +590,37 @@ public class Validacoes extends JFrame {
         busca.tabela = tabela;
 
     }
-    
+
     public void setTextUp(CadCargos c) {
 
         String nome = c.txtDescricao.getText().toUpperCase();
         c.txtDescricao.setText(nome);
     }
+
     public void setTextUp(CadUsuarios c) {
 
         String nome = c.txtUsuario.getText().toUpperCase();
         c.txtUsuario.setText(nome);
     }
+
     public void setTextUp(Form_TelaLogin c) {
 
         String nome = c.txtLogin.getText().toUpperCase();
         c.txtLogin.setText(nome);
     }
+
     public void setTextUp(CadItens c) {
 
         String nome = c.txtItem.getText().toUpperCase();
         c.txtItem.setText(nome);
     }
+
     public void setTextUp(CadDisciplinas c) {
 
         String nome = c.txtDisciplina.getText().toUpperCase();
         c.txtDisciplina.setText(nome);
     }
+
     public void setTextUp(CadCursos c) {
 
         String nome = c.txtDescricao.getText().toUpperCase();
@@ -615,6 +640,7 @@ public class Validacoes extends JFrame {
         a.txtCidade.setText(cidade);
 
     }
+
     public void setTextUp(CadFuncionarios a) {
 
         String nome = a.txtNome.getText().toUpperCase();
@@ -641,14 +667,15 @@ public class Validacoes extends JFrame {
         }
     }
 
+
     public boolean CpfJaExiste(String cpf) {
 
         boolean podeGravar = false;
         int getCodigoAluno = 0;
         DaoAluno dao = new DaoAluno();
         List<Alunos> aluno = dao.SelectCpf(cpf);
-
-        if (aluno.size() == 0) {
+ 
+        if (aluno.isEmpty()) {
             podeGravar = true;
         } else {
             return false;
@@ -656,7 +683,7 @@ public class Validacoes extends JFrame {
 
         return podeGravar;
     }
-
+    
     public boolean CpfJaExisteFunc(String cpf) {
 
         boolean podeGravar = false;
@@ -721,6 +748,9 @@ public class Validacoes extends JFrame {
                 JOptionPane.showMessageDialog(null, "CPF: " + cpf + " "
                         + "Já cadastrado.", "Grava Aluno", JOptionPane.WARNING_MESSAGE);
                 grava = false;
+            }else{
+                
+                grava = true;
             }
 
         }

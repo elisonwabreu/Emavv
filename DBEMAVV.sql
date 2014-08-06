@@ -143,13 +143,14 @@ VALUES
 
 CREATE TABLE tb_mensalidades (
   fd_mensalidade SERIAL,
-  fd_matricula INTEGER --UNIQUE REFERENCES tb_matriculados(fd_matricula),
+  fd_matricula INTEGER, --UNIQUE REFERENCES tb_matriculados(fd_matricula),
   fd_curso INTEGER REFERENCES tb_cursos(fd_curso),
   fd_aluno INTEGER REFERENCES tb_alunos(fd_aluno),
   fd_vencimento VARCHAR NOT NULL,
   fd_valor NUMERIC NOT NULL CHECK (fd_valor > 0),
-  fd_status CHAR(1) NOT NULL CHECK (fd_status IN ('A','I','E')),
-  fd_data_cadastro timestamp default current_timestamp,
+  fd_pagamento Date Null,
+  fd_status CHAR(1) NOT NULL CHECK (fd_status IN ('A','I','E','F')) default 'A',
+  fd_data_cadastro timestamp default current_timestamp
   --PRIMARY KEY (fd_matricula, fd_aluno)
 );
 

@@ -1,15 +1,16 @@
 package org.entities.classes;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
 
 @Entity(name = "tb_mensalidades")
+ 
 public class Mensalidades implements Serializable {
 
     @Id
+    @GeneratedValue
     private int fd_mensalidade;
     private int fd_matricula;
     private int fd_curso;
@@ -30,7 +31,7 @@ public class Mensalidades implements Serializable {
     }
 
     public Mensalidades() {
-
+        super();
     }
 
     public int getFd_mensalidade() {

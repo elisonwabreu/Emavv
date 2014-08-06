@@ -328,6 +328,11 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtDtNascimento">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDtNascimentoKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDtNascimentoKeyReleased"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDtNascimentoKeyTyped"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="this.txtDtNascimento = new JFormattedTextField(fmtDtNascimento);  "/>
         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try {     &#xd;&#xa;fmtDtNascimento = new MaskFormatter(&quot;##/##/####&quot;);&#xd;&#xa;} catch (ParseException e) { &#xd;&#xa;e.printStackTrace(); } "/>

@@ -26,15 +26,13 @@ import Views.CadMensalidades;
 import Views.CadUsuarios;
 import Views.FormBusca;
 import Views.FormGeraMensalidade;
+import Views.FormPagamentoMensalidade;
 import Views.FormTelaPagamento;
 import Views.FormVendas;
 import Views.Form_TelaLogin;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
 import javax.persistence.EntityManager;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -232,6 +230,31 @@ public class Selecionar extends JFrame {
         }
     }
 
+    public boolean ListarAlunos(FormPagamentoMensalidade a) throws SQLException {
+
+        DaoAluno dao = new DaoAluno();
+        Alunos alu = new Alunos(0, null, null);
+
+        int codigo = Integer.parseInt(a.txtAluno.getText());
+
+        List<Alunos> aluno = dao.Select(codigo);
+
+        if (aluno.size() > 0) {
+
+            for (Alunos al : aluno) {
+
+                a.txtNomeAluno.setText(al.getFd_nome());
+
+            }
+            return true;
+
+        } else {
+            msg.msgNenhumRegistro();
+
+            return false;
+        }
+    }
+
     public boolean ListarAlunos(FormTelaPagamento a) throws SQLException {
 
         DaoAluno dao = new DaoAluno();
@@ -380,6 +403,32 @@ public class Selecionar extends JFrame {
         }
     }
 
+    public boolean ListarCursos(FormPagamentoMensalidade c) throws SQLException {
+
+        DaoCursos dao = new DaoCursos();
+
+        int codigo = Integer.parseInt(c.txtCurso.getText());
+
+        List<Cursos> curso = dao.Select(codigo);
+        if (curso.size() > 0) {
+            for (Cursos cr : curso) {
+                c.txtNomeCurso.setText(cr.getFd_descricao());
+                c.txtValorCurso.setText(String.valueOf(cr.getFd_valor()));
+
+                /*if (cr.getFd_status().equals("A")) {
+                 c.cbStatus.setSelectedIndex(1);
+                 } else {
+                 c.cbStatus.setSelectedIndex(2);
+                 }*/
+            }
+            return true;
+        } else {
+            msg.msgNenhumRegistro();
+            /* limpa.LimpaCurso(c);*/
+            return false;
+        }
+    }
+
     public boolean ListarCursos(FormGeraMensalidade c) throws SQLException {
 
         DaoCursos dao = new DaoCursos();
@@ -428,32 +477,58 @@ public class Selecionar extends JFrame {
         int codigoAluno = Integer.parseInt(c.txtCodigo.getText());
 
         List<Mensalidades> mensalidade = dao.Select(codigoAluno, codigoCurso);
-        /* Iterator it = mensalidade.iterator();*/
-         
         if (mensalidade.size() > 0) {
-           int i = 0;
-           List<JFormattedTextField> fData = Arrays.asList(
-                   c.txtData1,c.txtData2,c.txtData3,c.txtData4,c.txtData5,c.txtData6
-           );
-           List<JTextField> fTitulo = Arrays.asList(
-                   c.txtTitulo1,c.txtTitulo2,c.txtTitulo3,c.txtTitulo4,c.txtTitulo5,c.txtTitulo6
-           );
-           //mensalidade.forEach(cr -> fTitulo.get(i).setText(String.valueOf(cr.getFd_mensalidade())) );
-           //Mensalidades.forEach(cr -> fTitulo.get(i).setText(String.valueOf(cr.getFd_mensalidade())));
-           for (Mensalidades cr : mensalidade) {
+            int i = 0;
+            List<JFormattedTextField> fData = Arrays.asList(
+                    c.txtData1, c.txtData2, c.txtData3, c.txtData4, c.txtData5, c.txtData6
+            );
+            List<JTextField> fTitulo = Arrays.asList(
+                    c.txtTitulo1, c.txtTitulo2, c.txtTitulo3, c.txtTitulo4, c.txtTitulo5, c.txtTitulo6
+            );
+            for (Mensalidades cr : mensalidade) {
                 fData.get(i).setText(cr.getFd_vencimento());
                 fTitulo.get(i).setText(String.valueOf(cr.getFd_mensalidade()));
-                i++;    
+                i++;
             }
-            
             return true;
         } else {
             msg.msgNenhumRegistro();
-
             return false;
         }
-
     }
+
+    public boolean ListarMensalidades(FormPagamentoMensalidade c) throws SQLException {
+
+        DaoMensalidade dao = new DaoMensalidade();
+
+        int codigo = Integer.parseInt(c.txtTitulo.getText());
+
+        List<Mensalidades> mensalidade = dao.Select(codigo);
+        if (mensalidade.size() > 0) {
+            for (Mensalidades cr : mensalidade) {
+                
+                c.txtAluno.setText(String.valueOf(cr.getFd_aluno()));
+                c.txtCurso.setText(String.valueOf(cr.getFd_curso()));
+                c.txtMatricula.setText(String.valueOf(cr.getFd_matricula()));
+                c.txtDataVencimento.setText(cr.getFd_vencimento());
+                
+                if (cr.getFd_status().equals("A")) {
+                    c.cbStatus.setSelectedIndex(1);
+                }else if(cr.getFd_status().equals("F")){
+                    c.cbStatus.setSelectedIndex(2);
+                }else if(cr.getFd_status().equals("I")){
+                    c.cbStatus.setSelectedIndex(3);
+                }else if(cr.getFd_status().equals("E")){
+                    c.cbStatus.setSelectedIndex(4);
+                }    
+            return true;
+            }
+            }else {
+            msg.msgNenhumRegistro();
+        }
+        return false;
+    }
+    
     public boolean ListarCursos(CadDisciplinas c) throws SQLException {
 
         DaoCursos dao = new DaoCursos();
@@ -668,7 +743,7 @@ public class Selecionar extends JFrame {
             limpa.LimpaMatricula(c);
             return false;
         }
-       //}
+        //}
         // return false;
     }
 

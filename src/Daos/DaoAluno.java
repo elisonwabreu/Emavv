@@ -25,7 +25,6 @@ public class DaoAluno {
             manager.getTransaction().begin();
             manager.persist(al);
             manager.getTransaction().commit();
-            manager.clear();
             manager.close();
             msg.msgGravado();
             return true;
@@ -152,7 +151,7 @@ public class DaoAluno {
             Alunos aluno = (Alunos) manager.find(Alunos.class, a.getFd_aluno());
 
             manager.getTransaction().begin();
-            manager.persist(aluno);
+            manager.merge(aluno);
             manager.getTransaction().commit();
             manager.close();
             msg.msgGravado();

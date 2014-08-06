@@ -102,17 +102,61 @@ public class CadMensalidades extends javax.swing.JFrame {
             }
         });
 
+        txtNomeAluno.setEditable(false);
+
+        txtData2.setEditable(false);
         txtData2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtData2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        txtData1.setEditable(false);
         txtData1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtData1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        txtData3.setEditable(false);
         txtData3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtData3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        txtData4.setEditable(false);
         txtData4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtData4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        txtData6.setEditable(false);
         txtData6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtData6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        txtData5.setEditable(false);
         txtData5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtData5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        txtTitulo1.setEditable(false);
+        txtTitulo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTitulo1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtTitulo3.setEditable(false);
+        txtTitulo3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTitulo3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtTitulo2.setEditable(false);
+        txtTitulo2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTitulo2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtTitulo4.setEditable(false);
+        txtTitulo4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTitulo4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtTitulo5.setEditable(false);
+        txtTitulo5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTitulo5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtTitulo6.setEditable(false);
+        txtTitulo6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTitulo6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         lbPendente1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbPendente1.setText("PENDENTE");
@@ -141,6 +185,30 @@ public class CadMensalidades extends javax.swing.JFrame {
 
         jLabel16.setText("Nº Título");
 
+        jFormattedTextField1.setEditable(false);
+        jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jFormattedTextField8.setEditable(false);
+        jFormattedTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jFormattedTextField9.setEditable(false);
+        jFormattedTextField9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jFormattedTextField10.setEditable(false);
+        jFormattedTextField10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jFormattedTextField11.setEditable(false);
+        jFormattedTextField11.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jFormattedTextField12.setEditable(false);
+        jFormattedTextField12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
         jLabel17.setText("Data Pagamento");
 
         jLabel18.setText("Curso");
@@ -158,6 +226,8 @@ public class CadMensalidades extends javax.swing.JFrame {
                 btnBuscar1ActionPerformed(evt);
             }
         });
+
+        txtNomeAluno1.setEditable(false);
 
         jLabel19.setText("Cod.");
         jLabel19.setToolTipText("");

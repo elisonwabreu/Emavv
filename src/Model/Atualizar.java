@@ -4,11 +4,13 @@
  */
 package Model;
 
-import Metodos.Limpar;
 import Daos.DaoAluno;
+import Metodos.Limpar;
 import Views.CadAluno;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import org.entities.classes.Alunos;
 
@@ -33,6 +35,15 @@ public class Atualizar extends JFrame {
         String sexo = a.cbSexo.getSelectedItem().toString();
         String endereco = a.txtEndereco.getText();
         String num;
+        String comparar = null;
+        List<Alunos> alunoCpf = new ArrayList<Alunos>();
+        alunoCpf = al.SelectCpf(cpf);
+        if (alunoCpf.size() > 0) {
+
+            for (Alunos alunos : alunoCpf) {
+                comparar = alunos.getFd_cpf();
+            }
+        }
 
         if (a.txtNum.getText().trim().equals("")) {
             num = null;
@@ -59,16 +70,17 @@ public class Atualizar extends JFrame {
         } else {
             status = "I";
         }
-        /*
-         if(codigo != 0){
-         aluno.setFd_aluno(codigo);   
-         }
-         */
+
         aluno.setFd_nome(nome.toUpperCase());
         if (cpf.equals("")) {
             aluno.setFd_cpf(null);
-        } else {
-            aluno.setFd_cpf(cpf);
+        } /*else {
+        aluno.setFd_cpf(cpf);
+        }*/
+        if(comparar != cpf && cpf != null){
+            if(val.validaCPF(cpf)==true){
+                aluno.setFd_cpf(cpf);
+            }
         }
         aluno.setFd_rg(rg);
 
@@ -95,8 +107,9 @@ public class Atualizar extends JFrame {
         aluno.setFd_status(status);
 
         if (a.txtCodigo.getText().equals("")) {
+            
             if (val.ValidaGravacaoAlunos(cpf, a) == true) {
-                if (al.Update(aluno) == true) {
+                if (al.Update(aluno, status) == true) {
                     limpa.LimpaAluno(a);
                 }
             }
