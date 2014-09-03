@@ -88,7 +88,11 @@ public class Gravar extends JFrame {
 
         DaoAluno al = new DaoAluno();
         Alunos aluno = new Alunos();
+
         //int codigo = Integer.parseInt(a.txtCodigo.getText());
+
+        int codigo = Integer.parseInt(a.txtCodigo.getText());
+
         String nome = a.txtNome.getText();
         String cpf = val.AjusteCaracter(a.txtCpf.getText());
         String rg = a.txtRg.getText();
@@ -189,7 +193,9 @@ public class Gravar extends JFrame {
         String cep = fun.txtCep.getText();
         String telefone = fun.txtTelefone.getText();
         String status = fun.comboStatus.getSelectedItem().toString();
+
         String cargo =  fun.txtCargo.getText();
+
 
         if (fun.comboSexo.getSelectedIndex() == 1) {
             status = "F";
@@ -217,7 +223,9 @@ public class Gravar extends JFrame {
         funcionario.setFd_email(email.toUpperCase());
         funcionario.setFd_telefone(val.AjusteCaracter(telefone));
         funcionario.setFd_status(status);
+
         funcionario.setFd_cargo(cargo);
+
 
         if (fun.txtCodigo.getText().equals("")) {
             if (val.ValidaGravacaoFunc(cpf, fun) == true) {
@@ -336,6 +344,7 @@ public class Gravar extends JFrame {
     }
 
     public void GravaMatricula(CadMatriculas a) throws ParseException, SQLException {
+
         
         DaoMatriculados daomatr = new DaoMatriculados();
         DaoMatricula daoMat = new DaoMatricula();
@@ -359,6 +368,12 @@ public class Gravar extends JFrame {
         daomatr.Inserir(matlds);
         
         /*List lsAluno = new ArrayList();
+=======
+        DaoMatricula matr = new DaoMatricula();
+        Matriculas novoMatr = new Matriculas();
+
+        List lsAluno = new ArrayList();
+>>>>>>> 0b71c35422682b591808690d2e051e1d4e01398a
         List lsCurso = new ArrayList();
         lsAluno.add(Integer.parseInt(a.txtCodigo.getText()));
         lsCurso.add(Integer.parseInt(a.txtCodCurso.getText()));
@@ -402,7 +417,10 @@ public class Gravar extends JFrame {
             }
         } else {
             System.out.print("ooooooooooooooooo");
+
         }*/
+
+       
 
     }
 

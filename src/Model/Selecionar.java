@@ -45,7 +45,9 @@ import org.entities.classes.Cursos;
 import org.entities.classes.Disciplinas;
 import org.entities.classes.Funcionarios;
 import org.entities.classes.Itens;
+
 import org.entities.classes.Matriculados;
+
 import org.entities.classes.Matriculas;
 import org.entities.classes.Mensalidades;
 import org.entities.classes.Usuarios;
@@ -228,7 +230,7 @@ public class Selecionar extends JFrame {
         } else {
             msg.msgNenhumRegistro();
 
-            return false;
+ return false;
         }
     }
 
@@ -253,9 +255,38 @@ public class Selecionar extends JFrame {
         } else {
             msg.msgNenhumRegistro();
 
+
+            return false;
+        }
+   }
+
+/*
+    public boolean ListarAlunos(FormPagamentoMensalidade a) throws SQLException {
+
+        DaoAluno dao = new DaoAluno();
+        Alunos alu = new Alunos(0, null, null);
+
+        int codigo = Integer.parseInt(a.txtAluno.getText());
+
+        List<Alunos> aluno = dao.Select(codigo);
+
+        if (aluno.size() > 0) {
+
+            for (Alunos al : aluno) {
+
+                a.txtNomeAluno.setText(al.getFd_nome());
+
+            }
+            return true;
+
+        } else {
+            msg.msgNenhumRegistro();
+
             return false;
         }
     }
+*/
+
 
     public boolean ListarAlunos(FormTelaPagamento a) throws SQLException {
 
@@ -718,6 +749,7 @@ public class Selecionar extends JFrame {
         DaoAluno dao = new DaoAluno();
         DaoMatriculados matr = new DaoMatriculados();
         int codigo = Integer.parseInt(c.txtCodigo.getText());
+
         List<Alunos> aluno = dao.Select(codigo);
         
         if (aluno.size() > 0) {
@@ -743,6 +775,7 @@ public class Selecionar extends JFrame {
         }      
     }
    
+
     public void setSelectOnJTable(FormBusca f, String tabela, int TableIndex) throws SQLException {
         /*
          Valores correspondentes TableIndex
