@@ -21,10 +21,6 @@ public class Matriculas implements Serializable {
     @JoinColumn(name = "fd_aluno")
     private Alunos fd_aluno;
 
-    @OneToOne
-    @JoinColumn(name = "fd_curso")
-    private Cursos fd_curso;
-
     public int getFd_matricula() {
         return fd_matricula;
     }
@@ -47,24 +43,5 @@ public class Matriculas implements Serializable {
 
     public void setFd_data_matricula(Date fd_data_matricula) {
         this.fd_data_matricula = fd_data_matricula;
-    }
-
-    public Cursos getFd_curso() {
-        return fd_curso;
-    }
-
-    public void setFd_curso(Cursos fd_curso) {
-        this.fd_curso = fd_curso;
-    }
-
-
-    /*
-     public int getFd_usuario() {
-     return fd_usuario;
-     }
-
-     public void setFd_usuario(int fd_usuario) {
-     this.fd_usuario = fd_usuario;
-     }
-     */
+    }   
 }

@@ -22,6 +22,7 @@ import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
+
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -158,7 +159,6 @@ public class CadAluno extends javax.swing.JFrame {
         setLocationByPlatform(true);
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
         setResizable(false);
-        setType(java.awt.Window.Type.UTILITY);
 
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -188,6 +188,18 @@ public class CadAluno extends javax.swing.JFrame {
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ativo", "Inativo" }));
 
         txtCpf.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        txtDtNascimento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDtNascimentoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDtNascimentoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDtNascimentoKeyTyped(evt);
+            }
+        });
 
         btnFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/webcam_16x16.png"))); // NOI18N
         btnFoto.addActionListener(new java.awt.event.ActionListener() {
@@ -503,6 +515,7 @@ public class CadAluno extends javax.swing.JFrame {
 
             novoAluno.Aluno(this);
             if (sel.ListarAlunos() > 0) {
+                    
                 if (msg.MsgConfMatricula() == true) {
                     novoAluno.GravaMatricula(sel.ListarAlunos());
                 }
@@ -582,6 +595,26 @@ public class CadAluno extends javax.swing.JFrame {
     private void bntRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRelatorioActionPerformed
         /*    gerarrelatorio();*/
     }//GEN-LAST:event_bntRelatorioActionPerformed
+
+    private void txtDtNascimentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDtNascimentoKeyReleased
+
+    }//GEN-LAST:event_txtDtNascimentoKeyReleased
+
+    private void txtDtNascimentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDtNascimentoKeyPressed
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                val.ValidaData(txtDtNascimento.getText());
+            } catch (ParseException ex) {
+                Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_txtDtNascimentoKeyPressed
+
+    private void txtDtNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDtNascimentoKeyTyped
+
+    }//GEN-LAST:event_txtDtNascimentoKeyTyped
 
     /**
      * @param args the command line arguments

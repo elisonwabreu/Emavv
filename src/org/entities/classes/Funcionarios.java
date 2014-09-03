@@ -29,6 +29,7 @@ public class Funcionarios implements Serializable {
     private String fd_celular;
     private String fd_email;
     private String fd_status;
+    private String fd_cargo;
 //    Blob fd_imagem;
 
     public Funcionarios() {
@@ -167,6 +168,14 @@ public class Funcionarios implements Serializable {
 
     public void setFd_status(String fd_status) {
         this.fd_status = fd_status;
+    }
+    
+    public String getFd_cago() {
+        return fd_cargo;
+    }
+
+    public void setFd_cargo(String fd_cargo) {
+        this.fd_cargo = fd_cargo;
     }
 
 }

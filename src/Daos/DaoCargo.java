@@ -119,8 +119,7 @@ public class DaoCargo {
 
         if (msg.MsgConfGravacao() == true) {
 
-            Cargos c = (Cargos) manager.find(Cargos.class,
-                    Integer.parseInt(ca.txtCodigo.getText()));
+            Cargos c = (Cargos) manager.find(Cargos.class,Integer.parseInt(ca.txtCodigo.getText()));
             manager.getTransaction().begin();
             c.setFd_descricao(ca.txtDescricao.getText());
             c.setFd_status(status);

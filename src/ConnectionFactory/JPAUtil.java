@@ -14,13 +14,17 @@ import javax.persistence.Persistence;
  */
 public class JPAUtil {
 
-    private static final EntityManagerFactory emf
-            = Persistence.createEntityManagerFactory("dbemavv");
+    private static EntityManagerFactory emf;
 
     public static EntityManager getEntityManager() {
+        if (emf == null) {
+            emf = Persistence.createEntityManagerFactory("dbemavv");
+        }
 
         return emf.createEntityManager();
-
     }
-
+    
+   public static void close() {
+        emf.close();
+    }
 }

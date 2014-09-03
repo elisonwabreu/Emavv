@@ -11,9 +11,11 @@ import Daos.DaoDisciplinas;
 import Daos.DaoFuncionarios;
 import Daos.DaoItens;
 import Daos.DaoMatricula;
+import Daos.DaoMatriculados;
+import Daos.DaoMensalidade;
 import Daos.DaoUsuarios;
-import Metodos.Limpar;
 import Messages.Cmessage;
+import Metodos.Limpar;
 import Views.CadAluno;
 import Views.CadCargos;
 import Views.CadCursos;
@@ -21,23 +23,19 @@ import Views.CadDisciplinas;
 import Views.CadFuncionarios;
 import Views.CadItens;
 import Views.CadMatriculas;
+import Views.CadMensalidades;
 import Views.CadUsuarios;
 import Views.FormBusca;
 import Views.FormGeraMensalidade;
+import Views.FormPagamentoMensalidade;
 import Views.FormTelaPagamento;
 import Views.FormVendas;
 import Views.Form_TelaLogin;
-import java.io.PrintStream;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -51,17 +49,6 @@ import org.entities.classes.Matriculados;
 import org.entities.classes.Matriculas;
 import org.entities.classes.Mensalidades;
 import org.entities.classes.Usuarios;
-import org.entities.classes.Matriculas;
-import org.entities.classes.Alunos;
-import org.entities.classes.Cargos;
-import org.entities.classes.Cursos;
-import org.entities.classes.Disciplinas;
-import org.entities.classes.Funcionarios;
-import org.entities.classes.Itens;
-import org.entities.classes.Matriculas;
-import org.entities.classes.Mensalidades;
-import org.entities.classes.Usuarios;
-
 
 /**
  *
@@ -86,29 +73,29 @@ public class Selecionar extends JFrame {
         DaoUsuarios dao = new DaoUsuarios();
 
         String login = c.txtLogin.getText();
-        if(c.txtLogin.getText().equals("") || c.txtSenha.getText().equals("")){
+        if (c.txtLogin.getText().equals("") || c.txtSenha.getText().equals("")) {
             msg.msgLogin();
             return false;
-        }else{
-        List<Usuarios> user = dao.Select(login);
+        } else {
+            List<Usuarios> user = dao.Select(login);
 
-        if (user.size() > 0) {
-            for (Usuarios car : user) {
+            if (user.size() > 0) {
+                for (Usuarios car : user) {
 
-                if (car.getFd_login().equals(c.txtLogin.getText()) &&
-                        car.getFd_senha().equals(c.txtSenha.getText())) {
-                    return true;
-                } else if (car.getFd_login().equals(c.txtLogin.getText()) ||
-                           car.getFd_senha() != c.txtSenha.getText()) {
-                    msg.msgLogin();
-                    return false;
-                }else if (car.getFd_login() != c.txtLogin.getText() || 
-                          car.getFd_senha() != c.txtSenha.getText()) {
-                    msg.msgLogin();
-                    return false;
+                    if (car.getFd_login().equals(c.txtLogin.getText())
+                            && car.getFd_senha().equals(c.txtSenha.getText())) {
+                        return true;
+                    } else if (car.getFd_login().equals(c.txtLogin.getText())
+                            || car.getFd_senha() != c.txtSenha.getText()) {
+                        msg.msgLogin();
+                        return false;
+                    } else if (car.getFd_login() != c.txtLogin.getText()
+                            || car.getFd_senha() != c.txtSenha.getText()) {
+                        msg.msgLogin();
+                        return false;
+                    }
                 }
             }
-        }
         }
         msg.msgLogin();
         return false;
@@ -141,28 +128,27 @@ public class Selecionar extends JFrame {
             return false;
         }
     }
+
     public boolean ListarCargos(CadFuncionarios c) throws SQLException {
 
         DaoCargo dao = new DaoCargo();
 
-        String status = "A";
+        int codigo = Integer.parseInt(c.txtCodigoCargo.getText());
 
-        List<Cargos> cargos = dao.SelectC(status);
+        List<Cargos> cargos = dao.Select(codigo);
 
         if (cargos.size() > 0) {
 
             for (Cargos car : cargos) {
-                
-              
+
                 c.txtCargo.setText(car.getFd_descricao());
-                
+
             }
             return true;
 
         }
         return false;
     }
-
 
     public boolean ListarAlunos(CadAluno a) throws SQLException {
 
@@ -219,6 +205,7 @@ public class Selecionar extends JFrame {
             return false;
         }
     }
+
     public boolean ListarAlunos(FormGeraMensalidade a) throws SQLException {
 
         DaoAluno dao = new DaoAluno();
@@ -240,10 +227,36 @@ public class Selecionar extends JFrame {
 
         } else {
             msg.msgNenhumRegistro();
-            
+
             return false;
         }
     }
+
+    public boolean ListarAlunos(FormPagamentoMensalidade a) throws SQLException {
+
+        DaoAluno dao = new DaoAluno();
+        Alunos alu = new Alunos(0, null, null);
+
+        int codigo = Integer.parseInt(a.txtAluno.getText());
+
+        List<Alunos> aluno = dao.Select(codigo);
+
+        if (aluno.size() > 0) {
+
+            for (Alunos al : aluno) {
+
+                a.txtNomeAluno.setText(al.getFd_nome());
+
+            }
+            return true;
+
+        } else {
+            msg.msgNenhumRegistro();
+
+            return false;
+        }
+    }
+
     public boolean ListarAlunos(FormTelaPagamento a) throws SQLException {
 
         DaoAluno dao = new DaoAluno();
@@ -264,25 +277,52 @@ public class Selecionar extends JFrame {
 
         } else {
             msg.msgNenhumRegistro();
-           // limpa.LimpaAluno(a);
+            // limpa.LimpaAluno(a);
             return false;
         }
     }
-     public int ListarAlunos() throws SQLException {
+
+    public boolean ListarAlunos(CadMensalidades a) throws SQLException {
 
         DaoAluno dao = new DaoAluno();
-            
+
+        Alunos alu = new Alunos(0, null, null);
+
+        int codigo = Integer.parseInt(a.txtCodigo.getText());
+
+        List<Alunos> aluno = dao.Select(codigo);
+
+        if (aluno.size() > 0) {
+
+            for (Alunos al : aluno) {
+
+                a.txtNomeAluno.setText(al.getFd_nome());
+            }
+            return true;
+
+        } else {
+            msg.msgNenhumRegistro();
+            // limpa.LimpaAluno(a);
+            return false;
+        }
+    }
+
+    public int ListarAlunos() throws SQLException {
+
+        DaoAluno dao = new DaoAluno();
+
         int codigo;
 
         List<Alunos> aluno = dao.Select();
         if (aluno.size() > 0) {
             for (Alunos al : aluno) {
                 codigo = al.getFd_aluno();
-            return codigo;
+                return codigo;
+            }
         }
-         }
         return 0;
-     }
+    }
+
     public boolean ListarFuncionarios(CadFuncionarios fun) throws SQLException {
 
         DaoFuncionarios dao = new DaoFuncionarios();
@@ -329,6 +369,7 @@ public class Selecionar extends JFrame {
                 fun.txtCidade.setText(al.getFd_cidade());
                 fun.txtCep.setText(al.getFd_cep());
                 fun.txtEmail.setText(al.getFd_email());
+                fun.txtCargo.setText(al.getFd_cago());
             }
             return true;
 
@@ -345,8 +386,8 @@ public class Selecionar extends JFrame {
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
 
-            List<Cursos> curso = dao.Select(codigo);
-         if (curso.size()>0) {
+        List<Cursos> curso = dao.Select(codigo);
+        if (curso.size() > 0) {
             for (Cursos cr : curso) {
                 c.txtDescricao.setText(cr.getFd_descricao());
                 c.txtValor.setText(String.valueOf(cr.getFd_valor()));
@@ -364,25 +405,131 @@ public class Selecionar extends JFrame {
             return false;
         }
     }
-    
+
+    public boolean ListarCursos(FormPagamentoMensalidade c) throws SQLException {
+
+        DaoCursos dao = new DaoCursos();
+
+        int codigo = Integer.parseInt(c.txtCurso.getText());
+
+        List<Cursos> curso = dao.Select(codigo);
+        if (curso.size() > 0) {
+            for (Cursos cr : curso) {
+                c.txtNomeCurso.setText(cr.getFd_descricao());
+                c.txtValorCurso.setText(String.valueOf(cr.getFd_valor()));
+
+                /*if (cr.getFd_status().equals("A")) {
+                 c.cbStatus.setSelectedIndex(1);
+                 } else {
+                 c.cbStatus.setSelectedIndex(2);
+                 }*/
+            }
+            return true;
+        } else {
+            msg.msgNenhumRegistro();
+            /* limpa.LimpaCurso(c);*/
+            return false;
+        }
+    }
+
     public boolean ListarCursos(FormGeraMensalidade c) throws SQLException {
 
         DaoCursos dao = new DaoCursos();
 
         int codigo = Integer.parseInt(c.txtCodigoCurso.getText());
 
-            List<Cursos> curso = dao.Select(codigo);
-         if (curso.size()>0) {
+        List<Cursos> curso = dao.Select(codigo);
+        if (curso.size() > 0) {
             for (Cursos cr : curso) {
                 c.txtDescricao.setText(cr.getFd_descricao());
-                
+
             }
             return true;
         } else {
             msg.msgNenhumRegistro();
-            
+
             return false;
         }
+    }
+
+    public boolean ListarCursos(CadMensalidades c) throws SQLException {
+
+        DaoCursos dao = new DaoCursos();
+
+        int codigo = Integer.parseInt(c.txtCodigo1.getText());
+
+        List<Cursos> curso = dao.Select(codigo);
+        if (curso.size() > 0) {
+            for (Cursos cr : curso) {
+                c.txtNomeAluno1.setText(cr.getFd_descricao());
+
+            }
+            return true;
+        } else {
+            msg.msgNenhumRegistro();
+
+            return false;
+        }
+    }
+
+    public boolean ListarMensalidades(CadMensalidades c) throws SQLException {
+
+        DaoMensalidade dao = new DaoMensalidade();
+
+        int codigoCurso = Integer.parseInt(c.txtCodigo1.getText());
+        int codigoAluno = Integer.parseInt(c.txtCodigo.getText());
+
+        List<Mensalidades> mensalidade = dao.Select(codigoAluno, codigoCurso);
+        if (mensalidade.size() > 0) {
+            int i = 0;
+            List<JFormattedTextField> fData = Arrays.asList(
+                    c.txtData1, c.txtData2, c.txtData3, c.txtData4, c.txtData5, c.txtData6
+            );
+            List<JTextField> fTitulo = Arrays.asList(
+                    c.txtTitulo1, c.txtTitulo2, c.txtTitulo3, c.txtTitulo4, c.txtTitulo5, c.txtTitulo6
+            );
+            for (Mensalidades cr : mensalidade) {
+                fData.get(i).setText(cr.getFd_vencimento());
+                fTitulo.get(i).setText(String.valueOf(cr.getFd_mensalidade()));
+                i++;
+            }
+            return true;
+        } else {
+            msg.msgNenhumRegistro();
+            return false;
+        }
+    }
+
+    public boolean ListarMensalidades(FormPagamentoMensalidade c) throws SQLException {
+
+        DaoMensalidade dao = new DaoMensalidade();
+
+        int codigo = Integer.parseInt(c.txtTitulo.getText());
+
+        List<Mensalidades> mensalidade = dao.Select(codigo);
+        if (mensalidade.size() > 0) {
+            for (Mensalidades cr : mensalidade) {
+                
+                c.txtAluno.setText(String.valueOf(cr.getFd_aluno()));
+                c.txtCurso.setText(String.valueOf(cr.getFd_curso()));
+                c.txtMatricula.setText(String.valueOf(cr.getFd_matricula()));
+                c.txtDataVencimento.setText(cr.getFd_vencimento());
+                
+                if (cr.getFd_status().equals("A")) {
+                    c.cbStatus.setSelectedIndex(1);
+                }else if(cr.getFd_status().equals("F")){
+                    c.cbStatus.setSelectedIndex(2);
+                }else if(cr.getFd_status().equals("I")){
+                    c.cbStatus.setSelectedIndex(3);
+                }else if(cr.getFd_status().equals("E")){
+                    c.cbStatus.setSelectedIndex(4);
+                }    
+            return true;
+            }
+            }else {
+            msg.msgNenhumRegistro();
+        }
+        return false;
     }
     
     public boolean ListarCursos(CadDisciplinas c) throws SQLException {
@@ -391,11 +538,11 @@ public class Selecionar extends JFrame {
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
 
-            List<Cursos> curso = dao.Select(codigo);
-         if (curso.size()>0) {
+        List<Cursos> curso = dao.Select(codigo);
+        if (curso.size() > 0) {
             for (Cursos cr : curso) {
                 c.txtDescricao.setText(cr.getFd_descricao());
-               // c.txtValor.setText(String.valueOf(cr.getFd_valor()));
+                // c.txtValor.setText(String.valueOf(cr.getFd_valor()));
 
                 if (cr.getFd_status().equals("A")) {
                     c.cbStatus.setSelectedIndex(1);
@@ -406,19 +553,20 @@ public class Selecionar extends JFrame {
             return true;
         } else {
             msg.msgNenhumRegistro();
-            
+
             return false;
         }
     }
+
     public boolean ListarCursos(CadMatriculas c) throws SQLException {
 
         DaoCursos dao = new DaoCursos();
-        DaoDisciplinas disc =  new DaoDisciplinas();
+        DaoDisciplinas disc = new DaoDisciplinas();
 
         int codigo = Integer.parseInt(c.txtCodCurso.getText());
-            List<Cursos> curso = dao.Select(codigo);
-            List<Disciplinas> disciplina = disc.SelectDiscCurso(codigo);
-         if (curso.size()>0) {
+        List<Cursos> curso = dao.Select(codigo);
+        List<Disciplinas> disciplina = disc.SelectDiscCurso(codigo);
+        if (curso.size() > 0) {
             for (Cursos cr : curso) {
                 c.txtDescricaoCurso.setText(cr.getFd_descricao());
             }
@@ -428,19 +576,20 @@ public class Selecionar extends JFrame {
             return false;
         }
     }
+
     public boolean ListarDisciplinas(CadMatriculas c) throws SQLException {
 
-        DaoDisciplinas disc =  new DaoDisciplinas();
+        DaoDisciplinas disc = new DaoDisciplinas();
         int codigo = Integer.parseInt(c.txtCodCurso.getText());
-            List<Disciplinas> disciplina = disc.SelectDiscCurso(codigo);
-            DefaultTableModel model = (DefaultTableModel) c.jGridMatricula.getModel();
-            model.setNumRows(disciplina.size());
-         if (disciplina.size()>0) {
+        List<Disciplinas> disciplina = disc.SelectDiscCurso(codigo);
+        DefaultTableModel model = (DefaultTableModel) c.jGridMatricula.getModel();
+        model.setNumRows(disciplina.size());
+        if (disciplina.size() > 0) {
             for (Disciplinas cr : disciplina) {
                 for (int i = 0; i < disciplina.size(); i++) {
-                            c.jGridMatricula.setValueAt(disciplina.get(i).getFd_disciplina(), i, 0);
-                            c.jGridMatricula.setValueAt(disciplina.get(i).getFd_descricao(), i, 1);
-                            }
+                    c.jGridMatricula.setValueAt(disciplina.get(i).getFd_disciplina(), i, 0);
+                    c.jGridMatricula.setValueAt(disciplina.get(i).getFd_descricao(), i, 1);
+                }
             }
             return true;
         } else {
@@ -449,26 +598,27 @@ public class Selecionar extends JFrame {
             return false;
         }
     }
+
     public boolean ListarItens(CadItens c) throws SQLException {
 
         DaoItens dao = new DaoItens();
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
-       
-        List<Itens> item = dao.Select(codigo);
-         if(c.txtCodigo.getText() != ""){
-         if (item.size()>0) {
-            for (Itens cr : item) {
-                c.txtItem.setText(cr.getFd_descricao());
-                c.txtPreco.setText(String.valueOf(cr.getFd_valor()));
 
-                if (cr.getFd_status().equals("A")) {
-                    c.comboStatus.setSelectedIndex(1);
-                } else {
-                    c.comboStatus.setSelectedIndex(2);
+        List<Itens> item = dao.Select(codigo);
+        if (c.txtCodigo.getText() != "") {
+            if (item.size() > 0) {
+                for (Itens cr : item) {
+                    c.txtItem.setText(cr.getFd_descricao());
+                    c.txtPreco.setText(String.valueOf(cr.getFd_valor()));
+
+                    if (cr.getFd_status().equals("A")) {
+                        c.comboStatus.setSelectedIndex(1);
+                    } else {
+                        c.comboStatus.setSelectedIndex(2);
+                    }
                 }
             }
-         }
             return true;
         } else {
             msg.msgNenhumRegistro();
@@ -476,36 +626,38 @@ public class Selecionar extends JFrame {
             return false;
         }
     }
+
     public boolean ListarItens(FormVendas c) throws SQLException {
 
         DaoItens dao = new DaoItens();
 
         int codigo = Integer.parseInt(c.txtCodigo.getText());
-       
+
         List<Itens> item = dao.Select(codigo);
-         if(c.txtCodigo.getText() != ""){
-         if (item.size()>0) {
-            for (Itens cr : item) {
-                c.txtValorUnitario.setText(String.valueOf(cr.getFd_valor()));
-                c.lblProdutos.setText(cr.getFd_descricao());
-                
+        if (c.txtCodigo.getText() != "") {
+            if (item.size() > 0) {
+                for (Itens cr : item) {
+                    c.txtValorUnitario.setText(String.valueOf(cr.getFd_valor()));
+                    c.lblProdutos.setText(cr.getFd_descricao());
+
+                }
             }
-         }
             return true;
         } else {
             msg.msgNenhumRegistro();
-           // limpa.LimpaItens(c);
+            // limpa.LimpaItens(c);
             return false;
         }
     }
+
     public boolean ListarDisciplinas(CadDisciplinas c) throws SQLException {
 
         DaoDisciplinas dao = new DaoDisciplinas();
 
         int codigo = Integer.parseInt(c.txtCodDisciplina.getText());
 
-            List<Disciplinas> disc = dao.Select(codigo);
-        if (disc.size()>0) {
+        List<Disciplinas> disc = dao.Select(codigo);
+        if (disc.size() > 0) {
             for (Disciplinas cr : disc) {
                 c.txtDisciplina.setText(cr.getFd_descricao());
                 if (cr.getFd_status().equals("A")) {
@@ -561,43 +713,36 @@ public class Selecionar extends JFrame {
         return false;
     }
 
-    public boolean ListarMAtricula(CadMatriculas c) throws SQLException {
+    public void ListarMAtricula(CadMatriculas c) throws SQLException {
 
         DaoAluno dao = new DaoAluno();
-        DaoMatricula matr = new DaoMatricula();
-        Matriculas mat = new Matriculas();
-        Alunos alu = new Alunos(0, null, null);
+        DaoMatriculados matr = new DaoMatriculados();
         int codigo = Integer.parseInt(c.txtCodigo.getText());
+        List<Alunos> aluno = dao.Select(codigo);
         
-        //List<tb_alunos> aluno = dao.Select(codigo);
-        List<Matriculas> matricula = matr.Select(codigo);
-        /*if (aluno.size() > 0) {
-
-            for (tb_alunos al : aluno) {
-
+        if (aluno.size() > 0) {
+            for (Alunos al : aluno) {
                 c.txtNome.setText(al.getFd_nome());
-
-            }*/
-            if (matricula.size() > 0) {
-
-                for (Matriculas al : matricula) {
-
-                    c.txtNome.setText(al.getFd_aluno().getFd_nome());
-                    c.txtMatricula.setText(String.valueOf(al.getFd_matricula()));
-                    c.txtDtCadastro.setText(val.FormataDataSelec(al.getFd_data_matricula().toString()));
-                    c.txtCodCurso.setText(String.valueOf(al.getFd_curso().getFd_curso()));
-                }
-                return true;
-
-            } else {
-                msg.msgNenhumRegistro();
-                limpa.LimpaMatricula(c);
-                return false;
             }
-       //}
-       // return false;
+            
+            List<Matriculados> matricula = matr.Select(codigo);
+        
+            if (matricula.size() > 0) {
+                for (Matriculados ma : matricula) {
+                    c.txtMatricula.setText(String.valueOf(ma.getFd_matricula()
+                                                           .getFd_matricula()));
+                    c.txtCodCurso.setText(String.valueOf(ma.getFd_curso()
+                                                               .getFd_curso()));
+                    c.txtDescricaoCurso.setText(ma.getFd_curso().getFd_descricao());
+                    c.txtDtCadastro.setText(val.FormataDataSelec
+                      (ma.getFd_matricula().getFd_data_matricula().toString()));    
+                }
+            }else{
+                msg.msgNenhumaMatricula();   
+            }
+        }      
     }
-    
+   
     public void setSelectOnJTable(FormBusca f, String tabela, int TableIndex) throws SQLException {
         /*
          Valores correspondentes TableIndex
@@ -611,7 +756,7 @@ public class Selecionar extends JFrame {
         switch (TableIndex) {
             case 1:
                 DaoCargo dao = new DaoCargo();
-                
+
                 List<Cargos> cargo = dao.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model = (DefaultTableModel) f.jGridBusca.getModel();
                 model.setNumRows(cargo.size());
@@ -722,10 +867,10 @@ public class Selecionar extends JFrame {
                     msg.msgNenhumRegistro();
                 }
                 break;
-                case 7:
+            case 7:
                 DaoAluno daoalu2 = new DaoAluno();
                 Mensalidades mens = new Mensalidades();
-                List<Alunos> aluno2 = daoalu2.SelectAlunoPag();
+                List<Alunos> aluno2 = daoalu2.Select(f.txtCampoBusca.getText().toUpperCase());
                 DefaultTableModel model7 = (DefaultTableModel) f.jGridBusca.getModel();
                 model7.setNumRows(aluno2.size());
                 if (aluno2.size() > 0) {
@@ -744,7 +889,5 @@ public class Selecionar extends JFrame {
         }
 
     }
-    
-   
 
 }

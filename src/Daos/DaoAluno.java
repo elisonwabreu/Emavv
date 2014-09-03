@@ -2,7 +2,11 @@ package Daos;
 
 import ConnectionFactory.*;
 import Messages.Cmessage;
+import Model.Validacoes;
+import Views.CadAluno;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -14,7 +18,7 @@ import org.entities.classes.Matriculas;
  * @author athalias
  */
 public class DaoAluno {
-
+    Validacoes val = new Validacoes();
     Cmessage msg = new Cmessage();
     EntityManager manager = JPAUtil.getEntityManager();
 
@@ -25,7 +29,6 @@ public class DaoAluno {
             manager.getTransaction().begin();
             manager.persist(al);
             manager.getTransaction().commit();
-            manager.clear();
             manager.close();
             msg.msgGravado();
             return true;
@@ -114,29 +117,29 @@ public class DaoAluno {
         return aluno;
     }
 
-    public boolean Update(Alunos a, String status) {
+    public boolean Update(CadAluno a, String status) throws ParseException {
 
         if (msg.MsgConfGravacao() == true) {
 
-            Alunos aluno = (Alunos) manager.find(Alunos.class, a.getFd_aluno());
-
-            aluno.setFd_nome(a.getFd_nome());
-            aluno.setFd_cpf(a.getFd_cpf());
-            aluno.setFd_rg(a.getFd_rg());
-            aluno.setFd_data_nasc(a.getFd_data_nasc());
-            aluno.setFd_sexo(a.getFd_sexo());
-            aluno.setFd_endereco(a.getFd_endereco());
-            aluno.setFd_numero(a.getFd_numero());
-            aluno.setFd_bairro(a.getFd_bairro());
-            aluno.setFd_cidade(a.getFd_cidade());
-            aluno.setFd_cep(a.getFd_cep());
-            aluno.setFd_uf(a.getFd_uf());
-            aluno.setFd_telefone(a.getFd_telefone());
-            aluno.setFd_celular(a.getFd_celular());
-            aluno.setFd_email(a.getFd_email());
-            aluno.setFd_status(a.getFd_status());
+            Alunos aluno = (Alunos) manager.find(Alunos.class, Integer.parseInt(a.txtCodigo.getText()));
             manager.getTransaction().begin();
-            manager.persist(aluno);
+            
+            aluno.setFd_nome(a.txtNome.getText());
+            aluno.setFd_cpf(val.AjusteCaracter(a.txtCpf.getText()));
+            aluno.setFd_rg(a.txtRg.getText());
+            aluno.setFd_data_nasc(val.FormataData(a.txtDtNascimento.getText()));
+            aluno.setFd_sexo(a.cbSexo.getSelectedItem().toString());
+            aluno.setFd_endereco(a.txtEndereco.getText());
+            aluno.setFd_numero(a.txtNum.getText());
+            aluno.setFd_bairro(a.txtbairro.getText());
+            aluno.setFd_cidade(a.txtCidade.getText());
+            aluno.setFd_cep(val.AjusteCaracter(a.txtCep.getText()));
+            aluno.setFd_uf(a.cbUf.getSelectedItem().toString());
+            aluno.setFd_telefone(val.AjusteCaracter(a.txtTelefone.getText()));
+            aluno.setFd_celular(val.AjusteCaracter(a.txtCelular.getText()));
+            aluno.setFd_email(a.txtEmail.getText());
+            aluno.setFd_status(status);
+            
             manager.getTransaction().commit();
             manager.close();
             msg.msgGravado();
@@ -152,7 +155,7 @@ public class DaoAluno {
             Alunos aluno = (Alunos) manager.find(Alunos.class, a.getFd_aluno());
 
             manager.getTransaction().begin();
-            manager.persist(aluno);
+            manager.merge(aluno);
             manager.getTransaction().commit();
             manager.close();
             msg.msgGravado();

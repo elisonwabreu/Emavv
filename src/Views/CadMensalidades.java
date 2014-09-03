@@ -49,18 +49,18 @@ public class CadMensalidades extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         txtNomeAluno = new javax.swing.JTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
-        jFormattedTextField5 = new javax.swing.JFormattedTextField();
-        jFormattedTextField6 = new javax.swing.JFormattedTextField();
-        jFormattedTextField7 = new javax.swing.JFormattedTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        txtData2 = new javax.swing.JFormattedTextField();
+        txtData1 = new javax.swing.JFormattedTextField();
+        txtData3 = new javax.swing.JFormattedTextField();
+        txtData4 = new javax.swing.JFormattedTextField();
+        txtData6 = new javax.swing.JFormattedTextField();
+        txtData5 = new javax.swing.JFormattedTextField();
+        txtTitulo1 = new javax.swing.JTextField();
+        txtTitulo3 = new javax.swing.JTextField();
+        txtTitulo2 = new javax.swing.JTextField();
+        txtTitulo4 = new javax.swing.JTextField();
+        txtTitulo5 = new javax.swing.JTextField();
+        txtTitulo6 = new javax.swing.JTextField();
         lbPendente1 = new javax.swing.JLabel();
         lbPendente2 = new javax.swing.JLabel();
         lbPendente3 = new javax.swing.JLabel();
@@ -78,8 +78,11 @@ public class CadMensalidades extends javax.swing.JFrame {
         jFormattedTextField11 = new javax.swing.JFormattedTextField();
         jFormattedTextField12 = new javax.swing.JFormattedTextField();
         jLabel17 = new javax.swing.JLabel();
-        cbCursos = new javax.swing.JComboBox();
         jLabel18 = new javax.swing.JLabel();
+        txtCodigo1 = new javax.swing.JTextField();
+        btnBuscar1 = new javax.swing.JButton();
+        txtNomeAluno1 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -99,17 +102,61 @@ public class CadMensalidades extends javax.swing.JFrame {
             }
         });
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtNomeAluno.setEditable(false);
 
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData2.setEditable(false);
+        txtData2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtData2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData1.setEditable(false);
+        txtData1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtData1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData3.setEditable(false);
+        txtData3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtData3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jFormattedTextField6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData4.setEditable(false);
+        txtData4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtData4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jFormattedTextField7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData6.setEditable(false);
+        txtData6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtData6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        txtData5.setEditable(false);
+        txtData5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtData5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtData5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        txtTitulo1.setEditable(false);
+        txtTitulo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTitulo1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtTitulo3.setEditable(false);
+        txtTitulo3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTitulo3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtTitulo2.setEditable(false);
+        txtTitulo2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTitulo2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtTitulo4.setEditable(false);
+        txtTitulo4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTitulo4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtTitulo5.setEditable(false);
+        txtTitulo5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTitulo5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtTitulo6.setEditable(false);
+        txtTitulo6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTitulo6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         lbPendente1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbPendente1.setText("PENDENTE");
@@ -136,11 +183,54 @@ public class CadMensalidades extends javax.swing.JFrame {
 
         jLabel15.setText("Aluno");
 
-        jLabel16.setText("Data");
+        jLabel16.setText("Nº Título");
+
+        jFormattedTextField1.setEditable(false);
+        jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jFormattedTextField8.setEditable(false);
+        jFormattedTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jFormattedTextField9.setEditable(false);
+        jFormattedTextField9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jFormattedTextField10.setEditable(false);
+        jFormattedTextField10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jFormattedTextField11.setEditable(false);
+        jFormattedTextField11.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jFormattedTextField12.setEditable(false);
+        jFormattedTextField12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jLabel17.setText("Data Pagamento");
 
         jLabel18.setText("Curso");
+
+        txtCodigo1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodigo1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigo1KeyPressed(evt);
+            }
+        });
+
+        btnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/lupa_16x16.png"))); // NOI18N
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
+
+        txtNomeAluno1.setEditable(false);
+
+        jLabel19.setText("Cod.");
+        jLabel19.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,53 +247,59 @@ public class CadMensalidades extends javax.swing.JFrame {
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNomeAluno)
+                            .addComponent(jLabel15)
+                            .addComponent(txtNomeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel19))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
-                            .addComponent(cbCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNomeAluno1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtData2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(lbPendente2, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+                                .addComponent(lbPendente2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtData3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lbPendente3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtData4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lbPendente4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jFormattedTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtData5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lbPendente5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtData6, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(lbPendente6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(jLabel13)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jFormattedTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                                        .addComponent(txtData1, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
                                         .addGap(18, 18, 18)
                                         .addComponent(lbPendente1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                                .addComponent(txtTitulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel16))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,16 +307,16 @@ public class CadMensalidades extends javax.swing.JFrame {
                                     .addComponent(jFormattedTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtTitulo6, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jFormattedTextField12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jFormattedTextField11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtTitulo3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTitulo4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jFormattedTextField9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,13 +330,16 @@ public class CadMensalidades extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15)
-                    .addComponent(jLabel18))
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbCursos)
+                    .addComponent(txtNomeAluno1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(txtCodigo)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(txtNomeAluno))
+                    .addComponent(txtNomeAluno)
+                    .addComponent(txtCodigo1)
+                    .addComponent(btnBuscar1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -248,14 +347,14 @@ public class CadMensalidades extends javax.swing.JFrame {
                     .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtData1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbPendente1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtData2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTitulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbPendente2)
                     .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,31 +363,31 @@ public class CadMensalidades extends javax.swing.JFrame {
                         .addComponent(jFormattedTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTitulo4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbPendente4)
                             .addComponent(jFormattedTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbPendente5)
                             .addComponent(jFormattedTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTitulo6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbPendente6)
                             .addComponent(jFormattedTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtData3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTitulo3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbPendente3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtData4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtData5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtData6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27))
         );
 
@@ -302,8 +401,34 @@ public class CadMensalidades extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            try {
+                sel.ListarAlunos(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(CadMensalidades.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      }
         
     }//GEN-LAST:event_txtCodigoKeyPressed
+
+    private void txtCodigo1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigo1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+          
+            try {
+                sel.ListarCursos(this);
+                sel.ListarMensalidades(this);
+            } catch (SQLException ex) {
+                Logger.getLogger(CadMensalidades.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+        
+    }//GEN-LAST:event_txtCodigo1KeyPressed
+
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+        val.clickBtPesquisa(4, txtCodigo1, "tb_cursos");
+    }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,17 +468,11 @@ public class CadMensalidades extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnBuscar;
-    public javax.swing.JComboBox cbCursos;
+    public javax.swing.JButton btnBuscar1;
     public javax.swing.JFormattedTextField jFormattedTextField1;
     public javax.swing.JFormattedTextField jFormattedTextField10;
     public javax.swing.JFormattedTextField jFormattedTextField11;
     public javax.swing.JFormattedTextField jFormattedTextField12;
-    public javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    public javax.swing.JFormattedTextField jFormattedTextField4;
-    public javax.swing.JFormattedTextField jFormattedTextField5;
-    public javax.swing.JFormattedTextField jFormattedTextField6;
-    public javax.swing.JFormattedTextField jFormattedTextField7;
     public javax.swing.JFormattedTextField jFormattedTextField8;
     public javax.swing.JFormattedTextField jFormattedTextField9;
     private javax.swing.JLabel jLabel13;
@@ -362,12 +481,7 @@ public class CadMensalidades extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    public javax.swing.JTextField jTextField3;
-    public javax.swing.JTextField jTextField4;
-    public javax.swing.JTextField jTextField5;
-    public javax.swing.JTextField jTextField6;
-    public javax.swing.JTextField jTextField7;
-    public javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel jLabel19;
     public javax.swing.JLabel lbPendente1;
     public javax.swing.JLabel lbPendente2;
     public javax.swing.JLabel lbPendente3;
@@ -375,7 +489,21 @@ public class CadMensalidades extends javax.swing.JFrame {
     public javax.swing.JLabel lbPendente5;
     public javax.swing.JLabel lbPendente6;
     public javax.swing.JTextField txtCodigo;
+    public javax.swing.JTextField txtCodigo1;
+    public javax.swing.JFormattedTextField txtData1;
+    public javax.swing.JFormattedTextField txtData2;
+    public javax.swing.JFormattedTextField txtData3;
+    public javax.swing.JFormattedTextField txtData4;
+    public javax.swing.JFormattedTextField txtData5;
+    public javax.swing.JFormattedTextField txtData6;
     public javax.swing.JTextField txtNomeAluno;
+    public javax.swing.JTextField txtNomeAluno1;
+    public javax.swing.JTextField txtTitulo1;
+    public javax.swing.JTextField txtTitulo2;
+    public javax.swing.JTextField txtTitulo3;
+    public javax.swing.JTextField txtTitulo4;
+    public javax.swing.JTextField txtTitulo5;
+    public javax.swing.JTextField txtTitulo6;
     // End of variables declaration//GEN-END:variables
     private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/pc.png")));

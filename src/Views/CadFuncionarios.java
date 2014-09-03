@@ -151,6 +151,11 @@ public class CadFuncionarios extends javax.swing.JFrame {
         setResizable(false);
 
         txtCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCodigoKeyPressed(evt);
@@ -537,7 +542,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
-        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             if (val.KeyPressedText(this) == false) {
                 try {
                     if (sel.ListarFuncionarios(this) != true) {
@@ -548,7 +553,7 @@ public class CadFuncionarios extends javax.swing.JFrame {
                     Logger.getLogger(CadAluno.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        
+        }
     }//GEN-LAST:event_txtCodigoKeyPressed
 
     private void btnBuscarCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCargoActionPerformed
@@ -557,14 +562,19 @@ public class CadFuncionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarCargoActionPerformed
 
     private void txtCodigoCargoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoCargoKeyPressed
-       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            try {
-                sel.ListarCargos(this);
-            } catch (SQLException ex) {
-                Logger.getLogger(CadFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
-            }
-          //  this.txtCodigoCargo.setEnabled(false);
-       }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            
+                try {
+
+                   sel.ListarCargos(this);
+                   
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadCargos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+        }
     }//GEN-LAST:event_txtCodigoCargoKeyPressed
 
     private void txtCodigoCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoCargoActionPerformed
@@ -586,6 +596,10 @@ public class CadFuncionarios extends javax.swing.JFrame {
     private void txtCidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCidadeKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCidadeKeyTyped
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
     /**
      * @param args the command line arguments

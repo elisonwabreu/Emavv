@@ -300,16 +300,13 @@ public class CadMatriculas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
+        
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
-        
             if (val.KeyPressedText(this) == false) {
                 try {
-                    
-                    if (sel.ListarMAtricula(this) != true) {
-
-                        val.ButtonClick(this);
-                    }
+                    sel.ListarMAtricula(this);
+                    val.ButtonClick(this); 
                 } catch (SQLException ex) {
                     Logger.getLogger(CadMatriculas.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -338,7 +335,9 @@ public class CadMatriculas extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         Gravar novo = new Gravar();
         try {
-            novo.GravaMatricula(this);
+            if(val.ValidaGravacaoMatricula(this)== true){
+                novo.GravaMatricula(this);
+            }
         } catch (ParseException | SQLException ex) {
             Logger.getLogger(CadMatriculas.class.getName()).log(Level.SEVERE, null, ex);
         }

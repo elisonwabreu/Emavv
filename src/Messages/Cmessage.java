@@ -84,6 +84,12 @@ public class Cmessage {
 
         JOptionPane.showMessageDialog(null, "Nenhum registo encontrado!");
     }
+    
+     public void msgNenhumaMatricula() {
+
+        JOptionPane.showMessageDialog(null, "Aluno sem Matrícula!");
+    }
+     
     public void msgNenhumRegistroDisc() {
 
         JOptionPane.showMessageDialog(null, "Esse curso não possui Disciplinas cadastradas!");

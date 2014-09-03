@@ -15,13 +15,13 @@ public class Matriculados implements Serializable {
     @JoinColumn(name = "fd_matricula")
     private  Matriculas  fd_matricula;
     
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "fd_aluno")
-    private List<Alunos> fd_aluno;
+    private Alunos fd_aluno;
     
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "fd_curso")
-    private List<Cursos> fd_curso;
+    private Cursos fd_curso;
     
    
     public Cursos getFd_curso() {
@@ -40,11 +40,11 @@ public class Matriculados implements Serializable {
         return (Alunos) fd_aluno;
     }
 
-    public void setFd_aluno(List<Alunos> fd_aluno) {
+    public void setFd_aluno(Alunos fd_aluno) {
         this.fd_aluno = fd_aluno;
     }
 
-    public void setFd_curso(List<Cursos> fd_curso) {
+    public void setFd_curso(Cursos fd_curso) {
         this.fd_curso = fd_curso;
     }
 }
